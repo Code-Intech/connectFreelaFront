@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HelloWorld from '../components/HelloWorld.vue';
+import TextScreen from '../components/TextScreen.vue';
 
 
 const routes = [
     {
         path: "/",
-        name: "HelloWorld",
-        component: HelloWorld,
+        name: "TextScreen",
+        component: TextScreen,
     },
 ];
 

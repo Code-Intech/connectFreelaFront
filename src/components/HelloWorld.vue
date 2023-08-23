@@ -1,7 +1,8 @@
 <template>
     <div class="container">
       <button class="btn btn-primary">
-        Calanguin
+        {{ text }}
+        <font-awesome-icon icon="phone" />
       </button>
     </div>
 </template>
@@ -9,6 +10,12 @@
 <script>
 export default {
   name: 'HelloWorld',
+  props: {
+    text: {
+      required: true,
+      type: String
+    }
+  }
 }
 </script>
 
