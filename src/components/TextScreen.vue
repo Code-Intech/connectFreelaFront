@@ -17,29 +17,26 @@ export default {
   },
   methods: {
     login: () => {
-      const axios = require('axios');
-      let data = JSON.stringify({
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
         "email": "ms5806166@gmail.com",
         "password": "Teste1236@"
       });
 
-      let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'http://localhost:8000/auth/login',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data : data
+      // eslint-disable-next-line no-unused-vars
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
       };
 
-      axios.request(config)
-          .then((response) => {
-            console.log(JSON.stringify(response.data));
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      fetch("http://localhost:8000/auth/login", {method: 'POST', body: raw})
+          .then(response => response.json())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
     }
   }
 }
