@@ -1,13 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Menu from '../components/Menu.vue';
-import TesteMenuSidebar from "@/components/TesteMenuSidebar.vue";
+import MenuComponent from '@/components/MenuComponent.vue';
+import PaginationComponent from '@/components/PaginationComponent.vue';
 
 
 const routes = [
     {
         path: "/",
-        name: "TextScreen",
-        component: Menu,
+        name: "MenuComponent",
+        component: MenuComponent,
+    },
+    {
+        path: "/teste",
+        name: "PaginationComponent",
+        component: PaginationComponent,
     },
     {
         path: "/testeSideBar",

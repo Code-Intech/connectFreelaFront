@@ -3,7 +3,7 @@
 		<div class="menup">
 			<div class="data-menu navbar">
 				<div class="nav nome-empresa">
-					<h1>ConnectFeela</h1>
+					<h1>ConnectFreela</h1>
 				</div>
 				<ul class=" nav justify-content-end ">
 					<li class="nav-item item-menu">
@@ -26,29 +26,34 @@
 
 			<div class="data-menu2 navbar">
 				<div class=" data-burguer">
-					<!-- <ul class="nav align-items-center">
+
+					<ul class="nav align-items-center">
 						<li>
-							<a class="navbar" href=""><font-awesome-icon :icon="['fas', 'bars']" size="2xl" /></a>
+							<a class="navbar" href="" @click="addopen()"><font-awesome-icon :icon="['fas', 'bars']"
+									size="2xl" /></a>
 						</li>
-					</ul> -->
-					<ul class="menu">
 
-						<li title="home"><a href="#" class="menu-button home" @click="addopen()">menu</a></li>
+						<ul class="menu-bar ">
 
-						<li title="search"><a href="#" class="search">search</a></li>
-						<li title="pencil"><a href="#" class="pencil">pencil</a></li>
-						<li title="about"><a href="#" class="active about">about</a></li>
-						<li title="archive"><a href="#" class="archive">archive</a></li>
-						<li title="contact"><a href="#" class="contact">contact</a></li>
+							<!-- <li title="home menu"><a href="#" class="menu-button home" @click="addopen()">menu</a></li> -->
+
+							<li title="search"><a href="#" class="search menu-button">search</a></li>
+							<li title="pencil"><a href="#" class="pencil">pencil</a></li>
+							<li title="about"><a href="#" class="active about">about</a></li>
+							<li title="archive"><a href="#" class="archive">archive</a></li>
+							<li title="contact"><a href="#" class="contact">contact</a></li>
+						</ul>
+
+						<ul class="menu-bar ">
+							<li><a href="#" class="menu-button">Menu</a></li>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Profile</a></li>
+							<li><a href="#">Editorial</a></li>
+							<li><a href="#">About</a></li>
+						</ul>
 					</ul>
+					
 
-					<ul class="menu-bar" >
-						<li><a href="#" class="menu-button">Menu</a></li>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Profile</a></li>
-						<li><a href="#">Editorial</a></li>
-						<li><a href="#">About</a></li>
-					</ul>
 				</div>
 				<ul class="nav align-items-center justify-content-center">
 
@@ -142,6 +147,9 @@
 								</span>
 							</div>
 						</div> -->
+
+						<!-- MAMACO -->
+
 					</li>
 					<li class="nav-item item-menu">
 						<a class="nav-link" href="">cat</a>
@@ -160,14 +168,44 @@
 
 		</div>
 
+		<div>
+			<ul>
+				<!-- <li title="home menu"><a href="#" class="" @click="addopen()">menu</a></li> -->
+
+				<!-- <li class="nav-item item-lupa">
+						<a class="nav-link" href="" @click="addopen()"><font-awesome-icon :icon="['fas', 'magnifying-glass']" size="2xl" /></a>
+					</li> -->
+
+
+				<ul class="menu-bar">
+
+					<!-- <li title="home menu"><a href="#" class="menu-button home" @click="addopen()">menu</a></li> -->
+
+					<li title="search"><a href="#" class="search">search</a></li>
+					<li title="pencil"><a href="#" class="pencil">pencil</a></li>
+					<li title="about"><a href="#" class="active about">about</a></li>
+					<li title="archive"><a href="#" class="archive">archive</a></li>
+					<li title="contact"><a href="#" class="contact">contact</a></li>
+				</ul>
+
+				<ul class="menu-bar">
+					<li><a href="#" class="menu-button">Menu</a></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Editorial</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</ul>
+		</div>
+
 	</nav>
 </template>
 
 <script>
 
-import {buguer,addopen} from '@/assets/js/ComponentMenu/JSBuguer.js';
+import { buguer, addopen } from '@/assets/js/ComponentMenu/JSBuguer.js';
 export default {
-	name: "MenuComponent",
+	name: "HelloWorld",
 
 	methods: {
 		responsive: () => {
@@ -177,11 +215,11 @@ export default {
 			addopen();
 		},
 	},
-	created(){
+	created() {
 		this.responsive()
 	},
 
-	
+
 };
 
 
