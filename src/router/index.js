@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import TextScreen from '../components/TextScreen.vue';
+import Menu from '../components/Menu.vue';
 
 
 const routes = [
     {
         path: "/",
         name: "TextScreen",
-        component: TextScreen,
+        component: Menu,
     },
 ];
 
