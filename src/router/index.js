@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MenuComponent from '@/components/MenuComponent.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
+import TesteMenuSidebar from '@/components/TesteMenuSidebar.vue';
 
 
 const routes = [
