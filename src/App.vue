@@ -14,7 +14,5 @@ export default {
 </script>
 
 <style>
-#app {
-  min-height: 100vh;
-}
+@import "@/assets/css/main.css";
 </style>
