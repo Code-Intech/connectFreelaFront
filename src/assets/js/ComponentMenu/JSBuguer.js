@@ -1,12 +1,5 @@
-export function buguer(){
-        document.querySelector(".menu-button");
-        
-    console.log("tt1")
-    
-}
-
 export function addopen(){
-    let menuBar = document.querySelector(".menu-bar");
-    menuBar.classList.toggle("open");
+    let menuBar = document.querySelector(".sidebar");
+    menuBar.classList.toggle("fliph");
     console.log("tt2")
 }

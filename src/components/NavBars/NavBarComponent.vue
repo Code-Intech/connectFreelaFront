@@ -4,71 +4,29 @@
 
 
 
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-center align-items-center gap-2">
+  <nav class="navbar cormain">
+    <div class="container-fluid " >
+      
+      <div></div>
+      <div class="d-flex justify-content-between align-items-center gap-2">
         <div class="d-block">
           <form class="d-flex" role="search">
             <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit"><font-awesome-icon icon="search" /></button>
+            <button class="btn btn-outline-success corbotao " style="color: white;" type="submit"><font-awesome-icon icon="search" /></button>
           </form>
         </div>
-        <div class="dropstart">
-          <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropstart ">
+          <button class="btn btn-secondary corbotao" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             categoria
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu btcat">
             <div class="d-flex flex-column">
               <div class="d-flex">
                 <div>
-                  <img src="https://img.quizur.com/f/img62dc75c68ada20.76829981.jpeg?lastEdited=1658615257" alt="" srcset="">
+                  <img style="max-width: 450px;max-height: 500px;margin-left: 8px;" src="https://img.quizur.com/f/img62dc75c68ada20.76829981.jpeg?lastEdited=1658615257" alt="" srcset="">
                 </div>
-                <div>
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </div>
-                <div>
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                <div class="border-end ">
+                  <li><a class="dropdown-item " href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                   <li><a class="dropdown-item" href="#">Action</a></li>
@@ -78,8 +36,19 @@
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </div>
-                <div>
+                <div class="border-end">
+                  <li><a class="dropdown-item " href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                   <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </div>
+                <div>
+                  <li><a class="dropdown-item " href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                   <li><a class="dropdown-item" href="#">Action</a></li>
@@ -93,10 +62,10 @@
             </div>
           </ul>
         </div>
-        <button class="btn btn-secondary" type="button">
+        <button class="btn btn-secondary corbotao" type="button">
           categoria
         </button>
-        <button class="btn btn-secondary" type="button">
+        <button class="btn btn-secondary corbotao" type="button">
           categoria
         </button>
       </div>
@@ -116,5 +85,58 @@ export default {
 </script>
 
 <style scoped>
+
+.btcat{
+  background-color: var(--purple-primary);
+  color: white;
+  border-radius: 5px;
+}
+
+
+.dropdown-item:hover{
+  background-color: var(--purple-quaternary);
+}
+
+
+
+.btn:hover{
+  background-color: var(--purple-quaternary);
+}
+
+
+
+.cormain{
+  background-color: var(--purple-tertiary);
+
+}
+
+.corbotao {
+  border: none;
+  background-color: var(--purple-primary);
+}
+
+
+.cormain a {
+  color: white;
+
+}
+
+
+
+
+
+
+
+
+
+/* --purple-primary: #5A00D1;
+    --purple-secondary: #25004E;
+    --purple-tertiary: #7711F0;
+    --purple-quaternary: #9749FE;
+    --white-primary: #EFEDF8; */
+
+
+
+
 
 </style>
