@@ -14,7 +14,7 @@
         <div class="dropstart  ">
           <button class="btn btn-secondary rounded-circle  " style="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <!-- <font-awesome-icon icon="user" /> -->
-            <img class=" rounded-circle" style="max-width: 30px;max-height: 40px;" src="../../assets/avatar.jpg" alt="">
+            <img class=" rounded-circle" style="max-width: 30px;max-height: 40px;" src="@/assets/img/avatar.jpg" alt="">
           </button>
 
           <ul class="dropdown-menu border border-0 ">
@@ -33,12 +33,6 @@
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'comments-dollar']" /> Memsagens</button>
                   <button class="btn btn-primary" style="background-color: rgb(211, 35, 35);border: none;" ><font-awesome-icon :icon="['fas', 'power-off']" /></button>
                 </div>
-
-
-
-
-
-
               </div>
             </div>
 
@@ -59,8 +53,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 
 .cormain {
   background-color:  var(--purple-tertiary);

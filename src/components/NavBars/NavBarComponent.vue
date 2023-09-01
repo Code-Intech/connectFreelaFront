@@ -2,8 +2,6 @@
 
   <LandingNavBarComponent/>
 
-
-
   <nav class="navbar cormain">
     <div class="container-fluid " >
       
@@ -76,11 +74,10 @@
 
 <script>
 import LandingNavBarComponent from "@/components/NavBars/LandingNavBarComponent.vue";
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
   name: 'TesteMenuSidebar',
-  components: {FontAwesomeIcon, LandingNavBarComponent},
+  components: {LandingNavBarComponent},
 }
 </script>
 
