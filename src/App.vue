@@ -1,6 +1,6 @@
 <template>
 
-  <NavBarComponent />
+  <NavBarComponent v-if="!currentPage==='/login'"/>
   <router-view />
 
 </template>
@@ -14,7 +14,12 @@ export default {
   name: 'App',
   components: {
     NavBarComponent
-  }
+  },
+  data() {
+    return {
+      currentPage: window.location.pathname,
+   }
+}
 }
 </script>
 
