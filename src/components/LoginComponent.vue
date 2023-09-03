@@ -2,8 +2,8 @@
     <div class="container" id="container">
         <div class="form-container sign-up-container " style="overflow: scroll;">
             <form action="" class="">
-                <form-wizard stepSize="xs">
-                    <tab-content title="Informações pessoais">
+                <form-wizard stepSize="xs" @on-complete="onComplete" color="#7711F0" >
+                    <tab-content title="Informações pessoais" icon="fa fa-user">
                         <input class="form-control" type="text" name="" id="" placeholder="Nome Completo:" required>
                         <input class="form-control" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id=""
                             placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required>
@@ -32,7 +32,7 @@
                         </div>
 
                     </tab-content>
-                    <tab-content title="Endereço">
+                    <tab-content title="Endereço"   icon="fa-solid fa-location-dot" >
                         <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required>
                         <input class="form-control" type="text" name="" id="" placeholder="Estado:" required>
                         <input class="form-control" type="text" name="" id="" pattern="\d{5}-?\d{3}"
@@ -43,7 +43,7 @@
                         <input class="form-control" type="text" name="" id="" placeholder="Complemento:">
 
                     </tab-content>
-                    <tab-content title="Profissão">
+                    <tab-content title="Profissão" icon="fa fa-city">
                         <input class="form-control" type="text" name="" id="" placeholder="Profissão">
                         <input class="form-control" type="number" name="" id="" placeholder="Tempo de experiência:">
                         <input class="form-control" type="submit" value="" placeholder="Registra-se">
@@ -61,8 +61,8 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div> -->
                 <!-- <span>ou use sua conta</span> -->
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" placeholder="E-Mail" />
+                <input type="password" placeholder="Senha" />
                 <a href="#">Esqueceu sua senha?</a>
                 <button>Entrar</button>
             </form>
@@ -107,13 +107,16 @@
 </template>
 
 <script>
-
+import { FormWizard, TabContent } from "vue3-form-wizard";
 import { signup, signin } from "@/assets/js/ScriptLoginComponent.js";
-
+import "vue3-form-wizard/dist/style.css";
 
 export default {
     name: "LoginComponent",
-
+    components: {
+        FormWizard,
+        TabContent,
+    },
     methods: {
         addlogin: () => {
             signin();
@@ -121,9 +124,12 @@ export default {
         addregistre: () => {
             signup();
         },
-
-
+        onComplete() {
+            alert("Yay. Done!");
+        },
+        validateOnBack: Boolean,
     }
+
 
 
 
@@ -142,6 +148,20 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");s
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -234,8 +254,8 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
-    background: #ff445c;
+    border: 1px solid #9749FE;
+    background: #7711F0;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -290,8 +310,8 @@ button.ghost {
 }
 
 .overlay {
-    background: #ff416c;
-    background: linear-gradient(to right, #ff4b2b, #ff416c) no-repeat 0 0 / cover;
+    background: #7711F0;
+    background: linear-gradient(to right, #7711F0, #c901f1) no-repeat 0 0 / cover;
     color: #fff;
     position: relative;
     left: -100%;
@@ -357,7 +377,7 @@ button.ghost {
     transform: translateY(20%);
 }
 
-.footer {
+/* .footer {
     margin-top: 25px;
     text-align: center;
 }
@@ -369,5 +389,5 @@ button.ghost {
     height: 30px;
     letter-spacing: 15px;
     align-items: center;
-}
+} */
 </style>
