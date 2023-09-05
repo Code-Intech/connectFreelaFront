@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import HomeComponent from '@/components/HomeComponent.vue';
 import LoginComponent from '@/components/LoginComponent.vue';
+import TesteComponent from "@/components/FormValidation/TesteComponent.vue";
 
 
 const routes = [
@@ -11,7 +12,7 @@ const routes = [
         component: HomeComponent,
     },
     {
-        path: "/teste",
+        path: "/paginate",
         name: "PaginationComponent",
         component: PaginationComponent,
     },
@@ -19,7 +20,13 @@ const routes = [
         path: "/login",
         name: "LoginComponent",
         component: LoginComponent,
-    }
+    },
+    {
+        path: "/teste",
+        name: "TesteComponent",
+        component: TesteComponent,
+    },
+
 ];
 
 export const router = createRouter({

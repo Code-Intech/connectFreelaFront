@@ -1,6 +1,6 @@
 <template>
     <div class="container" id="container">
-        <div class="form-container sign-up-container " style="overflow: scroll;">
+        <div class="form-container sign-up-container " style="overflow: hidden;">
             <form action="" class="">
                 <form-wizard stepSize="xs" @on-complete="onComplete" color="#7711F0" >
                     <tab-content title="Informações pessoais" icon="fa fa-user">
@@ -18,18 +18,7 @@
                         <input class="form-control" type="tel" name=""
                             pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" id=""
                             placeholder="Telefone: (xx) xxxxx-xxxx" required>
-                        <div class="form-floating">
 
-                            <input class="form-control" type="text" name="" id="" placeholder="E-Mail:">
-                            <label for="floatingInput">Email address</label>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <div class="form-floating">
-                            <input class="form-control" type="password" name="" id="" placeholder="Senha:">
-                            <label for="floatingPassword">Password</label>
-                        </div>
 
                     </tab-content>
                     <tab-content title="Endereço"   icon="fa-solid fa-location-dot" >
@@ -46,8 +35,27 @@
                     <tab-content title="Profissão" icon="fa fa-city">
                         <input class="form-control" type="text" name="" id="" placeholder="Profissão">
                         <input class="form-control" type="number" name="" id="" placeholder="Tempo de experiência:">
-                        <input class="form-control" type="submit" value="" placeholder="Registra-se">
+<!--                        <input class="form-control" type="submit" value="" placeholder="Registra-se">-->
                     </tab-content>
+
+                  <tab-content title="Acesso" icon="fa fa-sign-in">
+                    <div class="form-floating">
+
+                      <input class="form-control" type="text" name="" id="" placeholder="E-Mail:">
+                      <label for="floatingInput">Email address</label>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="form-floating">
+                      <input class="form-control" type="password" name="" id="" placeholder="Senha:">
+                      <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="form-floating">
+                      <input class="form-control" type="password" name="" id="floatingPasswordConfirmation[" placeholder="Confirmação de senha:">
+                      <label for="floatingPasswordConfirmation">Password</label>
+                    </div>
+                  </tab-content>
 
                 </form-wizard>
             </form>
