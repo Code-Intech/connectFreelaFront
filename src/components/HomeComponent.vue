@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <br><br><br>
+        <br><br><br >
 
         <div class="container text-center">
             <div class="row ">
@@ -152,6 +152,8 @@ export default {
     max-width: 100px;
     max-height: 100px;
 }
+
+
 
 .img1 {
     max-width: 250px;

@@ -1,14 +1,18 @@
-<template>
+<template v-slot:footer="props" >
     <div class="container" id="container">
         <div class="form-container sign-up-container " style="overflow: hidden;">
             <form action="" class="">
-                <form-wizard stepSize="xs" @on-complete="onComplete" color="#7711F0" >
+                <form-wizard stepSize="xs" @on-complete="onComplete" color="#7711F0" finishButtonText="Cadastrar"
+                    nextButtonText="Proximo" backButtonText="Voltar">
                     <tab-content title="Informações pessoais" icon="fa fa-user">
-                        <input class="form-control" type="text" name="" id="" placeholder="Nome Completo:" required>
+                        <input class="form-control" type="text" name="" id="" placeholder="Nome Completo:" required
+                            v-model="form.nomeCompleto">
                         <input class="form-control" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id=""
-                            placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required>
-                        <input class="form-control" type="date" name="" id="" placeholder="Data de Nascimento:" required>
-                        <select class="form-select" name="Genero" id="" aria-placeholder="Genero:" required>
+                            placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required v-model="form.cpf">
+                        <input class="form-control" type="date" name="" id="" placeholder="Data de Nascimento:" required
+                            v-model="form.dataNascimento">
+                        <select class="form-select" name="Genero" id="" aria-placeholder="Genero:" required
+                            v-model="form.genero">
                             <option value="" selected disabled>Gênero:</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Masculino">Masculino</option>
@@ -17,51 +21,57 @@
                         </select>
                         <input class="form-control" type="tel" name=""
                             pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" id=""
-                            placeholder="Telefone: (xx) xxxxx-xxxx" required>
+                            placeholder="Telefone: (xx) xxxxx-xxxx" required v-model="form.telefone">
 
 
                     </tab-content>
-                    <tab-content title="Endereço"   icon="fa-solid fa-location-dot" >
-                        <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required>
-                        <input class="form-control" type="text" name="" id="" placeholder="Estado:" required>
-                        <input class="form-control" type="text" name="" id="" pattern="\d{5}-?\d{3}"
-                            placeholder="CEP: 00000-000" required>
-                        <input class="form-control" type="text" name="" id="" placeholder="Bairro:" required>
-                        <input class="form-control" type="text" name="" id="" placeholder="Endereço:" required>
-                        <input class="form-control" type="text" name="" id="" placeholder="Número:" required>
-                        <input class="form-control" type="text" name="" id="" placeholder="Complemento:">
+                    <tab-content title="Endereço" icon="fa-solid fa-location-dot">
+                        <input class="form-control" type="text" name="cep" id="cep" 
+                            placeholder="CEP: 00000-000" required v-model="form.cep">
+                        <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required
+                            v-model="form.cidade">
+                        <input class="form-control" type="text" name="" id="" placeholder="Estado:" required
+                            v-model="form.estado">
+                        <input class="form-control" type="text" name="" id="" placeholder="Bairro:" required
+                            v-model="form.bairro">
+                        <input class="form-control" type="text" name="rua" id="rua" placeholder="Endereço:" required
+                            v-model="form.rua">
+                        <input class="form-control" type="text" name="" id="" placeholder="Número:" required
+                            v-model="form.numero">
+
+
 
                     </tab-content>
-                    <tab-content title="Profissão" icon="fa fa-city">
-                        <input class="form-control" type="text" name="" id="" placeholder="Profissão">
-                        <input class="form-control" type="number" name="" id="" placeholder="Tempo de experiência:">
-<!--                        <input class="form-control" type="submit" value="" placeholder="Registra-se">-->
+
+
+                    <tab-content title="Acesso" icon="fa fa-sign-in">
+                        <div class="form-floating">
+
+                            <input class="form-control" type="text" name="" id="" placeholder="E-Mail:"
+                                v-model="form.email">
+                            <label for="floatingInput">Email address</label>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" type="password" name="" id="" placeholder="Senha:"
+                                v-model="form.senha">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" type="password" name="" id="floatingPasswordConfirmation["
+                                placeholder="Confirmação de senha:">
+                            <label for="floatingPasswordConfirmation">Password</label>
+                        </div>
                     </tab-content>
-
-                  <tab-content title="Acesso" icon="fa fa-sign-in">
-                    <div class="form-floating">
-
-                      <input class="form-control" type="text" name="" id="" placeholder="E-Mail:">
-                      <label for="floatingInput">Email address</label>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                    <div class="form-floating">
-                      <input class="form-control" type="password" name="" id="" placeholder="Senha:">
-                      <label for="floatingPassword">Password</label>
-                    </div>
-                    <div class="form-floating">
-                      <input class="form-control" type="password" name="" id="floatingPasswordConfirmation[" placeholder="Confirmação de senha:">
-                      <label for="floatingPasswordConfirmation">Password</label>
-                    </div>
-                  </tab-content>
 
                 </form-wizard>
+
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="#" @submit.prevent="submit">
                 <h1>Login</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -69,10 +79,11 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div> -->
                 <!-- <span>ou use sua conta</span> -->
-                <input type="email" placeholder="E-Mail" />
-                <input type="password" placeholder="Senha" />
+                <input type="email" name="email" placeholder="E-Mail" v-model="form.email" />
+                <input type="password" name="senha" placeholder="Senha" v-model="form.senha" />
                 <a href="#">Esqueceu sua senha?</a>
-                <button>Entrar</button>
+                <button type="submit">Entrar</button>
+                <p v-if="showError" id="error">Username or Password is incorrect</p>
             </form>
         </div>
         <div class="overlay-container">
@@ -115,9 +126,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { FormWizard, TabContent } from "vue3-form-wizard";
 import { signup, signin } from "@/assets/js/ScriptLoginComponent.js";
 import "vue3-form-wizard/dist/style.css";
+// import { formToJSON } from "axios";
 
 export default {
     name: "LoginComponent",
@@ -126,19 +139,117 @@ export default {
         TabContent,
     },
     methods: {
+    
+
+
+        async handleCep(){
+
+
+
+            try{
+
+
+                const response = await fetch("https://viacep.com.br/ws/${this.form.cep}/json/");
+                const data = await response.json()
+    
+                console.log(data)
+
+                this.form.rua = data.logradouro
+
+
+
+            }catch(error){
+
+                console.log(error)
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+        },
+
         addlogin: () => {
             signin();
         },
         addregistre: () => {
             signup();
         },
-        onComplete() {
-            alert("Yay. Done!");
-        },
+        // onComplete() {
+        //     alert("Yay. Done!");
+        // },
         validateOnBack: Boolean,
+        ...mapActions(["LogIn"]),
+        async submit() {
+
+            const User = new FormData();
+            User.append("email", this.form.email);
+            User.append("senha", this.form.senha);
+            try {
+                await this.Login(User);
+                this.$router.push("/");
+                this.showErro = false
+            } catch (error) {
+                this.showErro = true
+            }
+
+        },
+
+        ...mapActions(["Register"]),
+        async tttt() {
+
+            const User = new FormData();
+
+
+            User.append("nomeCompleto", this.form.nomeCompleto);
+            User.append("cpf", this.form.cpf);
+            User.append("dataNascimento", this.form.dataNascimento);
+            User.append("genero", this.form.genero);
+            User.append("telefone", this.form.telefone);
+            User.append("cpf", this.form.cpf);
+            User.append("cep", this.form.cep);
+            User.append("rua", this.form.rua);
+            User.append("cidade", this.form.cidade);
+            User.append("estado", this.form.estado);
+            User.append("numero", this.form.emnumeroail);
+            User.append("email", this.form.email);
+            User.append("senha", this.form.senha);
+
+            try {
+
+                await this.registre(User);
+                this.$router.push("/");
+                this.showErro = false;
+
+
+            } catch (error) {
+                this.showErro = true;
+            }
+
+
+        }
+
+
+
+    },
+    data() {
+        return {
+            form: {
+                email: "",
+                senha: "",
+            },
+            showErro: false
+        };
+
     }
-
-
 
 
 }
@@ -156,25 +267,9 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");s
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* {
+s * {
     box-sizing: border-box;
 }
 
@@ -397,5 +492,4 @@ button.ghost {
     height: 30px;
     letter-spacing: 15px;
     align-items: center;
-} */
-</style>
+} */</style>
