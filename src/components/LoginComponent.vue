@@ -27,23 +27,49 @@
 
           </tab-content>
           <tab-content title="Endereço" icon="fa-solid fa-location-dot">
-            <input class="form-control" type="text" name="cep" id="cep"
-                   placeholder="CEP: 00000-000" required v-model="form.cep">
-            <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required
-                   v-model="form.cidade">
-            <input class="form-control" type="text" name="" id="" placeholder="Estado:" required
-                   v-model="form.estado">
-            <input class="form-control" type="text" name="" id="" placeholder="Bairro:" required
-                   v-model="form.bairro">
-            <input class="form-control" type="text" name="rua" id="rua" placeholder="Endereço:" required
-                   v-model="form.rua">
-            <input class="form-control" type="text" name="" id="" placeholder="Número:" required
-                   v-model="form.numero">
-
+            <input
+                class="form-control"
+                type="text"
+                name="cep"
+                id="cep"
+                placeholder="CEP: 00000-000"
+                required v-model="form.cep"
+            >
+            <input class="form-control" type="text" name=""
+                   id=""
+                   placeholder="Cidade:"
+                   required
+                   v-model="form.cidade"
+            >
+            <input class="form-control" type="text" name=""
+                   id=""
+                   placeholder="Estado:"
+                   required
+                   v-model="form.estado"
+            >
+            <input class="form-control" type="text" name=""
+                   id=""
+                   placeholder="Bairro:"
+                   required
+                   v-model="form.bairro"
+            >
+            <input class="form-control" type="text" name="rua"
+                   id="rua"
+                   placeholder="Endereço:"
+                   required
+                   v-model="form.rua"
+            >
+            <input
+                class="form-control"
+                type="text"
+                name=""
+                id=""
+                placeholder="Número:"
+                required
+                v-model="form.numero"
+            >
 
           </tab-content>
-
-
           <tab-content title="Acesso" icon="fa fa-sign-in">
             <div class="form-floating">
 
@@ -65,12 +91,9 @@
               <label for="floatingPasswordConfirmation">Password</label>
             </div>
           </tab-content>
-
         </form-wizard>
-
       </form>
     </div>
-
     <div class="form-container sign-in-container">
       <form action="#" @submit.prevent="login">
         <h1>Login</h1>
@@ -106,136 +129,80 @@ import {signup, signin} from "@/assets/js/ScriptLoginComponent.js";
 import "vue3-form-wizard/dist/style.css";
 
 export default {
-    name: "LoginComponent",
-    components: {
-        FormWizard,
-        TabContent,
+  name: "LoginComponent",
+  components: {
+    FormWizard,
+    TabContent,
+  },
+  methods: {
+    async handleCep() {
+      try {
+        const response = await fetch("https://viacep.com.br/ws/${this.form.cep}/json/");
+        const data = await response.json()
+        console.log(data)
+        this.form.rua = data.logradouro
+      } catch (error) {
+        console.log(error)
+      }
     },
-    methods: {
-    
-
-
-        async handleCep(){
-
-
-
-            try{
-
-
-                const response = await fetch("https://viacep.com.br/ws/${this.form.cep}/json/");
-                const data = await response.json()
-    
-                console.log(data)
-
-                this.form.rua = data.logradouro
-
-
-
-            }catch(error){
-
-                console.log(error)
-
-
-
-
-            }
-
-
-
-
-
-
-
-
-
-        },
-
-        addlogin: () => {
-            signin();
-        },
-        addregistre: () => {
-            signup();
-        },
-        // onComplete() {
-        //     alert("Yay. Done!");
-        // },
-        validateOnBack: Boolean,
-        ...mapActions(["LogIn"]),
-        async submit() {
-
-            const User = new FormData();
-            User.append("email", this.form.email);
-            User.append("senha", this.form.senha);
-            try {
-                await this.Login(User);
-                this.$router.push("/");
-                this.showErro = false
-            } catch (error) {
-                this.showErro = true
-            }
-
-        },
-
-        ...mapActions(["Register"]),
-        async tttt() {
-
-            const User = new FormData();
-
-
-            User.append("nomeCompleto", this.form.nomeCompleto);
-            User.append("cpf", this.form.cpf);
-            User.append("dataNascimento", this.form.dataNascimento);
-            User.append("genero", this.form.genero);
-            User.append("telefone", this.form.telefone);
-            User.append("cpf", this.form.cpf);
-            User.append("cep", this.form.cep);
-            User.append("rua", this.form.rua);
-            User.append("cidade", this.form.cidade);
-            User.append("estado", this.form.estado);
-            User.append("numero", this.form.emnumeroail);
-            User.append("email", this.form.email);
-            User.append("senha", this.form.senha);
-
-            try {
-
-                await this.registre(User);
-                this.$router.push("/");
-                this.showErro = false;
-
-
-            } catch (error) {
-                this.showErro = true;
-            }
-
-
-        }
-
-
-
+    addlogin: () => {
+      signin();
     },
-    data() {
-        return {
-            form: {
-                email: "",
-                senha: "",
-            },
-            showErro: false
-        };
+    addregistre: () => {
+      signup();
+    },
+    validateOnBack: Boolean,
+    ...mapActions(["LogIn", "Register"]),
+    async login() {
+      const User = new FormData();
+      User.append("email", this.form.email);
+      User.append("senha", this.form.senha);
+      try {
+        await this.LogIn(User);
+        this.$router.push("/");
+        this.showErro = false
+      } catch (error) {
+        this.showErro = true
+      }
+    },
+    async register() {
 
+      const User = new FormData();
+      User.append("nomeCompleto", this.form.nomeCompleto);
+      User.append("cpf", this.form.cpf);
+      User.append("dataNascimento", this.form.dataNascimento);
+      User.append("genero", this.form.genero);
+      User.append("telefone", this.form.telefone);
+      User.append("cpf", this.form.cpf);
+      User.append("cep", this.form.cep);
+      User.append("rua", this.form.rua);
+      User.append("cidade", this.form.cidade);
+      User.append("estado", this.form.estado);
+      User.append("numero", this.form.emnumeroail);
+      User.append("email", this.form.email);
+      User.append("senha", this.form.senha);
+
+      try {
+        await this.registre(User);
+        this.$router.push("/");
+        this.showErro = false;
+
+      } catch (error) {
+        this.showErro = true;
+      }
     }
+  },
+  data() {
+    return {
+      form: {
+        email: "",
+        senha: "",
+      },
+      showErro: false
+    };
 
-
+  }
 }
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <style scoped>
@@ -452,17 +419,4 @@ button.ghost {
 .container.right-panel-active .overlay-right {
   transform: translateY(20%);
 }
-
-/* .footer {
-    margin-top: 25px;
-    text-align: center;
-}
-
-
-.icons {
-    display: flex;
-    width: 30px;
-    height: 30px;
-    letter-spacing: 15px;
-    align-items: center;
-} */</style>
+</style>
