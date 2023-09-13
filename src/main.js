@@ -6,23 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {fas} from "@fortawesome/free-solid-svg-icons";
 import Vue3FormWizard from 'vue3-form-wizard';
 import VeeValidate, { Field, Form, ErrorMessage } from 'vee-validate';
-import {  } from 'vee-validate';
 import store from "@/store";
-import axios from "axios";
 
 library.add(fas)
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'vue3-form-wizard/dist/style.css'
-
-
-
-axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:8000/';
-
-
-
-
 createApp(App)
   .use(router)
   .use(Vue3FormWizard)

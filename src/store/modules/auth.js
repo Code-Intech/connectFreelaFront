@@ -1,14 +1,7 @@
 import axios from "axios";
 const state = {
     user: null,
-    addcep: {
-        cep: '',
-        rua: '',
-        bairro: '',
-        cidade: '',
-        estado:'',
-    
-    }
+    token: null,
 };
 const getters = {
     isAuthenticated: (state) => !!state.user,
@@ -16,20 +9,30 @@ const getters = {
 };
 const actions = {
     async Register({ dispatch }, form) {
+
         await axios.post("register", form);
         let UserForm = new FormData();
         UserForm.append("email", form.email);
-        UserForm.append("pass", form.password);
+        UserForm.append("pass", form.senha);
         await dispatch("LogIn", UserForm);
     },
 
     async LogIn({ commit }, User) {
-        console.log(User);
-        await axios.post("auth/login", {
-            email: User.get("email"),
-            pass: User.get("pass"),
-        });
-        await commit("setUser", User.get("email"));
+        const request = await fetch('http://localhost:8000/auth/login', {
+            method: 'POST',
+        body: JSON.stringify({
+                email: User.get("email"),
+                senha: User.get("senha"),
+            })
+        })
+
+        if (request.status === 401) throw new Error(request.statusText)
+
+        const data = request.json();
+        commit("setUser", { email: User.get("email"), token: data.token });
+
+        return request;
+
     },
 
     async LogOut({ commit }) {
@@ -38,8 +41,9 @@ const actions = {
     },
 };
 const mutations = {
-    setUser(state, email) {
+    setUser(state, { email, token }) {
         state.user = email;
+        state.token = token;
     },
     LogOut(state) {
         state.user = null;

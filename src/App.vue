@@ -1,6 +1,5 @@
 <template>
-
-  <NavBarComponent v-if="currentPage!=='/login'"/>
+  <NavBarComponent/>
   <router-view />
 
 </template>
