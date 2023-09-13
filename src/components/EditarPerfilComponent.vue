@@ -2,6 +2,10 @@
     <PerfilComponent/>
     <Form>
         <Field name="field" :rules="isRequired" />
+        <button class="btn btn-outline-primary text-white  border-white">Nome de Perfil</button>
+        <button class="btn btn-outline-primary text-white  border-white">Nome de Perfil</button>
+        <button class="btn btn-outline-primary text-white  border-white">Nome de Perfil</button>
+        
         <ErrorMessage name="field" />
     </Form>
 </template>
