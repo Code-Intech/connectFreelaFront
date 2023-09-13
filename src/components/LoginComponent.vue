@@ -1,6 +1,7 @@
 <template v-slot:footer="props">
   <div class="container" id="container">
     <div class="form-container sign-up-container " style="overflow: hidden;">
+
       <form action="" class="" @submit.prevent="register">
         <form-wizard stepSize="xs" @on-complete="register" color="#7711F0" finishButtonText="Cadastrar"
 
@@ -33,31 +34,36 @@
                 name="cep"
                 id="cep"
                 placeholder="CEP: 00000-000"
-                required v-model="form.cep"
+                required
+                v-model="cep"
             >
             <input class="form-control" type="text" name=""
                    id=""
                    placeholder="Cidade:"
                    required
-                   v-model="form.cidade"
+                   readonly
+                   :value="store.getters.city.cidade"
             >
             <input class="form-control" type="text" name=""
                    id=""
                    placeholder="Estado:"
                    required
-                   v-model="form.estado"
+                   readonly
+                   :value="store.getters.city.estado"
             >
             <input class="form-control" type="text" name=""
                    id=""
                    placeholder="Bairro:"
                    required
-                   v-model="form.bairro"
+                   readonly
+                   :value="store.getters.city.bairro"
             >
             <input class="form-control" type="text" name="rua"
                    id="rua"
                    placeholder="Endereço:"
                    required
-                   v-model="form.rua"
+                   readonly
+                   :value="store.getters.city.endereco"
             >
             <input
                 class="form-control"
@@ -94,14 +100,15 @@
         </form-wizard>
       </form>
     </div>
+
     <div class="form-container sign-in-container">
       <form action="#" @submit.prevent="login">
         <h1>Login</h1>
         <input type="email" name="email" placeholder="E-Mail" v-model="form.email"/>
         <input type="password" name="senha" placeholder="Senha" v-model="form.senha"/>
+        <p v-if="store.getters.isMessageError" class="text-danger" id="error">Username or Password is incorrect</p>
         <a href="#">Esqueceu sua senha?</a>
-        <button type="submit">Entrar</button>
-        <p v-if="showError" id="error">Username or Password is incorrect</p>
+        <button :class="{ 'bg-danger': store.getters.isMessageError }" type="submit">Entrar</button>
       </form>
     </div>
 
@@ -123,36 +130,62 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import store from "@/store";
+import {mapActions, mapGetters} from 'vuex'
 import {FormWizard, TabContent} from "vue3-form-wizard";
-import {signup, signin} from "@/assets/js/ScriptLoginComponent.js";
 import "vue3-form-wizard/dist/style.css";
 
 export default {
   name: "LoginComponent",
+  computed: {
+    store() {
+      return store
+    }
+  },
   components: {
     FormWizard,
     TabContent,
   },
+  data() {
+    return {
+      form: {
+        email: "",
+        senha: "",
+      },
+      cep: ""
+    };
+  },
+  mounted() {
+    this.store.commit("setError", {error: false})
+  },
+  watch: {
+    cep() {
+      this.handleCep()
+    }
+  },
   methods: {
+
+    addlogin: () => {
+      const container = document.getElementById('container');
+      container.classList.remove('right-panel-active');
+    },
+    addregistre: () => {
+      const container = document.getElementById('container');
+      container.classList.add('right-panel-active');
+    },
+
+    validateOnBack: Boolean,
+    ...mapActions(["LogIn", "Register", "showError", "getAddress"]),
+    ...mapGetters(["isMessageError"]),
+
     async handleCep() {
       try {
-        const response = await fetch("https://viacep.com.br/ws/${this.form.cep}/json/");
-        const data = await response.json()
-        console.log(data)
-        this.form.rua = data.logradouro
+        await this.getAddress(this.cep)
       } catch (error) {
         console.log(error)
       }
     },
-    addlogin: () => {
-      signin();
-    },
-    addregistre: () => {
-      signup();
-    },
-    validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register"]),
+
     async login() {
       const User = new FormData();
       User.append("email", this.form.email);
@@ -160,9 +193,9 @@ export default {
       try {
         await this.LogIn(User);
         this.$router.push("/");
-        this.showErro = false
       } catch (error) {
-        this.showErro = true
+        console.log(error)
+        await this.showError(error)
       }
     },
     async register() {
@@ -185,23 +218,13 @@ export default {
       try {
         await this.registre(User);
         this.$router.push("/");
-        this.showErro = false;
+        // this.showError = false;
 
       } catch (error) {
-        this.showErro = true;
+        // this.showError = true;
       }
     }
   },
-  data() {
-    return {
-      form: {
-        email: "",
-        senha: "",
-      },
-      showErro: false
-    };
-
-  }
 }
 </script>
 
