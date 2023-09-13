@@ -194,7 +194,7 @@ export default {
             User.append("email", this.form.email);
             User.append("senha", this.form.senha);
             try {
-                await this.Login(User);
+                await this.LogIn(User);
                 this.$router.push("/");
                 this.showErro = false
             } catch (error) {

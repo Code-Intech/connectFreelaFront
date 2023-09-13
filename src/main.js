@@ -18,7 +18,7 @@ import 'vue3-form-wizard/dist/style.css'
 
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'http://localhost:8000/';
 
 
 

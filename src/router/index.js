@@ -3,7 +3,9 @@ import PaginationComponent from '@/components/PaginationComponent.vue';
 import HomeComponent from '@/components/HomeComponent.vue';
 import LoginComponent from '@/components/LoginComponent.vue';
 import TesteComponent from "@/components/FormValidation/TesteComponent.vue";
-import store from "@/store"
+import store from "@/store";
+import Perfil from "@/components/PerfilComponent.vue";
+import EditarPerfil from "@/components/EditarPerfilComponent.vue"
 
 const routes = [
     {
@@ -25,6 +27,16 @@ const routes = [
         path: "/teste",
         name: "TesteComponent",
         component: TesteComponent,
+    },
+    {
+        path: "/perfil",
+        name: "PerfilComponent",
+        component: Perfil,
+    },
+    {
+        path: "/editarPerfil",
+        name: "EditarPerfilComponent",
+        component: EditarPerfil,
     },
 
 ];

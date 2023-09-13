@@ -112,32 +112,6 @@
 
 
 
-        <!-- <span class="icons"><img src="../assets/img/1.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/2.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/3.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/4.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/5.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/6.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/7.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/8.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/9.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/10.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/11.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/12.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/13.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/14.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/15.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/16.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/17.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/18.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/19.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/20.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/21.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/23.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/24.svg" alt=""></span>
-                <span class="icons"><img src="../assets/img/25.svg" alt=""></span>
-                <span class="icons img"><img src="../assets/img/30.png" alt=""></span>
-                <span class="icons img"><img src="../assets/img/31.png" alt=""></span> -->
     </div>
 </template>
 
