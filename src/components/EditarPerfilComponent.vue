@@ -192,12 +192,7 @@
 export default {
     name: "EditarPerfilComponent",
     methods: {
-        isRequired(value) {
-            if (value && value.trim() && value.length > 5) {
-                return true;
-            }
-            return 'This is required';
-        }
+
     },
 
 }

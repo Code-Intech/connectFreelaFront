@@ -1,8 +1,6 @@
 <template>
-  <Form>
-    <Field name="field" :rules="isRequired" />
-    <ErrorMessage name="field" />
-  </Form>
+
+<div class="col-10 h-100 d-inline-block">adwad</div>
 </template>
 
 <script>

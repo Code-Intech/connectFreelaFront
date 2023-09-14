@@ -6,6 +6,7 @@ import TesteComponent from "@/components/FormValidation/TesteComponent.vue";
 import store from "@/store";
 import PerfilEditarView from "@/components/PerfilEditarView.vue";
 import PerfilBeneficiosView from "@/components/PerfilBeneficiosView.vue"
+import PerfilPortfolioView from "@/components/PerfilPortfolioView.vue"
 
 const routes = [
     {
@@ -37,6 +38,12 @@ const routes = [
         path: "/perfilbeneficios",
         name: "PerfilBeneficiosView",
         component: PerfilBeneficiosView,
+        
+    },  
+    {
+        path: "/PerfilPortfolio",
+        name: "PerfilPortfolioView",
+        component: PerfilPortfolioView,
         
     },
 

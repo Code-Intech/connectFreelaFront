@@ -17,10 +17,11 @@
             </div>
 
             <div class="d-grid gap-2 mt-3" >
-                <button class="btn btn-outline-primary text-white  border-white">Nome de Perfil</button>
-                <button class="btn btn-outline-primary text-white  border-white">Nome de Perfil</button>
-                <button class="btn btn-outline-primary text-white  border-white">Nome de Perfil</button>
-
+                <button class="btn btn-outline-primary text-white  border-white">Premium</button>
+                <button class="btn btn-outline-primary text-white  border-white">Avaliações</button>
+                <button class="btn btn-outline-primary text-white  border-white">Portfólio</button>
+                <button class="btn btn-outline-primary text-white  border-white">Dashboard</button>
+                
             </div>
         </div>
     </div>
