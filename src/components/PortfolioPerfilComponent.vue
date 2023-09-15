@@ -8,7 +8,7 @@
 
                         <div class="m-1 rounded-3 d-flex justify-content-center"
                             style="background-color: var(--purple-primary);">
-                            <h5 class="h5 text-white">Seu Pollrtfólio</h5>
+                            <h5 class="h5 text-white">Seu Portfólio</h5>
                         </div>
                         <!-- Card -->
                         <div class="card d-inline-block m-2 border border-black border-1" style="width: 18rem;">
@@ -78,17 +78,7 @@
                             </div>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
+                        
                     </div>
                     <div class="card-body">
                         <div>

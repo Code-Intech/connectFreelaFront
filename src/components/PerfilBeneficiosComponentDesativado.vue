@@ -8,12 +8,11 @@
                         <h1>Benefícios</h1>
                     </div>
 
-                    <div class="beneficiosList">
+                    <div class="flex-colum">
                         <ul>
-                            <li>Beneficio 1</li>
-                            <li>Beneficio 2</li>
-                            <li>Beneficio 3</li>
-                            <li>Beneficio 4</li>
+                            <li>Acesso antecipado a serviços;</li>
+                            <li>Prioridade no envio de propostas;</li>
+                            <li>Visualização do valor das propostas.</li>
                         </ul>
                     </div>
                 </div>
