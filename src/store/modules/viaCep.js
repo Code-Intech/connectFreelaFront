@@ -14,13 +14,19 @@ const getters = {
 };
 
 const actions = {
+
+
   async getAddress({ commit }, zipCode) {
 
-    if (zipCode.length < 8) return;
+    zipCode = zipCode.replace(/[^a-zA-Z0-9]/g, "")
 
-    const response = await fetch(`https://viacep.com.br/ws/${zipCode.replace(/[^a-zA-Z0-9]/g, "")}/json/`);
-    const data = await response.json()
+    const response = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`);
 
+    const data = await response.json();
+
+    if (response.status === 200 && data.erro === true)  {
+      throw new Error("CEP não encontrado");
+    }
     commit("setAddress", { data });
   },
 };

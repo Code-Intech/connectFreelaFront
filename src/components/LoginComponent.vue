@@ -42,7 +42,7 @@
           </tab-content>
           <tab-content title="Endereço" icon="fa-solid fa-location-dot">
             <input
-                class="form-control"
+                class="form-control has-validation"
                 type="text"
                 name="cep"
                 id="cep"
@@ -50,6 +50,8 @@
                 required
                 v-model="cep"
             >
+            <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
+
             <input class="form-control" type="text" name=""
                    id=""
                    placeholder="Cidade:"
@@ -228,6 +230,7 @@ export default {
         await this.getAddress(this.cep)
       } catch (error) {
         console.log(error)
+        await this.showError(error)
       }
     },
     async register() {
