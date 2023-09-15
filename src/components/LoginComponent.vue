@@ -4,26 +4,39 @@
 
       <form action="" class="" @submit.prevent="register">
         <form-wizard stepSize="xs" @on-complete="register" color="#7711F0" finishButtonText="Cadastrar"
-
-                     nextButtonText="Proximo" backButtonText="Voltar">
+                     nextButtonText="Proximo"
+                     backButtonText="Voltar">
           <tab-content title="Informações pessoais" icon="fa fa-user">
+
             <input class="form-control" type="text" name="" id="" placeholder="Nome Completo:" required
-                   v-model="form.nomeCompleto">
+                   v-model="userData.nomeCompleto">
+
             <input class="form-control" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id=""
                    placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required v-model="form.cpf">
+
             <input class="form-control" type="date" name="" id="" placeholder="Data de Nascimento:" required
-                   v-model="form.dataNascimento">
-            <select class="form-select" name="Genero" id="" aria-placeholder="Genero:" required
-                    v-model="form.genero">
+                   v-model="userData.dataNascimento">
+
+            <select
+                class="form-select"
+                name="Genero"
+                id=""
+                aria-placeholder="Genero:"
+                required
+                v-model="userData.genero"
+            >
               <option value="" selected disabled>Gênero:</option>
               <option value="Femenino">Femenino</option>
               <option value="Masculino">Masculino</option>
               <option value="NaoBinario">Não Binário</option>
               <option value="outro">Outro</option>
             </select>
-            <input class="form-control" type="tel" name=""
-                   pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" id=""
-                   placeholder="Telefone: (xx) xxxxx-xxxx" required v-model="form.telefone">
+
+            <input
+                class="form-control" type="tel" name=""
+                pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" id=""
+                placeholder="Telefone: (xx) xxxxx-xxxx"
+                required v-model="userData.telefone">
 
 
           </tab-content>
@@ -72,7 +85,7 @@
                 id=""
                 placeholder="Número:"
                 required
-                v-model="form.numero"
+                v-model="addressData.numero"
             >
 
           </tab-content>
@@ -80,7 +93,7 @@
             <div class="form-floating">
 
               <input class="form-control" type="text" name="" id="" placeholder="E-Mail:"
-                     v-model="form.email">
+                     v-model="userData.email">
               <label for="floatingInput">Email address</label>
               <div class="valid-feedback">
                 Looks good!
@@ -88,12 +101,15 @@
             </div>
             <div class="form-floating">
               <input class="form-control" type="password" name="" id="" placeholder="Senha:"
-                     v-model="form.senha">
+                     v-model="userData.password">
               <label for="floatingPassword">Password</label>
             </div>
+
             <div class="form-floating">
               <input class="form-control" type="password" name="" id="floatingPasswordConfirmation["
-                     placeholder="Confirmação de senha:">
+                     placeholder="Confirmação de senha:"
+              v-model="userData.confirmationPassword"
+              >
               <label for="floatingPasswordConfirmation">Password</label>
             </div>
           </tab-content>
@@ -122,7 +138,7 @@
         <div class="overlay-panel overlay-right">
           <h1>Olá amigo!</h1>
           <p>Insira seus dados pessoais e comece sua jornada conosco</p>
-          <button class="ghost" id="signUp" @click="addregistre()">Inscrever-se</button>
+          <button class="ghost" id="signUp" @click="addregister()">Inscrever-se</button>
         </div>
       </div>
     </div>
@@ -133,7 +149,6 @@
 import store from "@/store";
 import {mapActions, mapGetters} from 'vuex'
 import {FormWizard, TabContent} from "vue3-form-wizard";
-import "vue3-form-wizard/dist/style.css";
 
 export default {
   name: "LoginComponent",
@@ -152,7 +167,24 @@ export default {
         email: "",
         senha: "",
       },
-      cep: ""
+      userData: {
+        cpf: "",
+        nomeCompleto: "",
+        dataNascimento: "",
+        genero: "",
+        telefone: "",
+        email: "",
+        password: "",
+        confirmationPassword: ""
+      },
+      cep: "",
+      addressData: {
+        cidade: store.getters.city.cidade,
+        estado: store.getters.city.estado,
+        bairro: store.getters.city.bairro,
+        endereco: store.getters.city.endereco,
+        numero: "",
+      },
     };
   },
   mounted() {
@@ -164,16 +196,29 @@ export default {
     }
   },
   methods: {
-
+    isRequired: (value) => {
+      console.log('teste')
+      if (value && value.trim()) {
+        return true;
+      }
+      return 'This is required';
+    },
     addlogin: () => {
       const container = document.getElementById('container');
       container.classList.remove('right-panel-active');
     },
-    addregistre: () => {
+    addregister: () => {
       const container = document.getElementById('container');
       container.classList.add('right-panel-active');
     },
-
+    async fieldsValidation(dataObj){
+      await dataObj.map(data => {
+        console.log(data)
+        // if (data.length <= 0 || data === undefined) {
+        //   throw new Error('data is required');
+        // }
+      })
+    },
     validateOnBack: Boolean,
     ...mapActions(["LogIn", "Register", "showError", "getAddress"]),
     ...mapGetters(["isMessageError"]),
@@ -185,7 +230,37 @@ export default {
         console.log(error)
       }
     },
+    async register() {
+    try {
+      await this.fieldsValidation(this.userData);
+      await this.fieldsValidation(this.addressData);
+    } catch (error) {
+      console.log(error)
+    }
 
+      const User = new FormData();
+      User.append("nomeCompleto", this.userData.nomeCompleto);
+      User.append("cpf", this.userData.cpf);
+      User.append("dataNascimento", this.userData.dataNascimento);
+      User.append("genero", this.userData.genero);
+      User.append("telefone", this.userData.telefone);
+      User.append("cpf", this.userData.cpf);
+      User.append("cep", this.cep);
+      User.append("rua", this.addressData.rua);
+      User.append("cidade", this.addressData.cidade);
+      User.append("estado", this.addressData.estado);
+      User.append("numero", this.addressData.numero);
+      User.append("email", this.userData.email);
+      User.append("senha", this.userData.senha);
+
+      try {
+        await this.registre(User);
+        this.$router.push("/");
+        // this.showError = false;
+      } catch (error) {
+        // this.showError = true;
+      }
+    },
     async login() {
       const User = new FormData();
       User.append("email", this.form.email);
@@ -198,32 +273,6 @@ export default {
         await this.showError(error)
       }
     },
-    async register() {
-
-      const User = new FormData();
-      User.append("nomeCompleto", this.form.nomeCompleto);
-      User.append("cpf", this.form.cpf);
-      User.append("dataNascimento", this.form.dataNascimento);
-      User.append("genero", this.form.genero);
-      User.append("telefone", this.form.telefone);
-      User.append("cpf", this.form.cpf);
-      User.append("cep", this.form.cep);
-      User.append("rua", this.form.rua);
-      User.append("cidade", this.form.cidade);
-      User.append("estado", this.form.estado);
-      User.append("numero", this.form.emnumeroail);
-      User.append("email", this.form.email);
-      User.append("senha", this.form.senha);
-
-      try {
-        await this.registre(User);
-        this.$router.push("/");
-        // this.showError = false;
-
-      } catch (error) {
-        // this.showError = true;
-      }
-    }
   },
 }
 </script>
@@ -231,6 +280,10 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
+
+.vue-form-wizard .wizard-btn {
+  min-width: 90px !important;
+}
 
 s * {
   box-sizing: border-box;
