@@ -7,6 +7,7 @@ import store from "@/store";
 import PerfilEditarView from "@/components/PerfilEditarView.vue";
 import PerfilBeneficiosView from "@/components/PerfilBeneficiosView.vue"
 import PerfilPortfolioView from "@/components/PerfilPortfolioView.vue"
+import PerfilAvaliacaoView from "@/components/PerfilAvaliacaoView.vue"
 
 const routes = [
     {
@@ -46,6 +47,13 @@ const routes = [
         component: PerfilPortfolioView,
         
     },
+    {
+        path: "/PerfilAvaliacao",
+        name: "PerfilAvaliacaoView",
+        component: PerfilAvaliacaoView,
+        
+    },
+
 
 ];
 
