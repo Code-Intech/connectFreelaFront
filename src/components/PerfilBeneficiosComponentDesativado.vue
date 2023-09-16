@@ -87,6 +87,7 @@ export default {
 <style scoped>
 .Title {
     padding-left: 30px;
+    padding-top:10px;
     font-style: italic;
 }
 
