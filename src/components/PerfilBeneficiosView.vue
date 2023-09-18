@@ -20,7 +20,7 @@
 
             <div class="w-100 d-flex align-items-end justify-content-end">
                 <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        data-bs-whatever="@getbootstrap">Assinar</button>
+                    data-bs-whatever="@getbootstrap">Assinar</button>
             </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,7 +63,29 @@
 
 
         </div>
+
+
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
 
 <script>
@@ -81,6 +103,19 @@ export default {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style scoped>
@@ -93,4 +128,28 @@ export default {
 .btn:hover {
     background-color: #9749FE;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>

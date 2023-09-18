@@ -8,10 +8,14 @@ import Vue3FormWizard from 'vue3-form-wizard';
 import VeeValidate, { Field, Form, ErrorMessage } from 'vee-validate';
 import store from "@/store";
 
+
 library.add(fas)
+
+
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'vue3-form-wizard/dist/style.css'
+import './style.css'
 createApp(App)
   .use(router)
   .use(Vue3FormWizard)
