@@ -20,7 +20,7 @@
           <ul class="dropdown-menu border border-0 ">
 
             <div class="card " style="width: 18rem;">
-              <img src="https://img.quizur.com/f/img62dc75c68ada20.76829981.jpeg?lastEdited=1658615257" class="card-img-top" alt="...">
+              <img src="../../assets/img/imagem-user.png" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Mamaco:</h5>
                 
