@@ -21,7 +21,7 @@
             <div class="d-flex flex-column">
               <div class="d-flex">
                 <div>
-                  <img style="max-width: 450px;max-height: 500px;margin-left: 8px;" src="https://img.quizur.com/f/img62dc75c68ada20.76829981.jpeg?lastEdited=1658615257" alt="" srcset="">
+                  <img style="max-width: 450px;max-height: 500px;margin-left: 8px;" src="../../assets/img/imagem-user.png" alt="" srcset="">
                 </div>
                 <div class="border-end ">
                   <li><a class="dropdown-item " href="#">Action</a></li>
