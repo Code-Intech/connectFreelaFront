@@ -2,7 +2,7 @@
     <div class="">
         <div class="container-fluid text-center">
             <div class="row">
-                <div class="col-10">
+                <div class="col-9">
                     <h2 class="text-start">
                         Você é um freelancer que tem dificuldades para encontrar um serviço?
                     </h2>
