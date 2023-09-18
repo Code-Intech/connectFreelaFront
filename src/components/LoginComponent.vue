@@ -194,6 +194,7 @@ export default {
   },
   watch: {
     cep() {
+      console.log(this.cep)
       this.handleCep()
     }
   },
@@ -207,7 +208,7 @@ export default {
       container.classList.add('right-panel-active');
     },
     validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders"]),
+    ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders", "clearAddressData"]),
     ...mapGetters(["isMessageError", "StateGenders"]),
 
     async genders() {
@@ -242,6 +243,7 @@ export default {
 
       try {
         await this.Register(User);
+        await this.clearAddressData();
         this.$router.push("/");
       } catch (error) {
         console.log(error)
