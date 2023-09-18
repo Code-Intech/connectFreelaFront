@@ -7,13 +7,13 @@ const getters = {
 };
 
 const actions = {
-  async showError({ commit }, error) {
+  async showError({ commit }, error, time = 4000) {
     console.log(error)
     commit("setError", { error: true });
 
     setTimeout(() => {
       commit("setError", { error: false})
-    }, 3000);
+    }, time);
 
   },
   async closeError({ commit }) {

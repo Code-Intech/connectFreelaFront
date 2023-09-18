@@ -12,11 +12,10 @@
                    v-model="userData.nomeCompleto">
 
             <input class="form-control" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id=""
-                   placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required v-model="form.cpf">
+                   placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required v-model="userData.cpf">
 
             <input class="form-control" type="date" name="" id="" placeholder="Data de Nascimento:" required
                    v-model="userData.dataNascimento">
-
             <select
                 class="form-select"
                 name="Genero"
@@ -25,11 +24,8 @@
                 required
                 v-model="userData.genero"
             >
-              <option value="" selected disabled>Gênero:</option>
-              <option value="Femenino">Femenino</option>
-              <option value="Masculino">Masculino</option>
-              <option value="NaoBinario">Não Binário</option>
-              <option value="outro">Outro</option>
+              <option value="">Selecione:</option>
+              <option v-for="genero in this.store.getters.StateGenders" :key="genero.idtb_genero" :value="genero.idtb_genero">{{ genero.Genero }}</option>
             </select>
 
             <input
@@ -92,6 +88,9 @@
 
           </tab-content>
           <tab-content title="Acesso" icon="fa fa-sign-in">
+
+            <p v-if="store.getters.isMessageError" class="text-danger" id="error">Erro no cadastro, verifique e preencha todos os campos e tente cadastrar</p>
+
             <div class="form-floating">
 
               <input class="form-control" type="text" name="" id="" placeholder="E-Mail:"
@@ -189,8 +188,9 @@ export default {
       },
     };
   },
-  mounted() {
+  async mounted() {
     this.store.commit("setError", {error: false})
+    await this.genders()
   },
   watch: {
     cep() {
@@ -198,13 +198,6 @@ export default {
     }
   },
   methods: {
-    isRequired: (value) => {
-      console.log('teste')
-      if (value && value.trim()) {
-        return true;
-      }
-      return 'This is required';
-    },
     addlogin: () => {
       const container = document.getElementById('container');
       container.classList.remove('right-panel-active');
@@ -213,18 +206,13 @@ export default {
       const container = document.getElementById('container');
       container.classList.add('right-panel-active');
     },
-    async fieldsValidation(dataObj){
-      await dataObj.map(data => {
-        console.log(data)
-        // if (data.length <= 0 || data === undefined) {
-        //   throw new Error('data is required');
-        // }
-      })
-    },
     validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register", "showError", "getAddress"]),
-    ...mapGetters(["isMessageError"]),
+    ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders"]),
+    ...mapGetters(["isMessageError", "StateGenders"]),
 
+    async genders() {
+      return await this.getGenders();
+    },
     async handleCep() {
       try {
         await this.getAddress(this.cep)
@@ -234,13 +222,8 @@ export default {
       }
     },
     async register() {
-    try {
-      await this.fieldsValidation(this.userData);
-      await this.fieldsValidation(this.addressData);
-    } catch (error) {
-      console.log(error)
-    }
-
+      console.log(this.userData)
+      console.log(this.addressData)
       const User = new FormData();
       User.append("nomeCompleto", this.userData.nomeCompleto);
       User.append("cpf", this.userData.cpf);
@@ -249,19 +232,20 @@ export default {
       User.append("telefone", this.userData.telefone);
       User.append("cpf", this.userData.cpf);
       User.append("cep", this.cep);
-      User.append("rua", this.addressData.rua);
+      User.append("rua", this.addressData.endereco);
+      User.append("bairro", this.addressData.bairro);
       User.append("cidade", this.addressData.cidade);
       User.append("estado", this.addressData.estado);
       User.append("numero", this.addressData.numero);
       User.append("email", this.userData.email);
-      User.append("senha", this.userData.senha);
+      User.append("senha", this.userData.password);
 
       try {
-        await this.registre(User);
+        await this.Register(User);
         this.$router.push("/");
-        // this.showError = false;
       } catch (error) {
-        // this.showError = true;
+        console.log(error)
+        await this.showError(error, 10000)
       }
     },
     async login() {
