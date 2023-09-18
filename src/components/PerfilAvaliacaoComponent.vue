@@ -79,9 +79,108 @@
                         </div>
 
                     </div>
+                    <div class="space" style="padding-top: 1vh;">
+                        <div class="card">
+                            <div class="card-header">
+                                Nome de Perfil
+                            </div>
+                            <div class="card-body">
+                                <div class="img-star">
+                                    <img src="../assets/img/Stars.png" alt="Imagem responsiva"
+                                        style="max-width: 25vh; max-height: 25vh; ">
+                                </div>
+
+                                <div class="alinhando">
+
+                                    <img class=" rounded-circle" style="max-width: 40px;max-height: 50px;"
+                                        src="@/assets/img/avatar.jpg" alt="">
+
+                                    <p class="card-text" style="font-size: larger; padding-left: 2vh;">O comentario vem
+                                        aqui.
+                                    </p>
+
+                                    <div class="denuncia">
+                                        <div class="denun">
+                                            <p class="text-den" style="font-style: italic; font-size: small;">Denunciar
+                                            </p>
+                                            <img src="../assets/img/Bandeira.svg" class="img-den" alt="Imagem responsiva"
+                                                style="max-width: 5vh; max-height: 5vh; ">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="" style="text-align: right;">
+                                    <img src="../assets/img/Like.svg" alt="Imagem responsiva"
+                                        style="max-width: 5vh; max-height: 5vh;">
+                                    <img src="../assets/img/Deslike.svg" alt="Imagem responsiva"
+                                        style="max-width: 5vh; max-height: 5vh;">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="space" style="padding-top: 1vh;">
+                        <div class="card">
+                            <div class="card-header">
+                                Nome de Perfil
+                            </div>
+                            <div class="card-body">
+                                <div class="img-star">
+                                    <img src="../assets/img/Stars.png" alt="Imagem responsiva"
+                                        style="max-width: 25vh; max-height: 25vh; ">
+                                </div>
+
+                                <div class="alinhando">
+
+                                    <img class=" rounded-circle" style="max-width: 40px;max-height: 50px;"
+                                        src="@/assets/img/avatar.jpg" alt="">
+
+                                    <p class="card-text" style="font-size: larger; padding-left: 2vh;">O comentario vem
+                                        aqui.
+                                    </p>
+
+                                    <div class="denuncia">
+                                        <div class="denun">
+                                            <p class="text-den" style="font-style: italic; font-size: small;">Denunciar
+                                            </p>
+                                            <img src="../assets/img/Bandeira.svg" class="img-den" alt="Imagem responsiva"
+                                                style="max-width: 5vh; max-height: 5vh; ">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="" style="text-align: right;">
+                                    <img src="../assets/img/Like.svg" alt="Imagem responsiva"
+                                        style="max-width: 5vh; max-height: 5vh;">
+                                    <img src="../assets/img/Deslike.svg" alt="Imagem responsiva"
+                                        style="max-width: 5vh; max-height: 5vh;">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    
                 </div>
+
             </div>
         </div>
+
+
     </div>
 
     <!-- <div class="col-10 ">
