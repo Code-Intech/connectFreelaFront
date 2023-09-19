@@ -9,7 +9,7 @@ import PerfilBeneficiosView from "@/components/PerfilBeneficiosView.vue"
 import PerfilPortfolioView from "@/components/PerfilPortfolioView.vue"
 import PerfilAvaliacaoView from "@/components/PerfilAvaliacaoView.vue"
 import FiltroServicosComponent from "@/components/FiltroServicosComponent.vue"
-import CardsServiçosComponent from "@/components/CardsServiçosComponent.vue"
+import CardsServicosComponent from "@/components/CardsServicosComponent.vue"
 import ServicosView from "@/components/ServicosView.vue"
 
 const routes = [
@@ -64,8 +64,8 @@ const routes = [
     },  
     {
         path: "/CardsServiços",
-        name: "CardsServiçosComponent",
-        component: CardsServiçosComponent,
+        name: "CardsServicosComponent",
+        component: CardsServicosComponent,
         
     },
     {

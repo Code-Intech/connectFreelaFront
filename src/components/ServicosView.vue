@@ -19,7 +19,7 @@
     
 <script>
 
-import CardsServicos from "@/components/CardsServiçosComponent.vue"
+import CardsServicos from "@/components/CardsServicosComponent.vue"
 import FiltroServicosComponent from "@/components/FiltroServicosComponent.vue"
 
 export default {
