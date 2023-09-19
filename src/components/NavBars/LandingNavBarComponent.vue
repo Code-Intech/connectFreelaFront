@@ -31,7 +31,7 @@
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'gear']" /> Config</button>
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'circle-half-stroke']" /> Tema</button>
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'comments-dollar']" /> Memsagens</button>
-                  <button class="btn btn-primary" style="background-color: rgb(211, 35, 35);border: none;" ><font-awesome-icon :icon="['fas', 'power-off']" /></button>
+                  <button class="btn btn-primary logoff" style="border: none;" ><font-awesome-icon :icon="['fas', 'power-off']" /></button>
                 </div>
               </div>
             </div>
@@ -53,6 +53,17 @@ export default {
 </script>
 
 <style scoped>
+
+.logoff{
+  background-color: rgb(211, 35, 35);
+}
+
+
+/* .logoff:hover{
+  background-color: rgb(248, 107, 107);
+} */
+
+
 
 .cormain {
   background-color:  var(--purple-tertiary);

@@ -8,6 +8,9 @@ import PerfilEditarView from "@/components/PerfilEditarView.vue";
 import PerfilBeneficiosView from "@/components/PerfilBeneficiosView.vue"
 import PerfilPortfolioView from "@/components/PerfilPortfolioView.vue"
 import PerfilAvaliacaoView from "@/components/PerfilAvaliacaoView.vue"
+import FiltroServicosComponent from "@/components/FiltroServicosComponent.vue"
+import CardsServiçosComponent from "@/components/CardsServiçosComponent.vue"
+import ServicosView from "@/components/ServicosView.vue"
 
 const routes = [
     {
@@ -52,7 +55,26 @@ const routes = [
         name: "PerfilAvaliacaoView",
         component: PerfilAvaliacaoView,
         
+    },    
+    {
+        path: "/FiltroServicos",
+        name: "FiltroServicosComponent",
+        component: FiltroServicosComponent,
+        
+    },  
+    {
+        path: "/CardsServiços",
+        name: "CardsServiçosComponent",
+        component: CardsServiçosComponent,
+        
     },
+    {
+        path: "/Servicos",
+        name: "ServicosView",
+        component: ServicosView,
+        
+    },
+    
 
 
 ];
