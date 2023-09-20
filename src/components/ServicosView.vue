@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-2 ps-0">
 
                 <FiltroServicosComponent />
             </div>
@@ -39,4 +39,7 @@ export default {
 
 </script>
     
-<style scoped></style>
+<style scoped>
+
+
+</style>
