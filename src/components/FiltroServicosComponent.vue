@@ -1,22 +1,20 @@
 <template >
-    <!-- <div>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat, laudantium quasi. Vitae, culpa. Sequi magnam earum, laboriosam nihil voluptas vero, iure mollitia tenetur sunt quos quod. Qui perspiciatis magnam perferendis!</p>
-    </div> -->
 
 
 
-<div class="bgc">
+
+<div class="" >
     
     
-        <div class="card bgc " style="width: 18rem;" >
-            <div class="card-header text-white">
+        <div class=" bgc rounded-bottom" style="min-height: 88vh ;border: 1px solid; border-color: var(--purple-tertiary);">
+            <div class="d-flex justify-content-center text-white p-2 border-top" style="border-color:  var(--purple-primary);">
                 Categorias
             </div>
             <nav class="navbar bg-body-tertiary">
-                <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                <div class="container-fluid " >
+                    <form class="d-flex pb-1" role="search" >
+                        <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" style="border-color:  var(--purple-tertiary);">
+                        <button class="btn btn-outline-success" type="submit" >Search</button>
                     </form>
                 </div>
             </nav>
@@ -27,7 +25,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#categoria1" aria-expanded="false" aria-controls="categoria1">
+                                    data-bs-target="#categoria1" aria-expanded="false" aria-controls="categoria1" >
                                     Categoria 1
                                 </button>
                             </h2>

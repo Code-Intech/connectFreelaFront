@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-2 ps-0">
+            <div class="col-2 p-0">
 
                 <FiltroServicosComponent />
             </div>
