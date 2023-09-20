@@ -1,107 +1,58 @@
 <template>
-    <!-- <the-card href="#" style="min-height: 100%;">
-        <div>
-            <Button class="" gradient="purple-blue">Purple to blue</Button>
-        </div>
-        <div>
-            <Input placeholder="enter your first name" label="First name">
-            <template #prefix>
-                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-            </template>
-            </Input>
-        </div>
-        <div class="">
-            <list-group>
-                <list-group-item class="">
-                    <dropdown text="Bottom 1">
-                        <list-group>
-                            <list-group-item>
 
-                                Profile
-                            </list-group-item>
-                            <list-group-item>
-                               
-                                Settings
-                            </list-group-item>
-                            <list-group-item>
-                               
-                                Messages
-                            </list-group-item>
-                            <list-group-item>
-                               
-                                Download
-                            </list-group-item>
-                        </list-group>
-                    </dropdown>
-                </list-group-item>
-                <list-group-item><dropdown text="Bottom 2">
-                        <list-group>
-                            <list-group-item>
-
-                                <Checkbox v-model="ref1" label="Default checkbox" />
-                            </list-group-item>
-                            <list-group-item>
-                               
-                                Settings
-                            </list-group-item>
-                            <list-group-item>
-                               
-                                Messages
-                            </list-group-item>
-                            <list-group-item>
-                               
-                                Download
-                            </list-group-item>
-                        </list-group>
-                    </dropdown></list-group-item>
-                <list-group-item>Item 3</list-group-item>
-                <list-group-item>Item 4</list-group-item>
-                <list-group-item>Item 5</list-group-item>
-            </list-group>
-        </div>
-
-
-
-
-
-
-
-    </the-card> -->
-    <div>
+    <!-- <div>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat, laudantium quasi. Vitae, culpa. Sequi magnam earum, laboriosam nihil voluptas vero, iure mollitia tenetur sunt quos quod. Qui perspiciatis magnam perferendis!</p>
+    </div> -->
+
+
+
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
     </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-// import { TheCard } from 'flowbite-vue'
-// import { Button } from 'flowbite-vue'
-// import { ListGroup, ListGroupItem } from 'flowbite-vue'
-// import { Input } from 'flowbite-vue'
-// import { Dropdown } from 'flowbite-vue'
 
-
-
-// import { Checkbox } from 'flowbite-vue'
 
 export default {
     name: "FiltroServicosComponent",
     methods: {
-        
+
     },
     components: {
-        // TheCard,
-        // Button,
-        // ListGroupItem,
-        // ListGroup,
-        // Input,
-        // Dropdown,
-        // Checkbox,
-
         
+
+
     },
 
 }
@@ -109,4 +60,8 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped >
+
+
+
+</style>
