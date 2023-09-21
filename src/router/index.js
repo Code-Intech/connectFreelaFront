@@ -70,7 +70,7 @@ const routes = [
         
     },
     {
-        path: "/Servicos",
+        path: "/Servicostt",
         name: "ServicosView",
         component: ServicosView,
         
