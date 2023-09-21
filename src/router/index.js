@@ -11,6 +11,7 @@ import PerfilAvaliacaoView from "@/components/PerfilAvaliacaoView.vue"
 import FiltroServicosComponent from "@/components/FiltroServicosComponent.vue"
 import CardsServicosComponent from "@/components/CardsServicosComponent.vue"
 import ServicosView from "@/components/ServicosView.vue"
+import PrestadorView from "@/components/PrestadorView.vue"
 
 const routes = [
     {
@@ -72,6 +73,12 @@ const routes = [
         path: "/Servicos",
         name: "ServicosView",
         component: ServicosView,
+        
+    },   
+    {
+        path: "/Prestador",
+        name: "PrestadorView",
+        component: PrestadorView,
         
     },
     
