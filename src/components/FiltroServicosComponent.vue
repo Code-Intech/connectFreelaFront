@@ -7,7 +7,7 @@
     
     
         <div class=" bgc rounded-bottom" style="min-height: 88vh ;border: 1px solid; border-color: var(--purple-tertiary);">
-            <div class="d-flex justify-content-center text-white p-2 border-top" style="border-color:  var(--purple-primary);">
+            <div class="d-flex justify-content-center text-white p-2 border-top font fs-3" style="border-color:  var(--purple-primary);">
                 Categorias
             </div>
             <nav class="navbar bg-body-tertiary">
@@ -19,7 +19,7 @@
                 </div>
             </nav>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                <li class="list-group-item" style="border-top: 1px solid; border-color:  var(--purple-tertiary);">
                    <div>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -30,6 +30,568 @@
                                 </button>
                             </h2>
                             <div id="categoria1" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li>
+                
+
+
+                <!-- Até essa LI é a categoria -->
+
+
+
+
+
+
+
+
+
+
+                
+                <li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <div class="form-check">
+
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="" id="">
+                                            <label for="" class="ps-2">Profissão 1</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </li><li class="list-group-item" style="border-color:  var(--purple-tertiary);">
+                   <div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed p-1  " type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#categoria2" aria-expanded="false" aria-controls="categoria2">
+                                    Categoria 2
+                                </button>
+                            </h2>
+                            <div id="categoria2" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <div class="form-check">
@@ -208,7 +770,14 @@ export default {
 
 <style scoped >
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&display=swap');
 
+
+
+.font{
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Lobster', cursive;
+}
 
 
 .bgc{
