@@ -1,6 +1,6 @@
 <template>
     <div class="card" style="width: 18rem;">
-        <div class="card-header">
+        <div class="card-header border-black">
             <!-- <div class="col-1">
 
                 <div class="flex">
@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <img src="../assets/img/CardServico.png" class="card-img-top" alt="">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            <p class="card-text border-top border-bottom border-black">Some quick example text to build on the card title and make up the bulk of the card's
                 content.</p>
             <div class="buttuns">
                 <button class="btn btn-primary"
@@ -34,7 +34,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header border-black">
                      <AvatarComponent />
             <div class="texts">
                 <text class="fst-italic">Nome de perfil</text>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="modal-body">
                     <img src="../assets/img/CardServico.png" class="card-img-top" alt="">
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia praesentium fugiat quia, facilis nemo error esse, expedita nostrum consequuntur accusamus molestias, quas at eius ut hic nulla illo accusantium. Quidem.
+            <p class="card-text border-top border-bottom border-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia praesentium fugiat quia, facilis nemo error esse, expedita nostrum consequuntur accusamus molestias, quas at eius ut hic nulla illo accusantium. Quidem.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero quis, non nihil mollitia, voluptatum consequuntur deserunt possimus repellendus sunt commodi numquam eos? Quidem harum beatae numquam inventore in dolorem ipsam.
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem voluptatem tempore rem autem accusamus molestias illo ratione sed molestiae beatae officiis, nihil maxime, modi, aliquam sint ipsum explicabo omnis hic.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, perspiciatis? Amet, mollitia molestias, nesciunt velit tempora hic corrupti, vitae debitis rerum animi rem veritatis asperiores officiis ex laborum! Illum, totam!
@@ -95,5 +95,7 @@ export default {
 .card-header {
     display: flex;
 }
+
+
 </style>
 
