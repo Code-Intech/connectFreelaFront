@@ -13,6 +13,8 @@ import CardsServicosComponent from "@/components/CardsServicosComponent.vue"
 import ServicosView from "@/components/ServicosView.vue"
 import PrestadorView from "@/components/PrestadorView.vue"
 import UserPerfiView from "@/components/UserPerfiView.vue"
+import UserPortifolioView from "@/components/UserPortifolioView.vue"
+import UserDashboardView from "@/components/UserDashboardView.vue"
 
 const routes = [
     {
@@ -65,13 +67,13 @@ const routes = [
         
     },  
     {
-        path: "/CardsServiços",
+        path: "/CardsServicos",
         name: "CardsServicosComponent",
         component: CardsServicosComponent,
         
     },
     {
-        path: "/Servicostt",
+        path: "/Servicos",
         name: "ServicosView",
         component: ServicosView,
         
@@ -86,6 +88,18 @@ const routes = [
         path: "/userperfil",
         name: "UserPerfiView",
         component: UserPerfiView,
+        
+    },    
+    {
+        path: "/UserPortifolio",
+        name: "UserPortifolioView",
+        component: UserPortifolioView,
+        
+    },    
+    {
+        path: "/UserDashboard",
+        name: "UserDashboardView",
+        component: UserDashboardView,
         
     },
     
