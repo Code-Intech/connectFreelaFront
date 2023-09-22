@@ -15,6 +15,7 @@ import PrestadorView from "@/components/PrestadorView.vue"
 import UserPerfiView from "@/components/UserPerfiView.vue"
 import UserPortifolioView from "@/components/UserPortifolioView.vue"
 import UserDashboardView from "@/components/UserDashboardView.vue"
+import FAQView from "@/components/FAQView.vue"
 
 const routes = [
     {
@@ -100,6 +101,13 @@ const routes = [
         path: "/UserDashboard",
         name: "UserDashboardView",
         component: UserDashboardView,
+        
+    },
+
+        {
+        path: "/FAQ",
+        name: "FAQView",
+        component: FAQView,
         
     },
     
