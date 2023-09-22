@@ -20,9 +20,9 @@
             <p class="card-text border-top border-bottom border-black">Some quick example text to build on the card title and make up the bulk of the card's
                 content.</p>
             <div class="buttuns">
-                <button class="btn btn-primary"
-                    style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar Proposta</button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar Proposta</button>
+                <button type="button" class="btn btn-primary" 
                     style="background-color: rgb(1, 119, 245); font-size: small; border:none;">
                     Mais Detalhes
                 </button>
