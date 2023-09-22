@@ -12,6 +12,7 @@ import FiltroServicosComponent from "@/components/FiltroServicosComponent.vue"
 import CardsServicosComponent from "@/components/CardsServicosComponent.vue"
 import ServicosView from "@/components/ServicosView.vue"
 import PrestadorView from "@/components/PrestadorView.vue"
+import UserPerfiView from "@/components/UserPerfiView.vue"
 
 const routes = [
     {
@@ -79,6 +80,12 @@ const routes = [
         path: "/Prestador",
         name: "PrestadorView",
         component: PrestadorView,
+        
+    },    
+    {
+        path: "/userperfil",
+        name: "UserPerfiView",
+        component: UserPerfiView,
         
     },
     
