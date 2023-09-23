@@ -12,10 +12,11 @@
         </button>
 
         <div class="dropstart  ">
-          <button class="btn btn-secondary rounded-circle  " style="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="   " style="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <!-- <font-awesome-icon icon="user" /> -->
-            <img class=" rounded-circle" style="max-width: 30px;max-height: 40px;" src="@/assets/img/avatar.jpg" alt="">
-          </button>
+            <!-- <img class=" rounded-circle" style="max-width: 30px;max-height: 40px;" src="@/assets/img/avatar.jpg" alt=""> -->
+            <avatar width="2rem"  height="2rem"/>
+          </a>
 
           <ul class="dropdown-menu border border-0 ">
 
@@ -47,8 +48,12 @@
 </template>
 
 <script>
+import avatar from "@/components/AvatarComponent.vue"
 export default {
-  name: "LandingNavBarComponent.vue"
+  name: "LandingNavBarComponent.vue",
+  components:{
+    avatar,
+  },
 }
 </script>
 

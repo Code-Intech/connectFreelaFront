@@ -12,8 +12,8 @@
                 </div>
             </div>
 
-            <div class="mt-3" style="border: solid white; border-radius: 10px;">
-                <h4 class="text-white h4 d-flex justify-content-start ms-1" >William Fraga</h4>
+            <div class="mt-3" >
+                <h4 class="text-white h4 d-flex justify-content-start ms-3 " ><font-awesome-icon icon="user" class="me-3"/> William Fraga</h4>
             </div>
 
             <div class="d-grid gap-2 mt-3" >
