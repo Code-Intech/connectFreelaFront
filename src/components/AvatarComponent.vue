@@ -2,7 +2,7 @@
   <img
       :src="source ? source : userDefault"
       :alt="alt ? alt : 'user image'"
-      :class="[source ? '' : 'userProfileBg']"
+      :class="[source ? '' : 'userProfileBg', rounded ? 'imgRounded' : '']"
       :style="{'height': height, 'width': width}"
   >
 </template>
@@ -23,6 +23,10 @@ export default {
       type: String,
       required: false
     },
+    rounded: {
+      type: Boolean,
+      default: true
+    },
     width: {
       type: String,
       default: "4rem"
@@ -37,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-  img {
+  .imgRounded {
     border-radius: 50%;
   }
 
