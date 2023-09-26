@@ -42,6 +42,26 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <form>
                                 <div class="mb-3">
                                     <label for="recipient-name" class="col-form-label">Número do Cartão:</label>
@@ -62,6 +82,14 @@
                                     <input type="text" class="form-control" id="recipient-name">
                                 </div>
                             </form>
+
+
+                            <div class="border border-2" style="background-color: blueviolet;">
+
+
+adwad
+                                
+</div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Assinar</button>
