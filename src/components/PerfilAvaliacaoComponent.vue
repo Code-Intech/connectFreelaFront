@@ -11,8 +11,8 @@
             <h2>Comentarios</h2>
         </div>
 
-        <div class="justify-content-center mt-5" style="padding-left: 5%;">
-            <div class="card border-1  rounded-3" style="max-width: 60rem; border-color:black;">
+        <div class="justify-content-center mt-5">
+            <div class=" border-1  rounded-3" style=" border-color:black;">
                 <div class="" style="min-height: 15rem;">
                     <div class="card container text-center">
                         <div class="card-header">
@@ -22,9 +22,8 @@
 
                             <div class="card-body">
                                 <div class="img-star">
-                                    <img src="../assets/img/Stars.png" alt="Imagem responsiva"
-                                        style="max-width: 25vh; max-height: 25vh; ">
-                                    
+                                    <!-- <img src="../assets/img/Stars.png" alt="Imagem responsiva" style="max-width: 25vh; max-height: 25vh; "> -->
+                                    <Star class="d-flex justify-content-center"  />
                                 </div>
 
                                 <div class="alinhando ">
@@ -104,13 +103,15 @@
 
 <script>
 import Avatar from "@/components/AvatarComponent.vue"
+import Star from "@/components/StarComponent.vue"
 export default {
     name: "PerfilAvaliacaoComponent",
     methods: {
 
     },
     components: {
-        Avatar
+        Avatar,
+        Star
     },
 
 }

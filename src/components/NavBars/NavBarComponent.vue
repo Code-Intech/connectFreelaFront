@@ -15,15 +15,16 @@
         </div>
         <div class="dropstart ">
           <button class="btn btn-secondary corbotao" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            categoria
+            Categorias
           </button>
           <ul class="dropdown-menu btcat">
             <div class="d-flex flex-column">
               <div class="d-flex">
                 <div>
-                  <img style="max-width: 450px;max-height: 500px;margin-left: 8px;" src="../../assets/img/imagem-user.png" alt="" srcset="">
+                  <!-- <img style="max-width: 450px;max-height: 500px;margin-left: 8px;" src="../../assets/img/imagem-user.png" alt="" srcset=""> -->
+                  <Avatar class="m-2" height="20rem" width="20rem" :rounded="false" src="https://img.freepik.com/fotos-premium/imagem-3d-de-uma-forma-de-ilha-tropical-flutuante_665280-6955.jpg"/>
                 </div>
-                <div class="border-end ">
+                <div class="border-end "> 
                   <li><a class="dropdown-item " href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -61,10 +62,10 @@
           </ul>
         </div>
         <button class="btn btn-secondary corbotao" type="button">
-          categoria
+          Desenvolvedor
         </button>
         <button class="btn btn-secondary corbotao" type="button">
-          categoria
+          Pintor
         </button>
       </div>
 
@@ -74,10 +75,15 @@
 
 <script>
 import LandingNavBarComponent from "@/components/NavBars/LandingNavBarComponent.vue";
+import Avatar from "@/components/AvatarComponent.vue"
+
 
 export default {
   name: 'TesteMenuSidebar',
-  components: {LandingNavBarComponent},
+  components: {
+    LandingNavBarComponent,
+    Avatar
+  },
 }
 </script>
 

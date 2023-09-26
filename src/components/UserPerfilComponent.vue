@@ -109,7 +109,7 @@
             </div>
 
 
-            <div class="border border-black rounded m-2" style="background-color: rgba(161, 158, 158, 0.671);">
+            <div class="border border-black rounded m-2" style="background-color: rgba(199, 194, 194, 0.671);">
                 
                 <div class="m-2 d-flex">
                     <Star class="flex-grow-1"/>
@@ -145,7 +145,7 @@
                 <div class="d-flex m-2">
                     <Avatar/>
                     <h6 class="d-flex align-content-center flex-wrap ms-3">
-                        Larrisa Santos
+                        Larissa Santos
                     </h6>
                 </div>
 

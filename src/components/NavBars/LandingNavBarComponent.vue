@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar cormain border-bottom border-black border-1">
     <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand text-light nome-empresa fs-4 text">ConnectFreela</a>
+      <a class="navbar-brand text-light nome-empresa fs-3 text">ConnectFreela</a>
 
       <div class="d-flex gap-2">
         <button class="btn btn-secondary corbotao" type="button">
-          Mamaco
+          Home
         </button>
         <button class="btn btn-secondary corbotao" type="button">
-          Mamaco
+          FAQ
         </button>
 
         <div class="dropstart  ">
