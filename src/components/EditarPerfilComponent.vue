@@ -18,7 +18,7 @@
                 <h5>
                     Carregue sua Foto de Perfil
                 </h5>
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" id="formFile" style="border-color: var(--purple-primary)">
             </div>
 
 
