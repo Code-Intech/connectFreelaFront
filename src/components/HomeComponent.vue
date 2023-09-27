@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <div class="container-fluid text-center">
+        <div class="name container-fluid text-center">
             <div class="row">
                 <div class="col-9">
                     <h2 class="text-start">
@@ -26,20 +26,20 @@
         <br><br><br>
 
 
-        <div class="container-fluid text-center">
-            <div class="row">
-                <div class="col-4">
-                    <img src="../assets/img/img2.png" alt="" />
+        <div class="name">
+            
+                <div class="">
+                    <img class="img2" src="../assets/img/Ajuste.png" alt="" />
                 </div>
 
-                <div class="col-8">
+                <div class="justify-content text-end">
                     <h2 class="">
                         Somos um site novo, que planeja otimizar seu tempo e melhorar sua
                         experiencia na procura de profissionais e serviços. Então venha
                         fazer parte de nossa comunidade, e relance seu negócio.
                     </h2>
                 </div>
-            </div>
+
         </div>
 
         <br><br><br >
@@ -133,15 +133,19 @@ export default {
     max-width: 250px;
 }
 
-.tt {
-    display: inline-block;
+.img2{
+    width: 300px;
+    height: 255px;
+
 }
 
-.ttt {
-    width: 1050px;
+.name {
+    display:inline-flex;
 }
 
-.tt1 {
-    width: 600px;
-}
+
+
+
+
+
 </style>

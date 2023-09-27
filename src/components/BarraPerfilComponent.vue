@@ -8,7 +8,7 @@
                 <div class="position-relative">
                     <!-- <img class="img-fluid border border-2 border-black" src="../assets/img/imagem-user.png" alt="">
                     <a href=""><font-awesome-icon class=" position-absolute bottom-0 end-0 bg-white" icon="pen" style="min-height: 1rem;min-width: 1rem; color: black;" /></a> -->
-                        <Avatar height="18rem" width="18rem" :rounded="false"/>
+                        <Avatar class="img-fluid" height="18rem" width="18rem" :rounded="false"/>
                 </div>
             </div>
 
