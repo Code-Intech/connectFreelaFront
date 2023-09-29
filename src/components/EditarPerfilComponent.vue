@@ -10,7 +10,7 @@
             </h2>
 
 
-            <Avatar height="30rem" width="30rem" :rounded="false"/>
+            <Avatar height="30rem" width="30rem" :rounded="false" />
 
 
 
@@ -179,10 +179,8 @@
                         <!-- <label class="form-label" for="">Profissão:</label>
                         <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary);"> -->
                         <ul class="form-control mt-3">
-                            <li class="" v-for="(selectedProfession, index) in selectedProfessions" :key="index" style="
-                  border-bottom: 1px solid;
-                  border-color: var(--purple-primary);
-                ">
+                            <li class="" v-for="(selectedProfession, index) in selectedProfessions" :key="index"
+                                style=" border-bottom: 1px solid;border-color: var(--purple-primary);">
                                 {{ selectedProfession.name }} ({{
                                     selectedProfession.category
                                 }})
@@ -266,7 +264,7 @@
                 border-color: var(--purple-primary);
               ">
                             {{ selectedSkill }}
-                            <button class="m-3 btn" @click="removeSkill(index)" style="border-color: var(--purple-primary)">
+                            <button class="m-3 btn btn-outline-danger" @click="removeSkill(index)">
                                 Remover
                             </button>
                         </li>
@@ -393,7 +391,7 @@ import Avatar from "@/components/AvatarComponent.vue"
 
 export default {
     name: "EditarPerfilComponent",
-    components:{
+    components: {
         Avatar,
     },
     data() {
@@ -485,7 +483,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>

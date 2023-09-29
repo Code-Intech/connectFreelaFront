@@ -7,7 +7,10 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
 import Vue3FormWizard from 'vue3-form-wizard';
 import VeeValidate, { Field, Form, ErrorMessage } from 'vee-validate';
 import store from "@/store";
+import PrimeVue from 'primevue/config';
 
+const app = createApp(App);
+app.use(PrimeVue);
 
 library.add(fas)
 

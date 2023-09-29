@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-3 ms-2">
-        <div class="card" style="width: 18rem;">
+    <div class="mt-3 ms-2 d-flex gap-4 flex-wrap">
+        <div class="card" style="width: 25rem;">
             <div class="card-header border-black">
                 <!-- <div class="col-1">
 
@@ -11,23 +11,217 @@
 
             </div> -->
                 <AvatarComponent />
-                <div class="texts">
-                    <text class="fst-italic">Nome de perfil</text>
-                    <p class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Tipo de post</p>
+                <div class="d-flex texts">
+
+
+                    <div>
+
+                        <text class="fst-italic">Nome de perfil</text>
+                        <p class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Profissão: Programador
+                        </p>
+                    </div>
+                    <div class="ms-5">
+
+                        <h6 class="" style="font-size: 15px;">
+                            <font-awesome-icon class="me-1" icon="money-bill" />R$: 9000,00
+                        </h6>
+                        <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
+                            Remoto
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="m-2 border-bottom border-black d-flex justify-content-between">
+                <div>
+
+                    <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Data de Publicação: </h6>
+                    <h6>
+                        26/09/2023
+                    </h6>
+                </div>
+                <div>
+
+                    <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Data de Inicio: </h6>
+                    <h6>
+                        25/11/2023
+                    </h6>
                 </div>
             </div>
             <div class="card-body">
-                <img src="../assets/img/CardServico.png" class="card-img-top" alt="">
+                <!-- <img src="../assets/img/CardServico.png" class="card-img-top" alt=""> -->
+
+
+                <div class="d-flex justify-content-between">
+                    <p class="text-info">
+                        Localidade:
+                    </p>
+
+                    <p class="text-info">
+                        São Paulo
+                    </p>
+
+                </div>
+
+
+
+                <div class="d-flex justify-content-between">
+
+
+                    <p>
+                        Estimativa de Idade:
+                    </p>
+
+
+                    <p>
+                        23
+                    </p>
+
+                </div>
+
+
+
+                <div class="d-flex justify-content-between">
+
+                    <p class="text-success">
+                        Propostas enviadas:
+                    </p>
+                    <p class="text-success">
+                        35
+                    </p>
+                </div>
+
+
+
+
+                <div class="d-flex justify-content-between">
+
+
+
+
+
+                </div>
+
+
+
                 <p class="card-text border-top border-bottom border-black">Some quick example text to build on the card
                     title
                     and make up the bulk of the card's
-                    content.</p>
-                <div class="buttuns">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar Proposta</button>
+                    content. and make up the bulk of the card's
+                    content. and make up the bulk of the card's
+                    content. and make up the bulk of the card's
+                    content.
+                </p>
+
+
+
+
+                <div class="border-bottom border-black ">
+                    <h4>
+
+                        Habilidade
+                    </h4>
+
+
+                    <div class="">
+
+                        <ul class="d-flex gap-4 flex-wrap">
+                            <li>
+                                php
+                            </li>
+                            <li>
+                                Java
+                            </li>
+                            <li>
+                                JavaScript
+                            </li>
+                            <li>
+                                WorldPress
+                            </li>
+                            <li>
+                                Linux
+                            </li>
+                            <li>
+                                HTML5
+                            </li>
+                            <li>
+                                CSS3
+                            </li>
+                        </ul>
+                    </div>
+
+
                 </div>
+
+
+
+
+
+
+
+
+
+                <div class="d-flex justify-content-between">
+
+                    <div class="buttuns mt-3">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
+                            Proposta</button>
+                    </div>
+                    <div class="buttuns mt-3">
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: rgb(247, 162, 5); font-size: small; border:none;">Ver
+                            Propostas</button>
+                    </div>
+                    <div class="buttuns mt-3">
+                        <button type="button" class="btn btn-primary"
+                            style="background-color: rgb(0, 26, 255); font-size: small; border:none;">Ver Mais
+                            Detalhes</button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,7 +1,7 @@
 <template >
     <div class="">
 
-        <div class="border rounded  d-flex flex-wrap m-3 mt-4" >
+        <div class="border rounded  d-flex flex-wrap m-3 mt-4">
 
             <div class="" style="min-height: 200px;">
                 <div class=" m-4" id="">
@@ -13,13 +13,16 @@
                                 <div id="carouselExample" class="carousel slide">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                class="d-block w-100" alt="">
                                         </div>
                                         <div class="carousel-item">
-                                            <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                class="d-block w-100" alt="">
                                         </div>
                                         <div class="carousel-item">
-                                            <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                class="d-block w-100" alt="">
                                         </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -37,27 +40,27 @@
                                     <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#veralbum">
                                         Ver Album
                                     </button>
-    
-    
-    
-    
+
+
+
+
                                 </div>
                             </div>
                         </div>
-    
+
                     </div>
                 </div>
-    
+
             </div>
-    
-    
-    
+
+
+
 
 
 
 
             <!-- Modal -->
-    
+
             <div class="modal fade" id="veralbum" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
@@ -66,17 +69,19 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-    
+
                             <div id="carouselEx" class="carousel slide">
                                 <div class="carousel-inner" style="max-height: 40rem;">
                                     <div class="carousel-item active">
-                                        <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                            class="d-block w-100" alt="">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                            class="d-block w-100" alt="">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://media.gettyimages.com/id/1404088233/pt/foto/celebes-crested-macaque.jpg?s=612x612&w=0&k=20&c=jM8J85vVSK5YE3ryqEoYc2ARbLOAy-oq4iyv94m-xJk="
+                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
                                             class="d-block w-100" alt="">
                                     </div>
                                 </div>
@@ -91,8 +96,8 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
-    
-    
+
+
                             <div class="border-top border-2 border-black mt-3">
                                 <p>
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem magnam
@@ -104,7 +109,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-    
+
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@
                             <div class="card-body">
                                 <div class="img-star">
                                     <!-- <img src="../assets/img/Stars.png" alt="Imagem responsiva" style="max-width: 25vh; max-height: 25vh; "> -->
-                                    <Star class="d-flex justify-content-center"  />
+                                    <Star class="d-flex justify-content-center" />
                                 </div>
 
                                 <div class="alinhando ">
@@ -31,8 +31,8 @@
                                     <div class="col-1">
 
                                         <div class="flex">
-                                            
-                                            <avatar src="https://s2.glbimg.com/s43QqjNP3O4pbyBNbWR9n34vlSs=/s.glbimg.com/jo/g1/f/original/2015/09/26/selfiemacaco.jpg" alt="calango"/>
+
+                                            <avatar alt="calango" />
                                         </div>
 
 
@@ -40,7 +40,7 @@
                                             src="@/assets/img/avatar.jpg" alt=""> -->
                                     </div>
 
-                                    
+
 
                                     <div class="ms-2 border border-black rounded-2 col-9"
                                         style="background-color: rgb(213, 214, 214);">
@@ -54,14 +54,14 @@
                                     <div class=" col-2">
                                         <div class="d-flex denun ms-4">
                                             <a href=""><img src="../assets/img/Bandeira.svg" class="img-den"
-                                                alt="Imagem responsiva" style="max-width: 5vh; max-height: 5vh; "></a>
-                                                <p class="text-den" style="font-style: italic; font-size: small;">Denunciar
-                                                </p>
+                                                    alt="Imagem responsiva" style="max-width: 5vh; max-height: 5vh; "></a>
+                                            <p class="text-den" style="font-style: italic; font-size: small;">Denunciar
+                                            </p>
                                         </div>
                                         <div class="d-flex" style="text-align: right;">
-        
-                                            <a href="" class="p-3 "> <img src="../assets/img/maopositiva.png" alt="Imagem responsiva"
-                                                    style="max-width: 5vh; max-height: 5vh;"></a>
+
+                                            <a href="" class="p-3 "> <img src="../assets/img/maopositiva.png"
+                                                    alt="Imagem responsiva" style="max-width: 5vh; max-height: 5vh;"></a>
                                             <a href=""><img src="../assets/img/maonegativa.png" alt="Imagem responsiva"
                                                     style="max-width: 5vh; max-height: 5vh;"></a>
                                         </div>
@@ -77,7 +77,6 @@
                         </div>
 
                     </div>
-                    
 
 
 
@@ -87,7 +86,8 @@
 
 
 
-                    
+
+
                 </div>
 
             </div>

@@ -34,13 +34,16 @@
                                 <div id="carouselExample" class="carousel slide">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                class="d-block w-100" alt="">
                                         </div>
                                         <div class="carousel-item">
-                                            <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                class="d-block w-100" alt="">
                                         </div>
                                         <div class="carousel-item">
-                                            <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
+                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                class="d-block w-100" alt="">
                                         </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -143,7 +146,8 @@
 
 
                                                     <div class="border-bottom border-black border-1">
-                                                        <img src="../assets/img/mamaco.png" class="card-img-top" alt="">
+                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                            class="card-img-top" alt="">
 
                                                     </div>
                                                     <div class="card-body d-grid gap-2">
@@ -161,7 +165,8 @@
 
 
                                                     <div class="border-bottom border-black border-1">
-                                                        <img src="../assets/img/mamaco.png" class="card-img-top" alt="">
+                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                            class="card-img-top" alt="">
 
                                                     </div>
                                                     <div class="card-body d-grid gap-2">
@@ -179,7 +184,8 @@
 
 
                                                     <div class="border-bottom border-black border-1">
-                                                        <img src="../assets/img/mamaco.png" class="card-img-top" alt="">
+                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                            class="card-img-top" alt="">
 
                                                     </div>
                                                     <div class="card-body d-grid gap-2">
@@ -197,7 +203,8 @@
 
 
                                                     <div class="border-bottom border-black border-1">
-                                                        <img src="../assets/img/mamaco.png" class="card-img-top" alt="">
+                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                                            class="card-img-top" alt="">
 
                                                     </div>
                                                     <div class="card-body d-grid gap-2">
@@ -264,43 +271,46 @@
                     </div>
                     <div class="modal-body">
 
-                                    <div id="carouselEx" class="carousel slide">
-                                        <div class="carousel-inner" style="max-height: 40rem;">
-                                            <div class="carousel-item active">
-                                                <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="../assets/img/mamaco.png" class="d-block w-100" alt="">
-                                            </div>                                           
-                                            <div class="carousel-item">
-                                                <img src="https://media.gettyimages.com/id/1404088233/pt/foto/celebes-crested-macaque.jpg?s=612x612&w=0&k=20&c=jM8J85vVSK5YE3ryqEoYc2ARbLOAy-oq4iyv94m-xJk=" class="d-block w-100" alt="">
-                                            </div>
-                                        </div>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carouselEx" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carouselEx" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
+                        <div id="carouselEx" class="carousel slide">
+                            <div class="carousel-inner" style="max-height: 40rem;">
+                                <div class="carousel-item active">
+                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                        class="d-block w-100" alt="">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                        class="d-block w-100" alt="">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
+                                        class="d-block w-100" alt="">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselEx"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselEx"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
 
 
-                                    <div class="border-top border-2 border-black mt-3">
-                                        <p>
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem magnam
-                                            accusantium, laborum suscipit repellendus iure natus voluptatem necessitatibus
-                                            error nam sint! Blanditiis alias molestiae molestias quidem officiis,
-                                            perferendis voluptates sunt.
-                                        </p>
-                                    </div>
+                        <div class="border-top border-2 border-black mt-3">
+                            <p>
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem magnam
+                                accusantium, laborum suscipit repellendus iure natus voluptatem necessitatibus
+                                error nam sint! Blanditiis alias molestiae molestias quidem officiis,
+                                perferendis voluptates sunt.
+                            </p>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -325,8 +335,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-
-
-</style>
+<style scoped></style>
