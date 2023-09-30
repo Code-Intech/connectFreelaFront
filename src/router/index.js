@@ -16,6 +16,7 @@ import UserPerfiView from "@/components/UserPerfiView.vue"
 import UserPortifolioView from "@/components/UserPortifolioView.vue"
 import UserDashboardView from "@/components/UserDashboardView.vue"
 import FAQView from "@/components/FAQView.vue"
+import ViewPropostasComponent from "@/components/ViewPropostasComponent.vue"
 
 const routes = [
     {
@@ -108,6 +109,12 @@ const routes = [
         path: "/FAQ",
         name: "FAQView",
         component: FAQView,
+        
+    },
+    {
+        path: "/ViewPropostas",
+        name: "ViewPropostasComponent",
+        component: ViewPropostasComponent,
         
     },
     

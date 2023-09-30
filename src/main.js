@@ -8,9 +8,19 @@ import Vue3FormWizard from 'vue3-form-wizard';
 import VeeValidate, { Field, Form, ErrorMessage } from 'vee-validate';
 import store from "@/store";
 import PrimeVue from 'primevue/config';
+import MultiSelect from 'primevue/multiselect';
 
-const app = createApp(App);
-app.use(PrimeVue);
+import InputNumber from 'primevue/inputnumber';
+
+import InputText from 'primevue/inputtext';
+
+import Card from 'primevue/card';
+
+
+
+
+import "primevue/resources/themes/lara-light-blue/theme.css";
+
 
 library.add(fas)
 
@@ -24,7 +34,14 @@ createApp(App)
   .use(Vue3FormWizard)
   .use(VeeValidate)
   .use(store)
+  .use(PrimeVue, { ripple: true  })
 
+  
+
+  .component('MultiSelect', MultiSelect)
+  .component('InputNumber', InputNumber)
+  .component('InputText', InputText)
+  .component('Card', Card)
   .component('font-awesome-icon', FontAwesomeIcon)
   .component('Field', Field)
   .component('Form', Form)
@@ -32,3 +49,4 @@ createApp(App)
   .mount('#app')
   
 import "bootstrap/dist/js/bootstrap.js"
+

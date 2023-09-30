@@ -1,8 +1,7 @@
 <template>
-  <NavBarComponent/>
+  <NavBarComponent />
   <router-view />
   <!-- <FooterComponent/> -->
-
 </template>
 
 <script>
@@ -19,8 +18,8 @@ export default {
   data() {
     return {
       currentPage: window.location.pathname,
+    }
   }
-}
 }
 </script>
 
