@@ -17,10 +17,10 @@
                 </div>
             </nav> -->
 
-            <span class="p-input-icon-left d-grid gap-2 ">
+            <span class="p-input-icon-left d-grid gap-1 ">
 
                 <font-awesome-icon icon="magnifying-glass" class="pi " />
-                <InputText v-model="value1" placeholder="Search" />
+                <InputText v-model="value1" placeholder="Search" style="min-width: 100px;" />
             </span>
 
 
@@ -29,7 +29,7 @@
 
                 <div class="card flex justify-content-center">
                     <MultiSelect v-model="selectedCity" :options="cidades" filter optionLabel="name"
-                        placeholder="Pesquisar por Cidades" :maxSelectedLabels="3" class="w-full md:w-20rem" />
+                        placeholder="Pesquisar por Cidades" :maxSelectedLabels="3" class="w-full md:w-20rem sizew " />
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
 
                 <div class="card flex justify-content-center">
                     <MultiSelect v-model="selectedHabilidade" :options="habilidades" filter optionLabel="name"
-                        placeholder="Pesquisar por Habilidades" :maxSelectedLabels="3" class="w-full md:w-20rem" />
+                        placeholder="Pesquisar por Habilidades" :maxSelectedLabels="3" class="w-full md:w-20rem sizew" />
                 </div>
             </div>
 
@@ -78,14 +78,14 @@
             <div class="flex-auto p-inputgroup flex-1 p-1">
                 <!-- <span class="p-inputgroup-addon"
                     style="border-bottom: 1px solid;border-color: var(--purple-primary);">$</span> -->
-                <InputNumber style="width: 100%;" v-model="value1" inputId="currency-us" mode="currency" currency="USD"
-                    locale="en-US" placeholder="Valor min $500,00" />
+                <InputNumber class="sizew " style="width: 100%;" v-model="value1" inputId="currency-us" mode="currency"
+                    currency="USD" locale="en-US" placeholder="Valor min $500,00" />
             </div>
             <div class="flex-auto p-inputgroup flex-1 p-1">
                 <!-- <span class="p-inputgroup-addon"
                     style="border-bottom: 1px solid;border-color: var(--purple-primary);">$</span> -->
-                <InputNumber style="width: 100%;" v-model="value1" inputId="currency-us" mode="currency" currency="USD"
-                    locale="en-US" placeholder="Valor Max $5.000,00" />
+                <InputNumber class="sizew" style="width: 100%;" v-model="value1" inputId="currency-us" mode="currency"
+                    currency="USD" locale="en-US" placeholder="Valor Max $5.000,00" />
             </div>
 
 

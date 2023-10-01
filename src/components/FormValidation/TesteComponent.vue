@@ -14,6 +14,22 @@
     <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
     <button label="Show" icon="pi pi-external-link" @click="displayBasic = true">Fotos</button>
   </div>
+  <div class="card flex flex-wrap align-items-center justify-content-center gap-3">
+    <Button label="Small" size="small" />
+    <Button label="Normal" />
+    <Button label="Large" size="large" />
+  </div>
+
+
+
+  <button type="button" class="btn btn-primary btn-lg">Large button</button>
+  <button type="button" class="btn btn-secondary btn-lg">Large button</button>
+  <button type="button" class="btn btn-primary btn-sm">Small button</button>
+  <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+  <button type="button" class="btn btn-primary"
+    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+    Custom button
+  </button>
 </template>
 
 <script>

@@ -28,6 +28,8 @@ import Paginator from 'primevue/paginator';
 
 import Galleria from 'primevue/galleria';
 
+import Button from 'primevue/button';
+
 
 
 import "primevue/resources/themes/lara-light-blue/theme.css";
@@ -45,11 +47,12 @@ createApp(App)
   .use(Vue3FormWizard)
   .use(VeeValidate)
   .use(store)
-  .use(PrimeVue, { ripple: true  })
+  .use(PrimeVue, { /* options */ })
 
   
 
   .component('MultiSelect', MultiSelect)  
+  .component('Button', Button)  
   .component('Galleria', Galleria)  
   .component('Paginator', Paginator)  
   .component('Slider', Slider)  

@@ -441,7 +441,7 @@
 
                         <div class="form-floating mt-3">
                             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                style="height: 100px"></textarea>
+                                style="height: 100px;font-size:small;"></textarea>
                             <label for="floatingTextarea2">Comments</label>
                         </div>
 
@@ -450,11 +450,11 @@
                         <div class="d-flex mt-3">
 
                             <div class="p-inputgroup flex-1">
-                                <span class="p-inputgroup-addon">$</span>
-                                <InputNumber placeholder="Valor" />
-                                <span class="p-inputgroup-addon">.00</span>
+                                <span class="p-inputgroup-addon" style="font-size:small;">$</span>
+                                <InputNumber class="" placeholder="Valor" style="font-size:small;" />
+                                <span class="p-inputgroup-addon" style="font-size:small;">.00</span>
                             </div>
-                            <button class="btn btn-primary ms-3" type="submit"
+                            <button class="btn btn-primary ms-3 " type="submit"
                                 style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
                                 Proposta</button>
                         </div>

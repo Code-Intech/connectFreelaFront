@@ -184,6 +184,7 @@
                                 {{ selectedProfession.name }} ({{
                                     selectedProfession.category
                                 }})
+                                <input type="number" name="" id="" placeholder="testttttttttttttttttttt">
                                 <button class="mb-2 btn btn-outline-danger" @click="removeProfession(index)">
                                     Remover
                                 </button>
