@@ -26,6 +26,9 @@ import Slider from 'primevue/slider';
 
 import Paginator from 'primevue/paginator';
 
+import Galleria from 'primevue/galleria';
+
+
 
 import "primevue/resources/themes/lara-light-blue/theme.css";
 
@@ -47,6 +50,7 @@ createApp(App)
   
 
   .component('MultiSelect', MultiSelect)  
+  .component('Galleria', Galleria)  
   .component('Paginator', Paginator)  
   .component('Slider', Slider)  
   .component('FileUpload', FileUpload)  

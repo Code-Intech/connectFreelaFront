@@ -1,47 +1,51 @@
 
 <template>
-  <div>
+  <div class="card flex justify-content-center">
+    <Galleria v-model:visible="displayBasic" :value="images" :responsiveOptions="responsiveOptions" :numVisible="9"
+      containerStyle="max-width: 50%" :circular="true" :fullScreen="true" :showItemNavigators="true">
+      <template #item="slotProps">
+        <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+      </template>
+      <template #thumbnail="slotProps">
+        <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
+      </template>
+    </Galleria>
 
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Presencial/Remoto</option>
-      <option value="1">Remoto</option>
-      <option value="2">Hibrido</option>
-      <option value="3">Presencial</option>
-    </select>
-
-
-
-  </div>
-
-  <div>
-    <div class="card flex justify-content-center">
-      <MultiSelect v-model="selectedCities" :options="cities" display="chip" filter optionLabel="name"
-        placeholder="Select Cities" :maxSelectedLabels="3" class="w-full md:w-20rem" />
-    </div>
-
-
-
-
-
-
-    <input type="text" name="" id="">
-
+    <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
+    <button label="Show" icon="pi pi-external-link" @click="displayBasic = true">Fotos</button>
   </div>
 </template>
 
 <script>
+import { PhotoService } from '@/service/PhotoService';
 export default {
   data() {
     return {
-      selectedCities: null,
-      cities: [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-      ]
+      images: null,
+      responsiveOptions: [
+        {
+          breakpoint: '1500px',
+          numVisible: 5
+        },
+        {
+          breakpoint: '1024px',
+          numVisible: 3
+        },
+        {
+          breakpoint: '768px',
+          numVisible: 2
+        },
+        {
+          breakpoint: '560px',
+          numVisible: 1
+        }
+      ],
+      displayBasic: false
     };
-  }
+  },
+  mounted() {
+    PhotoService.getImages().then((data) => (this.images = data));
+  },
+
 };
 </script>

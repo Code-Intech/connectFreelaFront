@@ -281,7 +281,7 @@
 
 
 
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between border-bottom border-black">
 
                             <p class="text-success">
                                 Propostas enviadas:
@@ -301,6 +301,35 @@
 
 
                         </div>
+
+
+
+
+                        <div class="card flex justify-content-center mb-3 mt-3">
+                            <Galleria v-model:visible="displayBasic" :value="images" :responsiveOptions="responsiveOptions"
+                                :numVisible="9" containerStyle="max-width: 50%" :circular="true" :fullScreen="true"
+                                :showItemNavigators="true">
+                                <template #item="slotProps">
+                                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt"
+                                        style="width: 100%; display: block" />
+                                </template>
+                                <template #thumbnail="slotProps">
+                                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt"
+                                        style="display: block" />
+                                </template>
+                            </Galleria>
+
+                            <div class="d-grid gap-2">
+
+                                <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
+                                <button class=" rounded btnfotos" @click="displayBasic = true">Fotos</button>
+                            </div>
+                        </div>
+
+
+
+
+
 
 
 
@@ -431,6 +460,7 @@
                         </div>
 
 
+
                     </div>
                     <!-- <div class="modal-footer">
                     
@@ -444,7 +474,7 @@
 <script>
 import AvatarComponent from './AvatarComponent.vue';
 
-
+import { PhotoService } from '@/service/PhotoService';
 
 export default {
     name: "CardsServiçosComponent",
@@ -453,6 +483,33 @@ export default {
     },
     components: {
         AvatarComponent
+    },
+    data() {
+        return {
+            images: null,
+            responsiveOptions: [
+                {
+                    breakpoint: '1500px',
+                    numVisible: 5
+                },
+                {
+                    breakpoint: '1024px',
+                    numVisible: 3
+                },
+                {
+                    breakpoint: '768px',
+                    numVisible: 2
+                },
+                {
+                    breakpoint: '560px',
+                    numVisible: 1
+                }
+            ],
+            displayBasic: false
+        };
+    },
+    mounted() {
+        PhotoService.getImages().then((data) => (this.images = data));
     },
 
 }
@@ -472,6 +529,21 @@ export default {
 
 .card-header {
     display: flex;
+}
+
+
+.btnfotos {
+    border: 2px solid;
+    border-color: black;
+    color: black;
+    background: aqua;
+
+}
+
+.btnfotos:hover {
+
+    background: rgb(18, 146, 146);
+    color: white;
 }
 </style>
 
