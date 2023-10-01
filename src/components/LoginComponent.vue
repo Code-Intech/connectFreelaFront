@@ -212,7 +212,11 @@ export default {
     ...mapGetters(["isMessageError", "StateGenders"]),
 
     async genders() {
-      return await this.getGenders();
+      try {
+        return await this.getGenders();
+      } catch (error) {
+        console.log(error)
+      }
     },
     async handleCep() {
       try {
