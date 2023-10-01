@@ -18,6 +18,7 @@ import UserDashboardView from "@/components/UserDashboardView.vue"
 import FAQView from "@/components/FAQView.vue"
 import ViewPropostasComponent from "@/components/ViewPropostasComponent.vue"
 import CriarServicoComponent from "@/components/CriarServicoComponent.vue"
+import ViewPropostaContratanteComponent from "@/components/ViewPropostaContratanteComponent.vue"
 
 const routes = [
     {
@@ -122,6 +123,12 @@ const routes = [
         path: "/CriarServico",
         name: "CriarServicoComponent",
         component: CriarServicoComponent,
+        
+    },     
+    {
+        path: "/ViewPropostaContratante",
+        name: "ViewPropostaContratanteComponent",
+        component: ViewPropostaContratanteComponent,
         
     },    
 
