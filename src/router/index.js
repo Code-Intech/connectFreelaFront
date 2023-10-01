@@ -17,6 +17,7 @@ import UserPortifolioView from "@/components/UserPortifolioView.vue"
 import UserDashboardView from "@/components/UserDashboardView.vue"
 import FAQView from "@/components/FAQView.vue"
 import ViewPropostasComponent from "@/components/ViewPropostasComponent.vue"
+import CriarServicoComponent from "@/components/CriarServicoComponent.vue"
 
 const routes = [
     {
@@ -116,8 +117,14 @@ const routes = [
         name: "ViewPropostasComponent",
         component: ViewPropostasComponent,
         
-    },
-    
+    },   
+    {
+        path: "/CriarServico",
+        name: "CriarServicoComponent",
+        component: CriarServicoComponent,
+        
+    },    
+
 
 
 ];

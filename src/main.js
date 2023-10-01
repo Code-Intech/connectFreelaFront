@@ -17,6 +17,14 @@ import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
 
 
+import Calendar from 'primevue/calendar';
+
+import FileUpload from 'primevue/fileupload';
+
+
+import Slider from 'primevue/slider';
+
+import Paginator from 'primevue/paginator';
 
 
 import "primevue/resources/themes/lara-light-blue/theme.css";
@@ -38,7 +46,11 @@ createApp(App)
 
   
 
-  .component('MultiSelect', MultiSelect)
+  .component('MultiSelect', MultiSelect)  
+  .component('Paginator', Paginator)  
+  .component('Slider', Slider)  
+  .component('FileUpload', FileUpload)  
+  .component('Calendar', Calendar)
   .component('InputNumber', InputNumber)
   .component('InputText', InputText)
   .component('Card', Card)

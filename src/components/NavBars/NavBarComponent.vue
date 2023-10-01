@@ -1,16 +1,16 @@
 <template>
-
-  <LandingNavBarComponent/>
+  <LandingNavBarComponent />
 
   <nav class="navbar cormain">
-    <div class="container-fluid " >
-      
+    <div class="container-fluid ">
+
       <div></div>
       <div class="d-flex justify-content-between align-items-center gap-2">
         <div class="d-block">
           <form class="d-flex" role="search">
             <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success corbotao " style="color: white;" type="submit"><font-awesome-icon icon="search" /></button>
+            <button class="btn btn-outline-success corbotao " style="color: white;" type="submit"><font-awesome-icon
+                icon="search" /></button>
           </form>
         </div>
         <div class="dropstart ">
@@ -22,9 +22,10 @@
               <div class="d-flex">
                 <div>
                   <!-- <img style="max-width: 450px;max-height: 500px;margin-left: 8px;" src="../../assets/img/imagem-user.png" alt="" srcset=""> -->
-                  <Avatar class="m-2" height="20rem" width="20rem" :rounded="false" src="https://img.freepik.com/fotos-premium/imagem-3d-de-uma-forma-de-ilha-tropical-flutuante_665280-6955.jpg"/>
+                  <Avatar class="m-2" height="20rem" width="20rem" :rounded="false"
+                    src="https://img.freepik.com/fotos-premium/imagem-3d-de-uma-forma-de-ilha-tropical-flutuante_665280-6955.jpg" />
                 </div>
-                <div class="border-end "> 
+                <div class="border-end ">
                   <li><a class="dropdown-item " href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -62,7 +63,7 @@
           </ul>
         </div>
         <button class="btn btn-secondary corbotao" type="button">
-          Desenvolvedor
+          Criar Serviço
         </button>
         <button class="btn btn-secondary corbotao" type="button">
           Pintor
@@ -84,31 +85,67 @@ export default {
     LandingNavBarComponent,
     Avatar
   },
+  data() {
+    return {
+      selectedCities: null,
+      groupedCities: [
+        {
+          label: 'Germany',
+          code: 'DE',
+          items: [
+            { label: 'Berlin', value: 'Berlin' },
+            { label: 'Frankfurt', value: 'Frankfurt' },
+            { label: 'Hamburg', value: 'Hamburg' },
+            { label: 'Munich', value: 'Munich' }
+          ]
+        },
+        {
+          label: 'USA',
+          code: 'US',
+          items: [
+            { label: 'Chicago', value: 'Chicago' },
+            { label: 'Los Angeles', value: 'Los Angeles' },
+            { label: 'New York', value: 'New York' },
+            { label: 'San Francisco', value: 'San Francisco' }
+          ]
+        },
+        {
+          label: 'Japan',
+          code: 'JP',
+          items: [
+            { label: 'Kyoto', value: 'Kyoto' },
+            { label: 'Osaka', value: 'Osaka' },
+            { label: 'Tokyo', value: 'Tokyo' },
+            { label: 'Yokohama', value: 'Yokohama' }
+          ]
+        }
+      ]
+    };
+  }
 }
 </script>
 
 <style scoped>
-
-.btcat{
+.btcat {
   background-color: var(--purple-primary);
   color: white;
   border-radius: 5px;
 }
 
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: var(--purple-quaternary);
 }
 
 
 
-.btn:hover{
+.btn:hover {
   background-color: var(--purple-quaternary);
 }
 
 
 
-.cormain{
+.cormain {
   background-color: var(--purple-tertiary);
 
 }
@@ -137,9 +174,4 @@ export default {
     --purple-tertiary: #7711F0;
     --purple-quaternary: #9749FE;
     --white-primary: #EFEDF8; */
-
-
-
-
-
 </style>
