@@ -10,12 +10,35 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-row mb-3 ">
-                            <Avatar class="" />
-                            <h5 class="card-title d-flex align-content-center flex-wrap ms-3">William Victor Soares Silva
-                                Marques Fraga</h5>
-                            <font-awesome-icon icon="circle-check" class="" size="lg" />
-                            <Star class="ms-2" />
+                            <Avatar class=""
+                                source="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" />
+                            <h6 class="card-title d-flex align-content-center flex-wrap ms-3">William Victor Soares Silva
+                                Marques Fraga</h6>
+
+                            <Star class="ms-2" stars="4.5" />
                         </div>
+
+                        <div class="d-flex justify-content-between border-top border-black">
+
+                            <p class="">
+                                Valor da Hora de Serviço
+                            </p>
+                            <p class="">
+                                35
+                            </p>
+                        </div>
+
+                        <div class="d-flex justify-content-between border-bottom border-black">
+
+                            <p class="">
+                                Valor da diaria
+                            </p>
+                            <p class="">
+                                35
+                            </p>
+                        </div>
+
+
                         <div class="border-top border-black">
                             <div class="d-flex flex-row mt-1">
                                 <h6>

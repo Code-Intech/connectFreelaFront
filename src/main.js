@@ -9,26 +9,18 @@ import VeeValidate, { Field, Form, ErrorMessage } from 'vee-validate';
 import store from "@/store";
 import PrimeVue from 'primevue/config';
 import MultiSelect from 'primevue/multiselect';
-
 import InputNumber from 'primevue/inputnumber';
-
 import InputText from 'primevue/inputtext';
-
 import Card from 'primevue/card';
-
-
 import Calendar from 'primevue/calendar';
-
 import FileUpload from 'primevue/fileupload';
-
-
 import Slider from 'primevue/slider';
-
 import Paginator from 'primevue/paginator';
-
 import Galleria from 'primevue/galleria';
-
 import Button from 'primevue/button';
+
+
+
 
 
 
