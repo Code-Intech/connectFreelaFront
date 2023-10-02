@@ -9,7 +9,7 @@
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title">Album de Macaco</h5>
+                                <h5 class="card-title">Álbum de fotos</h5>
                                 <div id="carouselExample" class="carousel slide">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -65,7 +65,7 @@
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="veralbum">Album de Macaco</h1>
+                            <h1 class="modal-title fs-5" id="veralbum">Album de Fotos</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">

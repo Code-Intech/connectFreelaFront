@@ -23,7 +23,7 @@
             <div class="card " style="width: 18rem;">
               <img src="../../assets/img/imagem-user.png" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Mamaco:</h5>
+                <h5 class="card-title">William Fraga:</h5>
                 
                 <div class="d-flex flex-column mb-1 gap-1">
                   <button class="btn btn-primary" style="background-color: goldenrod;border: none;"><font-awesome-icon :icon="['fas', 'medal']" /> Plus</button>
