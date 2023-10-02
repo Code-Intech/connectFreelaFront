@@ -62,11 +62,14 @@
             </div>
           </ul>
         </div>
-        <button class="btn btn-secondary corbotao" type="button">
-          Criar Serviço
+        <button @click="$router.push({ path: '/Servicos' })" class="btn btn-secondary corbotao" type="button">
+          Ver Serviços
         </button>
-        <button class="btn btn-secondary corbotao" type="button">
-          Pintor
+        <button @click="$router.push({ path: '/Prestador' })" class="btn btn-secondary corbotao" type="button">
+          Ver Prestador
+        </button>
+        <button @click="$router.push({ path: '/CriarServico' })" class="btn btn-secondary corbotao" type="button">
+          Criar Serviço
         </button>
       </div>
 

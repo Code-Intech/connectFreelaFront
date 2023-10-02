@@ -77,13 +77,13 @@ const routes = [
         
     },
     {
-        path: "/Servicos22",
+        path: "/Servicos",
         name: "ServicosView",
         component: ServicosView,
         
     },   
     {
-        path: "/Prestador22",
+        path: "/Prestador",
         name: "PrestadorView",
         component: PrestadorView,
         
