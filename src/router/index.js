@@ -19,6 +19,7 @@ import FAQView from "@/components/FAQView.vue"
 import ViewPropostasComponent from "@/components/ViewPropostasComponent.vue"
 import CriarServicoComponent from "@/components/CriarServicoComponent.vue"
 import ViewPropostaContratanteComponent from "@/components/ViewPropostaContratanteComponent.vue"
+import ViewInfoPrestador from "@/components/ViewInfoPrestador.vue"
 
 const routes = [
     {
@@ -129,6 +130,12 @@ const routes = [
         path: "/ViewPropostaContratante",
         name: "ViewPropostaContratanteComponent",
         component: ViewPropostaContratanteComponent,
+        
+    },      
+    {
+        path: "/ViewInfoPrestador",
+        name: "ViewInfoPrestador",
+        component: ViewInfoPrestador,
         
     },    
 

@@ -28,6 +28,8 @@ const actions = {
         })
 
         await axios.post("http://localhost:8000/api/user/create", user);
+
+        
         let UserForm = new FormData();
         UserForm.append("email", User.get("email"));
         UserForm.append("senha", User.get("senha"));

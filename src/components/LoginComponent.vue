@@ -4,113 +4,66 @@
 
       <form action="" class="" @submit.prevent="register">
         <form-wizard stepSize="xs" @on-complete="register" color="#7711F0" finishButtonText="Cadastrar"
-                     nextButtonText="Proximo"
-                     backButtonText="Voltar">
+          nextButtonText="Proximo" backButtonText="Voltar">
           <tab-content title="Informações pessoais" icon="fa fa-user">
 
             <input class="form-control" type="text" name="" id="" placeholder="Nome Completo:" required
-                   v-model="userData.nomeCompleto">
+              v-model="userData.nomeCompleto">
 
             <input class="form-control" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id=""
-                   placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required v-model="userData.cpf">
+              placeholder="Digite um CPF no formato: xxx.xxx.xxx-xx" required v-model="userData.cpf">
 
             <input class="form-control" type="date" name="" id="" placeholder="Data de Nascimento:" required
-                   v-model="userData.dataNascimento">
-            <select
-                class="form-select"
-                name="Genero"
-                id=""
-                aria-placeholder="Genero:"
-                required
-                v-model="userData.genero"
-            >
+              v-model="userData.dataNascimento">
+            <select class="form-select" name="Genero" id="" aria-placeholder="Genero:" required v-model="userData.genero">
               <option value="">Selecione:</option>
-              <option v-for="genero in this.store.getters.StateGenders" :key="genero.idtb_genero" :value="genero.idtb_genero">{{ genero.Genero }}</option>
+              <option v-for="genero in this.store.getters.StateGenders" :key="genero.idtb_genero"
+                :value="genero.idtb_genero">{{ genero.Genero }}</option>
             </select>
 
-            <input
-                class="form-control" type="tel" name=""
-                pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" id=""
-                placeholder="Telefone: (xx) xxxxx-xxxx"
-                required v-model="userData.telefone">
+            <input class="form-control" type="tel" name="" pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})" id=""
+              placeholder="Telefone: (xx) xxxxx-xxxx" required v-model="userData.telefone">
 
 
           </tab-content>
           <tab-content title="Endereço" icon="fa-solid fa-location-dot">
-            <input
-                class="form-control has-validation"
-                type="text"
-                name="cep"
-                id="cep"
-                placeholder="CEP: 00000-000"
-                required
-                v-model="cep"
-            >
+            <input class="form-control has-validation" type="text" name="cep" id="cep" placeholder="CEP: 00000-000"
+              required v-model="cep">
             <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
 
-            <input class="form-control" type="text" name=""
-                   id=""
-                   placeholder="Cidade:"
-                   required
-                   readonly
-                   :value="store.getters.city.cidade"
-            >
-            <input class="form-control" type="text" name=""
-                   id=""
-                   placeholder="Estado:"
-                   required
-                   readonly
-                   :value="store.getters.city.estado"
-            >
-            <input class="form-control" type="text" name=""
-                   id=""
-                   placeholder="Bairro:"
-                   required
-                   readonly
-                   :value="store.getters.city.bairro"
-            >
-            <input class="form-control" type="text" name="rua"
-                   id="rua"
-                   placeholder="Endereço:"
-                   required
-                   readonly
-                   :value="store.getters.city.endereco"
-            >
-            <input
-                class="form-control"
-                type="text"
-                name=""
-                id=""
-                placeholder="Número:"
-                required
-                v-model="addressData.numero"
-            >
+            <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required readonly
+              :value="store.getters.city.cidade">
+            <input class="form-control" type="text" name="" id="" placeholder="Estado:" required readonly
+              :value="store.getters.city.estado">
+            <input class="form-control" type="text" name="" id="" placeholder="Bairro:" required readonly
+              :value="store.getters.city.bairro">
+            <input class="form-control" type="text" name="rua" id="rua" placeholder="Endereço:" required readonly
+              :value="store.getters.city.endereco">
+            <input class="form-control" type="text" name="" id="" placeholder="Número:" required
+              v-model="addressData.numero">
 
           </tab-content>
           <tab-content title="Acesso" icon="fa fa-sign-in">
 
-            <p v-if="store.getters.isMessageError" class="text-danger" id="error">Erro no cadastro, verifique e preencha todos os campos e tente cadastrar</p>
+            <p v-if="store.getters.isMessageError" class="text-danger" id="error">Erro no cadastro, verifique e preencha
+              todos os campos e tente cadastrar</p>
 
             <div class="form-floating">
 
-              <input class="form-control" type="text" name="" id="" placeholder="E-Mail:"
-                     v-model="userData.email">
+              <input class="form-control" type="text" name="" id="" placeholder="E-Mail:" v-model="userData.email">
               <label for="floatingInput">Email address</label>
               <div class="valid-feedback">
                 Looks good!
               </div>
             </div>
             <div class="form-floating">
-              <input class="form-control" type="password" name="" id="" placeholder="Senha:"
-                     v-model="userData.password">
+              <input class="form-control" type="password" name="" id="" placeholder="Senha:" v-model="userData.password">
               <label for="floatingPassword">Password</label>
             </div>
 
             <div class="form-floating">
               <input class="form-control" type="password" name="" id="floatingPasswordConfirmation["
-                     placeholder="Confirmação de senha:"
-              v-model="userData.confirmationPassword"
-              >
+                placeholder="Confirmação de senha:" v-model="userData.confirmationPassword">
               <label for="floatingPasswordConfirmation">Password</label>
             </div>
           </tab-content>
@@ -121,8 +74,8 @@
     <div class="form-container sign-in-container">
       <form action="#" @submit.prevent="login">
         <h1>Login</h1>
-        <input type="email" name="email" placeholder="E-Mail" v-model="form.email"/>
-        <input type="password" name="senha" placeholder="Senha" v-model="form.senha"/>
+        <input type="email" name="email" placeholder="E-Mail" v-model="form.email" />
+        <input type="password" name="senha" placeholder="Senha" v-model="form.senha" />
         <p v-if="store.getters.isMessageError" class="text-danger" id="error">Username or Password is incorrect</p>
         <a href="#">Esqueceu sua senha?</a>
         <button :class="{ 'bg-danger': store.getters.isMessageError }" type="submit">Entrar</button>
@@ -148,8 +101,8 @@
 
 <script>
 import store from "@/store";
-import {mapActions, mapGetters} from 'vuex'
-import {FormWizard, TabContent} from "vue3-form-wizard";
+import { mapActions, mapGetters } from 'vuex'
+import { FormWizard, TabContent } from "vue3-form-wizard";
 
 export default {
   name: "LoginComponent",
@@ -189,7 +142,7 @@ export default {
     };
   },
   async mounted() {
-    this.store.commit("setError", {error: false})
+    this.store.commit("setError", { error: false })
     await this.genders()
   },
   watch: {
@@ -208,7 +161,7 @@ export default {
       container.classList.add('right-panel-active');
     },
     validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders", "clearAddressData"]),
+    ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders", "clearAddressData", "getAvatar"]),
     ...mapGetters(["isMessageError", "StateGenders"]),
 
     async genders() {
@@ -261,6 +214,8 @@ export default {
       try {
         await this.LogIn(User);
         this.$router.push("/");
+        this.getAvatar(this.store.state.token);
+        console.log(this.store.state.token);
       } catch (error) {
         console.log(error)
         await this.showError(error)

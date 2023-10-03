@@ -29,6 +29,8 @@
                     class="btn btn-outline-primary text-white  border-white">Dashboard</button>
                 <button @click="$router.push({ path: '/ViewPropostaContratante' })"
                     class="btn btn-outline-primary text-white  border-white">Ver Propostas</button>
+                <button @click="$router.push({ path: '/ViewInfoPrestador' })"
+                    class="btn btn-outline-primary text-white  border-white">Informações do Prestador</button>
 
 
             </div>
