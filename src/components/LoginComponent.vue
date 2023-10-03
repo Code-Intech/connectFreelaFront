@@ -162,7 +162,7 @@ export default {
     },
     validateOnBack: Boolean,
     ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders", "clearAddressData", "getAvatar"]),
-    ...mapGetters(["isMessageError", "StateGenders"]),
+    ...mapGetters(["isMessageError", "StateGenders", "GetToken"]),
 
     async genders() {
       try {
@@ -214,8 +214,7 @@ export default {
       try {
         await this.LogIn(User);
         this.$router.push("/");
-        this.getAvatar(this.store.state.token);
-        console.log(this.store.state.token);
+        await this.getAvatar(this.GetToken());
       } catch (error) {
         console.log(error)
         await this.showError(error)

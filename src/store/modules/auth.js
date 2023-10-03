@@ -7,6 +7,7 @@ const state = {
 const getters = {
     isAuthenticated: (state) => !!state.user,
     StateUser: (state) => state.user,
+    GetToken: (state) => state.token
 };
 const actions = {
     async Register({ dispatch }, User) {
