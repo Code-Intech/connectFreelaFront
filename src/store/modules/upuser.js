@@ -25,13 +25,16 @@ const actions = {
             'Authorization': `Bearer ${token}`
         },
     })
-    commit('setedituser', {  User: await request.data})
+    // console.log(request);
+    commit('setedituser', {  user: await request.data.user})
   },
 };
 const mutations = {
-    setedituser(state, { User }) {
-    console.log(User)
-    state.edituser = User;
+    setedituser(state, { user }) {
+    console.log(user)
+    // console.log(state,"state")
+    state.edituser = user;
+    // console.log(state.edituser,"get")
   },
 };
 export default {

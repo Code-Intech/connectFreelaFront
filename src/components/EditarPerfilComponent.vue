@@ -36,33 +36,41 @@
 
             <div class="">
                 <label class="form-label" for="">Nome do Perfil</label>
-                <input :value="store.getters.StateEditUser[0]" class="form-control" type="text" name="" id=""
+                <input :value="store.getters.StateEditUser.Nome_completo" class="form-control" type="text" name="" id=""
                     style="max-width: 800px; border-color: var(--purple-primary)" />
             </div>
 
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">CPF:</label>
-                    <input class="form-control" type="text" name="" id=""
+                    <input :value="store.getters.StateEditUser.CPF" class="form-control" type="text" name="" id=""
                         style="max-width: 800px; border-color: var(--purple-primary)" disabled readonly />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Data de Nascimento:</label>
-                    <input class="form-control" type="text" name="" id=""
-                        style="max-width: 800px; border-color: var(--purple-primary)" />
+                    <input :value="store.getters.StateEditUser.Data_Nacimento" class="form-control" type="text" name=""
+                        id="" style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">Gênero</label>
-                    <input class="form-control" type="text" name="" id=""
-                        style="max-width: 800px; border-color: var(--purple-primary)" />
+                    <!-- <input class="form-control" type="text" name="" id=""
+                        style="max-width: 800px; border-color: var(--purple-primary)" /> -->
+
+                    <select style="max-width: 800px; border-color: var(--purple-primary)" class="form-select" name="Genero"
+                        id="" aria-placeholder="Genero:" required>
+                        <option value="">Selecione:</option>
+                        <option v-for="genero in this.store.getters.StateGenders" :key="genero.idtb_genero"
+                            :value="genero.idtb_genero">{{ genero.Genero }}</option>
+                    </select>
+
                 </div>
 
                 <div class="col">
                     <label class="form-label" for="">Telefone:</label>
-                    <input class="form-control" type="text" name="" id=""
+                    <input :value="store.getters.StateEditUser.Telefone" class="form-control" type="text" name="" id=""
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -70,13 +78,15 @@
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">CEP:</label>
-                    <input class="form-control" type="text" name="" id=""
+                    <input v-model="cep" class="form-control" type="text" name="" id=""
                         style="max-width: 800px; border-color: var(--purple-primary)" />
+                    <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
+
                 </div>
 
                 <div class="col">
                     <label class="form-label" for="">Estado:</label>
-                    <input class="form-control" type="text" name="" id=""
+                    <input :value="store.getters.city.estado" class="form-control" type="text" name="" id=""
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -84,13 +94,13 @@
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">Cidade:</label>
-                    <input class="form-control" type="text" name="" id=""
+                    <input :value="store.getters.city.cidade" class="form-control" type="text" name="" id=""
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
 
                 <div class="col">
                     <label class="form-label" for="">Bairro:</label>
-                    <input class="form-control" type="text" name="" id=""
+                    <input :value="store.getters.city.bairro" class="form-control" type="text" name="" id=""
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -98,7 +108,8 @@
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">Endereço:</label>
-                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)" />
+                    <input :value="store.getters.city.endereco" class="form-control" type="text" name="" id=""
+                        style="border-color: var(--purple-primary)" />
                 </div>
 
                 <div class="col-3">
@@ -117,7 +128,7 @@
         <div class="row">
             <div class="col">
                 <label class="form-label" for="">E-mail::</label>
-                <input class="form-control" type="text" name="" id=""
+                <input :value="store.getters.StateEditUser.Email" class="form-control" type="text" name="" id=""
                     style="max-width: 800px; border-color: var(--purple-primary)" />
             </div>
 
@@ -270,6 +281,14 @@ export default {
             selectedProfessions: [],
             searchQuery1: "",
             searchQuery2: "",
+            cep: "",
+            addressData: {
+                cidade: store.getters.city.cidade,
+                estado: store.getters.city.estado,
+                bairro: store.getters.city.bairro,
+                endereco: store.getters.city.endereco,
+                numero: "",
+            },
         };
     },
     computed: {
@@ -302,9 +321,19 @@ export default {
             return filtered;
         },
     },
+    watch: {
+        cep() {
+            console.log(this.cep)
+            this.handleCep()
+        }
+    },
+    async mounted() {
+        this.store.commit("setError", { error: false })
+        await this.genders()
+    },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser "]),
+        ...mapActions(["getInfoUser ", "getAddress", "clearAddressData"]),
         ...mapGetters([""]),
 
         //Get Info User
@@ -317,8 +346,21 @@ export default {
             }
         },
 
-
-
+        async genders() {
+            try {
+                return await this.getGenders();
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async handleCep() {
+            try {
+                await this.getAddress(this.cep)
+            } catch (error) {
+                console.log(error)
+                await this.showError(error)
+            }
+        },
 
 
 
