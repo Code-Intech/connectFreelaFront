@@ -8,20 +8,20 @@
           Home
         </button>
         <button @click="$router.push({ path: '/FAQ' })" class="btn btn-secondary corbotao" type="button">
-          FAQ
+          FAQ 
         </button>
 
         <div class="dropstart  ">
           <a class="   " style="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <!-- <font-awesome-icon icon="user" /> -->
             <!-- <img class=" rounded-circle" style="max-width: 30px;max-height: 40px;" src="@/assets/img/avatar.jpg" alt=""> -->
-            <avatar width="2rem" height="2rem" />
+            <avatar :source="store.getters.StateAvatar" width="2rem" height="2rem" />
           </a>
 
-          <ul class="dropdown-menu border border-0 ">
+          <ul class="dropdown-menu border border-0 "> 
 
-            <div class="card " style="width: 18rem;">
-              <img src="../../assets/img/imagem-user.png" class="card-img-top" alt="...">
+            <div class="card" style="width: 18r">
+              <avatar :source="store.getters.StateAvatar" height="300px" width="284px" class="card-img-top" :rounded="false"/>
               <div class="card-body">
                 <h5 class="card-title">William Fraga:</h5>
 
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     validateOnBack: Boolean,
-    ...mapActions(["getInfoUser"]),
+    ...mapActions(["getInfoUser", "getAvatar"]),
     ...mapGetters(["GetToken"]),
     getinfo() {
       // console.log(this.GetToken());

@@ -1,10 +1,6 @@
 <template>
-  <img
-      :src="source ? source : userDefault"
-      :alt="alt ? alt : 'user image'"
-      :class="[source ? '' : 'userProfileBg', rounded ? 'imgRounded' : '']"
-      :style="{'height': height, 'width': width}"
-  >
+  <img :src="source ? source : userDefault" :alt="alt ? alt : 'user image'"
+    :class="[source ? '' : 'userProfileBg', rounded ? 'imgRounded' : '']" :style="{ 'height': height, 'width': width }">
 </template>
 
 <script>
@@ -41,16 +37,15 @@ export default {
 </script>
 
 <style scoped>
-  .imgRounded {
-    border-radius: 50%;
-  }
+.imgRounded {
+  border-radius: 50%;
+}
 
-  .userProfileBg {
-    background: #d3d3d3;
-  }
+.userProfileBg {
+  background: #d3d3d3;
+}
 
-  .userProfileBg path {
-    background-color: red;
-  }
-
+.userProfileBg path {
+  background-color: red;
+}
 </style>
