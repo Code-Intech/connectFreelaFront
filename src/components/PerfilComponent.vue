@@ -9,8 +9,8 @@
         <div class="ms-5 me-5 mt-3 d-grid gap-2">
             <!-- <button @click="$router.push({ path: '/' })" class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Sobre</button> -->
-            <button @click="$router.push({ path: '/UserDashboard' })" class="d-block btn text-white"
-                style="border: 2px solid; border-color: var(--purple-quaternary);">DashBoard</button>
+            <button @click="$router.push({ path: '/userperfil' })" class="d-block btn text-white"
+                style="border: 2px solid; border-color: var(--purple-quaternary);">Sobre</button>
             <button @click="$router.push({ path: '/UserPortifolio' })" class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Portifólio</button>
         </div>

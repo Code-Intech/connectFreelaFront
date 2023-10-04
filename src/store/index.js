@@ -5,13 +5,15 @@ import errorMessage from "@/store/modules/errorMessage";
 import viaCep from "@/store/modules/viaCep";
 import gender from "@/store/modules/gender";
 import avatar from "@/store/modules/avatar";
+import upuser from "@/store/modules/upuser";
 export default new Vuex.Store({
     modules: {
         auth,
         errorMessage,
         viaCep,
         gender,
-        avatar
+        avatar,
+        upuser,
     },
     plugins: [createPersistedState()]
 });

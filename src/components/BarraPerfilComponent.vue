@@ -40,11 +40,23 @@
 
 <script>
 import Avatar from "@/components/AvatarComponent.vue"
-
-
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name: "BarraPerfilComponent",
+    computed: {
+        store() {
+            return store
+        }
+    },
     methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["getInfoUser"]),
+        ...mapGetters(["GetToken"]),
+        getinfo() {
+
+            this.getInfoUser(this.GetToken());
+        },
 
     },
     components: {

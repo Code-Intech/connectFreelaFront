@@ -32,8 +32,15 @@
                   <button @click="$router.push({ path: '/userperfil' })" class="btn btn-primary "><font-awesome-icon
                       :icon="['fas', 'user-large']" /> Perfil</button>
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'envelope']" /> Notificações</button>
-                  <button @click="$router.push({ path: '/perfil' })" class="btn btn-primary"><font-awesome-icon
+
+
+
+                  <button @click="$router.push({ path: '/perfil' }), getinfo()" class="btn btn-primary"><font-awesome-icon
                       :icon="['fas', 'gear']" /> Config</button>
+
+
+
+
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'circle-half-stroke']" />
                     Tema</button>
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'comments-dollar']" />
@@ -56,10 +63,27 @@
 
 <script>
 import avatar from "@/components/AvatarComponent.vue"
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: "LandingNavBarComponent.vue",
   components: {
     avatar,
+  },
+  computed: {
+    store() {
+      return store
+    }
+  },
+  methods: {
+    validateOnBack: Boolean,
+    ...mapActions(["getInfoUser"]),
+    ...mapGetters(["GetToken"]),
+    getinfo() {
+      // console.log(this.GetToken());
+      this.getInfoUser(this.GetToken());
+    },
+
   },
 }
 </script>
