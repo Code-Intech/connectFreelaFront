@@ -64,6 +64,7 @@ const mutations = {
     },
     LogOut(state) {
         state.user = null;
+        state.token = null;
     },
 };
 export default {

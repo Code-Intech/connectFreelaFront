@@ -8,7 +8,7 @@
           Home
         </button>
         <button @click="$router.push({ path: '/FAQ' })" class="btn btn-secondary corbotao" type="button">
-          FAQ 
+          FAQ
         </button>
 
         <div class="dropstart  ">
@@ -18,10 +18,11 @@
             <avatar :source="store.getters.StateAvatar" width="2rem" height="2rem" />
           </a>
 
-          <ul class="dropdown-menu border border-0 "> 
+          <ul class="dropdown-menu border border-0 ">
 
             <div class="card" style="width: 18r">
-              <avatar :source="store.getters.StateAvatar" height="300px" width="284px" class="card-img-top" :rounded="false"/>
+              <avatar :source="store.getters.StateAvatar" height="300px" width="284px" class="card-img-top"
+                :rounded="false" />
               <div class="card-body">
                 <h5 class="card-title">William Fraga:</h5>
 
@@ -45,7 +46,7 @@
                     Tema</button>
                   <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'comments-dollar']" />
                     Memsagens</button>
-                  <button class="btn btn-primary logoff" style="border: none;"><font-awesome-icon
+                  <button @click="LogOutM()" class="btn btn-primary logoff" style="border: none;"><font-awesome-icon
                       :icon="['fas', 'power-off']" /></button>
                 </div>
               </div>
@@ -64,7 +65,7 @@
 <script>
 import avatar from "@/components/AvatarComponent.vue"
 import store from "@/store";
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: "LandingNavBarComponent.vue",
   components: {
@@ -79,9 +80,17 @@ export default {
     validateOnBack: Boolean,
     ...mapActions(["getInfoUser", "getAvatar"]),
     ...mapGetters(["GetToken"]),
+    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser"]),
     getinfo() {
       // console.log(this.GetToken());
       this.getInfoUser(this.GetToken());
+    },
+    LogOutM() {
+      console.log("saindo")
+      this.LogOut();
+      this.LogOutAvatar();
+      this.LogOutUpUser();
+      this.$router.push("/");
     },
 
   },

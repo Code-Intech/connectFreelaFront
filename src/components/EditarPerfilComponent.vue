@@ -3,27 +3,75 @@
 
 
 
-        <form class="mt-2" action="">
-
-            <h2>
-                Foto de Perfil
-            </h2>
-
-
-            <Avatar :source="store.getters.StateAvatar" height="30rem" width="30rem" :rounded="false" />
 
 
 
-            <div class="mb-3 mt-3">
-                <h5>
-                    Carregue sua Foto de Perfil
-                </h5>
-                <input class="form-control" type="file" id="formFile" style="border-color: var(--purple-primary)">
+
+
+
+        <div>
+            <!-- Input de arquivo -->
+            <input type="file" ref="fileInput" @change="handleFileChange" />
+
+            <!-- Botão para enviar o arquivo (opcional) -->
+            <button @click="getFoto()">Enviar</button>
+
+            <!-- Mostrar informações do arquivo selecionado (opcional) -->
+            <div v-if="selectedFile">
+                <h4>Arquivo selecionado:</h4>
+                <p>Nome: {{ selectedFile.name }}</p>
+                <p>Tipo: {{ selectedFile.type }}</p>
+                <p>Tamanho: {{ selectedFile.size }} bytes</p>
             </div>
+        </div>
 
 
 
-        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h2>
+            Foto de Perfil
+        </h2>
+
+
+        <Avatar :source="store.getters.StateAvatar" height="30rem" width="30rem" :rounded="false" />
+
+
+
+        <!--        <div class="mb-3 mt-3">-->
+
+        <!--            <h5>-->
+        <!--                Carregue sua Foto de Perfil-->
+        <!--            </h5>-->
+        <!--            <input :value="fotoData.FTAvatar" class="form-control" type="file" id="formFile"-->
+        <!--                style="border-color: var(&#45;&#45;purple-primary)">-->
+
+        <!--            <button @click="getFoto()" type="">Enviar</button>-->
+
+
+        <!--        </div>-->
+
+
+
 
 
 
@@ -289,6 +337,10 @@ export default {
                 endereco: store.getters.city.endereco,
                 numero: "",
             },
+            fotoData: {
+                FTAvatar: "",
+            },
+            selectedFile: null,
         };
     },
     computed: {
@@ -333,8 +385,8 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser ", "getAddress", "clearAddressData"]),
-        ...mapGetters([""]),
+        ...mapActions(["getInfoUser ", "getAddress", "clearAddressData", "GetFoto"]),
+        ...mapGetters(["GetToken"]),
 
         //Get Info User
 
@@ -361,6 +413,46 @@ export default {
                 await this.showError(error)
             }
         },
+
+
+
+
+
+
+
+
+
+        async getFoto() {
+
+            const foto = new FormData();
+
+            foto.append("avatar", this.selectedFile);
+
+            const avatarPayload = {
+                token: this.GetToken(),
+                avatar: foto
+            };
+
+            try {
+                await this.GetFoto(avatarPayload)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+
+
+        handleFileChange(event) {
+            // Capturar o arquivo selecionado quando o usuário escolhe um arquivo
+            this.selectedFile = event.target.files[0];
+        },
+
+
+
+
+
+
+
 
 
 

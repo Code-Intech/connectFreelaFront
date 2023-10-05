@@ -3,7 +3,8 @@
         style="height: 88vh; background-color: var(--purple-tertiary);">
         <div class="d-flex justify-content-center ">
             <!-- <img class="mt-4 rounded img-fluid" src="../assets/img/mamaco.jpeg" alt="" style="width: 15rem; height: 15rem;"> -->
-            <Avatar class="mt-4 img-fluid" width="15rem" height="15rem" :rounded="false" />
+            <Avatar :source="store.getters.StateAvatar" class="mt-4 img-fluid" width="15rem" height="15rem"
+                :rounded="false" />
         </div>
 
         <div class="ms-5 me-5 mt-3 d-grid gap-2">
@@ -22,16 +23,25 @@
 <script>
 
 import Avatar from "@/components/AvatarComponent.vue"
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name: "PerfilComponent",
     methods: {
-
+        validateOnBack: Boolean,
+        ...mapActions(["getAvatar"]),
+        ...mapGetters([""]),
     },
     components: {
         Avatar
 
 
     },
+    computed: {
+        store() {
+            return store
+        }
+    }
 
 }
 

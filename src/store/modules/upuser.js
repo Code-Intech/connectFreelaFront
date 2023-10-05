@@ -36,6 +36,10 @@ const mutations = {
     state.edituser = user;
     // console.log(state.edituser,"get")
   },
+
+  LogOutUpUser(state){
+    state.edituser = null;
+  }
 };
 export default {
   state,
