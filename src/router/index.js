@@ -20,6 +20,7 @@ import ViewPropostasComponent from "@/components/ViewPropostasComponent.vue"
 import CriarServicoComponent from "@/components/CriarServicoComponent.vue"
 import ViewPropostaContratanteComponent from "@/components/ViewPropostaContratanteComponent.vue"
 import ViewInfoPrestador from "@/components/ViewInfoPrestador.vue"
+import FooterComponent from "@/components/FooterComponent.vue"
 
 const routes = [
     {
@@ -138,6 +139,12 @@ const routes = [
         component: ViewInfoPrestador,
         
     },    
+    {
+        path: "/Footer",
+        name: "FooterComponent",
+        component: FooterComponent,
+        
+    },  
 
 
 
