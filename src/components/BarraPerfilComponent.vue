@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="mt-3">
+            <div class="mt-3" @click="$router.push({ path: '/perfil' })">
                 <h4 class="text-white h4 d-flex justify-content-start ms-3 "><font-awesome-icon icon="user" class="me-3" />
                     William Fraga</h4>
             </div>
