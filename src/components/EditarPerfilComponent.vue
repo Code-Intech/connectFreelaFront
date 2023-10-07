@@ -85,6 +85,7 @@
             <div class="">
                 <label class="form-label" for="">Nome do Perfil</label>
                 <input :value="store.getters.StateEditUser.Nome_completo" class="form-control" type="text" name="" id=""
+                    @input="infoUser.Nome_completo = $event.target.value"
                     style="max-width: 800px; border-color: var(--purple-primary)" />
             </div>
 
@@ -341,6 +342,21 @@ export default {
                 FTAvatar: "",
             },
             selectedFile: null,
+            infoUser: {
+                Nome_completo: "",
+                CPF: "",
+                Data_Nacimento: "",
+                Genero: "",
+                Telefone: "",
+                CEP: "",
+                Estado: "",
+                Cidade: "",
+                Bairro: "",
+                endereco: "",
+                Numero: "",
+                Email: "",
+                Senha: "",
+            }
         };
     },
     computed: {
@@ -389,6 +405,9 @@ export default {
         ...mapGetters(["GetToken"]),
 
         //Get Info User
+
+
+
 
         async getinfouser() {
             try {

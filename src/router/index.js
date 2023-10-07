@@ -47,6 +47,7 @@ const routes = [
         path: "/perfil",
         name: "PerfilEditarView",
         component: PerfilEditarView,
+        // meta: { requiresAuth: true },
     },
     {
         path: "/perfilbeneficios",
@@ -94,6 +95,7 @@ const routes = [
         path: "/userperfil",
         name: "UserPerfiView",
         component: UserPerfiView,
+        // meta: { requiresAuth: true },
         
     },    
     {

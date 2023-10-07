@@ -6,6 +6,9 @@ import viaCep from "@/store/modules/viaCep";
 import gender from "@/store/modules/gender";
 import avatar from "@/store/modules/avatar";
 import upuser from "@/store/modules/upuser";
+import skills from "@/store/modules/skills";
+import professions from "@/store/modules/professions";
+import category from "@/store/modules/category";
 export default new Vuex.Store({
     modules: {
         auth,
@@ -14,6 +17,9 @@ export default new Vuex.Store({
         gender,
         avatar,
         upuser,
+        skills,
+        professions,
+        category,
     },
     plugins: [createPersistedState()]
 });

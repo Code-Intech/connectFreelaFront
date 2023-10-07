@@ -29,7 +29,7 @@
                     class="btn btn-outline-primary text-white  border-white">Dashboard</button>
                 <button @click="$router.push({ path: '/ViewPropostaContratante' })"
                     class="btn btn-outline-primary text-white  border-white">Ver Propostas</button>
-                <button @click="$router.push({ path: '/ViewInfoPrestador' })"
+                <button @click="$router.push({ path: '/ViewInfoPrestador' }), getskill()"
                     class="btn btn-outline-primary text-white  border-white">Informações do Prestador</button>
 
 
@@ -51,11 +51,17 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser"]),
+        ...mapActions(["getInfoUser", "getSkills", "getProfessions", "getcategory"]),
         ...mapGetters(["GetToken"]),
         getinfo() {
 
             this.getInfoUser(this.GetToken());
+        },
+        getskill() {
+
+            this.getSkills(this.GetToken());
+            this.getProfessions(this.GetToken());
+            this.getcategory(this.GetToken());
         },
 
     },
