@@ -82,8 +82,11 @@ export default {
     ...mapGetters(["GetToken"]),
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser"]),
     getinfo() {
+      try {
+        this.getInfoUser(this.GetToken());
+      } catch (error) {
       // console.log(this.GetToken());
-      this.getInfoUser(this.GetToken());
+      }
     },
     LogOutM() {
       console.log("saindo")

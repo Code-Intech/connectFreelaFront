@@ -54,8 +54,11 @@ export default {
         ...mapActions(["getInfoUser", "getSkills", "getProfessions", "getcategory"]),
         ...mapGetters(["GetToken"]),
         getinfo() {
-
-            this.getInfoUser(this.GetToken());
+            try {
+                this.getInfoUser(this.GetToken());
+            } catch (error) {
+                this.$router.push("/");
+            }
         },
         getskill() {
 
