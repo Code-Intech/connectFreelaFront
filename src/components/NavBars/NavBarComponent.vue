@@ -11,7 +11,8 @@
         <button @click="$router.push({ path: '/Prestador' })" class="btn btn-secondary corbotao" type="button">
           Ver Prestador
         </button>
-        <button @click="$router.push({ path: '/CriarServico' })" class="btn btn-secondary corbotao" type="button">
+        <button @click="$router.push({ path: '/CriarServico' }), getCriarServico()" class="btn btn-secondary corbotao"
+          type="button">
           Criar Serviço
         </button>
       </div>
@@ -22,7 +23,8 @@
 
 <script>
 import LandingNavBarComponent from "@/components/NavBars/LandingNavBarComponent.vue";
-
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'TesteMenuSidebar',
@@ -65,7 +67,26 @@ export default {
         }
       ]
     };
-  }
+  },
+  computed: {
+    store() {
+      return store
+    },
+  },
+  methods: {
+    validateOnBack: Boolean,
+    ...mapActions(["getcategory", "getProfessions", "getSkills"]),
+    ...mapGetters(["GetToken"]),
+
+
+
+    async getCriarServico() {
+      this.getcategory(this.GetToken());
+      this.getProfessions(this.GetToken());
+      this.getSkills(this.GetToken());
+
+    }
+  },
 }
 </script>
 

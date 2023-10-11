@@ -10,8 +10,15 @@
 
                 <div class="p-2 flex-grow-1">
                     <div class="card flex justify-content-center">
-                        <MultiSelect v-model="selectedCities" :options="cities" display="chip" filter optionLabel="name"
-                            placeholder="Cidade do serviço" :maxSelectedLabels="3" class="w-full md:w-20rem" />
+                        <MultiSelect v-model="selectedCities" :options="profissaoCategoriaArray" filter optionLabel="label"
+                            optionGroupLabel="label" optionGroupChildren="items" display="chip" placeholder="Profissão"
+                            class="w-full md:w-20rem">
+                            <template #optiongroup="slotProps">
+                                <div class="flex align-items-center">
+                                    <div>{{ slotProps.option.label }}</div>
+                                </div>
+                            </template>
+                        </MultiSelect>
                     </div>
 
 
@@ -21,8 +28,9 @@
                 </div>
                 <div class="p-2 flex-grow-1">
                     <div class="card flex justify-content-center">
-                        <MultiSelect v-model="selectedCities" :options="cities" display="chip" filter optionLabel="name"
-                            placeholder="Habilidades necessarias" :maxSelectedLabels="3" class="w-full md:w-20rem" />
+                        <MultiSelect v-model="selectedHabilidade" :options="store.getters.GetSkills" display="chip" filter
+                            optionLabel="Habilidade" placeholder="Habilidades necessarias" :maxSelectedLabels="3"
+                            class="w-full md:w-20rem" />
                     </div>
 
 
@@ -130,25 +138,80 @@
 </template>
   
 <script>
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
+// import skills from '@/store/modules/skills';
 export default {
     name: "CriarServicoComponent",
     data() {
         return {
             selectedCities: null,
+            selectedHabilidade: null,
+            // cities: [
+
+
+            // ] = store.getters.GetProfessions,
+            distancia: 100,
+            profissaoCategoriaArray: [],
             cities: [
                 { name: 'New York', code: 'NY' },
                 { name: 'Rome', code: 'RM' },
                 { name: 'London', code: 'LDN' },
                 { name: 'Istanbul', code: 'IST' },
                 { name: 'Paris', code: 'PRS' }
-            ],
-            distancia: 100,
+            ]
         };
+    },
+    computed: {
+        store() {
+            return store
+        },
+
+    },
+    created() {
+        // const professions = this.$store.getters.GetProfessions;
+        // const skill = this.$store.getters.GetSkills;
+
+        // // Crie o array com nome da profissão e código da categoria
+        // this.profissaoCategoriaArray = professions.map(profissao => {
+        //     const categoriaID = profissao.tb_categoria_idtb_categoria;
+        //     const categoria = skill.find(cat => cat.idtb_categoria === categoriaID) || {};
+        //     return {
+        //         name: profissao.Profissao,
+        //         code: categoria.Categoria,
+        //     };
+        // });
+
+
+        const professions = store.getters.GetProfessions;
+        const categorys = store.getters.Getcategorys;
+
+
+
+        // Crie o array no modelo de groupedCities
+        this.profissaoCategoriaArray = Array.from(new Set(professions.map(profissao => profissao.tb_categoria_idtb_categoria)))
+            .map(categoriaID => {
+                const categoria = categorys.find(cat => cat.idtb_categoria === categoriaID);
+                return {
+                    label: categoria.Categoria,
+                    code: categoria.idtb_categoria, // Use a propriedade correta para o código da categoria
+                    items: professions
+                        .filter(profissao => profissao.tb_categoria_idtb_categoria === categoriaID)
+                        .map(profissao => ({
+                            label: profissao.Profissao,
+                            value: categoria.tb_categoria_idtb_categoria, // Use a propriedade correta para o código da categoria
+                        })),
+                };
+            });
     },
     methods: {
         onAdvancedUpload() {
             this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-        }
+        },
+        validateOnBack: Boolean,
+        ...mapActions([""]),
+        ...mapGetters(["GetToken"]),
+
     }
 };
 </script>
