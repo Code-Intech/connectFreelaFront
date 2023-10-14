@@ -2,37 +2,37 @@
     <div class="col-10 h-100 d-inline-block">
 
 
-        <h2>Área do Prestador</h2>
+        <h2 class="mt-3">Área do Prestador</h2>
 
         <div>
             <div class="row">
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Diária:</label>
-                    <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)" />
+                    <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
+                        @input="infoPrestador.Valor_Diaria = $event.target.value" />
                 </div>
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Hora de Trabalho:</label>
-                    <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)" />
+                    <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
+                        @input="infoPrestador.Valor_Hora = $event.target.value" />
                 </div>
 
                 <div class="col-3">
                     <label class="form-label" for="">CNPJ:</label>
-                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)" />
+                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
+                        @input="infoPrestador.CNPJ = $event.target.value" />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Nome da Sua Empresa:</label>
-                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)" />
+                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
+                        @input="infoPrestador.Nome_Empresa = $event.target.value" />
                 </div>
             </div>
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
-            <input class="btn btn-primary" type="submit" value="Salvar" />
-        </div>
 
 
-
-        <h2>Profissões</h2>
+        <h2 class="mt-3">Profissões</h2>
 
         <div>
             <div class="row">
@@ -51,7 +51,6 @@
                     </div>
 
 
-
                     <select class="form-control" multiple v-model="selectedProfessionIds"
                         @change="updateSelectedProfessions" style="border: 1px solid; border-color: var(--purple-primary)">
                         <option v-for="profession in filteredProfessions" :key="profession.idtb_profissoes"
@@ -66,14 +65,16 @@
                 <div class="col me-4 rounded" style="border: 1px solid; border-color: var(--purple-primary)">
                     <!-- <label class="form-label" for="">Profissão:</label>
                         <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary);"> -->
-                    <ul class="form-control mt-3">
+                    <ul class="form-control mt-3 ">
 
-                        <li class="" v-for="(selectedProfession, index) in selectedProfessions" :key="index"
+                        <li class="d-flex flex-wrap align-items-center pb-2"
+                            v-for="(selectedProfession, index) in selectedProfessions" :key="index"
                             style=" border-bottom: 1px solid;border-color: var(--purple-primary);">
                             {{ selectedProfession.Profissao }} ({{
                                 mapCategoryName(selectedProfession.tb_categoria_idtb_categoria) }})
-                            <input type="number" name="" id="" placeholder="testttttttttttttttttttt">
-                            <button class="mb-2 btn btn-outline-danger" @click="removeProfession(index)">
+                            <input class="rounded form-control ms-2 me-2" type="number" name="" id=""
+                                placeholder="Tempo de experiência em (Anos)" style="width: 270px;">
+                            <button class=" btn btn-outline-danger " @click="removeProfession(index)">
                                 Remover
                             </button>
                         </li>
@@ -81,19 +82,15 @@
                 </div>
             </div>
         </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
-            <input class="btn btn-primary" type="submit" value="Salvar" />
-        </div>
 
 
-
-        <h2>Habilidades</h2>
+        <h2 class="mt-3">Habilidades</h2>
         <!-- <button @click="tttt()">tettttt</button> -->
         <div class="d-flex">
             <div class="" style="max-width: 40rem">
                 <input class="form-control mb-2" type="text" v-model="searchQuery" placeholder="Pesquisar Habilidades"
-                    style="width: 20rem; border-color: var(--purple-primary)" />
-                <select style="height: 15rem; border-color: var(--purple-primary)" class="form-select" multiple
+                    style="width: ; border-color: var(--purple-primary)" />
+                <select style="height: 15rem; border-color: var(--purple-primary)" class="form-select b-3" multiple
                     v-model="selectedSkillIds" @change="updateSelectedSkills">
                     <option v-for="skill in filteredSkills" :key="skill.idtb_habilidades" :value="skill">
                         {{ skill.Habilidade }}
@@ -102,22 +99,25 @@
             </div>
 
 
-            <div class="ms-4" style="max-width: 30rem; min-width: 20rem">
-                <ul class="form-select" style="min-height: 25px; border-color: var(--purple-primary)">
-                    <h6>Habilidades Selecionadas</h6>
-                    <li class="m-2" v-for="(selectedSkill, index) in selectedSkills" :key="index" style="
-                border-bottom: 2px solid;
-                border-color: var(--purple-primary);
-            ">
-                        {{ selectedSkill.Habilidade }}
-                        <button class="m-3 btn btn-outline-danger" @click="removeSkill(index)">
-                            Remover
-                        </button>
-                    </li>
-                </ul>
+            <div>
+                <div class="ms-4" style="max-width: 30rem; min-width: 20rem">
+                    <ul class="form-select"
+                        style="min-height: 25px; border-color: var(--purple-primary); max-height: 290px; overflow-y: auto;">
+                        <h6>Habilidades Selecionadas</h6>
+                        <li class="m-2" v-for="(selectedSkill, index) in selectedSkills" :key="index"
+                            style="border-bottom: 2px solid; border-color: var(--purple-primary);">
+                            {{ selectedSkill.Habilidade }}
+                            <button class="m-2 btn btn-outline-danger" @click="removeSkill(index)">
+                                Remover
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="rounded ms-4" style="border: 1px solid; border-color: var(--purple-primary); width: 100%">
+
+
+            <div class="rounded ms-4" style="border: 1px solid; border-color: var(--purple-primary); width: 45vh">
                 <h4 class="m-3">Suas Habilidades</h4>
 
                 <div>
@@ -134,14 +134,15 @@
         </div>
 
 
-        <h2>
+        <h2 class="mt-3">
             Sobre Você:
         </h2>
         <div class="mt-3">
 
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px;border-color: var(--purple-primary);"></textarea>
+                    style="height: 100px;border-color: var(--purple-primary);"
+                    @input="infoPrestador.Sobre = $event.target.value"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
         </div>
@@ -178,6 +179,18 @@ export default {
             selectedProfessions: [],
             searchQuery1: "",
             searchQuery2: "",
+
+            infoPrestador: {
+                Valor_Diarial: "",
+                Valor_Hora: "",
+                CNPJ: "",
+                Nome_Empresa: "",
+                Profissao: {},
+                Habilidade: {},
+                Sobre: "",
+
+
+            }
         };
     },
     computed: {
@@ -249,6 +262,8 @@ export default {
                     this.selectedSkills.push(skillId);
                 }
             });
+            this.infoPrestador.Habilidade = this.selectedSkills.map((skillId) => skillId.idtb_habilidades);
+            // console.log(this.infoPrestador.Habilidade, "skill")
         },
         removeSkill(index) {
             this.selectedSkills.splice(index, 1);
@@ -263,7 +278,10 @@ export default {
                 ) {
                     this.selectedProfessions.push(profession);
                 }
+
             });
+            this.infoPrestador.Profissao = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
+            // console.log(this.infoPrestador.Profissao, "tessssssssssssss")
         },
 
 
@@ -271,6 +289,23 @@ export default {
         removeProfession(index) {
             this.selectedProfessions.splice(index, 1);
         },
+
+        updateInfoPrestador() {
+            this.infoPrestador.Profissao = this.selectedProfessionIds;
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
     },
 };
 </script>
