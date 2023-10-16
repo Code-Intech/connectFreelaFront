@@ -1,14 +1,5 @@
 <template>
     <div class="col-10 h-100 d-inline-block">
-
-
-
-
-
-
-
-
-
         <div>
             <!-- Input de arquivo -->
             <input type="file" ref="fileInput" @change="handleFileChange" />
@@ -24,29 +15,6 @@
                 <p>Tamanho: {{ selectedFile.size }} bytes</p>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <h2>
             Foto de Perfil
@@ -69,13 +37,6 @@
 
 
         <!--        </div>-->
-
-
-
-
-
-
-
 
         <div>
             <div>
@@ -213,78 +174,7 @@
 
 
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
 
-        <!-- <div>
-            <h2>Habilidades Selecionadas:</h2>
-            <ul>
-                <li v-for="(selectedSkill, index) in selectedSkills" :key="index">
-                    {{ selectedSkill }}
-                    <button @click="removeSkill(index)">Remover</button>
-                </li>
-            </ul>
-
-            <h2>Escolher Habilidades:</h2>
-            <input type="text" v-model="searchQuery" placeholder="Pesquisar Habilidades" />
-            <select multiple v-model="selectedSkillIds" @change="updateSelectedSkills">
-                <option v-for="skill in filteredSkills" :key="skill" :value="skill">{{ skill }}</option>
-            </select>
-        </div> -->
-
-        <!-- 
-        <div>
-            <h2>Profissões Selecionadas:</h2>
-            <ul>
-                <li v-for="(selectedProfession, index) in selectedProfessions" :key="index">
-                    {{ selectedProfession.name }} ({{ selectedProfession.category }})
-                    <button @click="removeProfession(index)">Remover</button>
-                </li>
-            </ul>
-
-            <h2>Escolher Profissões:</h2>
-            <input type="text" v-model="searchQuery2" placeholder="Pesquisar Profissões" />
-            <select multiple v-model="selectedProfessionIds" @change="updateSelectedProfessions">
-                <option v-for="profession in filteredProfessions" :key="profession.id" :value="profession.id">
-                    {{ profession.name }} ({{ profession.category }})
-                </option>
-            </select>
-        </div>
-
-
- -->
-
-        <!-- 
-
-
-        <div>
-            <h2>Profissões Selecionadas:</h2>
-            <ul>
-                <li v-for="(selectedProfession, index) in selectedProfessions" :key="index">
-                    {{ selectedProfession.name }} ({{ selectedProfession.category }})
-                    <button @click="removeProfession(index)">Remover</button>
-                </li>
-            </ul>
-
-            <h2>Escolher Profissões:</h2>
-            <div>
-                <input type="text" v-model="searchQuery1" placeholder="Pesquisar Profissões" />
-                <input type="text" v-model="searchQuery2" placeholder="Pesquisar por Categoria" />
-            </div>
-
-            <select multiple v-model="selectedProfessionIds" @change="updateSelectedProfessions">
-                <option v-for="profession in filteredProfessions" :key="profession.id" :value="profession.id">
-                    {{ profession.name }} ({{ profession.category }})
-                </option>
-            </select>
-        </div> -->
     </div>
 </template>
 
@@ -405,10 +295,6 @@ export default {
         ...mapGetters(["GetToken"]),
 
         //Get Info User
-
-
-
-
         async getinfouser() {
             try {
                 return await this.const();
@@ -433,14 +319,6 @@ export default {
             }
         },
 
-
-
-
-
-
-
-
-
         async getFoto() {
 
             const foto = new FormData();
@@ -459,22 +337,10 @@ export default {
             }
         },
 
-
-
         handleFileChange(event) {
             // Capturar o arquivo selecionado quando o usuário escolhe um arquivo
             this.selectedFile = event.target.files[0];
         },
-
-
-
-
-
-
-
-
-
-
 
         updateSelectedSkills() {
             this.selectedSkillIds.forEach((skillId) => {

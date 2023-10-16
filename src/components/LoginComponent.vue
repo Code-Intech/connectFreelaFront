@@ -30,7 +30,7 @@
             <input class="form-control has-validation" type="text" name="cep" id="cep" placeholder="CEP: 00000-000"
               required v-model="cep">
             <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
-
+            {{ store.getters.city }}
             <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required readonly
               :value="store.getters.city.cidade">
             <input class="form-control" type="text" name="" id="" placeholder="Estado:" required readonly
@@ -161,7 +161,7 @@ export default {
       container.classList.add('right-panel-active');
     },
     validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register", "showError", "getAddress", "getGenders", "clearAddressData", "getAvatar"]),
+    ...mapActions(["LogIn", "Register", "showError", "GetAddress", "getGenders", "clearAddressData", "getAvatar"]),
     ...mapGetters(["isMessageError", "StateGenders", "GetToken"]),
 
     async genders() {
@@ -173,7 +173,7 @@ export default {
     },
     async handleCep() {
       try {
-        await this.getAddress(this.cep)
+        await this.GetAddress(this.cep)
       } catch (error) {
         console.log(error)
         await this.showError(error)
@@ -182,6 +182,7 @@ export default {
     async register() {
       console.log(this.userData)
       console.log(this.addressData)
+      console.log(store.getters.city)
       const User = new FormData();
       User.append("nomeCompleto", this.userData.nomeCompleto);
       User.append("cpf", this.userData.cpf);
@@ -190,18 +191,17 @@ export default {
       User.append("telefone", this.userData.telefone);
       User.append("cpf", this.userData.cpf);
       User.append("cep", this.cep);
-      User.append("rua", this.addressData.endereco);
-      User.append("bairro", this.addressData.bairro);
-      User.append("cidade", this.addressData.cidade);
-      User.append("estado", this.addressData.estado);
+      User.append("rua", store.getters.city.endereco);
+      User.append("bairro", store.getters.city.bairro);
+      User.append("cidade", store.getters.city.cidade);
+      User.append("estado", store.getters.city.estado);
       User.append("numero", this.addressData.numero);
       User.append("email", this.userData.email);
       User.append("senha", this.userData.password);
-
       try {
         await this.Register(User);
-        await this.clearAddressData();
-        this.$router.push("/");
+        // this.$router.push("/");
+        this.clearAddressData();
       } catch (error) {
         console.log(error)
         await this.showError(error, 10000)

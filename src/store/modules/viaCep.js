@@ -14,7 +14,7 @@ const getters = {
 };
 
 const actions = {
-  async getAddress({ commit }, zipCode) {
+  async GetAddress({ commit }, zipCode) {
 
     zipCode = zipCode.replace(/[^a-zA-Z0-9]/g, "")
 
@@ -32,7 +32,7 @@ const actions = {
     }
     commit("setAddress", { data });
   },
-  async clearAddressData({ commit }) {
+  clearAddressData({ commit }) {
     commit('clearAddress');
   }
 };
