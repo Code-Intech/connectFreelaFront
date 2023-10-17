@@ -10,9 +10,9 @@
 
                 <div class="p-2 flex-grow-1">
                     <div class="card flex justify-content-center">
-                        <MultiSelect v-model="selectedCities" :options="profissaoCategoriaArray" filter optionLabel="label"
-                            optionGroupLabel="label" optionGroupChildren="items" display="chip" placeholder="Profissão"
-                            class="w-full md:w-20rem">
+                        <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
+                            optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" display="chip"
+                            placeholder="Profissão" class="w-full md:w-20rem">
                             <template #optiongroup="slotProps">
                                 <div class="flex align-items-center">
                                     <div>{{ slotProps.option.label }}</div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="p-2 " style="width: 300px;">
 
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" v-model="Servico.Modalidade">
                         <option selected>Presencial/Remoto</option>
                         <option value="1">Remoto</option>
                         <option value="2">Hibrido</option>
@@ -51,6 +51,37 @@
 
                 </div>
             </div>
+
+
+            <div class="d-flex flex-wrap">
+
+                <input class="form-control has-validation m-2 p-2" type="text" name="cep" id="cep"
+                    placeholder="CEP: 00000-000" required v-model="Servico.CEP" style="max-width: 300px;">
+                <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
+                {{ store.getters.city }}
+                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Endereço:"
+                    style="max-width: 400px;" :value="store.getters.city.endereco">
+                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Número:"
+                    style="max-width: 300px;" v-model="Servico.Numero">
+                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Bairro:"
+                    style="max-width: 300px;" :value="store.getters.city.bairro">
+                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Estado:"
+                    style="max-width: 300px;" :value="store.getters.city.estado">
+                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Cidade:"
+                    style="max-width: 300px;" :value="store.getters.city.cidade">
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             <!-- <div class="mb-3" style="max-width: 500px;">
@@ -71,13 +102,13 @@
             <div class="">
 
                 <label class="d-block" for="">Digite o Valor do Serviço</label>
-                <InputNumber class="" v-model="value1" inputId="stacked-buttons" showButtons mode="currency"
+                <InputNumber class="" v-model="Servico.ValorServico" inputId="stacked-buttons" showButtons mode="currency"
                     currency="BRL" />
             </div>
 
             <div class="mb-3" style="max-width: 300px;">
                 <label class="d-block" for="">Estimativa de idade</label>
-                <input class="form-control d-block" type="number" name="" id="">
+                <input v-model="Servico.EstimativaIdade" class="form-control d-block" type="number" name="" id="">
             </div>
 
 
@@ -87,11 +118,11 @@
 
                 <div class="card flex justify-content-center" style="min-width: 300px;">
                     <label for="">Data de Inicio</label>
-                    <Calendar v-model="date" showIcon />
+                    <Calendar v-model="Servico.DataInicio" showIcon />
                 </div>
                 <div class="card flex justify-content-center" style="min-width: 300px;">
                     <label for="">Data de Termino</label>
-                    <Calendar v-model="date" showIcon />
+                    <Calendar v-model="Servico.DataTermino" showIcon />
                 </div>
 
             </div>
@@ -99,17 +130,29 @@
 
 
 
+            <button @click="teste()">
+                teste
+            </button>
 
 
-
-            <div class="card mb-3">
+            <!-- <div class="card mb-3">
                 <Toast />
-                <FileUpload name="demo[]" url="./upload.php" @upload="onAdvancedUpload($event)" :multiple="true"
-                    accept="image/*" :maxFileSize="1000000">
+                <FileUpload name="demo[]" @upload="onAdvancedUpload($event)" :multiple="true" accept="image/*"
+                    :maxFileSize="1000000">
                     <template #empty>
                         <p>Carregue suas imagens aqui.</p>
                     </template>
                 </FileUpload>
+            </div> -->
+
+
+
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02" @input="Servico.IMG" multiple max="5">
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+
             </div>
 
 
@@ -123,7 +166,7 @@
 
             <div class="form-floating mb-3">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
+                    style="height: 100px" v-model="Servico.Texto"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
 
@@ -145,21 +188,29 @@ export default {
     name: "CriarServicoComponent",
     data() {
         return {
-            selectedCities: null,
+            selectedProfissao: null,
             selectedHabilidade: null,
-            // cities: [
-
-
-            // ] = store.getters.GetProfessions,
-            distancia: 100,
+            distancia: 30,
             profissaoCategoriaArray: [],
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ]
+            // cep: "",
+            Servico: {
+                Profissao: {},
+                Habilidade: {},
+                Modalidade: "",
+                CEP: "",
+                Numero: "",
+                Cidade: store.getters.city.cidade,
+                Estado: store.getters.city.estado,
+                Bairro: store.getters.city.bairro,
+                Endereco: store.getters.city.endereco,
+                EstimativaKM: this.distancia,
+                ValorServico: "",
+                EstimativaIdade: "",
+                DataInicio: "",
+                DataTermino: "",
+                IMG: {},
+                Texto: "",
+            }
         };
     },
     computed: {
@@ -183,6 +234,7 @@ export default {
         // });
 
 
+
         const professions = store.getters.GetProfessions;
         const categorys = store.getters.Getcategorys;
 
@@ -199,18 +251,80 @@ export default {
                         .filter(profissao => profissao.tb_categoria_idtb_categoria === categoriaID)
                         .map(profissao => ({
                             label: profissao.Profissao,
-                            value: categoria.tb_categoria_idtb_categoria, // Use a propriedade correta para o código da categoria
+                            value: profissao.idtb_profissoes, // Use a propriedade correta para o código da categoria
                         })),
                 };
             });
     },
+    watch: {
+        cep() {
+            console.log(this.Servico.CEP)
+            this.handleCep()
+        },
+        km() {
+            console.log(this.distancia)
+            this.KM()
+        },
+        profhabil() {
+            console.log(this.selectedProfissao)
+            this.Prof();
+        },
+        habil() {
+            console.log(this.selectedHabilidade)
+            this.Habil();
+        }
+    },
     methods: {
         onAdvancedUpload() {
             this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+            console.log(this.$toast, "imgggg");
         },
         validateOnBack: Boolean,
-        ...mapActions([""]),
+        ...mapActions(["GetAddress"]),
         ...mapGetters(["GetToken"]),
+
+        async handleCep() {
+            try {
+                await this.GetAddress(this.Servico.CEP)
+                console.log(store.getters.city)
+            } catch (error) {
+                console.log(error)
+                await this.showError(error)
+            }
+        },
+        teste() {
+            // console.log(this.selectedHabilidade, "Habilist");
+            // this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
+            // this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
+            console.log(this.Servico.Habilidade);
+            console.log(this.Servico.Profissao);
+            console.log(this.Servico.EstimativaKM);
+        },
+        async Prof() {
+            try {
+                this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async Habil() {
+            try {
+                this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async KM() {
+            try {
+                this.Servico.EstimativaKM = this.distancia;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+
+
+
 
     }
 };

@@ -9,6 +9,7 @@ import upuser from "@/store/modules/upuser";
 import skills from "@/store/modules/skills";
 import professions from "@/store/modules/professions";
 import category from "@/store/modules/category";
+import prestador from "@/store/modules/prestador";
 export default new Vuex.Store({
     modules: {
         auth,
@@ -20,6 +21,7 @@ export default new Vuex.Store({
         skills,
         professions,
         category,
+        prestador,
     },
     plugins: [createPersistedState()]
 });
