@@ -9,7 +9,7 @@
                 <div class="position-relative">
                     <!-- <img class="img-fluid border border-2 border-black" src="../assets/img/imagem-user.png" alt="">
                     <a href=""><font-awesome-icon class=" position-absolute bottom-0 end-0 bg-white" icon="pen" style="min-height: 1rem;min-width: 1rem; color: black;" /></a> -->
-                    <Avatar :source="store.getters.StateAvatar" height="15rem" width="15rem" :rounded="false" />
+                    <Avatar :source="store.getters.StateAvatar" height="15rem" width="12rem" :rounded="false" />
                 </div>
             </div>
 
