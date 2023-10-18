@@ -17,7 +17,7 @@ const getters = {
 };
 const actions = {
   async GetPrestador({ commit }, infoPresta) {
-    const InfoPres = JSON.stringify({
+    const InfoPres = {
       valor_diaria: infoPresta.info.get("valor_diaria"),
       valor_hora: infoPresta.info.get("valor_hora"),
       cnpj: infoPresta.info.get("cnpj"),
@@ -25,7 +25,7 @@ const actions = {
       habilidades: infoPresta.info.get("habilidades"),
       profissoes: infoPresta.info.get("profissoes"),
       apresentacao: infoPresta.info.get("apresentacao"),
-    });
+    };
 
     console.log(InfoPres, "tokenprestador");
 

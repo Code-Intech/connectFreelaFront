@@ -192,7 +192,7 @@ export default {
                 CNPJ: "",
                 Nome_Empresa: "",
                 Profissao: [],
-                Habilidade: {},
+                Habilidade: [],
                 Sobre: "",
 
 
@@ -268,7 +268,9 @@ export default {
                     this.selectedSkills.push(skillId);
                 }
             });
-            this.infoPrestador.Habilidade = this.selectedSkills.map((skillId) => skillId.idtb_habilidades);
+            this.selectedSkills.map((skillId) => {
+                this.infoPrestador.Habilidade.push(skillId.idtb_habilidades)
+            });
             // console.log(this.infoPrestador.Habilidade, "skill")
         },
         removeSkill(index) {
@@ -318,7 +320,7 @@ export default {
             InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
             InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
             InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
-            InfoPresta.append("habilidades", this.infoPrestador.Habilidade);
+            InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
             InfoPresta.append("profissoes", JSON.stringify(this.infoPrestador
                 .Profissao));
             InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
