@@ -2,44 +2,57 @@ import axios from "axios";
 
 const state = {
   prestador: {
-            idtb_user: null,
-            Nome_completo: null,
-            Data_Nacimento: null,
-            Telefone: null,
-            Email: null,
-            CPF: null,
-            FlgStatus:null,
-            tb_end_idtb_end: null,
-            idgenero: null,
-            created_at: null,
-            updated_at: null
+    valor_diaria: null,
+    valor_hora: null,
+    cnpj: null,
+    nome_empresa: null,
+    habilidades: [],
+    profissoes: [],
+    apresentacao: null,
   },
+  error: null,
 };
 const getters = {
   StatePrestador: (state) => state.prestador,
 };
 const actions = {
-  async getPrestador({ commit },token) {
-    const request = await axios.get('http://localhost:8000/api/user/me',{
-        headers: { 
-            'Authorization': `Bearer ${token}`
+  async GetPrestador({ commit }, infoPresta) {
+    const InfoPres = JSON.stringify({
+      valor_diaria: infoPresta.info.get("valor_diaria"),
+      valor_hora: infoPresta.info.get("valor_hora"),
+      cnpj: infoPresta.info.get("cnpj"),
+      nome_empresa: infoPresta.info.get("nome_empresa"),
+      habilidades: infoPresta.info.get("habilidades"),
+      profissoes: infoPresta.info.get("profissoes"),
+      apresentacao: infoPresta.info.get("apresentacao"),
+    });
+
+    console.log(InfoPres, "tokenprestador");
+
+    const request = await axios.post(
+      "http://localhost:8000/api/prestador/create",
+      InfoPres,
+      {
+        headers: {
+          Authorization: `Bearer ${infoPresta.token}`,
         },
-    })
+      }
+    );
     // console.log(request);
-    commit('setedituser', {  user: await request.data.user})
+    commit("setprestador", { infocreate: await request.error.message });
   },
 };
 const mutations = {
-    setedituser(state, { user }) {
-    console.log(user)
+  setprestador(state, { infocreate }) {
+    console.log(infocreate);
     // console.log(state,"state")
-    state.edituser = user;
+    state.error = infocreate;
     // console.log(state.edituser,"get")
   },
 
-  LogOutUpUser(state){
-    state.edituser = null;
-  }
+  // LogOutUpUser(state){
+  //   state.edituser = null;
+  // }
 };
 export default {
   state,

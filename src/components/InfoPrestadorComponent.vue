@@ -9,7 +9,7 @@
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Diária:</label>
                     <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
-                        @input="infoPrestador.Valor_Diaria = $event.target.value" />
+                        @input="infoPrestador.Valor_Diarial = $event.target.value" />
                 </div>
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Hora de Trabalho:</label>
@@ -73,7 +73,8 @@
                             {{ selectedProfession.Profissao }} ({{
                                 mapCategoryName(selectedProfession.tb_categoria_idtb_categoria) }})
                             <input class="rounded form-control ms-2 me-2" type="number" name="" id=""
-                                placeholder="Tempo de experiência em (Anos)" style="width: 270px;">
+                                placeholder="Tempo de experiência em (Anos)" style="width: 270px;"
+                                v-model="infoPrestador.Profissao[index].experiencia">
                             <button class=" btn btn-outline-danger " @click="removeProfession(index)">
                                 Remover
                             </button>
@@ -134,6 +135,12 @@
         </div>
 
 
+        <button @click="teste()">
+            teste
+        </button>
+
+
+
         <h2 class="mt-3">
             Sobre Você:
         </h2>
@@ -141,15 +148,14 @@
 
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px;border-color: var(--purple-primary);"
-                    @input="infoPrestador.Sobre = $event.target.value"></textarea>
+                    style="height: 100px;border-color: var(--purple-primary);" v-model="infoPrestador.Sobre"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
         </div>
 
         <div class="d-flex justify-content-end">
 
-            <button class="btn btn-primary mt-3" type="submit">Salvar</button>
+            <button class="btn btn-primary mt-3" type="submit" @click="getPrestador()">Salvar</button>
         </div>
 
     </div>
@@ -185,7 +191,7 @@ export default {
                 Valor_Hora: "",
                 CNPJ: "",
                 Nome_Empresa: "",
-                Profissao: {},
+                Profissao: [],
                 Habilidade: {},
                 Sobre: "",
 
@@ -248,7 +254,7 @@ export default {
     methods: {
 
         validateOnBack: Boolean,
-        ...mapActions([""]),
+        ...mapActions(["GetPrestador"]),
         ...mapGetters(["GetToken", "GetSkills", "GetSkills", "GetProfessions", "Getcategorys"]),
 
         mapCategoryName(categoryId) {
@@ -277,10 +283,13 @@ export default {
                     !this.selectedProfessions.some((p) => p.idtb_profissoes === profession.idtb_profissoes)
                 ) {
                     this.selectedProfessions.push(profession);
+                    this.infoPrestador.Profissao.push({ id: profession.idtb_profissoes, experiencia: "" });
                 }
 
             });
-            this.infoPrestador.Profissao = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
+            // const profissao1 = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
+            // this.infoPrestador.Profissao = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
+            // this.infoPrestador.Profissao.id = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
             // console.log(this.infoPrestador.Profissao, "tessssssssssssss")
         },
 
@@ -295,11 +304,39 @@ export default {
         },
 
 
+        teste() {
+            console.log(this.infoPrestador.Sobre, "Sobre");
+        },
 
 
 
 
+        async getPrestador() {
+            console.log(this.infoPrestador)
+            const InfoPresta = new FormData();
+            InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
+            InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
+            InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
+            InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
+            InfoPresta.append("habilidades", this.infoPrestador.Habilidade);
+            InfoPresta.append("profissoes", JSON.stringify(this.infoPrestador
+                .Profissao));
+            InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
 
+            // console.log(InfoPresta, "testaaaaaaaaaaaaaaaaaaaadwsdawda");
+
+            const infoPayLoad = {
+                token: this.GetToken(),
+                info: InfoPresta
+            }
+            try {
+                console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
+                await this.GetPrestador(infoPayLoad)
+            } catch (error) {
+                console.log(error);
+            }
+
+        },
 
 
 
