@@ -119,7 +119,7 @@
                 <div class="col">
                     <label class="form-label" for="">Bairro:</label>
                     <input :value="store.getters.city.bairro" class="form-control" type="text" name="" id=""
-                    @input="infoUser.Bairro = $event.target.value"
+                        @input="infoUser.Bairro = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -149,14 +149,13 @@
             <div class="col">
                 <label class="form-label" for="">E-mail::</label>
                 <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Email"
-                @input="infoUser.Email = $event.target.value"
+                    @input="infoUser.Email = $event.target.value"
                     style="max-width: 800px; border-color: var(--purple-primary)" />
             </div>
 
             <div class="col">
                 <label class="form-label" for="">Senha:</label>
-                <input class="form-control" type="number" name="" id=""
-                    v-model="infoUser.Senha"
+                <input class="form-control" type="text" name="" id="" v-model="infoUser.Senha"
                     style="max-width: 800px; border-color: var(--purple-primary)" />
 
                 <ul>
@@ -249,18 +248,18 @@ export default {
             },
             selectedFile: null,
             infoUser: {
-                Nome_completo: "",
-                CPF: "",
-                Data_Nacimento: "",
-                Genero: "",
-                Telefone: "",
-                CEP1: "",
+                Nome_completo: store.getters.StateEditUser.Nome_completo,
+                CPF: store.getters.StateEditUser.CPF,
+                Data_Nacimento: store.getters.StateEditUser.Data_Nacimento,
+                Genero: 1,
+                Telefone: store.getters.StateEditUser.Telefone,
+                CEP1: store.getters.city.cep,
                 Estado: store.getters.city.estado,
                 Cidade: store.getters.city.cidade,
                 Bairro: store.getters.city.bairro,
                 endereco: store.getters.city.endereco,
-                Numero: "",
-                Email: "",
+                Numero: store.getters.StateEditUser.Numero,
+                Email: store.getters.StateEditUser.Email,
                 Senha: "",
             }
         };
@@ -385,13 +384,6 @@ export default {
         },
 
         async upUser() {
-
-
-            this.CEP1=this.cep;
-            
-
-
-
 
             console.log(this.infoUser)
             const InfoUse = new FormData();

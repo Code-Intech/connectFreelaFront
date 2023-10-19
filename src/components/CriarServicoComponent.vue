@@ -12,7 +12,7 @@
                     <div class="card flex justify-content-center">
                         <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
                             optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" display="chip"
-                            placeholder="Profissão" class="w-full md:w-20rem">
+                            placeholder="Profissão" class="w-full md:w-20rem" @chance="onChange($event)">
                             <template #optiongroup="slotProps">
                                 <div class="flex align-items-center">
                                     <div>{{ slotProps.option.label }}</div>
@@ -56,7 +56,8 @@
             <div class="d-flex flex-wrap">
 
                 <input class="form-control has-validation m-2 p-2" type="text" name="cep" id="cep"
-                    placeholder="CEP: 00000-000" required v-model="Servico.CEP" style="max-width: 300px;">
+                    placeholder="CEP: 00000-000" required v-model="cep" style="max-width: 300px;"
+                    @input="this.Servico.CEP1 = this.cep">
                 <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
                 {{ store.getters.city }}
                 <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Endereço:"
@@ -173,7 +174,7 @@
 
             <div class="d-flex flex-row-reverse">
 
-                <button class="btn btn-primary">Criar Serviço</button>
+                <button class="btn btn-primary" @click="Salvar()">Criar Serviço</button>
             </div>
         </div>
 
@@ -192,12 +193,12 @@ export default {
             selectedHabilidade: null,
             distancia: 30,
             profissaoCategoriaArray: [],
-            // cep: "",
+            cep: "",
             Servico: {
                 Profissao: {},
                 Habilidade: {},
                 Modalidade: "",
-                CEP: "",
+                CEP1: "",
                 Numero: "",
                 Cidade: store.getters.city.cidade,
                 Estado: store.getters.city.estado,
@@ -258,21 +259,22 @@ export default {
     },
     watch: {
         cep() {
-            console.log(this.Servico.CEP)
+            console.log(this.cep)
             this.handleCep()
         },
-        km() {
-            console.log(this.distancia)
-            this.KM()
-        },
-        profhabil() {
-            console.log(this.selectedProfissao)
-            this.Prof();
-        },
-        habil() {
-            console.log(this.selectedHabilidade)
-            this.Habil();
-        }
+        // km() {
+        //     console.log(this.distancia)
+        //     this.KM()
+        // },
+        // profhabil() {
+        //     console.log(this.selectedProfissao)
+        //     this.Prof();
+
+        // },
+        // habil() {
+        //     console.log(this.selectedHabilidade)
+        //     this.Habil();
+        // }
     },
     methods: {
         onAdvancedUpload() {
@@ -280,12 +282,12 @@ export default {
             console.log(this.$toast, "imgggg");
         },
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress"]),
+        ...mapActions(["GetAddress", "clearAddressData"]),
         ...mapGetters(["GetToken"]),
 
         async handleCep() {
             try {
-                await this.GetAddress(this.Servico.CEP)
+                await this.GetAddress(this.cep)
                 console.log(store.getters.city)
             } catch (error) {
                 console.log(error)
@@ -300,29 +302,39 @@ export default {
             console.log(this.Servico.Profissao);
             console.log(this.Servico.EstimativaKM);
         },
-        async Prof() {
-            try {
-                this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        async Habil() {
-            try {
-                this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        async KM() {
-            try {
-                this.Servico.EstimativaKM = this.distancia;
-            } catch (error) {
-                console.log(error);
-            }
-        },
+        // Prof() {
+        //     try {
+        //         this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // },
+        // Habil() {
+        //     try {
+        //         this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // },
+        // KM() {
+        //     try {
+        //         this.Servico.EstimativaKM = this.distancia;
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // },
 
 
+        Salvar() {
+            this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
+            this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
+            this.Servico.EstimativaKM = this.distancia;
+        },
+        onChange: function (event) {
+            console.log(event.target.value, "change")
+            const skill = event.target.value;
+            this.Servico.Habilidade = skill.map((Habi) => Habi.idtb_habilidades);
+        }
 
 
 
