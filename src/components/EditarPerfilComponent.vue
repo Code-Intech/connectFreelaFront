@@ -40,26 +40,30 @@
 
         <div>
             <div>
-                <h2>Informações Pessoas</h2>
+                <h2>Informações Pessoais</h2>
             </div>
 
             <div class="">
                 <label class="form-label" for="">Nome do Perfil</label>
-                <input :value="store.getters.StateEditUser.Nome_completo" class="form-control" type="text" name="" id=""
+                <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Nome_completo"
                     @input="infoUser.Nome_completo = $event.target.value"
                     style="max-width: 800px; border-color: var(--purple-primary)" />
             </div>
 
+
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">CPF:</label>
-                    <input :value="store.getters.StateEditUser.CPF" class="form-control" type="text" name="" id=""
+                    <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.CPF"
+                        @input="infoUser.CPF = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" disabled readonly />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Data de Nascimento:</label>
-                    <input :value="store.getters.StateEditUser.Data_Nacimento" class="form-control" type="text" name=""
-                        id="" style="max-width: 800px; border-color: var(--purple-primary)" />
+                    <input class="form-control" type="text" name="" id=""
+                        :value="store.getters.StateEditUser.Data_Nacimento"
+                        @input="infoUser.Data_Nacimento = $event.target.value"
+                        style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
 
@@ -80,7 +84,8 @@
 
                 <div class="col">
                     <label class="form-label" for="">Telefone:</label>
-                    <input :value="store.getters.StateEditUser.Telefone" class="form-control" type="text" name="" id=""
+                    <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Telefone"
+                        @input="infoUser.Telefone = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -89,6 +94,7 @@
                 <div class="col">
                     <label class="form-label" for="">CEP:</label>
                     <input v-model="cep" class="form-control" type="text" name="" id=""
+                        @input="infoUser.CEP = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                     <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
 
@@ -97,6 +103,7 @@
                 <div class="col">
                     <label class="form-label" for="">Estado:</label>
                     <input :value="store.getters.city.estado" class="form-control" type="text" name="" id=""
+                        @input="infoUser.Estado = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -105,12 +112,14 @@
                 <div class="col">
                     <label class="form-label" for="">Cidade:</label>
                     <input :value="store.getters.city.cidade" class="form-control" type="text" name="" id=""
+                        @input="infoUser.Cidade = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
 
                 <div class="col">
                     <label class="form-label" for="">Bairro:</label>
                     <input :value="store.getters.city.bairro" class="form-control" type="text" name="" id=""
+                    @input="infoUser.Bairro = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -119,12 +128,13 @@
                 <div class="col">
                     <label class="form-label" for="">Endereço:</label>
                     <input :value="store.getters.city.endereco" class="form-control" type="text" name="" id=""
-                        style="border-color: var(--purple-primary)" />
+                        @input="infoUser.endereco = $event.target.value" style="border-color: var(--purple-primary)" />
                 </div>
 
                 <div class="col-3">
                     <label class="form-label" for="">Número:</label>
-                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)" />
+                    <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Numero"
+                        @input="infoUser.Numero = $event.target.value" style="border-color: var(--purple-primary)" />
                 </div>
             </div>
         </div>
@@ -138,13 +148,15 @@
         <div class="row">
             <div class="col">
                 <label class="form-label" for="">E-mail::</label>
-                <input :value="store.getters.StateEditUser.Email" class="form-control" type="text" name="" id=""
+                <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Email"
+                @input="infoUser.Email = $event.target.value"
                     style="max-width: 800px; border-color: var(--purple-primary)" />
             </div>
 
             <div class="col">
                 <label class="form-label" for="">Senha:</label>
                 <input class="form-control" type="number" name="" id=""
+                    v-model="infoUser.Senha"
                     style="max-width: 800px; border-color: var(--purple-primary)" />
 
                 <ul>
@@ -169,6 +181,10 @@
                         Números: 8 dígitos.
                     </li>
                 </ul>
+            </div>
+            <div class="d-flex justify-content-end">
+
+                <button class="btn btn-primary mt-3" type="submit" @click="upUser()">Salvar</button>
             </div>
         </div>
 
@@ -238,11 +254,11 @@ export default {
                 Data_Nacimento: "",
                 Genero: "",
                 Telefone: "",
-                CEP: "",
-                Estado: "",
-                Cidade: "",
-                Bairro: "",
-                endereco: "",
+                CEP1: "",
+                Estado: store.getters.city.estado,
+                Cidade: store.getters.city.cidade,
+                Bairro: store.getters.city.bairro,
+                endereco: store.getters.city.endereco,
                 Numero: "",
                 Email: "",
                 Senha: "",
@@ -291,17 +307,17 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser ", "getAddress", "clearAddressData", "GetFoto"]),
+        ...mapActions(["getUser ", "getGenders", "GetAddress", "clearAddressData", "GetFoto", "upInfoUser"]),
         ...mapGetters(["GetToken"]),
 
         //Get Info User
-        async getinfouser() {
-            try {
-                return await this.const();
-            } catch (error) {
-                console.log(error);
-            }
-        },
+        // async getinfouser() {
+        //     try {
+        //         return await this.const();
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // },
 
         async genders() {
             try {
@@ -312,7 +328,7 @@ export default {
         },
         async handleCep() {
             try {
-                await this.getAddress(this.cep)
+                await this.GetAddress(this.cep)
             } catch (error) {
                 console.log(error)
                 await this.showError(error)
@@ -367,6 +383,50 @@ export default {
         removeProfession(index) {
             this.selectedProfessions.splice(index, 1);
         },
+
+        async upUser() {
+
+
+            this.CEP1=this.cep;
+            
+
+
+
+
+            console.log(this.infoUser)
+            const InfoUse = new FormData();
+            InfoUse.append("Nome_completo", this.infoUser.Nome_completo);
+            InfoUse.append("CPF", this.infoUser.CPF);
+            InfoUse.append("Data_Nacimento", this.infoUser.Data_Nacimento);
+            InfoUse.append("Genero", JSON.stringify(this.infoUser.Genero));
+            InfoUse.append("Telefone", this.infoUser.Telefone);
+            InfoUse.append("CEP", this.infoUser.CEP1);
+            InfoUse.append("Estado", this.infoUser.Estado);
+            InfoUse.append("Cidade", this.infoUser.Cidade);
+            InfoUse.append("Bairro", this.infoUser.Bairro);
+            InfoUse.append("endereco", this.infoUser.endereco);
+            InfoUse.append("Numero", this.infoUser.Numero);
+            InfoUse.append("Email", this.infoUser.Email);
+            InfoUse.append("Senha", this.infoUser.Senha);
+
+            // console.log(InfoUser, "Testeeeee");
+
+            const infoPayLoad = {
+                token: this.GetToken(),
+                info: InfoUse
+            }
+            try {
+                console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
+                await this.upInfoUser(infoPayLoad)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        test() {
+            console.log(store.getters.StateEditUser.Nome_completo)
+        },
+
     },
 };
 </script>

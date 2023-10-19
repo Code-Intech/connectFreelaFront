@@ -11,7 +11,7 @@
           FAQ
         </button>
 
-        <div class="dropstart  ">
+        <div class="dropstart  " @click="getinfo()">
           <a class="   " style="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <!-- <font-awesome-icon icon="user" /> -->
             <!-- <img class=" rounded-circle" style="max-width: 30px;max-height: 40px;" src="@/assets/img/avatar.jpg" alt=""> -->
@@ -36,7 +36,7 @@
 
 
 
-                  <button @click="$router.push({ path: '/perfil' }), getinfo()" class="btn btn-primary"><font-awesome-icon
+                  <button @click="$router.push({ path: '/perfil' })" class="btn btn-primary"><font-awesome-icon
                       :icon="['fas', 'gear']" /> Config</button>
 
 
@@ -89,12 +89,16 @@ export default {
       }
     },
     LogOutM() {
-      console.log("saindo")
-      this.LogOut();
-      this.LogOutAvatar();
-      this.LogOutUpUser();
       this.$router.push("/");
+
+      setTimeout(() => {
+        // Função a ser executada após 2 segundos
+        this.LogOut();
+        this.LogOutAvatar();
+        this.LogOutUpUser();
+      }, 2000);
     },
+
 
   },
 }
