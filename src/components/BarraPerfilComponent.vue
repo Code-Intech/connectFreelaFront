@@ -4,14 +4,66 @@
         <div class=" text-emphasis-secondary m-2      h-100 d-inline-block "
             style="background-color: var(--purple-quaternary); max-height: 880px; width: 95%;">
 
-            <div class="d-flex justify-content-center mt-2">
+            <div class="d-flex mt-2">
 
-                <div class="position-relative">
+                <div class="position-relative justify-content-center">
                     <!-- <img class="img-fluid border border-2 border-black" src="../assets/img/imagem-user.png" alt="">
                     <a href=""><font-awesome-icon class=" position-absolute bottom-0 end-0 bg-white" icon="pen" style="min-height: 1rem;min-width: 1rem; color: black;" /></a> -->
                     <Avatar :source="store.getters.StateAvatar" height="15rem" width="12rem" :rounded="false" />
                 </div>
+                <div class="position-absolute opacity-75">
+                    <img class="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
+                        src="../assets/img/lapis.svg" alt="" style="height:2rem; width:2rem;" />
+                </div>
             </div>
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Foto de Perfil</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <h2>
+                                Foto de Perfil
+                            </h2>
+
+                            <div class="justify-content-center" style="">
+                                <Avatar :source="store.getters.StateAvatar" height="30rem" width="30rem" :rounded="false" />
+                            </div>
+                            <div style="margin-top: 5px">
+                                <!-- Input de arquivo -->
+                                <input type="file" ref="fileInput" @change="handleFileChange" />
+
+                                <!-- Mostrar informações do arquivo selecionado (opcional) -->
+                                <div v-if="selectedFile">
+                                    <h4>Arquivo selecionado:</h4>
+                                    <p>Nome: {{ selectedFile.name }}</p>
+                                    <p>Tipo: {{ selectedFile.type }}</p>
+                                    <p>Tamanho: {{ selectedFile.size }} bytes</p>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button @click="getFoto()" type="button" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="mt-3" @click="$router.push({ path: '/perfil' })">
                 <h4 class="text-white h4 d-flex justify-content-start ms-3 "><font-awesome-icon icon="user" class="me-3" />
@@ -44,15 +96,51 @@ import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name: "BarraPerfilComponent",
+    components: {
+        Avatar,
+    },
+    data() {
+        return {
+            fotoData: {
+                FTAvatar: "",
+            },
+            selectedFile: null,
+        }
+    },
+
     computed: {
         store() {
             return store
-        }
+        },
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser", "getSkills", "getProfessions", "getcategory"]),
+        ...mapActions(["getInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory"]),
         ...mapGetters(["GetToken"]),
+
+        async getFoto() {
+
+            const foto = new FormData();
+
+            foto.append("avatar", this.selectedFile);
+
+            const avatarPayload = {
+                token: this.GetToken(),
+                avatar: foto
+            };
+
+            try {
+                await this.GetFoto(avatarPayload)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        handleFileChange(event) {
+            // Capturar o arquivo selecionado quando o usuário escolhe um arquivo
+            this.selectedFile = event.target.files[0];
+        },
+
         getinfo() {
             try {
                 this.getInfoUser(this.GetToken());
@@ -67,9 +155,6 @@ export default {
             this.getcategory(this.GetToken());
         },
 
-    },
-    components: {
-        Avatar,
     },
 }
 </script>
