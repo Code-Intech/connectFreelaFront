@@ -80,12 +80,12 @@ export default {
     validateOnBack: Boolean,
     ...mapActions(["getInfoUser", "getAvatar"]),
     ...mapGetters(["GetToken"]),
-    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser"]),
+    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador"]),
     getinfo() {
       try {
         this.getInfoUser(this.GetToken());
       } catch (error) {
-      // console.log(this.GetToken());
+        // console.log(this.GetToken());
       }
     },
     LogOutM() {
@@ -96,6 +96,7 @@ export default {
         this.LogOut();
         this.LogOutAvatar();
         this.LogOutUpUser();
+        this.LogOutPrestador();
       }, 2000);
     },
 

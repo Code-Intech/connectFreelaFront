@@ -155,7 +155,11 @@
 
         <div class="d-flex justify-content-end">
 
-            <button class="btn btn-primary mt-3" type="submit" @click="getPrestador()">Salvar</button>
+            <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
+        </div>
+        <div class="d-flex justify-content-end">
+
+            <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
         </div>
 
     </div>
@@ -187,13 +191,13 @@ export default {
             searchQuery2: "",
 
             infoPrestador: {
-                Valor_Diarial: "",
-                Valor_Hora: "",
-                CNPJ: "",
-                Nome_Empresa: "",
+                Valor_Diarial: "200",
+                Valor_Hora: "30",
+                CNPJ: "41.505.192/0001-75",
+                Nome_Empresa: "Willaim Empresa",
                 Profissao: [],
                 Habilidade: [],
-                Sobre: "",
+                Sobre: "Calango Lindo",
 
 
             }
@@ -254,7 +258,7 @@ export default {
     methods: {
 
         validateOnBack: Boolean,
-        ...mapActions(["GetPrestador"]),
+        ...mapActions(["CreatePrestador", "UpPrestador"]),
         ...mapGetters(["GetToken", "GetSkills", "GetSkills", "GetProfessions", "Getcategorys"]),
 
         mapCategoryName(categoryId) {
@@ -268,13 +272,16 @@ export default {
                     this.selectedSkills.push(skillId);
                 }
             });
+            this.infoPrestador.Habilidade = [];
             this.selectedSkills.map((skillId) => {
                 this.infoPrestador.Habilidade.push(skillId.idtb_habilidades)
             });
+
             // console.log(this.infoPrestador.Habilidade, "skill")
         },
         removeSkill(index) {
             this.selectedSkills.splice(index, 1);
+            this.infoPrestador.Habilidade.splice(index, 1);
         },
 
         updateSelectedProfessions() {
@@ -307,33 +314,113 @@ export default {
 
 
         teste() {
-            console.log(this.infoPrestador.Sobre, "Sobre");
+            console.log(this.infoPrestador.Habilidade, "Sobre");
         },
 
 
 
 
-        async getPrestador() {
+        async createPrestador() {
             console.log(this.infoPrestador)
+            // const InfoPresta = new FormData();
+            // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
+            // InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
+            // InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
+            // InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
+            // InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
+            // InfoPresta.append("profissoes", this.infoPrestador
+            //     .Profissao);
+            // InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
+
+
+
+
+
+
+
             const InfoPresta = new FormData();
             InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
             InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
             InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
             InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
-            InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
-            InfoPresta.append("profissoes", JSON.stringify(this.infoPrestador
-                .Profissao));
+
+            // Garanta que habilidades e profissões sejam tratadas como arrays
+            const habilidades = Array.isArray(this.infoPrestador.Habilidade)
+                ? this.infoPrestador.Habilidade
+                : [this.infoPrestador.Habilidade];
+
+            const profissoes = Array.isArray(this.infoPrestador.Profissao)
+                ? this.infoPrestador.Profissao
+                : [this.infoPrestador.Profissao];
+
+            InfoPresta.append("habilidades", JSON.stringify(habilidades));
+            InfoPresta.append("profissoes", JSON.stringify(profissoes));
+
             InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
 
-            // console.log(InfoPresta, "testaaaaaaaaaaaaaaaaaaaadwsdawda");
 
             const infoPayLoad = {
                 token: this.GetToken(),
                 info: InfoPresta
             }
             try {
-                console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
-                await this.GetPrestador(infoPayLoad)
+                // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
+                await this.CreatePrestador(infoPayLoad)
+            } catch (error) {
+                console.log(error);
+            }
+
+        },
+
+
+
+
+        async upPrestador() {
+            console.log(this.infoPrestador)
+            // const InfoPresta = new FormData();
+            // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
+            // InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
+            // InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
+            // InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
+            // InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
+            // InfoPresta.append("profissoes", this.infoPrestador
+            //     .Profissao);
+            // InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
+
+
+
+
+
+
+
+            const InfoPresta = new FormData();
+            InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
+            InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
+            InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
+            InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
+
+            // Garanta que habilidades e profissões sejam tratadas como arrays
+            const habilidades = Array.isArray(this.infoPrestador.Habilidade)
+                ? this.infoPrestador.Habilidade
+                : [this.infoPrestador.Habilidade];
+
+            const profissoes = Array.isArray(this.infoPrestador.Profissao)
+                ? this.infoPrestador.Profissao
+                : [this.infoPrestador.Profissao];
+
+            InfoPresta.append("habilidades", JSON.stringify(habilidades));
+            InfoPresta.append("profissoes", JSON.stringify(profissoes));
+
+            InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
+
+
+            const infoPayLoad = {
+                token: this.GetToken(),
+                info: InfoPresta
+            }
+            try {
+                // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
+                await this.UpPrestador(infoPayLoad)
             } catch (error) {
                 console.log(error);
             }
