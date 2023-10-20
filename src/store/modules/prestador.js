@@ -2,14 +2,30 @@ import axios from "axios";
 
 const state = {
   prestador: {
-    valor_diaria: null,
-    valor_hora: null,
-    cnpj: null,
-    nome_empresa: null,
-    habilidades: [],
-    profissoes: [],
-    apresentacao: null,
+    idtb_prestador: null,
+    tb_user_idtb_user: null,
+    Valor_diaria: null,
+    Valor_Da_Hora: null,
+    CNPJ: null,
+    Nome_Empresa: null,
+    FlgStatus: null,
+    created_at: null,
+    updated_at: null,
   },
+  // prestador: {
+  //   idtb_prestador: null,
+  //   tb_user_idtb_user: null,
+  //   Valor_diaria: null,
+  //   Valor_Da_Hora: null,
+  //   CNPJ: null,
+  //   Nome_Empresa: null,
+  //   habilidades: [],
+  //   profissoes: [],
+  //   apresentacao: null,
+  //   FlgStatus: null,
+  //   created_at: null,
+  //   updated_at: null,
+  // },
   error: null,
 };
 const getters = {
@@ -73,6 +89,15 @@ const actions = {
     // console.log(request);
     commit("uoprestador", { infocreate: await request.error.message });
   },
+  async getInfoPrestador({ commit }, token) {
+    const request = await axios.get("http://localhost:8000/prestador/32", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(request, "GetPrestador");
+    commit("seteditprestador", { infoprestador: await request.data.prestador });
+  },
 };
 const mutations = {
   createprestador(state, { infocreate }) {
@@ -86,6 +111,12 @@ const mutations = {
     // console.log(state,"state")
     state.error = infocreate;
     // console.log(state.edituser,"get")
+  },
+  seteditprestador(state, { infoprestador }) {
+    // console.log(infoprestador, "SETPrestador");
+    // console.log(state,"state")
+    state.prestador = infoprestador;
+    console.log(state.prestador, "SETPrestador");
   },
 
   LogOutPrestador(state) {

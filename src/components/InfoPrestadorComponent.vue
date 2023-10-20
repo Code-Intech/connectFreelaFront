@@ -7,27 +7,28 @@
         <div>
             <div class="row">
                 <div class="col-3">
+
                     <label class="form-label" for="">Valor da Sua Diária:</label>
-                    <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.valor_diaria"
+                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
+                        :value="store.getters.StatePrestador.Valor_diaria"
                         @input="infoPrestador.Valor_Diarial = $event.target.value" />
                 </div>
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Hora de Trabalho:</label>
-                    <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.valor_hora"
+                    <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
+                        :value="store.getters.StatePrestador.Valor_Da_Hora"
                         @input="infoPrestador.Valor_Hora = $event.target.value" />
-                </div>  
+                </div>
 
                 <div class="col-3">
                     <label class="form-label" for="">CNPJ:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.cnpj" @input="infoPrestador.CNPJ = $event.target.value" />
+                        :value="store.getters.StatePrestador.CNPJ" @input="infoPrestador.CNPJ = $event.target.value" />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Nome da Sua Empresa:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.nome_empresa"
+                        :value="store.getters.StatePrestador.Nome_Empresa"
                         @input="infoPrestador.Nome_Empresa = $event.target.value" />
                 </div>
             </div>
@@ -164,6 +165,11 @@
 
             <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
         </div>
+
+
+        <button @click="teste()">
+            teste
+        </button>
 
     </div>
 </template>
@@ -317,7 +323,7 @@ export default {
 
 
         teste() {
-            console.log(this.infoPrestador.Habilidade, "Sobre");
+            console.log(store.getters.StatePrestador.CNPJ, "Sobre");
         },
 
 

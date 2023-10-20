@@ -100,12 +100,13 @@ export default {
   },
   methods: {
     validateOnBack: Boolean,
-    ...mapActions(["getInfoUser", "getAvatar"]),
+    ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador"]),
     ...mapGetters(["GetToken"]),
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador"]),
     getinfo() {
       try {
         this.getInfoUser(this.GetToken());
+        this.getInfoPrestador(this.GetToken());
       } catch (error) {
         // console.log(this.GetToken());
       }

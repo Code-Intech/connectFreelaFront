@@ -115,7 +115,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory"]),
+        ...mapActions(["getInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador"]),
         ...mapGetters(["GetToken"]),
 
         async getFoto() {
@@ -153,6 +153,7 @@ export default {
             this.getSkills(this.GetToken());
             this.getProfessions(this.GetToken());
             this.getcategory(this.GetToken());
+
         },
 
     },
