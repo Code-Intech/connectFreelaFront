@@ -9,22 +9,25 @@
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Diária:</label>
                     <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
+                        :value="store.getters.StatePrestador.valor_diaria"
                         @input="infoPrestador.Valor_Diarial = $event.target.value" />
                 </div>
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Hora de Trabalho:</label>
                     <input class="form-control" type="number" name="" id="" style="border-color: var(--purple-primary)"
+                        :value="store.getters.StatePrestador.valor_hora"
                         @input="infoPrestador.Valor_Hora = $event.target.value" />
-                </div>
+                </div>  
 
                 <div class="col-3">
                     <label class="form-label" for="">CNPJ:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        @input="infoPrestador.CNPJ = $event.target.value" />
+                        :value="store.getters.StatePrestador.cnpj" @input="infoPrestador.CNPJ = $event.target.value" />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Nome da Sua Empresa:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
+                        :value="store.getters.StatePrestador.nome_empresa"
                         @input="infoPrestador.Nome_Empresa = $event.target.value" />
                 </div>
             </div>
@@ -135,9 +138,9 @@
         </div>
 
 
-        <button @click="teste()">
+        <!-- <button @click="teste()">
             teste
-        </button>
+        </button> -->
 
 
 
@@ -191,13 +194,13 @@ export default {
             searchQuery2: "",
 
             infoPrestador: {
-                Valor_Diarial: "200",
-                Valor_Hora: "30",
-                CNPJ: "41.505.192/0001-75",
-                Nome_Empresa: "Willaim Empresa",
+                Valor_Diarial: store.getters.StatePrestador.valor_diaria,
+                Valor_Hora: store.getters.StatePrestador.valor_hora,
+                CNPJ: store.getters.StatePrestador.cnpj,
+                Nome_Empresa: store.getters.StatePrestador.nome_empresa,
                 Profissao: [],
                 Habilidade: [],
-                Sobre: "Calango Lindo",
+                Sobre: "",
 
 
             }
