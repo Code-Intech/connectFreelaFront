@@ -172,9 +172,24 @@
             </div>
 
 
-            <div class="d-flex flex-row-reverse">
 
-                <button class="btn btn-primary" @click="Salvar()">Criar Serviço</button>
+            <div>
+
+                <div v-if="store.getters.GetToken == null" class="d-flex flex-row-reverse">
+                    <button class="btn btn-primary" @click="$router.push({ path: '/login' })">
+                        Criar Serviço
+                    </button>
+                </div>
+
+
+
+
+                <div v-else class="d-flex flex-row-reverse">
+
+                    <button class="btn btn-primary" @click="Salvar()">Criar Serviço</button>
+                </div>
+
+
             </div>
         </div>
 
