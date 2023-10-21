@@ -51,10 +51,13 @@
                         style="max-width: 800px; border-color: var(--purple-primary)" /> -->
 
                     <select style="max-width: 800px; border-color: var(--purple-primary)" class="form-select" name="Genero"
-                        id="" aria-placeholder="Genero:" required>
+                        id="" aria-placeholder="Genero:" required
+                        v-model="infoUser.Genero"
+                        >
                         <option value="">Selecione:</option>
                         <option v-for="genero in this.store.getters.StateGenders" :key="genero.idtb_genero"
-                            :value="genero.idtb_genero">{{ genero.Genero }}</option>
+                            :value="genero.idtb_genero">{{ genero.Genero }}
+                        </option>
                     </select>
 
                 </div>
@@ -158,9 +161,14 @@
                     </li>
                 </ul>
             </div>
+            <div>
+                <p>{{ nomeGenero }}</p>
+            </div>
+
             <div class="d-flex justify-content-end">
 
                 <button class="btn btn-primary mt-3" type="submit" @click="upUser()">Salvar</button>
+                <button class="btn btn-primary mt-3" type="submit" @click="test()">Test</button>
             </div>
         </div>
 
@@ -206,6 +214,7 @@ export default {
                 { id: 5, name: "Programador", category: "Tecnologia" },
                 { id: 6, name: "Chef de Cozinha", category: "Gastronomia" },
             ],
+            Genero: "",
             selectedProfessionIds: [],
             selectedProfessions: [],
             searchQuery1: "",
@@ -222,7 +231,7 @@ export default {
                 Nome_completo: store.getters.StateEditUser.Nome_completo,
                 CPF: store.getters.StateEditUser.CPF,
                 Data_Nacimento: store.getters.StateEditUser.Data_Nacimento,
-                Genero: 1,
+                Genero: store.getters.StateEditUser.Genero,
                 Telefone: store.getters.StateEditUser.Telefone,
                 CEP1: store.getters.city.cep,
                 Estado: store.getters.city.estado,
@@ -235,6 +244,10 @@ export default {
             }
         };
     },
+    created(){
+        const generoNovo = this.store.getters.StateGenders.find((Genero)=> Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
+        return generoNovo ? generoNovo.Genero:"Genero não encontrado"
+    },
     computed: {
         store() {
             return store
@@ -244,6 +257,12 @@ export default {
                 skill.toLowerCase().includes(this.searchQuery2.toLowerCase())
             );
         },
+
+        nomeGenero(){
+            const generoNovo = this.store.getters.StateGenders.find((Genero)=> Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
+        return generoNovo ? generoNovo.Genero:"Genero não encontrado"
+        },
+
 
         filteredProfessions() {
             let filtered = this.professions;
@@ -364,9 +383,18 @@ export default {
             }
         },
 
-        test() {
-            console.log(store.getters.StateEditUser.Nome_completo)
+
+        getGenero(){
+            this.infoUser.Genero =this.Genero.map((genderId) => genderId.id
+                
+            );
         },
+
+        test() {
+            console.log(this.infoUser.Genero)
+        },
+
+        
 
     },
 };
