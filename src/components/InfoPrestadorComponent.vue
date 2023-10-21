@@ -371,23 +371,23 @@ export default {
 
 
 
-            // console.log(store.getters.StatePrestador.length, "tamanho")
-            if (store.getters.StatePrestador.length > 0) {
+            // console.log(store.getters.StatePrestador.prestadorInfo.idtb_prestador, "tamanho")
+            if (store.getters.StatePrestador.prestadorInfo.idtb_prestador > 0) {
                 console.log("dwadawdwadawdwadawdwadawdwadaw")
 
-                this.skillbackend = store.getters.StatePrestador[0].skills
+                this.skillbackend = store.getters.StatePrestador.prestadorSkills
 
-                this.profissaobackend2 = store.getters.StatePrestador[0].profissoes
-
-
+                this.profissaobackend2 = store.getters.StatePrestador.prestadorProfessions
 
 
 
-                this.infoPrestador.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
-                this.infoPrestador.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
-                this.infoPrestador.CNPJ = store.getters.StatePrestador[0].CNPJ
-                this.infoPrestador.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
-                this.infoPrestador.Sobre = store.getters.StatePrestador[0].Nome_Empresa
+
+
+                this.infoPrestador.Valor_Diarial = store.getters.StatePrestador.prestadorInfo.Valor_diaria
+                this.infoPrestador.Valor_Hora = store.getters.StatePrestador.prestadorInfo.Valor_Da_Hora
+                this.infoPrestador.CNPJ = store.getters.StatePrestador.prestadorInfo.CNPJ
+                this.infoPrestador.Nome_Empresa = store.getters.StatePrestador.prestadorInfo.Nome_Empresa
+                this.infoPrestador.Sobre = store.getters.StatePrestador.prestadorInfo.prestadorGrettings
 
 
                 // this.infoPrestador.Profissao.push({ id: this.selectedProfessions, experiencia: "" });
@@ -476,9 +476,10 @@ export default {
 
 
             // console.log(this.selectedProfessions, "skills");
-            console.log(this.selectedProfessions, "Sobre");
-            console.log(this.selectedSkills, "skills");
-            console.log(this.infoPrestador.Habilidade, "infoPrestadorskills");
+            console.log(store.getters.StatePrestador.prestadorInfo.Valor_diaria, "Sobre");
+            // console.log(infoPrestador.Sobre, "skills");
+            // console.log(this.selectedSkills, "skills");
+            // console.log(this.infoPrestador.Habilidade, "infoPrestadorskills");
 
         },
 

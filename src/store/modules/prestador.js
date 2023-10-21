@@ -2,26 +2,29 @@ import axios from "axios";
 
 const state = {
   prestador: {
-    idtb_prestador: null,
-    Valor_Da_Hora: null,
-    Valor_diaria: null,
-    Nome_Empresa: null,
-    CNPJ: null,
-    tb_user_idtb_user: null,
-    FlgStatus: null,
-    created_at: null,
-    updated_at: null,
-    profissoes: [
+    prestadorInfo: {
+      Nome_Empresa: null,
+      CNPJ: null,
+      idtb_prestador: null,
+      Valor_Da_Hora: null,
+      Valor_diaria: null,
+    },
+    prestadorProfessions: [
       {
-        id: null,
         Profissao: null,
-        categoria_id: null,
+        idtb_profissoes: null,
+        Experiencia: null,
         Categoria: null,
-        esperiencia: null,
+        tb_categoria_idtb_categoria: null,
       },
     ],
-    skills: [{ id: null, habilidade: null }],
-    categorias: null,
+    prestadorSkills: [
+      {
+        Habilidade: null,
+        idtb_habilidades: null,
+      },
+    ],
+    prestadorGrettings: { Apresentacao: null },
   },
 
   error: null,
@@ -88,7 +91,7 @@ const actions = {
     commit("uoprestador", { infocreate: await request.error.message });
   },
   async getInfoPrestador({ commit }, token) {
-    const request = await axios.get("http://localhost:8000/prestador/me", {
+    const request = await axios.get("http://localhost:8000/api/prestador/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -114,7 +117,7 @@ const mutations = {
     // console.log(infoprestador, "SETPrestador");
     // console.log(state,"state")
     state.prestador = infoprestador;
-    // console.log(state.prestador[0].skills, "SETPrestador");
+    console.log(state.prestador, "SETPrestador");
   },
 
   LogOutPrestador(state) {
