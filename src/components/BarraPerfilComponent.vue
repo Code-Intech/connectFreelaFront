@@ -66,8 +66,9 @@
 
 
             <div class="mt-3" @click="$router.push({ path: '/perfil' })">
-                <h4 class="text-white h4 d-flex justify-content-start ms-3 "><font-awesome-icon icon="user" class="me-3" />
-                    William Fraga</h4>
+                <h5 class="text-white d-flex justify-content-start ms-3 "
+                ><font-awesome-icon icon="user" class="me-3"/>{{ store.getters.StateEditUser.Nome_completo }}
+                </h5>
             </div>
 
             <div class="d-grid gap-2 mt-3">
@@ -101,10 +102,12 @@ export default {
     },
     data() {
         return {
+
             fotoData: {
                 FTAvatar: "",
             },
             selectedFile: null,
+
         }
     },
 
@@ -115,7 +118,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador"]),
+        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador"]),
         ...mapGetters(["GetToken"]),
 
         async getFoto() {
@@ -154,6 +157,10 @@ export default {
             this.getProfessions(this.GetToken());
             this.getcategory(this.GetToken());
 
+        },
+
+        test() {
+            console.log(this.nameUser.Nome_completo)
         },
 
     },

@@ -40,7 +40,7 @@
                 <avatar :source="store.getters.StateAvatar" height="300px" width="284px" class="card-img-top"
                   :rounded="false" />
                 <div class="card-body">
-                  <h5 class="card-title">William Fraga:</h5>
+                  <h5 class="card-title">{{ store.getters.StateEditUser.Nome_completo }}</h5>
 
                   <div class="d-flex flex-column mb-1 gap-1">
                     <button @click="$router.push({ path: '/perfilbeneficios' })" class="btn btn-primary"
