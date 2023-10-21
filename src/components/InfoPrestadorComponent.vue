@@ -10,23 +10,23 @@
 
                     <label class="form-label" for="">Valor da Sua Diária:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        v-model="getinfoback.Valor_Diarial" @input="infoPrestador.Valor_Diarial = $event.target.value" />
+                        v-model="infoPrestador.Valor_Diarial" @input="infoPrestador.Valor_Diarial = $event.target.value" />
                 </div>
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Hora de Trabalho:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        v-model="getinfoback.Valor_Hora" @input="infoPrestador.Valor_Hora = $event.target.value" />
+                        v-model="infoPrestador.Valor_Hora" @input="infoPrestador.Valor_Hora = $event.target.value" />
                 </div>
 
                 <div class="col-3">
                     <label class="form-label" for="">CNPJ:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        v-model="getinfoback.CNPJ" @input="infoPrestador.CNPJ = $event.target.value" />
+                        v-model="infoPrestador.CNPJ" @input="infoPrestador.CNPJ = $event.target.value" />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Nome da Sua Empresa:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        v-model="getinfoback.Nome_Empresa" @input="infoPrestador.Nome_Empresa = $event.target.value" />
+                        v-model="infoPrestador.Nome_Empresa" @input="infoPrestador.Nome_Empresa = $event.target.value" />
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                                 mapCategoryName(selectedProfession.tb_categoria_idtb_categoria) }})
                             <input class="rounded form-control ms-2 me-2" type="number" name="" id=""
                                 placeholder="Tempo de experiência em (Anos)" style="width: 270px;"
-                                :value="infoPrestador.Profissao[index].experiencia">
+                                v-model="infoPrestador.Profissao[index].experiencia">
                             <button class=" btn btn-outline-danger " @click="removeProfession(index)">
                                 Remover
                             </button>
@@ -150,7 +150,7 @@
 
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px;border-color: var(--purple-primary);" v-model="getinfoback.Sobre"
+                    style="height: 100px;border-color: var(--purple-primary);" v-model="infoPrestador.Sobre"
                     @change="getsobre"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
@@ -209,7 +209,7 @@ export default {
             searchQuery1: "",
             searchQuery2: "",
             profissaobackend: [],
-            profissaobackend2: [],
+            skillbackend: [],
             infoPrestador: {
                 Valor_Diarial: "",
                 Valor_Hora: "",
@@ -262,7 +262,7 @@ export default {
 
         },
         categories() {
-            console.log(this.$store.getters.Getcategorys, "catttttttttttttttttttttttttttttttt");
+            // console.log(this.$store.getters.Getcategorys, "catttttttttttttttttttttttttttttttt");
 
 
             return this.$store.getters.Getcategorys;
@@ -314,6 +314,9 @@ export default {
             this.selectedSkillIds.forEach((skillId) => {
                 if (!this.selectedSkills.includes(skillId)) {
                     this.selectedSkills.push(skillId);
+
+
+
                 }
             });
             this.infoPrestador.Habilidade = [];
@@ -351,6 +354,7 @@ export default {
 
         removeProfession(index) {
             this.selectedProfessions.splice(index, 1);
+            this.infoPrestador.Profissao.splice(index, 1);
         },
 
         updateInfoPrestador() {
@@ -371,7 +375,7 @@ export default {
             if (store.getters.StatePrestador.length > 0) {
                 console.log("dwadawdwadawdwadawdwadawdwadaw")
 
-                this.selectedSkills = store.getters.StatePrestador[0].skills
+                this.skillbackend = store.getters.StatePrestador[0].skills
 
                 this.profissaobackend2 = store.getters.StatePrestador[0].profissoes
 
@@ -379,25 +383,79 @@ export default {
 
 
 
-                this.getinfoback.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
-                this.getinfoback.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
-                this.getinfoback.CNPJ = store.getters.StatePrestador[0].CNPJ
-                this.getinfoback.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
-                this.getinfoback.Sobre = store.getters.StatePrestador[0].Nome_Empresa
+                this.infoPrestador.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
+                this.infoPrestador.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
+                this.infoPrestador.CNPJ = store.getters.StatePrestador[0].CNPJ
+                this.infoPrestador.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
+                this.infoPrestador.Sobre = store.getters.StatePrestador[0].Nome_Empresa
 
 
                 // this.infoPrestador.Profissao.push({ id: this.selectedProfessions, experiencia: "" });
+
+
+
+                const novoArray = this.profissaobackend2.map(objeto => {
+                    // Use a função parseInt para converter a string em um número
+                    return { id: parseInt(objeto.id), Profissao: objeto.Profissao, tb_categoria_idtb_categoria: parseInt(objeto.categoria_id), experiencia: parseInt(objeto.experiencia) };
+                });
+
+                const novoArray2 = this.skillbackend.map(objeto => {
+                    // Use a função parseInt para converter a string em um número
+                    return { idtb_habilidades: parseInt(objeto.id), Habilidade: objeto.habilidade };
+                });
+                // const novoArray3 = this.skillbackend.map(objeto => {
+                //     // Use a função parseInt para converter a string em um número
+                //     return { ee: parseInt(objeto.id) };
+                // });
+
+                this.selectedSkills = novoArray2
+
+                // this.infoPrestador.Habilidade = novoArray3
+
+
+                for (let index = 0; index < novoArray2.length; index++) {
+                    // const element = novoArray[index];
+                    // console.log(novoArray[index].id, "array index: " + index)
+                    // console.log(typeof novoArray[index])
+
+                    // const id = novoArray[index].id;
+                    // const experiencia = novoArray[index].experiencia;
+                    this.infoPrestador.Habilidade.push(novoArray2[index].idtb_habilidades);
+                }
+
+
+
+                // }
+
+
+
+
+                // this.infoPrestador.Habilidade = novoArray2.idtb_habilidades
+
+                // console.log(novoArray, "novoarray")
+
+                // this.infoPrestador.Profissao = novoArray;
+                this.selectedProfessions = novoArray;
+
+                for (let index = 0; index < novoArray.length; index++) {
+                    // const element = novoArray[index];
+                    // console.log(novoArray[index].id, "array index: " + index)
+                    // console.log(typeof novoArray[index])
+
+                    // const id = novoArray[index].id;
+                    // const experiencia = novoArray[index].experiencia;
+                    this.infoPrestador.Profissao.push({ id: novoArray[index].id, experiencia: novoArray[index].experiencia });
+                }
+
+
+
+
+
+
+
             }
 
 
-
-            const novoArray = this.profissaobackend2.map(objeto => {
-                // Use a função parseInt para converter a string em um número
-                return { idtb_profissoes: parseInt(objeto.id), Profissao: objeto.Profissao, categoria_id: parseInt(objeto.categoria_id), tb_categoria_idtb_categoria: objeto.Categoria, experiencia: parseInt(objeto.experiencia) };
-            });
-
-            this.infoPrestador.Profissao = novoArray;
-            this.selectedProfessions = novoArray;
 
 
         },
@@ -417,9 +475,10 @@ export default {
 
 
 
-            console.log(this.selectedProfessions, "skills");
-            console.log(this.infoPrestador.Profissao, "Sobre");
-            console.log(this.selectedProfessionIdso, "Sobre");
+            // console.log(this.selectedProfessions, "skills");
+            console.log(this.selectedProfessions, "Sobre");
+            console.log(this.selectedSkills, "skills");
+            console.log(this.infoPrestador.Habilidade, "infoPrestadorskills");
 
         },
 
@@ -490,11 +549,11 @@ export default {
 
 
 
-            this.infoPrestador.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
-            this.infoPrestador.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
-            this.infoPrestador.CNPJ = store.getters.StatePrestador[0].CNPJ
-            this.infoPrestador.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
-            this.infoPrestador.Sobre = store.getters.StatePrestador[0].Nome_Empresa
+            // this.infoPrestador.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
+            // this.infoPrestador.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
+            // this.infoPrestador.CNPJ = store.getters.StatePrestador[0].CNPJ
+            // this.infoPrestador.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
+            // this.infoPrestador.Sobre = store.getters.StatePrestador[0].Nome_Empresa
 
 
 
