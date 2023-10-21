@@ -10,26 +10,23 @@
 
                     <label class="form-label" for="">Valor da Sua Diária:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.Valor_diaria"
-                        @input="infoPrestador.Valor_Diarial = $event.target.value" />
+                        v-model="getinfoback.Valor_Diarial" @input="infoPrestador.Valor_Diarial = $event.target.value" />
                 </div>
                 <div class="col-3">
                     <label class="form-label" for="">Valor da Sua Hora de Trabalho:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.Valor_Da_Hora"
-                        @input="infoPrestador.Valor_Hora = $event.target.value" />
+                        v-model="getinfoback.Valor_Hora" @input="infoPrestador.Valor_Hora = $event.target.value" />
                 </div>
 
                 <div class="col-3">
                     <label class="form-label" for="">CNPJ:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.CNPJ" @input="infoPrestador.CNPJ = $event.target.value" />
+                        v-model="getinfoback.CNPJ" @input="infoPrestador.CNPJ = $event.target.value" />
                 </div>
                 <div class="col">
                     <label class="form-label" for="">Nome da Sua Empresa:</label>
                     <input class="form-control" type="text" name="" id="" style="border-color: var(--purple-primary)"
-                        :value="store.getters.StatePrestador.Nome_Empresa"
-                        @input="infoPrestador.Nome_Empresa = $event.target.value" />
+                        v-model="getinfoback.Nome_Empresa" @input="infoPrestador.Nome_Empresa = $event.target.value" />
                 </div>
             </div>
         </div>
@@ -59,7 +56,8 @@
                         @change="updateSelectedProfessions" style="border: 1px solid; border-color: var(--purple-primary)">
                         <option v-for="profession in filteredProfessions" :key="profession.idtb_profissoes"
                             :value="profession.idtb_profissoes">
-                            {{ profession.Profissao }} ({{ mapCategoryName(profession.tb_categoria_idtb_categoria) }})
+                            {{ profession.Profissao }} ({{
+                                mapCategoryName(profession.tb_categoria_idtb_categoria) }})
                         </option>
                     </select>
 
@@ -78,7 +76,7 @@
                                 mapCategoryName(selectedProfession.tb_categoria_idtb_categoria) }})
                             <input class="rounded form-control ms-2 me-2" type="number" name="" id=""
                                 placeholder="Tempo de experiência em (Anos)" style="width: 270px;"
-                                v-model="infoPrestador.Profissao[index].experiencia">
+                                :value="infoPrestador.Profissao[index].experiencia">
                             <button class=" btn btn-outline-danger " @click="removeProfession(index)">
                                 Remover
                             </button>
@@ -111,7 +109,7 @@
                         <h6>Habilidades Selecionadas</h6>
                         <li class="m-2" v-for="(selectedSkill, index) in selectedSkills" :key="index"
                             style="border-bottom: 2px solid; border-color: var(--purple-primary);">
-                            {{ selectedSkill.Habilidade }}
+                            {{ selectedSkill.habilidade || selectedSkill.Habilidade }}
                             <button class="m-2 btn btn-outline-danger" @click="removeSkill(index)">
                                 Remover
                             </button>
@@ -152,19 +150,32 @@
 
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px;border-color: var(--purple-primary);" v-model="infoPrestador.Sobre"></textarea>
+                    style="height: 100px;border-color: var(--purple-primary);" v-model="getinfoback.Sobre"
+                    @change="getsobre"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
         </div>
 
-        <div class="d-flex justify-content-end">
+        <div>
 
-            <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
-        </div>
-        <div class="d-flex justify-content-end">
+            <!-- <div v-if="store.getters.StatePrestador[0].idtb_prestador >= 1" class="d-flex justify-content-end">
 
-            <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
+                <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
+            </div>
+            <div v-else class="d-flex justify-content-end">
+
+                <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
+            </div> -->
+
+            <div class="d-flex justify-content-end">
+
+                <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
+                <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
+            </div>
+
         </div>
+
+
 
 
         <button @click="teste()">
@@ -190,7 +201,6 @@ export default {
     },
     data() {
         return {
-
             selectedSkillIds: [],
             selectedSkills: [],
             searchQuery: "",
@@ -198,12 +208,24 @@ export default {
             selectedProfessions: [],
             searchQuery1: "",
             searchQuery2: "",
-
+            profissaobackend: [],
+            profissaobackend2: [],
             infoPrestador: {
-                Valor_Diarial: store.getters.StatePrestador.valor_diaria,
-                Valor_Hora: store.getters.StatePrestador.valor_hora,
-                CNPJ: store.getters.StatePrestador.cnpj,
-                Nome_Empresa: store.getters.StatePrestador.nome_empresa,
+                Valor_Diarial: "",
+                Valor_Hora: "",
+                CNPJ: "",
+                Nome_Empresa: "",
+                Profissao: [],
+                Habilidade: [],
+                Sobre: "",
+
+
+            },
+            getinfoback: {
+                Valor_Diarial: "",
+                Valor_Hora: "",
+                CNPJ: "",
+                Nome_Empresa: "",
                 Profissao: [],
                 Habilidade: [],
                 Sobre: "",
@@ -214,6 +236,7 @@ export default {
     },
     computed: {
         store() {
+
             return store
         },
 
@@ -233,10 +256,15 @@ export default {
 
 
         professions() {
+
+
             return this.$store.getters.GetProfessions;
+
         },
         categories() {
             console.log(this.$store.getters.Getcategorys, "catttttttttttttttttttttttttttttttt");
+
+
             return this.$store.getters.Getcategorys;
         },
 
@@ -264,16 +292,23 @@ export default {
             return filtered;
         },
     },
+
+    created() {
+        this.getprofrissoesbackend();
+    },
     methods: {
 
         validateOnBack: Boolean,
         ...mapActions(["CreatePrestador", "UpPrestador"]),
-        ...mapGetters(["GetToken", "GetSkills", "GetSkills", "GetProfessions", "Getcategorys"]),
+        ...mapGetters(["GetToken", "GetSkills", "GetSkills", "GetProfessions", "Getcategorys", "StatePrestador"]),
 
         mapCategoryName(categoryId) {
             const category = this.categories.find((cat) => cat.idtb_categoria === categoryId);
+            // console.log(category, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+
             return category ? category.Categoria : 'Categoria Desconhecida';
         },
+
 
         updateSelectedSkills() {
             this.selectedSkillIds.forEach((skillId) => {
@@ -283,7 +318,7 @@ export default {
             });
             this.infoPrestador.Habilidade = [];
             this.selectedSkills.map((skillId) => {
-                this.infoPrestador.Habilidade.push(skillId.idtb_habilidades)
+                this.infoPrestador.Habilidade.push(skillId.idtb_habilidades || JSON.parse(skillId.id))
             });
 
             // console.log(this.infoPrestador.Habilidade, "skill")
@@ -300,6 +335,7 @@ export default {
                     profession &&
                     !this.selectedProfessions.some((p) => p.idtb_profissoes === profession.idtb_profissoes)
                 ) {
+
                     this.selectedProfessions.push(profession);
                     this.infoPrestador.Profissao.push({ id: profession.idtb_profissoes, experiencia: "" });
                 }
@@ -322,14 +358,80 @@ export default {
         },
 
 
+        getsobre(event) {
+            this.infoPrestador.Sobre = event.target.value;
+        },
+
+
+        getprofrissoesbackend() {
+
+
+
+            // console.log(store.getters.StatePrestador.length, "tamanho")
+            if (store.getters.StatePrestador.length > 0) {
+                console.log("dwadawdwadawdwadawdwadawdwadaw")
+
+                this.selectedSkills = store.getters.StatePrestador[0].skills
+
+                this.profissaobackend2 = store.getters.StatePrestador[0].profissoes
+
+
+
+
+
+                this.getinfoback.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
+                this.getinfoback.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
+                this.getinfoback.CNPJ = store.getters.StatePrestador[0].CNPJ
+                this.getinfoback.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
+                this.getinfoback.Sobre = store.getters.StatePrestador[0].Nome_Empresa
+
+
+                // this.infoPrestador.Profissao.push({ id: this.selectedProfessions, experiencia: "" });
+            }
+
+
+
+            const novoArray = this.profissaobackend2.map(objeto => {
+                // Use a função parseInt para converter a string em um número
+                return { idtb_profissoes: parseInt(objeto.id), Profissao: objeto.Profissao, categoria_id: parseInt(objeto.categoria_id), tb_categoria_idtb_categoria: objeto.Categoria, experiencia: parseInt(objeto.experiencia) };
+            });
+
+            this.infoPrestador.Profissao = novoArray;
+            this.selectedProfessions = novoArray;
+
+
+        },
+
+
+
+
         teste() {
-            console.log(store.getters.StatePrestador.CNPJ, "Sobre");
+
+
+            // const novoArray = this.profissaobackend2.map(objeto => {
+            //     // Use a função parseInt para converter a string em um número
+            //     return { id: parseInt(objeto.id), Profissao: objeto.Profissao, categoria_id: parseInt(objeto.categoria_id), Categoria: objeto.Categoria, experiencia: parseInt(objeto.experiencia) };
+            // });
+
+            // this.selectedProfessions = novoArray;
+
+
+
+            console.log(this.selectedProfessions, "skills");
+            console.log(this.infoPrestador.Profissao, "Sobre");
+            console.log(this.selectedProfessionIdso, "Sobre");
+
         },
 
 
 
 
         async createPrestador() {
+
+
+
+
+
             console.log(this.infoPrestador)
             // const InfoPresta = new FormData();
             // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
@@ -385,6 +487,26 @@ export default {
 
 
         async upPrestador() {
+
+
+
+            this.infoPrestador.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
+            this.infoPrestador.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
+            this.infoPrestador.CNPJ = store.getters.StatePrestador[0].CNPJ
+            this.infoPrestador.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
+            this.infoPrestador.Sobre = store.getters.StatePrestador[0].Nome_Empresa
+
+
+
+
+
+
+
+
+
+
+
+
             console.log(this.infoPrestador)
             // const InfoPresta = new FormData();
             // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
@@ -435,11 +557,6 @@ export default {
             }
 
         },
-
-
-
-
-
 
     },
 };

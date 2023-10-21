@@ -1,6 +1,6 @@
 <template>
     <div class="col-10 h-100 d-inline-block">
-       
+
 
         <!--        <div class="mb-3 mt-3">-->
 
@@ -198,7 +198,6 @@ export default {
             selectedSkillIds: [],
             selectedSkills: [],
             searchQuery: "",
-
             professions: [
                 { id: 1, name: "Engenheiro Civil", category: "Engenharia" },
                 { id: 2, name: "Médico", category: "Saúde" },

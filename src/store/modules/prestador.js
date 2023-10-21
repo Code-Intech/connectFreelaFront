@@ -3,29 +3,27 @@ import axios from "axios";
 const state = {
   prestador: {
     idtb_prestador: null,
-    tb_user_idtb_user: null,
-    Valor_diaria: null,
     Valor_Da_Hora: null,
-    CNPJ: null,
+    Valor_diaria: null,
     Nome_Empresa: null,
+    CNPJ: null,
+    tb_user_idtb_user: null,
     FlgStatus: null,
     created_at: null,
     updated_at: null,
+    profissoes: [
+      {
+        id: null,
+        Profissao: null,
+        categoria_id: null,
+        Categoria: null,
+        esperiencia: null,
+      },
+    ],
+    skills: [{ id: null, habilidade: null }],
+    categorias: null,
   },
-  // prestador: {
-  //   idtb_prestador: null,
-  //   tb_user_idtb_user: null,
-  //   Valor_diaria: null,
-  //   Valor_Da_Hora: null,
-  //   CNPJ: null,
-  //   Nome_Empresa: null,
-  //   habilidades: [],
-  //   profissoes: [],
-  //   apresentacao: null,
-  //   FlgStatus: null,
-  //   created_at: null,
-  //   updated_at: null,
-  // },
+
   error: null,
 };
 const getters = {
@@ -77,7 +75,7 @@ const actions = {
 
     // console.log(InfoPres, "tokenprestador");
 
-    const request = await axios.post(
+    const request = await axios.patch(
       "http://localhost:8000/api/prestador/update",
       InfoPres,
       {
@@ -90,7 +88,7 @@ const actions = {
     commit("uoprestador", { infocreate: await request.error.message });
   },
   async getInfoPrestador({ commit }, token) {
-    const request = await axios.get("http://localhost:8000/prestador/32", {
+    const request = await axios.get("http://localhost:8000/prestador/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -116,7 +114,7 @@ const mutations = {
     // console.log(infoprestador, "SETPrestador");
     // console.log(state,"state")
     state.prestador = infoprestador;
-    console.log(state.prestador, "SETPrestador");
+    // console.log(state.prestador[0].skills, "SETPrestador");
   },
 
   LogOutPrestador(state) {

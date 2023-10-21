@@ -14,6 +14,7 @@ const state = {
     Bairro: null,
     endereco: null,
     Numero: null,
+    Numero2: null,
     Email: null,
     Senha: null,
     FlgStatus: null,
