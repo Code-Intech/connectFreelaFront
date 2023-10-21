@@ -1,6 +1,6 @@
 
 <template>
-    <footer class="text-center text-lg-start bg-light text-muted">
+    <footer class="text-center text-md-start bg-light text-muted">
 
         <section class="backGroundFooter text-white">
             <br>
@@ -9,14 +9,14 @@
                 <div class="row mt-3">
 
                     <div class=" Empresa col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 ">
-                        <img src="../assets/img/4.svg" class="img-fluid" alt="Imagem responsiva"
-                            style="max-width: 10rem; max-height: 10rem;">
-                        <p class="fs-3 align-bottom" style="padding-left: 10px;">
+                        <img src="../assets/img/Logo.jpeg" class="img-fluid" alt="Imagem responsiva"
+                            style="max-width: 5rem; max-height: 3rem;">
+                        <p class="fs-5 align-bottom" style="padding-left: 10px;">
                             Code Intech
                         </p>
                     </div>
 
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-1 mb-5 fs-6">
 
                         <h6 class="text-uppercase fw-bold mb-4">Fale conosco</h6>
                         <p>
