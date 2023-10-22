@@ -99,7 +99,17 @@ const actions = {
     console.log(request, "GetPrestador");
     commit("seteditprestador", { infoprestador: await request.data.prestador });
   },
+
+  // async getAllPrestadores({ commit }, token) {
+  //   const request = await axios.get("http://localhost:8000/prestador", {
+  //     headers: {
+  //     },
+  //   });
+  //   console.log(request, "GetPrestador");
+  //   commit("seteditprestador", { infoprestador: await request.data.prestador });
+  // },
 };
+
 const mutations = {
   createprestador(state, { infocreate }) {
     console.log(infocreate);

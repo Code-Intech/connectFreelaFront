@@ -241,19 +241,58 @@
     
 <script>
 import Avatar from "@/components/AvatarComponent.vue";
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 import Star from "@/components/StarComponent.vue"
 
 export default {
     name: "CardsPrestadorComponent",
-    methods: {
-
-    },
     components: {
         Avatar,
         Star
 
 
     },
+
+    data(){
+        return {
+    prestadorInfo: {
+      Nome_Empresa: null,
+      CNPJ: null,
+      idtb_prestador: null,
+      Valor_Da_Hora: null,
+      Valor_diaria: null,
+    },
+    prestadorProfessions: [
+      {
+        Profissao: null,
+        idtb_profissoes: null,
+        Experiencia: null,
+        Categoria: null,
+        tb_categoria_idtb_categoria: null,
+      },
+    ],
+    prestadorSkills: [
+      {
+        Habilidade: null,
+        idtb_habilidades: null,
+      },
+    ],
+    prestadorGrettings: { Apresentacao: null },
+
+    }
+    },
+    computed: {
+        store(){
+            return store
+        },
+    },
+
+    methods: {
+        validateOnBack: Boolean,
+        ...mapActions([""]),
+        ...mapGetters([""]),
+    }
 
 }
 
