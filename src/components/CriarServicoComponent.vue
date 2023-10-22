@@ -7,6 +7,9 @@
 
             <div class="d-flex  flex-wrap mb-3">
 
+                <div>
+                    <input type="text" name="" id="" placeholder="Titulo" v-model="Servico.Titulo">
+                </div>
 
                 <div class="p-2 flex-grow-1">
                     <div class="card flex justify-content-center">
@@ -119,11 +122,13 @@
 
                 <div class="card flex justify-content-center" style="min-width: 300px;">
                     <label for="">Data de Inicio</label>
-                    <Calendar v-model="Servico.DataInicio" showIcon />
+                    <!-- <Calendar v-model="Servico.DataInicio" showIcon dateFormat="dd/mm/yy" /> -->
+                    <input class="form-control" type="date" name="" id="" v-model="Servico.DataInicio">
                 </div>
                 <div class="card flex justify-content-center" style="min-width: 300px;">
                     <label for="">Data de Termino</label>
-                    <Calendar v-model="Servico.DataTermino" showIcon />
+                    <!-- <Calendar v-model="Servico.DataTermino" showIcon dateFormat="dd/mm/yy" /> -->
+                    <input class="form-control" type="date" name="" id="" v-model="Servico.DataTermino">
                 </div>
 
             </div>
@@ -186,7 +191,7 @@
 
                 <div v-else class="d-flex flex-row-reverse">
 
-                    <button class="btn btn-primary" @click="Salvar()">Criar Serviço</button>
+                    <button class="btn btn-primary" @click="Salvar(), createServico()">Criar Serviço</button>
                 </div>
 
 
@@ -226,6 +231,7 @@ export default {
                 DataTermino: "",
                 IMG: {},
                 Texto: "",
+                Titulo: "",
             }
         };
     },
@@ -297,7 +303,7 @@ export default {
             console.log(this.$toast, "imgggg");
         },
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress", "clearAddressData"]),
+        ...mapActions(["GetAddress", "clearAddressData", "CreateServico"]),
         ...mapGetters(["GetToken"]),
 
         async handleCep() {
@@ -314,8 +320,8 @@ export default {
             // this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
             // this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
             console.log(this.Servico.Habilidade);
-            console.log(this.Servico.Profissao);
-            console.log(this.Servico.EstimativaKM);
+            // console.log(this.Servico.Profissao);
+            // console.log(this.Servico.EstimativaKM);
         },
         // Prof() {
         //     try {
@@ -341,15 +347,76 @@ export default {
 
 
         Salvar() {
-            this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
-            this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
+            // this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
+            // this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
+            // this.Servico.EstimativaKM = this.distancia;
+
+
+            this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => ({ id: Habi.idtb_habilidades }));
+            this.Servico.Profissao = this.selectedProfissao.map((Prof) => ({ id: Prof.value }));
             this.Servico.EstimativaKM = this.distancia;
+
+
+
         },
         onChange: function (event) {
             console.log(event.target.value, "change")
             const skill = event.target.value;
             this.Servico.Habilidade = skill.map((Habi) => Habi.idtb_habilidades);
-        }
+        },
+
+
+
+
+
+
+
+        async createServico() {
+
+
+
+
+            const InfoServico = new FormData();
+            InfoServico.append("profissoes", JSON.stringify(this.Servico.Profissao));
+            InfoServico.append("habilidades", JSON.stringify(this.Servico.Habilidade));
+            InfoServico.append("Remoto_Presencial", this.Servico.Modalidade);
+            InfoServico.append("cep", this.Servico.CEP1);
+            InfoServico.append("numero", this.Servico.Numero);
+            InfoServico.append("cidade", this.Servico.Cidade);
+            InfoServico.append("estado", this.Servico.Estado);
+            InfoServico.append("bairro", this.Servico.Bairro);
+            InfoServico.append("rua", this.Servico.Endereco);
+            InfoServico.append("Estimativa_de_distancia", this.Servico.EstimativaKM);
+            InfoServico.append("Estimativa_Valor", this.Servico.ValorServico);
+            InfoServico.append("Estimativa_Idade", this.Servico.EstimativaIdade);
+            InfoServico.append("Data_Inicio", this.Servico.DataInicio);
+            InfoServico.append("Estimativa_de_Termino", this.Servico.DataTermino);
+            InfoServico.append("Desc", this.Servico.Texto);
+            InfoServico.append("Titulo_Servico", this.Servico.Titulo);
+
+
+
+            const infoPayLoad = {
+                token: this.GetToken(),
+                info: InfoServico
+            }
+            try {
+                // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
+                await this.CreateServico(infoPayLoad)
+            } catch (error) {
+                console.log(error);
+            }
+
+        },
+
+
+
+
+
+
+
+
+
 
 
 
