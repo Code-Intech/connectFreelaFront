@@ -40,7 +40,7 @@
                 <avatar :source="store.getters.StateAvatar" height="300px" width="284px" class="card-img-top"
                   :rounded="false" />
                 <div class="card-body">
-                  <h5 class="card-title">{{ store.getters.StateEditUser.Nome_completo }}</h5>
+                  <h5 class="card-title">{{ nome }}</h5>
 
                   <div class="d-flex flex-column mb-1 gap-1">
                     <button @click="$router.push({ path: '/perfilbeneficios' })" class="btn btn-primary"
@@ -90,6 +90,11 @@ import store from "@/store";
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: "LandingNavBarComponent.vue",
+  data() {
+    return {
+      nome: null,
+    }
+  },
   components: {
     avatar,
   },
@@ -122,6 +127,15 @@ export default {
         this.LogOutPrestador();
       }, 2000);
     },
+
+
+    getInfoUser() {
+      if (store.getters.StateEditUser.idtb_user >= 1) {
+        this.nome = store.getters.StateEditUser.Nome_completo
+      }
+    },
+
+
 
 
   },

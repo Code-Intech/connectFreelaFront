@@ -161,7 +161,7 @@ export default {
       container.classList.add('right-panel-active');
     },
     validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register", "showError", "GetAddress", "getGenders", "clearAddressData", "getAvatar"]),
+    ...mapActions(["LogIn", "Register", "showError", "GetAddress", "getGenders", "clearAddressData", "getAvatar", "getInfoUser"]),
     ...mapGetters(["isMessageError", "StateGenders", "GetToken"]),
 
     async genders() {
@@ -213,8 +213,9 @@ export default {
       User.append("senha", this.form.senha);
       try {
         await this.LogIn(User);
-        this.$router.push("/");
+        this.getInfoUser(this.GetToken());
         await this.getAvatar(this.GetToken());
+        this.$router.push("/");
       } catch (error) {
         console.log(error)
         await this.showError(error)

@@ -28,6 +28,10 @@ const state = {
   },
 
   error: null,
+  error2: {
+    error: null,
+    0: null,
+  },
 };
 const getters = {
   StatePrestador: (state) => state.prestador,
