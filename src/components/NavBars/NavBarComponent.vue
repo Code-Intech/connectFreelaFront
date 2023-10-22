@@ -8,7 +8,7 @@
         <button @click="$router.push({ path: '/Servicos' })" class="btn btn-secondary corbotao" type="button">
           Ver Serviços
         </button>
-        <button @click="$router.push({ path: '/Prestador' })" class="btn btn-secondary corbotao" type="button">
+        <button @click=" getprestador()" class="btn btn-secondary corbotao" type="button">
           Ver Prestador
         </button>
         <button @click="$router.push({ path: '/CriarServico' }), getCriarServico()" class="btn btn-secondary corbotao"
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     validateOnBack: Boolean,
-    ...mapActions(["getcategory", "getProfessions", "getSkills"]),
+    ...mapActions(["getcategory", "getProfessions", "getSkills", "getAllPrestadores"]),
     ...mapGetters(["GetToken"]),
 
 
@@ -85,7 +85,20 @@ export default {
       this.getProfessions(this.GetToken());
       this.getSkills(this.GetToken());
 
+    },
+
+    getprestador() {
+
+      this.getAllPrestadores()
+
+      setTimeout(() => {
+        // Função a ser executada após 2 segundos
+        this.$router.push({ path: '/Prestador' })
+      }, 1000);
+
     }
+
+
   },
 }
 </script>

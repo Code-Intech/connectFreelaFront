@@ -40,7 +40,14 @@
                 <avatar :source="store.getters.StateAvatar" height="300px" width="284px" class="card-img-top"
                   :rounded="false" />
                 <div class="card-body">
-                  <h5 class="card-title">{{ nome }}</h5>
+
+                  <h5 class="card-title">
+                    {{
+                      store.getters.StateEditUser !== null
+                      ?
+                      store.getters.StateEditUser.Nome_completo
+                      : '' }}
+                  </h5>
 
                   <div class="d-flex flex-column mb-1 gap-1">
                     <button @click="$router.push({ path: '/perfilbeneficios' })" class="btn btn-primary"
@@ -103,6 +110,9 @@ export default {
       return store
     }
   },
+  mounted() {
+    // this.getNome();
+  },
   methods: {
     validateOnBack: Boolean,
     ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador"]),
@@ -110,7 +120,7 @@ export default {
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador"]),
     getinfo() {
       try {
-        this.getInfoUser(this.GetToken());
+        this.d(this.GetToken());
         this.getInfoPrestador(this.GetToken());
       } catch (error) {
         // console.log(this.GetToken());
@@ -129,11 +139,15 @@ export default {
     },
 
 
-    getInfoUser() {
-      if (store.getters.StateEditUser.idtb_user >= 1) {
-        this.nome = store.getters.StateEditUser.Nome_completo
-      }
-    },
+    // getNome() {
+
+    //   if (
+    //     store.getters.StateEditUser.Nome_completo !== undefined || store.getters.StateEditUser.
+    //       Nome_completo !== null
+    //   ) {
+    //     this.nome = store.getters.StateEditUser.Nome_completo
+    //   }
+    // },
 
 
 

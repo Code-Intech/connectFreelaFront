@@ -11,8 +11,8 @@
 
 
 
-                <button class="btn btn-primary m-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Criar Portfilio
+                <button class="btn btn-primary m-2" type="button" data-bs-toggle="modal" data-bs-target="#criarportfolio">
+                    Criar Portfolio
                 </button>
 
 
@@ -84,7 +84,7 @@
 
 
         <!-- Modal Criar Album-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        <div class="modal fade" id="criarportfolio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
             data-bs-backdrop="static">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">

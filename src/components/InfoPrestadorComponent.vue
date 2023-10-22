@@ -158,20 +158,20 @@
 
         <div>
 
-            <!-- <div v-if="store.getters.StatePrestador[0].idtb_prestador >= 1" class="d-flex justify-content-end">
+            <div v-if="store.getters.StatePrestador == undefined" class="d-flex justify-content-end">
 
-                <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
+                <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
             </div>
             <div v-else class="d-flex justify-content-end">
+                <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
 
-                <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
-            </div> -->
+            </div>
 
-            <div class="d-flex justify-content-end">
+            <!-- <div class="d-flex justify-content-end">
 
                 <button class="btn btn-primary mt-3" type="submit" @click="createPrestador()">Criar</button>
                 <button class="btn btn-primary mt-3" type="submit" @click="upPrestador()">Salvar</button>
-            </div>
+            </div> -->
 
         </div>
 
@@ -217,7 +217,7 @@ export default {
                 Nome_Empresa: "",
                 Profissao: [],
                 Habilidade: [],
-                Sobre: "",
+                Sobre: {},
 
 
             },
@@ -295,6 +295,8 @@ export default {
 
     created() {
         this.getprofrissoesbackend();
+        this.removeProfession(0);
+        this.removeSkill(0);
     },
     methods: {
 
@@ -318,10 +320,10 @@ export default {
 
 
                 }
-            });
-            this.infoPrestador.Habilidade = [];
-            this.selectedSkills.map((skillId) => {
-                this.infoPrestador.Habilidade.push(skillId.idtb_habilidades || JSON.parse(skillId.id))
+                this.infoPrestador.Habilidade = [];
+                this.selectedSkills.map((skillId) => {
+                    this.infoPrestador.Habilidade.push(skillId.idtb_habilidades || JSON.parse(skillId.id))
+                });
             });
 
             // console.log(this.infoPrestador.Habilidade, "skill")
@@ -370,9 +372,12 @@ export default {
         getprofrissoesbackend() {
 
 
+            // this.skillbackend = []
+            // this.selectedProfessions = []
 
-            // console.log(store.getters.StatePrestador.prestadorInfo.idtb_prestador, "tamanho")
-            if (store.getters.StatePrestador.prestadorInfo.idtb_prestador > 0) {
+
+            // console.log(store.getters.StatePrestador.length, "tamanho")
+            if (store.getters.StatePrestador != undefined || store.getters.StatePrestador != null) {
                 console.log("dwadawdwadawdwadawdwadawdwadaw")
 
                 this.skillbackend = store.getters.StatePrestador.prestadorSkills
@@ -387,7 +392,12 @@ export default {
                 this.infoPrestador.Valor_Hora = store.getters.StatePrestador.prestadorInfo.Valor_Da_Hora
                 this.infoPrestador.CNPJ = store.getters.StatePrestador.prestadorInfo.CNPJ
                 this.infoPrestador.Nome_Empresa = store.getters.StatePrestador.prestadorInfo.Nome_Empresa
-                this.infoPrestador.Sobre = store.getters.StatePrestador.prestadorInfo.prestadorGrettings
+                // this.infoPrestador.Sobre = store.getters.StatePrestador.prestadorInfo.prestadorGrettings.Apresentacao
+
+
+
+
+
 
 
                 // this.infoPrestador.Profissao.push({ id: this.selectedProfessions, experiencia: "" });
@@ -396,12 +406,12 @@ export default {
 
                 const novoArray = this.profissaobackend2.map(objeto => {
                     // Use a função parseInt para converter a string em um número
-                    return { id: parseInt(objeto.id), Profissao: objeto.Profissao, tb_categoria_idtb_categoria: parseInt(objeto.categoria_id), experiencia: parseInt(objeto.experiencia) };
+                    return { id: parseInt(objeto.idtb_profissoes), Profissao: objeto.Profissao, tb_categoria_idtb_categoria: parseInt(objeto.tb_categoria_idtb_categoria), experiencia: parseInt(objeto.Experiencia) };
                 });
 
                 const novoArray2 = this.skillbackend.map(objeto => {
                     // Use a função parseInt para converter a string em um número
-                    return { idtb_habilidades: parseInt(objeto.id), Habilidade: objeto.habilidade };
+                    return { idtb_habilidades: parseInt(objeto.idtb_habilidades), Habilidade: objeto.Habilidade };
                 });
                 // const novoArray3 = this.skillbackend.map(objeto => {
                 //     // Use a função parseInt para converter a string em um número
@@ -414,12 +424,7 @@ export default {
 
 
                 for (let index = 0; index < novoArray2.length; index++) {
-                    // const element = novoArray[index];
-                    // console.log(novoArray[index].id, "array index: " + index)
-                    // console.log(typeof novoArray[index])
 
-                    // const id = novoArray[index].id;
-                    // const experiencia = novoArray[index].experiencia;
                     this.infoPrestador.Habilidade.push(novoArray2[index].idtb_habilidades);
                 }
 
@@ -475,11 +480,12 @@ export default {
 
 
 
-            // console.log(this.selectedProfessions, "skills");
-            console.log(store.getters.StatePrestador.prestadorInfo.Valor_diaria, "Sobre");
-            // console.log(infoPrestador.Sobre, "skills");
+            console.log(store.getters.StatePrestador, "skills");
+            // console.log(store.getters.StatePrestador.prestadorInfo.Valor_diaria, "Sobre");
+            // console.log(store.getters.StatePrestador.prestadorProfessions, "skills");
             // console.log(this.selectedSkills, "skills");
             // console.log(this.infoPrestador.Habilidade, "infoPrestadorskills");
+            // console.log(store.getters.IfPrestador.error, "infoPrestadorprofissao");
 
         },
 
@@ -492,7 +498,7 @@ export default {
 
 
 
-            console.log(this.infoPrestador)
+            // console.log(this.infoPrestador)
             // const InfoPresta = new FormData();
             // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
             // InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
@@ -567,7 +573,7 @@ export default {
 
 
 
-            console.log(this.infoPrestador)
+            // console.log(this.infoPrestador)
             // const InfoPresta = new FormData();
             // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
             // InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);

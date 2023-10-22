@@ -100,17 +100,16 @@ const actions = {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(request, "GetPrestador");
+    console.log(request, "GetPrestador");
     commit("seteditprestador", { infoprestador: await request.data.prestador });
   },
 
   async getAllPrestadores({ commit }) {
-
-      const request = await axios.get("http://localhost:8000/prestador", {
-      
-    });
+    const request = await axios.get("http://localhost:8000/prestador", {});
     // console.log(request, "GetAllPrestador");
-    commit("setCardsPrestador", { infoprestadorcard: await request.data.prestador });
+    commit("setCardsPrestador", {
+      infoprestadorcard: await request.data.prestador,
+    });
   },
 };
 
@@ -131,9 +130,9 @@ const mutations = {
     // console.log(infoprestador, "SETPrestador");
     // console.log(state,"state")
     state.prestador = infoprestador;
-    // console.log(state.prestador, "SETPrestador");
+    console.log(state.prestador, "SETPrestador");
   },
-  setCardsPrestador(state, {infoprestadorcard}){
+  setCardsPrestador(state, { infoprestadorcard }) {
     state.prestador = infoprestadorcard;
     // console.log(state.prestador, "SetCardsPrestador");
   },

@@ -66,8 +66,8 @@
 
 
             <div class="mt-3" @click="$router.push({ path: '/perfil' })">
-                <h5 class="text-white d-flex justify-content-start ms-3 "
-                ><font-awesome-icon icon="user" class="me-3"/>{{ store.getters.StateEditUser.Nome_completo }}
+                <h5 class="text-white d-flex justify-content-start ms-3 "><font-awesome-icon icon="user" class="me-3" />
+                    {{ nome }}
                 </h5>
             </div>
 
@@ -82,9 +82,8 @@
                     class="btn btn-outline-primary text-white  border-white">Dashboard</button>
                 <button @click="$router.push({ path: '/ViewPropostaContratante' })"
                     class="btn btn-outline-primary text-white  border-white">Ver Propostas</button>
-                <button @click="$router.push({ path: '/ViewInfoPrestador' }), getskill()"
-                    class="btn btn-outline-primary text-white  border-white">Informações do Prestador</button>
-
+                <button @click=" getskill()" class="btn btn-outline-primary text-white  border-white">Informações do
+                    Prestador</button>
 
             </div>
         </div>
@@ -102,7 +101,7 @@ export default {
     },
     data() {
         return {
-
+            nome: null,
             fotoData: {
                 FTAvatar: "",
             },
@@ -116,9 +115,12 @@ export default {
             return store
         },
     },
+    created() {
+        this.getNome();
+    },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador"]),
+        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador", "getInfoUser"]),
         ...mapGetters(["GetToken"]),
 
         async getFoto() {
@@ -153,14 +155,28 @@ export default {
         },
         getskill() {
 
+            this.getInfoPrestador(this.GetToken());
             this.getSkills(this.GetToken());
             this.getProfessions(this.GetToken());
             this.getcategory(this.GetToken());
 
+
+            setTimeout(() => {
+                // Função a ser executada após 2 segundos
+                this.$router.push({ path: '/ViewInfoPrestador' })
+            }, 1000);
+
         },
 
-        test() {
-            console.log(this.nameUser.Nome_completo)
+        getNome() {
+            this.getInfoUser(this.GetToken())
+            if (store.getters.StateEditUser.idtb_user > 0) {
+                this.nome = store.getters.StateEditUser.Nome_completo
+            }
+        },
+
+        teste() {
+            console.log(this.nome)
         },
 
     },

@@ -213,9 +213,12 @@ export default {
       User.append("senha", this.form.senha);
       try {
         await this.LogIn(User);
-        this.getInfoUser(this.GetToken());
-        await this.getAvatar(this.GetToken());
+
+        await this.getInfoUser(this.GetToken());
+
         this.$router.push("/");
+        await this.getAvatar(this.GetToken());
+
       } catch (error) {
         console.log(error)
         await this.showError(error)
