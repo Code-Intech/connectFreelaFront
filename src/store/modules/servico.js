@@ -2,6 +2,9 @@ import axios from "axios";
 
 const state = {
   servico: {
+    contratante: {
+      Nome_Completo: null,
+    },
     servicoInfo: {
       idtb_servico: null,
       Data_Inicio: null,
@@ -11,6 +14,11 @@ const state = {
       Remoto_Presencial: null,
       Estimativa_de_termino: null,
       Desc: null,
+    },
+    localidade: {
+      Cidade: null,
+      Estado: null,
+      Bairro: null,
     },
     servicoProfessions: [
       {
@@ -80,14 +88,12 @@ const actions = {
       },
     });
     console.log(request, "GetServico");
-    commit("setServico", { infoservico: await request.data.servico });
+    commit("setservico", { infoprestador: await request.data.servico });
   },
 
   async getServico({ commit }) {
     const request = await axios.get("http://localhost:8000/servico", {});
-    commit("setCardsServico                      ", {
-      infoservicocard: await request.data.servico,
-    });
+    commit("setCardsServico", {infoservicocard: await request.data.servico});
   },
 };
 
@@ -99,16 +105,16 @@ const mutations = {
     // console.log(state.edituser,"get")
   },
 
-  setServico(state, { infoservico }) {
+  setservico(state, { infoservico }) {
     // console.log(infoprestador, "SETPrestador");
     // console.log(state,"state")
     state.servico = infoservico;
-    console.log(state.servico, "setServico");
+    console.log(state.prestador, "SETServico");
   },
 
   setCardsServico(state, { infoservicocard }) {
     state.servico = infoservicocard;
-    console.log(state.servico, "SetCardsPrestador");
+    console.log(state.servico, "setCardsServico");
   },
 
   //   LogOutPrestador(state) {
