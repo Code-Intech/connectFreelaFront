@@ -1,19 +1,21 @@
 <template>
     <div>
+<div v-for="(valores, index) in valor" :key="valores[index]">
+{{valores}}<br><br><br><br>
+</div>
 
 
 
 
 
         <div class="row">
-            <div class="col-sm-3 mb-3 mb-sm-0 m-3 ">
+            <div class="col-sm-3 mb-3 mb-sm-0 m-3 " v-for="(valores, index) in valor" :key="valores[index]">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-row mb-3 ">
                             <Avatar class=""
                                 source="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" />
-                            <h6 class="card-title d-flex align-content-center flex-wrap ms-3">William Victor Soares Silva
-                                Marques Fraga</h6>
+                            <h6 class="card-title d-flex align-content-center flex-wrap ms-3">{{valores.prestadorInfo.Nome_Empresa}}</h6>
 
                             <Star class="ms-2" stars="4.5" />
                         </div>
@@ -21,10 +23,10 @@
                         <div class="d-flex justify-content-between border-top border-black">
 
                             <p class="">
-                                Valor da Hora de Serviço
+                                Valor da Hora de Serviço  
                             </p>
                             <p class="">
-                                35
+                                {{valores.prestadorInfo.Valor_Da_Hora}}
                             </p>
                         </div>
 
@@ -34,7 +36,7 @@
                                 Valor da diaria
                             </p>
                             <p class="">
-                                35
+                                {{valores.prestadorInfo.Valor_diaria}}
                             </p>
                         </div>
 
@@ -45,16 +47,24 @@
                                     Profissões:
                                 </h6>
                                 <h6 class="text-info ms-2">
-                                    Desenvolvedor
+                                    <div v-for="(val, index2) in valores.prestadorProfessions" :key="val[index2]">
+                                    {{val.Profissao}};<br>
+                                </div>
                                 </h6>
 
                             </div>
                             <div class="d-flex" style="max-height: 110px;">
 
-
-
-
                                 <ul>
+                                    <li v-for="(val2, index3)    in valores.prestadorSkills" :key="val2[index3]">
+                                        <p class="m-0 text-success">
+                                            {{ val2.Habilidade}}
+                                        </p>
+                                    </li>
+                                </ul>
+
+
+                                <!-- <ul>
                                     <li>
                                         <p class="m-0 text-success">
                                             Dev Web
@@ -134,7 +144,7 @@
                                             Dev Web
                                         </p>
                                     </li>
-                                </ul>
+                                </ul> -->
 
 
 
@@ -218,7 +228,8 @@
         </div>
 
 
-
+        <button @click="test()">test</button>
+        <button @click="test2()">test2</button>
 
 
 
@@ -254,45 +265,70 @@ export default {
 
     },
 
-    data(){
+    data() {
         return {
-    prestadorInfo: {
-      Nome_Empresa: null,
-      CNPJ: null,
-      idtb_prestador: null,
-      Valor_Da_Hora: null,
-      Valor_diaria: null,
-    },
-    prestadorProfessions: [
-      {
-        Profissao: null,
-        idtb_profissoes: null,
-        Experiencia: null,
-        Categoria: null,
-        tb_categoria_idtb_categoria: null,
-      },
-    ],
-    prestadorSkills: [
-      {
-        Habilidade: null,
-        idtb_habilidades: null,
-      },
-    ],
-    prestadorGrettings: { Apresentacao: null },
+            valor: [],
+            prestadoresInfos: {
+                posicao: [],
+                Nome_Empresa: store.getters.StatePrestador.Nome_Empresa,
+                CNPJ: store.getters.StatePrestador.CNPJ,
+                idtb_prestador: store.getters.StatePrestador.idtb_prestador,
+                Valor_Da_Hora: store.getters.StatePrestador.Valor_Da_Hora,
+                Valor_diaria: store.getters.StatePrestador.Valor_diaria,
 
-    }
+                Profissao: store.getters.StatePrestador.Profissao,
+                idtb_profissoes: store.getters.StatePrestador.idtb_profissoes,
+                Experiencia: store.getters.StatePrestador.Experiencia,
+                Categoria: store.getters.StatePrestador.Categoria,
+                tb_categoria_idtb_categoria: store.getters.StatePrestador.tb_categoria_idtb_categoria,
+
+                Habilidade: store.getters.StatePrestador.Habilidade,
+                idtb_habilidades: store.getters.StatePrestador.idtb_habilidades,
+                prestadorGrettings: { Apresentacao: store.getters.StatePrestador.prestadorGrettings },
+
+            },
+        };
     },
-    computed: {
-        store(){
-            return store
+    created() {
+        this.getAllPrestador();
+    },
+            computed: {
+            store(){
+                return store
+            },
+
+            prestadores(){
+                return this.$store.getters.getAllPrestadores;
+            }
         },
+
+        methods: {
+            validateOnBack: Boolean,
+        ...mapActions(["getAllPrestadores", "getInfoPrestador"]),
+    ...mapGetters([]),
+
+    // mapPrestadores(prestadorId) {
+    //     const prestador = this.prestadores.find((cat) => cat.idtb_prestador === prestadorId);
+    //     // console.log(category, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+
+    //     return prestador ? prestador.Prestador : 'Prestador Desconhecido';
+    // },
+
+    getAllPrestador() {
+        this.valor = store.getters.StatePrestador
     },
 
-    methods: {
-        validateOnBack: Boolean,
-        ...mapActions([""]),
-        ...mapGetters([""]),
+    test(){
+        
+        this.getAllPrestadores();
+    },
+
+    test2(){
+        console.log(this.valor);
     }
+
+
+}
 
 }
 
