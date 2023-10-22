@@ -1,10 +1,36 @@
 import axios from "axios";
 
 const state = {
+  servico: {
+    servicoInfo: {
+      idtb_servico: null,
+      Data_Inicio: null,
+      Estimativa_de_distancia: null,
+      Estimativa_Valor: null,
+      Estimativa_Idade: null,
+      Remoto_Presencial: null,
+      Estimativa_de_termino: null,
+      Desc: null,
+    },
+    servicoProfessions: [
+      {
+        Profissao: null,
+        idtb_profissoes: null,
+        Categoria: null,
+        tb_categoria_idtb_categoria: null,
+      },
+    ],
+    servicoSkills: [
+      {
+        Habilidade: null,
+        idtb_habilidades: null,
+      },
+    ]
+  },
   errors: null,
 };
 const getters = {
-  StatePrestador: (state) => state.prestador,
+  StateServico: (state) => state.servico,
 };
 const actions = {
   async CreateServico({ commit }, InfoServico) {
@@ -46,6 +72,23 @@ const actions = {
     // console.log(request);
     commit("createprestador", { infocreate: await request.error.message });
   },
+
+  async getInfoServico({ commit }, token) {
+    const request = await axios.get("http://localhost:8000/api/servico/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(request, "GetServico");
+    commit("setServico", { infoservico: await request.data.servico });
+  },
+
+  async getServico({ commit }) {
+    const request = await axios.get("http://localhost:8000/servico", {});
+    commit("setCardsServico                      ", {
+      infoservicocard: await request.data.servico,
+    });
+  },
 };
 
 const mutations = {
@@ -54,6 +97,18 @@ const mutations = {
     // console.log(state,"state")
     state.errors = infocreate;
     // console.log(state.edituser,"get")
+  },
+
+  setServico(state, { infoservico }) {
+    // console.log(infoprestador, "SETPrestador");
+    // console.log(state,"state")
+    state.servico = infoservico;
+    console.log(state.servico, "setServico");
+  },
+
+  setCardsServico(state, { infoservicocard }) {
+    state.servico = infoservicocard;
+    console.log(state.servico, "SetCardsPrestador");
   },
 
   //   LogOutPrestador(state) {

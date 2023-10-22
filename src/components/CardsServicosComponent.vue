@@ -1,4 +1,8 @@
 <template>
+<div v-for="(valores, index) in valor" :key="valores[index]">
+{{valores}}<br><br><br><br>
+</div>
+
     <div class="mt-3 ms-2 d-flex gap-4 flex-wrap">
         <div class="card" style="width: 25rem;">
             <div class="card-header border-black">
@@ -460,7 +464,6 @@
                         </div>
 
 
-
                     </div>
                     <!-- <div class="modal-footer">
                     
@@ -468,25 +471,26 @@
                 </div>
             </div>
         </div>
+        <button @click="test()">test</button>
+        <button @click="test2()">test2</button>
     </div>
 </template>
 
 <script>
 import AvatarComponent from './AvatarComponent.vue';
-
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 import { PhotoService } from '@/service/PhotoService';
 
 export default {
     name: "CardsServiçosComponent",
-    methods: {
-
-    },
     components: {
         AvatarComponent
     },
     data() {
         return {
             images: null,
+            valor: [],
             responsiveOptions: [
                 {
                     breakpoint: '1500px',
@@ -508,8 +512,40 @@ export default {
             displayBasic: false
         };
     },
+
+    created(){
+        this.getAllServicos();
+    },
+    computed: {
+        store(){
+            return store
+        },
+
+        servicos(){
+            return this.$store.getters.getServico
+        }
+    },
+    
     mounted() {
         PhotoService.getImages().then((data) => (this.images = data));
+    },
+    methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["getServico","getInfoServico", "CreateServico"]),
+        ...mapGetters([]),
+
+        getAllServicos() {
+            this.valor= store.getters.StateServico
+        },
+
+
+        test(){
+            this.getAllServicos();
+        },
+
+        test2(){
+        this.getServico();
+        }
     },
 
 }
