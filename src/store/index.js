@@ -11,6 +11,7 @@ import professions from "@/store/modules/professions";
 import category from "@/store/modules/category";
 import prestador from "@/store/modules/prestador";
 import servico from "@/store/modules/servico";
+import album from "@/store/modules/album";
 export default new Vuex.Store({
   modules: {
     auth,
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     category,
     prestador,
     servico,
+    album,
   },
   plugins: [createPersistedState()],
 });
