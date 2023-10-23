@@ -146,19 +146,19 @@ export default {
             this.selectedFile = event.target.files[0];
         },
 
-        getinfo() {
+        async getinfo() {
             try {
-                this.getInfoUser(this.GetToken());
+                await this.getInfoUser(this.GetToken());
             } catch (error) {
                 this.$router.push("/");
             }
         },
-        getskill() {
+        async getskill() {
 
-            this.getInfoPrestador(this.GetToken());
-            this.getSkills(this.GetToken());
-            this.getProfessions(this.GetToken());
-            this.getcategory(this.GetToken());
+            await this.getInfoPrestador(this.GetToken());
+            await this.getSkills(this.GetToken());
+            await this.getProfessions(this.GetToken());
+            await this.getcategory(this.GetToken());
 
 
             setTimeout(() => {
@@ -168,8 +168,8 @@ export default {
 
         },
 
-        getNome() {
-            this.getInfoUser(this.GetToken())
+        async getNome() {
+            await this.getInfoUser(this.GetToken())
             if (store.getters.StateEditUser.idtb_user > 0) {
                 this.nome = store.getters.StateEditUser.Nome_completo
             }

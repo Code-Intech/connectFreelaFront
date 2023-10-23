@@ -200,7 +200,7 @@ export default {
       User.append("senha", this.userData.password);
       try {
         await this.Register(User);
-        // this.$router.push("/");
+        this.$router.push("/");
         this.clearAddressData();
       } catch (error) {
         console.log(error)
