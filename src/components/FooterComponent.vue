@@ -1,19 +1,18 @@
-
 <template>
     <footer class="text-center text-md-start bg-light text-muted">
 
         <section class="backGroundFooter text-white">
             <br>
-            <div class="container text-center text-md-start mt-5">
+            <div
+                class="container text-center text-md-start"
+            >
+                <div class="row">
 
-                <div class="row mt-3">
-
-                    <div class=" Empresa col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 ">
-                        <img src="../assets/img/Logo.jpeg" class="img-fluid" alt="Imagem responsiva"
-                            style="max-width: 5rem; max-height: 3rem;">
-                        <p class="fs-5 align-bottom" style="padding-left: 10px;">
-                            Code Intech
-                        </p>
+                    <div class="d-flex align-content-center justify-content-center col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <img src="../assets/img/Logo.jpeg"
+                             class="img-fluid logo"
+                             alt="Imagem responsiva"
+                        >
                     </div>
 
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-1 mb-5 fs-6">
@@ -31,9 +30,6 @@
 
             </div>
         </section>
-
-
-
         <div class="text-center text-white p-4" style="background-color: #331556;">
             <p>© 2023 Copyright:<span class="text-reset fw-bold">Code Intech</span></p>
         </div>
@@ -41,36 +37,25 @@
     </footer>
 </template>
 
-
-
-
-
-
 <script >
-
-
-
 export default {
     name: "FooterComponent",
     methods: {
-
     },
     components: {
-
     },
-
 }
-
-
 </script>
-
 
 <style scoped>
 .backGroundFooter {
     background-color: #5d299a;
 }
 
-.Empresa {
-    display:flex;
+@media screen and (max-width: 750px) {
+  .logo {
+    max-width: 250px;
+    width: 100%;
+  }
 }
 </style>

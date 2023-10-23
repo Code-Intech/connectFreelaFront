@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar cormain border-bottom border-black border-1">
+  <nav class="navbar cormain">
     <div class="container-fluid d-flex justify-content-between">
       <a class="navbar-brand text-light nome-empresa fs-3 text">ConnectFreela</a>
 
