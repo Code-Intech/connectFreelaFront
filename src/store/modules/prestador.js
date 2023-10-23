@@ -24,7 +24,7 @@ const state = {
         idtb_habilidades: null,
       },
     ],
-    prestadorGrettings: { Apresentacao: null },
+    apresentacao: null,
   },
 
   error: null,

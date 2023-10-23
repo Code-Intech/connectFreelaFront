@@ -329,7 +329,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Portfólio</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            @click="sair()"></button>
                     </div>
                     <div class="modal-body">
 
@@ -339,6 +340,11 @@
                                     style="max-width: 60rem; border-color: var(--purple-primary);width: 100vh">
                                     <div class="border-bottom border-black border-2  " style="min-height: 15rem; ;">
                                         <loading v-if="isLoading" :message="loadingMessage" />
+
+                                        <div v-if="ifalbum">
+                                            {{ albumMessage }}
+                                        </div>
+
                                         <div class="m-1 rounded-3 d-flex justify-content-center"
                                             style="background-color: var(--purple-primary);">
                                             <h5 class="h5 text-white">Seu Portfólio</h5>
@@ -407,7 +413,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            @click="sair()">Sair</button>
                         <button type="button" class="btn btn-primary" @click="CriarAlbum()">Salvar</button>
                     </div>
                 </div>
@@ -500,7 +507,9 @@ export default {
 
             },
             isLoading: false, // Defina isso como verdadeiro quando estiver carregando
-            loadingMessage: "Carregando dados..."
+            loadingMessage: "Carregando dados...",
+            albumMessage: "Cadastrado com sucesso...",
+            ifalbum: false,
         }
     },
     components: {
@@ -564,8 +573,10 @@ export default {
             try {
 
                 await this.CreateAlbum(avatarPayload)
+                // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
-                alert(`Album Cadastrado com sucesso`);
+                this.ifalbum = true;
+                console.log(this.isLoading, "loading")
 
             } catch (error) {
                 console.log(error);
@@ -577,6 +588,10 @@ export default {
 
         },
 
+
+        sair() {
+            this.ifalbum = false;
+        },
 
 
 
