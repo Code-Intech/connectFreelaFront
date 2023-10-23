@@ -338,7 +338,7 @@
                                 <div class="card border-5  rounded-3"
                                     style="max-width: 60rem; border-color: var(--purple-primary);width: 100vh">
                                     <div class="border-bottom border-black border-2  " style="min-height: 15rem; ;">
-
+                                        <loading v-if="isLoading" :message="loadingMessage" />
                                         <div class="m-1 rounded-3 d-flex justify-content-center"
                                             style="background-color: var(--purple-primary);">
                                             <h5 class="h5 text-white">Seu Portfólio</h5>
@@ -484,6 +484,7 @@
 <script>
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
+import loading from "@/components/Loading.vue"
 
 
 
@@ -496,8 +497,14 @@ export default {
                 FotoCapa: null,
                 Texto: null,
                 Fotos: [],
-            }
+
+            },
+            isLoading: false, // Defina isso como verdadeiro quando estiver carregando
+            loadingMessage: "Carregando dados..."
         }
+    },
+    components: {
+        loading
     },
     computed: {
         store() {
@@ -537,7 +544,7 @@ export default {
 
 
         async CriarAlbum() {
-
+            this.isLoading = true;
             const album = new FormData();
 
             for (let i = 0; i < this.album.Fotos.length; i++) {
@@ -555,10 +562,19 @@ export default {
             };
 
             try {
+
                 await this.CreateAlbum(avatarPayload)
+                this.isLoading = false;
+                alert(`Album Cadastrado com sucesso`);
+
             } catch (error) {
                 console.log(error);
             }
+
+
+
+
+
         },
 
 
