@@ -51,9 +51,7 @@
                         style="max-width: 800px; border-color: var(--purple-primary)" /> -->
 
                     <select style="max-width: 800px; border-color: var(--purple-primary)" class="form-select" name="Genero"
-                        id="" aria-placeholder="Genero:" required
-                        v-model="infoUser.Genero"
-                        >
+                        id="" aria-placeholder="Genero:" required v-model="infoUser.Genero">
                         <option value="">Selecione:</option>
                         <option v-for="genero in this.store.getters.StateGenders" :key="genero.idtb_genero"
                             :value="genero.idtb_genero">{{ genero.Genero }}
@@ -244,9 +242,9 @@ export default {
             }
         };
     },
-    created(){
-        const generoNovo = this.store.getters.StateGenders.find((Genero)=> Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
-        return generoNovo ? generoNovo.Genero:"Genero não encontrado"
+    created() {
+        const generoNovo = this.store.getters.StateGenders.find((Genero) => Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
+        return generoNovo ? generoNovo.Genero : "Genero não encontrado"
     },
     computed: {
         store() {
@@ -258,9 +256,9 @@ export default {
             );
         },
 
-        nomeGenero(){
-            const generoNovo = this.store.getters.StateGenders.find((Genero)=> Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
-        return generoNovo ? generoNovo.Genero:"Genero não encontrado"
+        nomeGenero() {
+            const generoNovo = this.store.getters.StateGenders.find((Genero) => Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
+            return generoNovo ? generoNovo.Genero : "Genero não encontrado"
         },
 
 
@@ -384,9 +382,9 @@ export default {
         },
 
 
-        getGenero(){
-            this.infoUser.Genero =this.Genero.map((genderId) => genderId.id
-                
+        getGenero() {
+            this.infoUser.Genero = this.Genero.map((genderId) => genderId.id
+
             );
         },
 
@@ -394,7 +392,7 @@ export default {
             console.log(this.infoUser.Genero)
         },
 
-        
+
 
     },
 };

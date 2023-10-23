@@ -1,8 +1,6 @@
 <template>
     <div>
-<div v-for="(valores, index) in valor" :key="valores[index]">
-{{valores}}<br><br><br><br>
-</div>
+
 
 
 
@@ -15,7 +13,8 @@
                         <div class="d-flex flex-row mb-3 ">
                             <Avatar class=""
                                 source="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" />
-                            <h6 class="card-title d-flex align-content-center flex-wrap ms-3">{{valores.prestadorInfo.Nome_Empresa}}</h6>
+                            <h6 class="card-title d-flex align-content-center flex-wrap ms-3">
+                                {{ valores.prestadorInfo.Nome_Empresa }}</h6>
 
                             <Star class="ms-2" stars="4.5" />
                         </div>
@@ -23,10 +22,10 @@
                         <div class="d-flex justify-content-between border-top border-black">
 
                             <p class="">
-                                Valor da Hora de Serviço  
+                                Valor da Hora de Serviço
                             </p>
                             <p class="">
-                                {{valores.prestadorInfo.Valor_Da_Hora}}
+                                {{ valores.prestadorInfo.Valor_Da_Hora }}
                             </p>
                         </div>
 
@@ -36,7 +35,7 @@
                                 Valor da diaria
                             </p>
                             <p class="">
-                                {{valores.prestadorInfo.Valor_diaria}}
+                                {{ valores.prestadorInfo.Valor_diaria }}
                             </p>
                         </div>
 
@@ -48,8 +47,8 @@
                                 </h6>
                                 <h6 class="text-info ms-2">
                                     <div v-for="(val, index2) in valores.prestadorProfessions" :key="val[index2]">
-                                    {{val.Profissao}};<br>
-                                </div>
+                                        {{ val.Profissao }};<br>
+                                    </div>
                                 </h6>
 
                             </div>
@@ -58,7 +57,7 @@
                                 <ul>
                                     <li v-for="(val2, index3)    in valores.prestadorSkills" :key="val2[index3]">
                                         <p class="m-0 text-success">
-                                            {{ val2.Habilidade}}
+                                            {{ val2.Habilidade }}
                                         </p>
                                     </li>
                                 </ul>
@@ -292,43 +291,43 @@ export default {
     created() {
         this.getAllPrestador();
     },
-            computed: {
-            store(){
-                return store
-            },
-
-            prestadores(){
-                return this.$store.getters.getAllPrestadores;
-            }
+    computed: {
+        store() {
+            return store
         },
 
-        methods: {
-            validateOnBack: Boolean,
+        prestadores() {
+            return this.$store.getters.getAllPrestadores;
+        }
+    },
+
+    methods: {
+        validateOnBack: Boolean,
         ...mapActions(["getAllPrestadores", "getInfoPrestador"]),
-    ...mapGetters([]),
+        ...mapGetters([]),
 
-    // mapPrestadores(prestadorId) {
-    //     const prestador = this.prestadores.find((cat) => cat.idtb_prestador === prestadorId);
-    //     // console.log(category, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+        // mapPrestadores(prestadorId) {
+        //     const prestador = this.prestadores.find((cat) => cat.idtb_prestador === prestadorId);
+        //     // console.log(category, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 
-    //     return prestador ? prestador.Prestador : 'Prestador Desconhecido';
-    // },
+        //     return prestador ? prestador.Prestador : 'Prestador Desconhecido';
+        // },
 
-    getAllPrestador() {
-        this.valor = store.getters.StatePrestador
-    },
+        getAllPrestador() {
+            this.valor = store.getters.StatePrestador
+        },
 
-    test(){
-        
-        this.getAllPrestadores();
-    },
+        test() {
 
-    test2(){
-        console.log(this.valor);
+            this.getAllPrestadores();
+        },
+
+        test2() {
+            console.log(this.valor);
+        }
+
+
     }
-
-
-}
 
 }
 

@@ -118,10 +118,10 @@ export default {
     ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador"]),
     ...mapGetters(["GetToken"]),
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador"]),
-    getinfo() {
+    async getinfo() {
       try {
-        this.d(this.GetToken());
-        this.getInfoPrestador(this.GetToken());
+        await this.d(this.GetToken());
+        await this.getInfoPrestador(this.GetToken());
       } catch (error) {
         // console.log(this.GetToken());
       }

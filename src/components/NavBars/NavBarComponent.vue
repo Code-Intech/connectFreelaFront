@@ -11,7 +11,7 @@
         <button @click=" getprestador()" class="btn btn-secondary corbotao" type="button">
           Ver Prestador
         </button>
-        <button @click="$router.push({ path: '/CriarServico'}), getCriarServico()" class="btn btn-secondary corbotao"
+        <button @click="$router.push({ path: '/CriarServico' }), getCriarServico()" class="btn btn-secondary corbotao"
           type="button">
           Criar Serviço
         </button>
@@ -81,25 +81,25 @@ export default {
 
 
     async getCriarServico() {
-      this.getcategory(this.GetToken());
-      this.getProfessions(this.GetToken());
-      this.getSkills(this.GetToken());
+      await this.getcategory(this.GetToken());
+      await this.getProfessions(this.GetToken());
+      await this.getSkills(this.GetToken());
 
     },
 
-    getprestador() {
+    async getprestador() {
 
-      this.getAllPrestadores()
+      await this.getAllPrestadores()
 
       setTimeout(() => {
         // Função a ser executada após 2 segundos
         this.$router.push({ path: '/Prestador' })
-      }, 1000);
+      }, 2000);
 
     },
 
-    getsallservicos() {
-      this.getServico()
+    async getsallservicos() {
+      await this.getServico()
 
       setTimeout(() => {
         // Função a ser executada após 2 segundos
