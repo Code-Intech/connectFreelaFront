@@ -5,13 +5,13 @@
     <div class="container-fluid ">
       <div></div>
       <div class="d-flex justify-content-between align-items-center gap-2">
-        <button @click="$router.push({ path: '/Servicos' })" class="btn btn-secondary corbotao" type="button">
+        <button @click="getsallservicos()" class="btn btn-secondary corbotao" type="button">
           Ver Serviços
         </button>
         <button @click=" getprestador()" class="btn btn-secondary corbotao" type="button">
           Ver Prestador
         </button>
-        <button @click="$router.push({ path: '/CriarServico' }), getCriarServico()" class="btn btn-secondary corbotao"
+        <button @click="$router.push({ path: '/CriarServico'}), getCriarServico()" class="btn btn-secondary corbotao"
           type="button">
           Criar Serviço
         </button>
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     validateOnBack: Boolean,
-    ...mapActions(["getcategory", "getProfessions", "getSkills", "getAllPrestadores"]),
+    ...mapActions(["getcategory", "getProfessions", "getSkills", "getAllPrestadores", "getServico"]),
     ...mapGetters(["GetToken"]),
 
 
@@ -95,6 +95,16 @@ export default {
         // Função a ser executada após 2 segundos
         this.$router.push({ path: '/Prestador' })
       }, 1000);
+
+    },
+
+    getsallservicos() {
+      this.getServico()
+
+      setTimeout(() => {
+        // Função a ser executada após 2 segundos
+        this.$router.push({ path: '/Servicos' })
+      }, 2000);
 
     }
 
