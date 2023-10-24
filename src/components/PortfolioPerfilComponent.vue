@@ -26,43 +26,45 @@
 
             <div class="" style="min-height: 200px;">
                 <div class=" m-4" id="">
-                    <div>
+                    <div v-for="(album) in albums" :key="album.portifolio.idtb_portifolio">
+                        {{ album }}
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title">Album de Macaco</h5>
-                                <div id="carouselExample" class="carousel slide">
+                                <h5 class="card-title">{{ album.portifolio.Titulo }}</h5>
+                                <div :id="'carouselExample' + album.portifolio.idtb_portifolio" class="carousel slide">
+
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active">
+                                        <div class="carousel-item" v-for="(photo, index) in album.photos"
+                                            :key="photo.idtb_img_video" :class="[index < 1 ? 'active' : '']">
+                                            <img :src="photo.Img" class="d-block w-100" alt="">
+                                        </div>
+
+                                        <!-- <div class="carousel-item">
                                             <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
                                                 class="d-block w-100" alt="">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                class="d-block w-100" alt="">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                class="d-block w-100" alt="">
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                    <button class="carousel-control-prev" type="button"
+                                        :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio"
                                         data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                    <button class="carousel-control-next" type="button"
+                                        :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio"
                                         data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#veralbum">
+                                    <button class="btn btn-primary mt-3" data-bs-toggle="modal"
+                                        :data-bs-target="'#veralbum' + album.portifolio.idtb_portifolio">
                                         Ver Album
                                     </button>
                                     <button type="button" class="btn btn-warning mt-3" data-bs-toggle="modal"
-                                        data-bs-target="#editarportfolio">Editar</button>
+                                        :data-bs-target="'#editarportfolio' + album.portifolio.idtb_portifolio">Editar</button>
 
                                     <button class="btn btn-danger mt-3">
                                         Deletar
@@ -72,6 +74,25 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+                        <ModalVerAlbum :modal-id="album.portifolio.idtb_portifolio" :albomModal="album" />
+                        <ModalEditarAlbum :modal-id="album.portifolio.idtb_portifolio" :albomModal="album" />
+
+
+
+
+
+
+
+
+
+
+
+
 
                     </div>
                 </div>
@@ -85,232 +106,7 @@
 
 
         <!-- Modal Criar Album-->
-        <div class="modal fade" id="editarportfolio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            data-bs-backdrop="static">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Portfólio</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
 
-                        <div class="d-flex justify-content-center mt-5">
-                            <div class=" ">
-                                <div class="card border-5  rounded-3"
-                                    style="max-width: 60rem; border-color: var(--purple-primary);">
-                                    <div class="border-bottom border-black border-2  " style="min-height: 15rem; ">
-
-                                        <div class="m-1 rounded-3 d-flex justify-content-center"
-                                            style="background-color: var(--purple-primary);">
-                                            <h5 class="h5 text-white">Seu Portfólio</h5>
-                                        </div>
-
-
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-grow-1 ms-3">
-                                                Titulo: Calango lindo </div>
-                                        </div>
-
-                                        <div class="input-group p-3 ">
-                                            <span class="input-group-text " id="inputGroup-sizing-default">Titulo</span>
-                                            <input type="text" class="form-control " aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-default">
-                                        </div>
-
-
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-grow-1 ms-3">
-                                                Sua Capa </div>
-                                        </div>
-
-
-
-                                        <div class="d-flex justify-content-center">
-
-                                            <!-- Card -->
-                                            <div class="card  m-2 border border-black border-1" style="width: 25rem;">
-
-
-                                                <div class="border-bottom border-black border-1">
-                                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                        class="card-img-top" alt="">
-
-                                                </div>
-                                                <div class="card-body d-grid gap-2">
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="m-3 border-bottom border-2 border-black">
-
-                                            <div class="input-group mb-3">
-                                                <input type="file" class="form-control" id="inputGroupFile02">
-                                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                            </div>
-                                        </div>
-
-
-                                        <h6 class="ms-3 mt-4">
-                                            texto
-                                        </h6>
-
-                                        <div class="form-floating m-3">
-                                            <textarea class="form-control mb-3" placeholder="Leave a comment here"
-                                                id="floatingTextarea2" style="height: 100px"></textarea>
-                                            <label for="floatingTextarea2">Comments</label>
-                                        </div>
-
-
-                                        <div class="m-3 mb-3 border-bottom border-2 border-black">
-                                            <div class="d-flex justify-content-end">
-
-                                                <h5>
-                                                    Salvar informações do Album
-                                                </h5>
-                                            </div>
-                                            <div class="d-flex justify-content-end">
-
-                                                <button class="btn btn-success mb-3 ">
-                                                    Salvar
-                                                </button>
-                                            </div>
-                                        </div>
-
-
-
-                                        <h6 class="ms-3">
-                                            Suas Imagens
-                                        </h6>
-
-
-
-                                        <div
-                                            class="card-group flex-row alling-center mt-3 g-4 d-flex justify-content-center">
-
-
-                                            <div class="col">
-
-                                                <!-- Card -->
-                                                <div class="card  m-2 border border-black border-1" style="width: 18rem;">
-
-
-                                                    <div class="border-bottom border-black border-1">
-                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                            class="card-img-top" alt="">
-
-                                                    </div>
-                                                    <div class="card-body d-grid gap-2">
-
-                                                        <button type="button" class="btn btn-danger"><font-awesome-icon
-                                                                icon="trash" />
-                                                            Deletar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-
-                                                <!-- Card -->
-                                                <div class="card  m-2 border border-black border-1" style="width: 18rem;">
-
-
-                                                    <div class="border-bottom border-black border-1">
-                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                            class="card-img-top" alt="">
-
-                                                    </div>
-                                                    <div class="card-body d-grid gap-2">
-
-                                                        <button type="button" class="btn btn-danger"><font-awesome-icon
-                                                                icon="trash" />
-                                                            Deletar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-
-                                                <!-- Card -->
-                                                <div class="card  m-2 border border-black border-1" style="width: 18rem;">
-
-
-                                                    <div class="border-bottom border-black border-1">
-                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                            class="card-img-top" alt="">
-
-                                                    </div>
-                                                    <div class="card-body d-grid gap-2">
-
-                                                        <button type="button" class="btn btn-danger"><font-awesome-icon
-                                                                icon="trash" />
-                                                            Deletar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-
-                                                <!-- Card -->
-                                                <div class="card  m-2 border border-black border-1" style="width: 18rem;">
-
-
-                                                    <div class="border-bottom border-black border-1">
-                                                        <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                            class="card-img-top" alt="">
-
-                                                    </div>
-                                                    <div class="card-body d-grid gap-2">
-
-                                                        <button type="button" class="btn btn-danger"><font-awesome-icon
-                                                                icon="trash" />
-                                                            Deletar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-
-
-
-
-
-                                    </div>
-                                    <div class="card-body">
-                                        <div>
-
-
-                                            <h6>
-                                                Carregue Sua Imagem (Uma por vez)
-                                            </h6>
-
-
-
-                                            <div class="input-group">
-                                                <input type="file" class="form-control btn btn-outline-primary"
-                                                    id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
-                                                    aria-label="Upload">
-                                                <button class="btn btn-outline-secondary btn-success text-white"
-                                                    type="submit" id="inputGroupFileAddon04">Enviar</button>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-                        <button type="button" class="btn btn-primary">Salvar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
 
@@ -427,7 +223,7 @@
 
 
         <!-- Modal Ver Album -->
-        <div class="modal fade" id="veralbum" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
+        <!-- <div class="modal fade" id="veralbum" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
             <div class="modal-dialog  modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -479,7 +275,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <button @click="teste()">
             teste
@@ -492,11 +288,17 @@
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 import loading from "@/components/Loading.vue"
-
+import ModalVerAlbum from "@/components/ModalVerAlbum.vue"
+import ModalEditarAlbum from "@/components/ModalEditarAlbum.vue"
 
 
 export default {
     name: "PortfolioPerfilComponent",
+    components: {
+        ModalVerAlbum,
+        ModalEditarAlbum,
+        loading
+    },
     data() {
         return {
             album: {
@@ -510,15 +312,16 @@ export default {
             loadingMessage: "Carregando dados...",
             albumMessage: "Cadastrado com sucesso...",
             ifalbum: false,
+            albums: [],
         }
-    },
-    components: {
-        loading
     },
     computed: {
         store() {
             return store
         },
+    },
+    created() {
+        this.salvealbum();
     },
     methods: {
         validateOnBack: Boolean,
@@ -586,6 +389,13 @@ export default {
 
 
 
+        },
+
+
+        salvealbum() {
+            if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
+                this.albums = store.getters.StatealbumMe;
+            }
         },
 
 
