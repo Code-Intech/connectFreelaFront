@@ -1,11 +1,5 @@
 <template>
-    <div>
-
-
-
-
-
-
+    <div class="container">
         <div class="row">
             <div class="col-sm-3 mb-3 mb-sm-0 m-3 " v-for="(valores, index) in valor" :key="valores[index]">
                 <div class="card">
@@ -63,89 +57,6 @@
                                 </ul>
 
 
-                                <!-- <ul>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p class="m-0 text-success">
-                                            Dev Web
-                                        </p>
-                                    </li>
-                                </ul> -->
-
-
 
                             </div>
                         </div>
@@ -159,16 +70,6 @@
                                 class="text-decoration-none text-black btn btn-outline-secondary">Comentários<font-awesome-icon
                                     class="ms-2" icon="comments" />
                             </a>
-
-
-                            <!-- <button class="btn btn-outline-secondary text-black ">
-                                <font-awesome-icon icon="reply" flip="horizontal" />
-                            </button> -->
-
-
-
-
-
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-outline-secondary text-black" data-bs-toggle="modal"
@@ -211,39 +112,12 @@
                             </div>
 
 
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
-
-        <button @click="test()">test</button>
-        <button @click="test2()">test2</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </div>

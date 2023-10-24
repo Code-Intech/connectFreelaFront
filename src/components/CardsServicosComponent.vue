@@ -61,7 +61,7 @@
                                                 Data de Início:
                                             </h6>
                                             <h6 class="fst-italic" style="font-size: smaller;">
-                                                {{ valores.servicoInfo.Data_Inicio }}
+                                                {{ formattedDate }}
                                             </h6>
                                         </div>
 
@@ -182,6 +182,7 @@ export default {
         return {
             images: null,
             valor: [],
+            originalDate: store.getters.StateServico.Data_Inicio,
             responsiveOptions: [
                 {
                     breakpoint: '1500px',
@@ -211,6 +212,10 @@ export default {
         store() {
             return store
         },
+
+        formattedDate() {
+      return this.formatDate(this.originalDate);
+    }
     },
 
     methods: {
@@ -220,7 +225,15 @@ export default {
 
         getAllServicos() {
             this.valor = store.getters.StateServico
-        }
+        },
+
+        formatDate(dateTimeString) {
+      const date = new Date(dateTimeString);
+      const day = date.getDate();
+      const month = date.getMonth() + 1; // Lembre-se de que os meses em JavaScript começam em 0
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    },
     },
 
 }
