@@ -76,8 +76,7 @@
                     class="btn btn-outline-primary text-white  border-white">Premium</button>
                 <button @click="$router.push({ path: '/PerfilAvaliacao' })"
                     class="btn btn-outline-primary text-white  border-white">Avaliações</button>
-                <button @click="$router.push({ path: '/PerfilPortfolio' })"
-                    class="btn btn-outline-primary text-white  border-white">Portfólio</button>
+                <button @click=" getalbum()" class="btn btn-outline-primary text-white  border-white">Portfólio</button>
                 <button @click="$router.push({ path: '/' })"
                     class="btn btn-outline-primary text-white  border-white">Dashboard</button>
                 <button @click="$router.push({ path: '/ViewPropostaContratante' })"
@@ -120,7 +119,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador", "getInfoUser"]),
+        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador", "getInfoUser", "GetAlbum"]),
         ...mapGetters(["GetToken"]),
 
         async getFoto() {
@@ -168,8 +167,13 @@ export default {
 
         },
 
+        async getalbum() {
+            await this.GetAlbum(this.GetToken());
+            this.$router.push({ path: '/PerfilPortfolio' })
+        },
+
         async getNome() {
-            await this.getInfoUser(this.GetToken())
+            await this.getInfoUser(this.GetToken());
             if (store.getters.StateEditUser.idtb_user > 0) {
                 this.nome = store.getters.StateEditUser.Nome_completo
             }
