@@ -146,6 +146,7 @@
                                         <div v-if="ifalbum">
                                             {{ albumMessage }}
                                         </div>
+                                        <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
 
                                         <div class="m-1 rounded-3 d-flex justify-content-center"
                                             style="background-color: var(--purple-primary);">
@@ -296,6 +297,7 @@ import { mapActions, mapGetters } from 'vuex'
 import loading from "@/components/Loading.vue"
 import ModalVerAlbum from "@/components/ModalVerAlbum.vue"
 import ModalEditarAlbum from "@/components/ModalEditarAlbum.vue"
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 
 export default {
@@ -303,14 +305,15 @@ export default {
     components: {
         ModalVerAlbum,
         ModalEditarAlbum,
-        loading
+        loading,
+        CardErroMessage
     },
     data() {
         return {
             album: {
-                Titulo: null,
+                Titulo: "",
                 FotoCapa: null,
-                Texto: null,
+                Texto: "",
                 Fotos: [],
 
             },
@@ -319,6 +322,8 @@ export default {
             albumMessage: "Cadastrado com sucesso...",
             ifalbum: false,
             albums: [],
+            errorMessage: null,
+            erroIf: false,
         }
     },
     computed: {
@@ -331,7 +336,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["CreateAlbum", "dellAlbum"]),
+        ...mapActions(["CreateAlbum", "dellAlbum", "showError"]),
         ...mapGetters(["GetToken"]),
 
 
@@ -388,7 +393,20 @@ export default {
                 console.log(this.isLoading, "loading")
 
             } catch (error) {
-                console.log(error);
+                await this.showError(error)
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                // this.errorMessage = store.getters.isMessageError;
+                this.erroIf = true
+                console.log(error.request.response[0]);
+                console.log(this.errorMessage, "erro");
+                console.log(store.getters.isMessageError, "erro");
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
+
+
             }
 
 

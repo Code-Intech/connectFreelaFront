@@ -31,6 +31,7 @@ const state = {
 const getters = {
   Statealbum: (state) => state.fotoavatar,
   StatealbumMe: (state) => state.portifolios,
+  StateErroAlbum: (state) => state.errors,
 };
 const actions = {
   async CreateAlbum({ commit }, { token, album }) {
@@ -47,8 +48,11 @@ const actions = {
         },
       }
     );
+    // console.log(request.status, "request Status");
+    if (request.status === 400) throw new Error(request.statusText);
 
     commit("setRrroAlbum", { errors: request.data.errors });
+    return request;
   },
   async GetAlbum({ commit }, token) {
     console.log(token);
@@ -154,6 +158,10 @@ const mutations = {
   dellAlbum(state, { sucess }) {
     // console.log(sucess, "state");
     state.dellalbum = sucess;
+  },
+  setErro(state, { errors }) {
+    // console.log(sucess, "state");
+    state.errors = errors;
   },
   LogOutAvatar(state) {
     state.fotoavatar = null;
