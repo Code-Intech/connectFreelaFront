@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- {{ albomModal }} -->
-                    <div id="carouselEx" class="carousel slide">
+                    <div :id="'carouselEx' + modalId" class="carousel slide">
                         <div class="carousel-inner" style="max-height: 40rem;">
                             <div class="carousel-item active">
                                 <img :src="albomModal.portifolio.Capa" class="d-block w-100" alt="">
@@ -19,12 +19,12 @@
                             </div>
 
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselEx"
+                        <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselEx' + modalId"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselEx"
+                        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselEx' + modalId"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
