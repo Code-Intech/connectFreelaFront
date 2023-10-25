@@ -49,7 +49,13 @@ const actions = {
       }
     );
     // console.log(request.status, "request Status");
-    if (request.status === 400) throw new Error(request.statusText);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
 
     commit("setRrroAlbum", { errors: request.data.errors });
     return request;
@@ -61,8 +67,16 @@ const actions = {
         Authorization: `Bearer ${token}`,
       },
     });
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
 
     commit("setAlbum", { album: request.data.portifolios });
+    return request;
   },
   async Delfoto({ commit }, { token, id }) {
     console.log(token);
@@ -74,8 +88,16 @@ const actions = {
         },
       }
     );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
 
     commit("dellFoto", { dell: request.data.error });
+    return request;
   },
   async addfoto({ commit }, { token, id, photo }) {
     console.log(token);
@@ -92,8 +114,15 @@ const actions = {
         },
       }
     );
-
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("addFoto", { add: request.data.sucess });
+    return request;
   },
 
   async getfotos({ commit }, { token, id }) {
@@ -104,7 +133,15 @@ const actions = {
       },
     });
     console.log(request, "request");
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("addFoto", { addfoto: request.data });
+    return request;
   },
   async upalbum({ commit }, { token, id, album }) {
     console.log(token);
@@ -118,7 +155,15 @@ const actions = {
       }
     );
     console.log(request, "request");
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("upFoto", { sucess: request.data });
+    return request;
   },
   async dellAlbum({ commit }, { token, id }) {
     console.log(token);
@@ -131,7 +176,15 @@ const actions = {
       }
     );
     console.log(request, "request");
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("dellAlbum", { sucess: request.data });
+    return request;
   },
 };
 const mutations = {

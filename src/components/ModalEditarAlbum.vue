@@ -20,7 +20,7 @@
                                         style="background-color: var(--purple-primary);">
                                         <h5 class="h5 text-white">Seu Portfólio</h5>
                                     </div>
-
+                                    <CardErroMessage v-if="erroIf1" :errorMessageCard="errorMessage"></CardErroMessage>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 ms-3">
                                             Titulo: Calango lindo </div>
@@ -45,7 +45,6 @@
 
                                         <!-- Card -->
                                         <div class="card  m-2 border border-black border-1" style="width: 25rem;">
-
 
                                             <div class="border-bottom border-black border-1">
                                                 <img :src="dadosModal.portifolio.Capa" class="card-img-top" alt="">
@@ -92,7 +91,7 @@
                                         </div>
                                     </div>
 
-
+                                    <CardErroMessage v-if="erroIf2" :errorMessageCard="errorMessage"></CardErroMessage>
 
                                     <h6 class="ms-3">
                                         Suas Imagens
@@ -147,7 +146,7 @@
                                                 ref="fileInput">
                                             <button class="btn btn-outline-secondary btn-success text-white" type="submit"
                                                 id="inputGroupFileAddon04" @click=" AddFoto()"
-                                                :disabled="inputBloqueado">Enviar</button>
+                                                :disabled="botaoBloqueado">Enviar</button>
 
                                         </div>
 
@@ -172,6 +171,7 @@
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 // import loading from "@/components/Loading.vue"
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 
 
@@ -191,6 +191,9 @@ export default {
     },
     data() {
         return {
+            errorMessage: null,
+            erroIf1: false,
+            erroIf2: false,
             album: {
                 Titulo: null,
                 Texto: null,
@@ -205,6 +208,7 @@ export default {
             ifalbum: false,
             albums: [],
             inputBloqueado: false,
+            botaoBloqueado: true,
             editaralbum: {
                 foto: null,
                 id: null,
@@ -213,7 +217,8 @@ export default {
         }
     },
     components: {
-        // loading
+        // loading,
+        CardErroMessage,
     },
     computed: {
         store() {
@@ -278,7 +283,14 @@ export default {
                 this.FotoCapa = this.dadosModal.portifolio.Capa
 
             } catch (error) {
-                console.log(error);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf1 = true
+                setTimeout(() => {
+                    this.erroIf1 = false
+                }, 4000);
+
             }
 
 
@@ -291,6 +303,7 @@ export default {
             console.log(this.editaralbum.foto)
             this.isLoading = true;
             const foto = new FormData();
+
 
 
 
@@ -317,10 +330,18 @@ export default {
                 console.log(store.getters.StatealbumMe, "dadossss")
                 if (this.dadosModal.photos.length >= 5) {
                     this.inputBloqueado = true;
+                    this.botaoBloqueado = true;
                 }
 
             } catch (error) {
-                console.log(error);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf2 = true
+                setTimeout(() => {
+                    this.erroIf2 = false
+                }, 4000);
+
             }
 
 
@@ -344,7 +365,14 @@ export default {
                 console.log(this.isLoading, "loading")
 
             } catch (error) {
-                console.log(error);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf2 = true
+                setTimeout(() => {
+                    this.erroIf2 = false
+                }, 4000);
+
             }
 
 
@@ -372,6 +400,7 @@ export default {
             // Lógica para adicionar a foto ao array
             // ...
 
+            this.botaoBloqueado = false;
 
             // Atualiza o objeto editaralbum.foto com a nova foto
             this.editaralbum.foto = event.target.files;
@@ -379,6 +408,7 @@ export default {
             // Bloqueie o input se houver 5 fotos no array
             if (this.dadosModal.photos.length >= 5) {
                 this.inputBloqueado = true;
+                this.botaoBloqueado = true;
                 this.$refs.fileInput.value = null;
 
             }
@@ -402,8 +432,10 @@ export default {
             this.FotoCapa = this.dadosModal.portifolio.Capa
             if (this.dadosModal.photos.length >= 5) {
                 this.inputBloqueado = true;
+                this.botaoBloqueado = true;
             }
             await this.GetAlbum(this.GetToken())
+
         },
 
 

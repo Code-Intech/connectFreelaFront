@@ -171,8 +171,7 @@
                                                 <input type="file" class="form-control btn btn-outline-primary"
                                                     id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
                                                     aria-label="Upload" @change="handleFileChange2">
-                                                <button class="btn btn-outline-secondary btn-success text-white"
-                                                    type="submit" id="inputGroupFileAddon04">Enviar</button>
+
                                             </div>
                                         </div>
 
@@ -205,8 +204,7 @@
                                                 <input type="file" class="form-control btn btn-outline-primary"
                                                     id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
                                                     aria-label="Upload" multiple @change="handleFileChange">
-                                                <button class="btn btn-outline-secondary btn-success text-white"
-                                                    type="submit" id="inputGroupFileAddon04">Enviar</button>
+
                                             </div>
 
                                         </div>
@@ -393,15 +391,10 @@ export default {
                 console.log(this.isLoading, "loading")
 
             } catch (error) {
-                await this.showError(error)
                 this.isLoading = false;
                 const message = error.request.response
                 this.errorMessage = JSON.parse(message)
-                // this.errorMessage = store.getters.isMessageError;
                 this.erroIf = true
-                console.log(error.request.response[0]);
-                console.log(this.errorMessage, "erro");
-                console.log(store.getters.isMessageError, "erro");
                 setTimeout(() => {
                     this.erroIf = false
                 }, 4000);
