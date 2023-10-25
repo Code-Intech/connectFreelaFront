@@ -25,9 +25,9 @@
 
 
             <div class="" style="min-height: 200px;">
-                <div class=" m-4" id="">
-                    <div v-for="(album) in albums" :key="album.portifolio.idtb_portifolio">
-                        {{ album }}
+                <div class=" m-4 d-flex flex-wrap p-1" id="">
+                    <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
+                        <!-- {{ album }} -->
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
@@ -35,15 +35,20 @@
                                 <div :id="'carouselExample' + album.portifolio.idtb_portifolio" class="carousel slide">
 
                                     <div class="carousel-inner">
-                                        <div class="carousel-item" v-for="(photo, index) in album.photos"
-                                            :key="photo.idtb_img_video" :class="[index < 1 ? 'active' : '']">
+                                        <div class="carousel-item active">
+                                            <img :src="album.portifolio.Capa" class="d-block w-100" alt="">
+                                        </div>
+                                        <div class="carousel-item" v-for="(photo) in album.photos"
+                                            :key="photo.idtb_img_video">
                                             <img :src="photo.Img" class="d-block w-100" alt="">
                                         </div>
 
-                                        <!-- <div class="carousel-item">
-                                            <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                                class="d-block w-100" alt="">
-                                        </div> -->
+                                        <!-- Não Apagar -->
+                                        <!-- <div class="carousel-item" v-for="(photo, index) in album.photos"
+                                            :key="photo.idtb_img_video" :class="[index < 1 ? 'active' : '']">
+                                            <img :src="photo.Img" class="d-block w-100" alt="">
+                                        </div>Não Apagar  -->
+
                                     </div>
                                     <button class="carousel-control-prev" type="button"
                                         :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio"
@@ -66,7 +71,8 @@
                                     <button type="button" class="btn btn-warning mt-3" data-bs-toggle="modal"
                                         :data-bs-target="'#editarportfolio' + album.portifolio.idtb_portifolio">Editar</button>
 
-                                    <button class="btn btn-danger mt-3">
+                                    <button class="btn btn-danger mt-3"
+                                        @click="DellAlbum(album.portifolio.idtb_portifolio), deletarFoto(index)">
                                         Deletar
                                     </button>
 
@@ -325,7 +331,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["CreateAlbum"]),
+        ...mapActions(["CreateAlbum", "dellAlbum"]),
         ...mapGetters(["GetToken"]),
 
 
@@ -390,7 +396,38 @@ export default {
 
 
         },
+        async DellAlbum(id) {
 
+            console.log(id, "idalbum")
+
+            const avatarPayload = {
+                token: this.GetToken(),
+                id: id
+            };
+
+            try {
+
+                await this.dellAlbum(avatarPayload)
+                await this.GetAlbum(this.GetToken())
+                this.albums = store.getters.StatealbumMe;
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+
+
+
+        },
+
+
+
+        deletarFoto(index) {
+            // Remova a foto do array com base no índice
+            this.albums.splice(index, 1);
+
+        },
 
         salvealbum() {
             if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
