@@ -375,6 +375,10 @@ export default {
         async createServico() {
 
 
+            this.Servico.Cidade = store.getters.city.cidade,
+                this.Servico.Estado = store.getters.city.estado,
+                this.Servico.Bairro = store.getters.city.bairro,
+                this.Servico.Endereco = store.getters.city.endereco
 
 
             const InfoServico = new FormData();
