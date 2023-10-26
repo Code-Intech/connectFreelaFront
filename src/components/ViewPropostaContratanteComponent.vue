@@ -192,6 +192,7 @@
 
                                         <CardModalVerPropostas />
                                         <CardModalPropostaAceita />
+                                        <CardModalPropostasEnvidas />
 
                                     </div>
 
@@ -573,6 +574,7 @@
 // import AvatarComponent from './AvatarComponent.vue';
 import CardModalVerPropostas from './CardModalVerPropostas.vue';
 import CardModalPropostaAceita from './CardModalPropostaAceita.vue';
+import CardModalPropostasEnvidas from './CardModalPropostasEnvidas.vue';
 export default {
     name: "ViewPropostaContratanteComponent",
     methods: {
@@ -582,6 +584,7 @@ export default {
         // AvatarComponent,
         CardModalPropostaAceita,
         CardModalVerPropostas,
+        CardModalPropostasEnvidas,
 
 
     },
