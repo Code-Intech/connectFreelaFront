@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div class="d-flex flex-wrap">
-            <div class=" m-3" v-for="(valores, index) in valor" :key="valores[index]">
+            <div class=" m-auto" v-for="(valores, index) in valor" :key="valores[index]">
                 <div class="mt-3 ms-2 ">
                     <div class="card" style="width: 25rem;">
                         <div class="card-header border-black d-flex justify-content-between">
@@ -161,7 +161,7 @@
                             </div>
 
                             <div class=" ">
-                                <div class=" d-flex align-items-end align-itens-end border-top border-black ">
+                                <div class=" d-flex justify-content-between border-top border-black ">
                                     <div class="buttuns mt-3 align-self-end">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal"

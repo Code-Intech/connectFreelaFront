@@ -1,9 +1,8 @@
 <template>
     <div class="">
         <div class="d-flex flex-wrap">
-            <div class="col-sm-3 mb-3 mb-sm-0 m-3 " v-for="(valores, index) in valor" :key="valores[index]"
-                style="width: 440px;">
-                <div class="card">
+            <div class=" mb-4  m-auto " v-for="(valores, index) in valor" :key="valores[index]">
+                <div class="card" style="width: 440px;">
                     <div class="card-body">
                         <div class="d-flex flex-row mb-3 ">
                             <Avatar class="" source="" />
@@ -47,7 +46,7 @@
                                 </h6>
 
                             </div>
-                            <div class="d-flex overflow-y-auto " style="max-height: 110px;">
+                            <div class="d-flex overflow-y-auto " style="height: 110px;">
 
                                 <ul>
                                     <li v-for="(val2, index3)    in valores.prestadorSkills" :key="val2[index3]">
