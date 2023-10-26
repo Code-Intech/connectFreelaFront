@@ -1,17 +1,12 @@
 
 <template>
     <div class="d-flex justify-content-center">
-
         <div class="border rounded p-3 mt-4" style="max-width: 120vh; width: 70%;">
-
-
             <div class="   mb-3">
-
                 <div style="width: auto;">
                     <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
                         v-model="Servico.Titulo">
                 </div>
-
                 <div class="p-2  flex-grow-1">
                     <div class="card flex justify-content-center">
                         <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
@@ -25,11 +20,6 @@
                             </template>
                         </MultiSelect>
                     </div>
-
-
-
-
-
                 </div>
                 <div class="p-2 flex-grow-1">
                     <div class="card flex justify-content-center">
@@ -37,29 +27,17 @@
                             optionLabel="Habilidade" placeholder="Habilidades necessarias" :maxSelectedLabels="3"
                             class="w-full md:w-20rem" />
                     </div>
-
-
-
-
-
                 </div>
                 <div class="p-2 " style="width: 300px;">
-
                     <select class="form-select" aria-label="Default select example" v-model="Servico.Modalidade">
                         <option selected>Presencial/Remoto</option>
                         <option value="1">Remoto</option>
                         <option value="2">Hibrido</option>
                         <option value="3">Presencial</option>
                     </select>
-
-
-
                 </div>
             </div>
-
-
             <div class="d-flex flex-wrap">
-
                 <input class="form-control has-validation m-2 p-2" type="text" name="cep" id="cep"
                     placeholder="CEP: 00000-000" required v-model="cep" style="max-width: 300px;"
                     @input="this.Servico.CEP1 = this.cep">
@@ -75,24 +53,6 @@
                 <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Cidade:"
                     style="max-width: 300px;" :value="store.getters.city.cidade">
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <div class="mb-3" style="max-width: 500px;">
-                <label for="customRange1" class="form-label">Estimativa de Distancia</label>
-                <input type="range" class="form-range" min="0" max="100" id="customRange1" style="">
-            </div> -->
             <div class=" flex justify-content-center mb-3" style="max-width: 500px;">
                 <label for="">Estimativa de distancia em KM</label>
                 <div class="w-14rem">
@@ -100,27 +60,16 @@
                     <Slider v-model="distancia" class="w-full" />
                 </div>
             </div>
-
-
-
-
             <div class="">
-
                 <label class="d-block" for="">Digite o Valor do Serviço</label>
                 <InputNumber class="" v-model="Servico.ValorServico" inputId="stacked-buttons" showButtons mode="currency"
                     currency="BRL" />
             </div>
-
             <div class="mb-3" style="max-width: 300px;">
                 <label class="d-block" for="">Estimativa de idade</label>
                 <input v-model="Servico.EstimativaIdade" class="form-control d-block" type="number" name="" id="">
             </div>
-
-
-
             <div class="d-flex justify-content-between mb-3">
-
-
                 <div class="card flex justify-content-center" style="min-width: 300px;">
                     <label for="">Data de Inicio</label>
                     <!-- <Calendar v-model="Servico.DataInicio" showIcon dateFormat="dd/mm/yy" /> -->
@@ -131,81 +80,35 @@
                     <!-- <Calendar v-model="Servico.DataTermino" showIcon dateFormat="dd/mm/yy" /> -->
                     <input class="form-control" type="date" name="" id="" v-model="Servico.DataTermino">
                 </div>
-
             </div>
-
-
-
-
-            <button @click="teste()">
-                teste
-            </button>
-
-
-            <!-- <div class="card mb-3">
-                <Toast />
-                <FileUpload name="demo[]" @upload="onAdvancedUpload($event)" :multiple="true" accept="image/*"
-                    :maxFileSize="1000000">
-                    <template #empty>
-                        <p>Carregue suas imagens aqui.</p>
-                    </template>
-                </FileUpload>
-            </div> -->
-
-
-
             <div class="mb-3">
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02" @input="Servico.IMG" multiple max="5">
+                    <input type="file" class="form-control" id="inputGroupFile02" @change="GetIMG" multiple max="5">
                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
-
             </div>
-
-
-
-
-
-
-
-
-
-
             <div class="form-floating mb-3">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                     style="height: 100px" v-model="Servico.Texto"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
-
-
-
             <div>
-
                 <div v-if="store.getters.GetToken == null" class="d-flex flex-row-reverse">
                     <button class="btn btn-primary" @click="$router.push({ path: '/login' })">
                         Criar Serviço
                     </button>
                 </div>
-
-
-
-
                 <div v-else class="d-flex flex-row-reverse">
-
                     <button class="btn btn-primary" @click="Salvar(), createServico()">Criar Serviço</button>
                 </div>
-
-
             </div>
         </div>
-
     </div>
 </template>
-  
+
 <script>
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
-// import skills from '@/store/modules/skills';
 export default {
     name: "CriarServicoComponent",
     data() {
@@ -230,9 +133,10 @@ export default {
                 EstimativaIdade: "",
                 DataInicio: "",
                 DataTermino: "",
-                IMG: {},
+                IMG: [],
                 Texto: "",
                 Titulo: "",
+                IdServico: null,
             }
         };
     },
@@ -243,27 +147,9 @@ export default {
 
     },
     created() {
-        // const professions = this.$store.getters.GetProfessions;
-        // const skill = this.$store.getters.GetSkills;
-
-        // // Crie o array com nome da profissão e código da categoria
-        // this.profissaoCategoriaArray = professions.map(profissao => {
-        //     const categoriaID = profissao.tb_categoria_idtb_categoria;
-        //     const categoria = skill.find(cat => cat.idtb_categoria === categoriaID) || {};
-        //     return {
-        //         name: profissao.Profissao,
-        //         code: categoria.Categoria,
-        //     };
-        // });
-
-
-
         const professions = store.getters.GetProfessions;
         const categorys = store.getters.Getcategorys;
 
-
-
-        // Crie o array no modelo de groupedCities
         this.profissaoCategoriaArray = Array.from(new Set(professions.map(profissao => profissao.tb_categoria_idtb_categoria)))
             .map(categoriaID => {
                 const categoria = categorys.find(cat => cat.idtb_categoria === categoriaID);
@@ -284,27 +170,10 @@ export default {
             console.log(this.cep)
             this.handleCep()
         },
-        // km() {
-        //     console.log(this.distancia)
-        //     this.KM()
-        // },
-        // profhabil() {
-        //     console.log(this.selectedProfissao)
-        //     this.Prof();
-
-        // },
-        // habil() {
-        //     console.log(this.selectedHabilidade)
-        //     this.Habil();
-        // }
     },
     methods: {
-        onAdvancedUpload() {
-            this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-            console.log(this.$toast, "imgggg");
-        },
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress", "clearAddressData", "CreateServico"]),
+        ...mapActions(["GetAddress", "clearAddressData", "CreateServico", "CreateServicoIMG", "getInfoServico"]),
         ...mapGetters(["GetToken"]),
 
         async handleCep() {
@@ -316,70 +185,33 @@ export default {
                 await this.showError(error)
             }
         },
-        teste() {
-            // console.log(this.selectedHabilidade, "Habilist");
-            // this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
-            // this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
-            console.log(this.Servico.Habilidade);
-            // console.log(this.Servico.Profissao);
-            // console.log(this.Servico.EstimativaKM);
-        },
-        // Prof() {
-        //     try {
-        //         this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // },
-        // Habil() {
-        //     try {
-        //         this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // },
-        // KM() {
-        //     try {
-        //         this.Servico.EstimativaKM = this.distancia;
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // },
-
-
         Salvar() {
-            // this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => Habi.idtb_habilidades);
-            // this.Servico.Profissao = this.selectedProfissao.map((Prof) => Prof.value);
-            // this.Servico.EstimativaKM = this.distancia;
-
-
             this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => ({ id: Habi.idtb_habilidades }));
             this.Servico.Profissao = this.selectedProfissao.map((Prof) => ({ id: Prof.value }));
             this.Servico.EstimativaKM = this.distancia;
-
-
-
         },
         onChange: function (event) {
-            console.log(event.target.value, "change")
+            // console.log(event.target.value, "change")
             const skill = event.target.value;
             this.Servico.Habilidade = skill.map((Habi) => Habi.idtb_habilidades);
         },
+        GetIMG(event) {
+
+            const maxFileCount = 5; // Define o número máximo de arquivos permitidos
+
+            if (event.target.files.length > maxFileCount) {
+                alert(`Você pode selecionar no máximo ${maxFileCount} arquivos.`);
+                event.target.value = ''; // Limpa a seleção
+            }
 
 
-
-
-
-
-
+            this.Servico.IMG = event.target.files
+        },
         async createServico() {
-
-
             this.Servico.Cidade = store.getters.city.cidade,
                 this.Servico.Estado = store.getters.city.estado,
                 this.Servico.Bairro = store.getters.city.bairro,
                 this.Servico.Endereco = store.getters.city.endereco
-
 
             const InfoServico = new FormData();
             InfoServico.append("profissoes", JSON.stringify(this.Servico.Profissao));
@@ -399,32 +231,47 @@ export default {
             InfoServico.append("Desc", this.Servico.Texto);
             InfoServico.append("Titulo_Servico", this.Servico.Titulo);
 
-
-
             const infoPayLoad = {
                 token: this.GetToken(),
                 info: InfoServico
             }
             try {
-                // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
+
                 await this.CreateServico(infoPayLoad)
+
+                await this.getInfoServico(this.GetToken())
+                const id = store.getters.StateServico
+                this.Servico.IdServico = id[id.length - 1].servicoInfo.idtb_servico
+
+                await this.createServicoImg()
+            } catch (error) {
+                console.log(error);
+
+            }
+        },
+        async createServicoImg() {
+            const servicoImg = new FormData();
+
+
+            for (let i = 0; i < this.Servico.IMG.length; i++) {
+                servicoImg.append('image[]', this.Servico.IMG[i]);
+                console.log(this.Servico.IMG[i])
+            }
+            const infoPayLoadIMG = {
+                token: this.GetToken(),
+                img: servicoImg,
+                id: this.Servico.IdServico
+            }
+            try {
+                await this.CreateServicoIMG(infoPayLoadIMG)
             } catch (error) {
                 console.log(error);
             }
-
         },
-
-
-
-
-
-
-
-
-
-
-
-
+        findById(id) {
+            const idIMG = id
+            return this.items.find(item => item.idIMG === idIMG);
+        },
     }
 };
 </script>

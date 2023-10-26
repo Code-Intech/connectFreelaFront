@@ -35,7 +35,7 @@ const state = {
       },
     ],
   },
-  errors: null,
+  errors: [],
 };
 const getters = {
   StateServico: (state) => state.servico,
@@ -78,7 +78,20 @@ const actions = {
       }
     );
     // console.log(request);
-    commit("createprestador", { infocreate: await request.error.message });
+    commit("createprestador", { infocreate: await request.data.message });
+  },
+  async CreateServicoIMG({ commit }, { token, img, id }) {
+    const request = await axios.post(
+      `http://localhost:8000/api/servico/upload/img/${id}`,
+      img,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    commit("createServicoIMG", { infocreate: await request.data.message });
   },
 
   async getInfoServico({ commit }, token) {
@@ -99,6 +112,12 @@ const actions = {
 
 const mutations = {
   createprestador(state, { infocreate }) {
+    console.log(infocreate);
+    // console.log(state,"state")
+    state.errors = infocreate;
+    // console.log(state.edituser,"get")
+  },
+  createServicoIMG(state, { infocreate }) {
     console.log(infocreate);
     // console.log(state,"state")
     state.errors = infocreate;
