@@ -1,33 +1,20 @@
 <template>
     <div class="col-10 ">
 
-
         <div class="border border-2 rounded m-5">
 
 
-
-
             <div class="" style="border-bottom: 2px solid black;">
-
-
 
                 <button class="btn btn-primary m-2" type="button" data-bs-toggle="modal" data-bs-target="#criarportfolio">
                     Criar Portfolio
                 </button>
 
-
-
-
             </div>
-
-
-
-
 
             <div class="" style="min-height: 200px;">
                 <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
                     <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
-                        {{ album }}
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
@@ -82,46 +69,14 @@
                         </div>
 
 
-
-
-
                         <ModalVerAlbum :modal-id="album.portifolio.idtb_portifolio" :albomModal="album" />
                         <ModalEditarAlbum :modal-id="album.portifolio.idtb_portifolio" :albomModal="album" />
 
 
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-
-
-
-
-        <!-- Modal Criar Album-->
-
-
-
-
-
-
-
-
-
-
 
 
         <!-- Modal Criar Album-->
@@ -187,18 +142,13 @@
                                             <label for="floatingTextarea2">Comments</label>
                                         </div>
 
-
-
-
                                     </div>
                                     <div class="card-body">
                                         <div>
 
-
                                             <h6>
                                                 Carregue Suas Imagens
                                             </h6>
-
 
                                             <div class="input-group">
                                                 <input type="file" class="form-control btn btn-outline-primary"
@@ -221,68 +171,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-        <!-- Modal Ver Album -->
-        <!-- <div class="modal fade" id="veralbum" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
-            <div class="modal-dialog  modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="veralbum">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div id="carouselEx" class="carousel slide">
-                            <div class="carousel-inner" style="max-height: 40rem;">
-                                <div class="carousel-item active">
-                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                        class="d-block w-100" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                        class="d-block w-100" alt="">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg"
-                                        class="d-block w-100" alt="">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselEx"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselEx"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-
-
-                        <div class="border-top border-2 border-black mt-3">
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem magnam
-                                accusantium, laborum suscipit repellendus iure natus voluptatem necessitatibus
-                                error nam sint! Blanditiis alias molestiae molestias quidem officiis,
-                                perferendis voluptates sunt.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
     </div>
 </template>
 
@@ -450,26 +338,6 @@ export default {
             this.ifalbum = false;
         },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        teste() {
-            console.log(this.album.Fotos)
-        }
     },
 
 }

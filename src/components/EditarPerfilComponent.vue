@@ -1,20 +1,5 @@
 <template>
     <div class="col-10 h-100 d-inline-block">
-
-
-        <!--        <div class="mb-3 mt-3">-->
-
-        <!--            <h5>-->
-        <!--                Carregue sua Foto de Perfil-->
-        <!--            </h5>-->
-        <!--            <input :value="fotoData.FTAvatar" class="form-control" type="file" id="formFile"-->
-        <!--                style="border-color: var(&#45;&#45;purple-primary)">-->
-
-        <!--            <button @click="getFoto()" type="">Enviar</button>-->
-
-
-        <!--        </div>-->
-
         <div>
             <div>
                 <h2>Informações Pessoais</h2>
@@ -47,9 +32,6 @@
             <div class="row">
                 <div class="col">
                     <label class="form-label" for="">Gênero</label>
-                    <!-- <input class="form-control" type="text" name="" id=""
-                        style="max-width: 800px; border-color: var(--purple-primary)" /> -->
-
                     <select style="max-width: 800px; border-color: var(--purple-primary)" class="form-select" name="Genero"
                         id="" aria-placeholder="Genero:" required v-model="infoUser.Genero">
                         <option value="">Selecione:</option>
