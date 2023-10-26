@@ -1,12 +1,23 @@
 <template>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4" v-for="(valores, index) in valor" :key="valores[index]">
-                <div class="mt-3 ms-2 d-flex gap-4 flex-wrap">
+    <div class="">
+        <div class="d-flex flex-wrap">
+            <div class=" m-3" v-for="(valores, index) in valor" :key="valores[index]">
+                <div class="mt-3 ms-2 ">
                     <div class="card" style="width: 25rem;">
+                        <div class="card-header border-black d-flex justify-content-between">
+                            <div>
+                                <h5 class="text-center">{{ valores.servicoInfo.Titulo_Servico }}</h5>
 
-                        <div class="card-header border-black">
-                            <p>{{ valores.servicoInfo.Titulo_Servico }}</p>
+                            </div>
+                            <div>
+                                <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Data
+                                    de
+                                    Publicação:
+                                </h6>
+                                <h6 class="fst-italic" style="font-size: smaller;">
+                                    12/10/2003
+                                </h6>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div clss="container">
@@ -14,23 +25,8 @@
                                     <div class="col-md-3">
                                         <AvatarComponent />
                                     </div>
-                                    <div class="col">
-                                        <text class="fst-italic">{{ valores.contratante.Nome_Completo }}</text>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="container texts">
-                                <div class="row">
-                                    <div class="col-lg-8 justify-content-start">
-                                        <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
-                                            Profissão:
-                                        </h6>
-                                        <h6 class="fst-italic" style="font-size: smaller;">
-                                            <div v-for="(val, index2) in valores.servicoProfessions" :key="val[index2]">
-                                                {{ val.Profissao }};<br>
-                                            </div>
-                                        </h6>
+                                    <div class="col ">
+                                        <text class="fst-italic  ">{{ valores.contratante.Nome_Completo }}</text>
                                     </div>
                                     <div class="col justify-content-start ms-5">
                                         <h6 class="fst-italic" style="font-size: smaller;">
@@ -44,24 +40,23 @@
                                 </div>
                             </div>
 
+                            <div class="container texts">
+                                <div class="row">
+
+
+                                </div>
+                            </div>
+
                             <div class="border-bottom border-black justify-content-start">
                                 <div class="container">
                                     <div class="row">
-                                        <div>
-                                            <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Data
-                                                de
-                                                Publicação:
-                                            </h6>
-                                            <h6 class="fst-italic" style="font-size: smaller;">
-                                                12/10/2003
-                                            </h6>
-                                        </div>
+
                                         <div class="col-7">
                                             <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
                                                 Data de Início:
                                             </h6>
                                             <h6 class="fst-italic" style="font-size: smaller;">
-                                                {{ formattedDate }}
+                                                {{ formatData(valores.servicoInfo.Data_Inicio) }}
                                             </h6>
                                         </div>
 
@@ -70,7 +65,7 @@
                                                 Estimativa de Término:
                                             </h6>
                                             <h6 class="fst-italic" style="font-size: smaller;">
-                                                {{ valores.servicoInfo.Estimativa_de_termino }}
+                                                {{ formatData(valores.servicoInfo.Estimativa_de_termino) }}
                                             </h6>
                                         </div>
                                     </div>
@@ -79,33 +74,45 @@
 
                             <div class="container">
                                 <div class="row">
-                                    <div class="row">
-                                        <p class="col-6 text-success">
-                                            Localidade:
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex ">
+                                            <p class=" text-success ">
+                                                Cidade:
+                                            </p>
+                                            <p class=" text-right ps-2">
+                                                {{ valores.localidade.Cidade }}
+                                            </p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class=" text-success ps-2">
+                                                Estado:
+                                            </p>
+                                            <p class=" text-right ps-2">
+                                                {{ valores.localidade.Estado }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <p class=" text-success">
+                                            Bairro:
                                         </p>
-                                        <p class="col text-right">
-                                            {{ valores.localidade.Cidade }}, {{ valores.localidade.Estado }},
+                                        <p class=" text-right ps-2">
+
                                             {{ valores.localidade.Bairro }}
                                         </p>
                                     </div>
 
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <p class="col-8 text-success">
                                             Distancia estipulada:
                                         </p>
                                         <p class="col">
                                             {{ valores.servicoInfo.Estimativa_de_distancia }}Km
                                         </p>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="row">
-                                        <p class="col-9 text-success">
-                                            Estimativa de Idade:
-                                        </p>
-                                        <p class="col">
-                                            {{ valores.servicoInfo.Estimativa_Idade }}
-                                        </p>
-                                    </div>
+
 
                                     <div class="row">
                                         <p class="col-9 text-success">
@@ -118,18 +125,30 @@
                                 </div>
                             </div>
 
-                            <div class="justify-content-between">
+                            <div class="justify-content-between overflow-y-auto border-top border-bottom border-black"
+                                style="height: 150px;">
+                                <p class="card-text  p-2">{{ valores.servicoInfo.Desc
+                                }}
+                                </p>
                             </div>
 
-                            <p class="card-text border-top border-bottom border-black">{{ valores.servicoInfo.Desc }}
-                            </p>
+                            <div class="border-bottom border-black justify-content-start p-2"
+                                style="overflow-y:scroll;height: 100px;">
+                                <h6 class="">
+                                    Profissão:
+                                </h6>
+                                <h6 class="">
+                                    <div v-for="(val, index2) in valores.servicoProfessions" :key="val[index2]">
+                                        {{ val.Profissao }};<br>
+                                    </div>
+                                </h6>
+                            </div>
 
-
-                            <div class="border-bottom border-black ">
+                            <div class="border-bottom border-black p-2">
                                 <h4>
                                     Habilidade
                                 </h4>
-                                <div class="">
+                                <div class="" style="overflow-y:scroll;height: 150px;">
 
                                     <ul class="d-flex gap-4 flex-wrap">
                                         <li v-for="(val2, index3)    in valores.servicoSkills" :key="val2[index3]">
@@ -141,19 +160,19 @@
 
                             </div>
 
-                            <div class="container">
-                                <div class="row justify-content-between">
-                                <div class="col-6 buttuns mt-3">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"
-                                        style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
-                                        Proposta</button>
-                                </div>
-                                <div class="col buttuns mt-3">
-                                    <button @click="$router.push({ path: '/ViewPropostas' })" type="button"
-                                        class="btn btn-primary"
-                                        style="background-color: rgb(247, 162, 5); font-size: small; border:none;">Ver
-                                        Propostas</button>
+                            <div class=" ">
+                                <div class=" d-flex align-items-end align-itens-end border-top border-black ">
+                                    <div class="buttuns mt-3 align-self-end">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal"
+                                            style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
+                                            Proposta</button>
+                                    </div>
+                                    <div class=" buttuns mt-3">
+                                        <button @click="$router.push({ path: '/ViewPropostas' })" type="button"
+                                            class="btn btn-primary"
+                                            style="background-color: rgb(247, 162, 5); font-size: small; border:none;">Ver
+                                            Propostas</button>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +201,9 @@ export default {
         return {
             images: null,
             valor: [],
-            originalDate: store.getters.StateServico.Data_Inicio,
+            originalDate: null,
+            tttt: null,
+
             responsiveOptions: [
                 {
                     breakpoint: '1500px',
@@ -207,6 +228,7 @@ export default {
 
     created() {
         this.getAllServicos();
+        this.formatData();
     },
     computed: {
         store() {
@@ -214,8 +236,8 @@ export default {
         },
 
         formattedDate() {
-      return this.formatDate(this.originalDate);
-    }
+            return this.formatDate(this.originalDate);
+        }
     },
 
     methods: {
@@ -225,15 +247,24 @@ export default {
 
         getAllServicos() {
             this.valor = store.getters.StateServico
+
         },
 
-        formatDate(dateTimeString) {
-      const date = new Date(dateTimeString);
-      const day = date.getDate();
-      const month = date.getMonth() + 1; // Lembre-se de que os meses em JavaScript começam em 0
-      const year = date.getFullYear();
-      return `${day}/${month}/${year}`;
-    },
+        formatData(data) {
+            // Converter a string para um objeto Date
+            const dataObj = new Date(data);
+
+            // Extrair o dia, mês e ano da data
+            const dia = dataObj.getDate(); // Retorna o dia do mês (1-31)
+            const mes = dataObj.getMonth() + 1; // O mês é baseado em zero (0-11), então somamos 1
+            const ano = dataObj.getFullYear();
+
+            // Formatar a data no formato desejado (dia/mês/ano)
+            const dataFormatada = `${dia}/${mes}/${ano}`;
+
+            return dataFormatada;
+        },
+
     },
 
 }
