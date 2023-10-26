@@ -9,8 +9,8 @@
                 <div class="position-relative justify-content-center">
                     <!-- <img class="img-fluid border border-2 border-black" src="../assets/img/imagem-user.png" alt="">
                     <a href=""><font-awesome-icon class=" position-absolute bottom-0 end-0 bg-white" icon="pen" style="min-height: 1rem;min-width: 1rem; color: black;" /></a> -->
-                    <Avatar class="img-fluid" :source="store.getters.StateAvatar" height="auto" width="auto"
-                        :rounded="false" style="max-width: auto;min-width: auto;" />
+                    <Avatar class="img-fluid" :source="store.getters.StateAvatar" height="auto" width="500px"
+                        :rounded="false" />
                 </div>
                 <div class="position-absolute opacity-75">
                     <img class="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
