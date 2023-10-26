@@ -7,13 +7,13 @@
                     Propostas Enviadas
                 </button>
             </div>
-            <div class="d-flex m-2">
+            <div class="m-2">
                 <div class="">
-                    {{ valorServico }}
-                    <div class="d-flex flex-wrap">
-                        <div class="m-3">
-                            <div class="" v-if="ifServico">
-                                <div class="card" style="width: 25rem;" v-for="(servico, index) in valorServico"
+                    <!-- {{ valorServico }} -->
+                    <div class="">
+                        <div class="">
+                            <div class="d-flex flex-wrap" v-if="ifServico">
+                                <div class="card m-auto mt-4" style="width: 25rem;" v-for="(servico, index) in valorServico"
                                     :key="servico[index]">
                                     <div class="card-header border-black d-flex justify-content-between">
                                         <div>
@@ -157,7 +157,7 @@
                                             </h4>
                                             <div class="" style="overflow-y:scroll;height: 150px;">
 
-                                                <ul class="d-flex gap-4 flex-wrap">
+                                                <ul class=" gap-4 ">
                                                     <li v-for="(skill, index) in servico.servicoSkills" :key="skill[index]">
 
                                                         {{ skill.Habilidade }}
