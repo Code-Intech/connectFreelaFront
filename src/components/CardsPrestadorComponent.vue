@@ -1,12 +1,12 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 mb-3 mb-sm-0 m-3 " v-for="(valores, index) in valor" :key="valores[index]">
+    <div class="">
+        <div class="d-flex flex-wrap">
+            <div class="col-sm-3 mb-3 mb-sm-0 m-3 " v-for="(valores, index) in valor" :key="valores[index]"
+                style="width: 440px;">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-row mb-3 ">
-                            <Avatar class=""
-                                source="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" />
+                            <Avatar class="" source="" />
                             <h6 class="card-title d-flex align-content-center flex-wrap ms-3">
                                 {{ valores.prestadorInfo.Nome_Empresa }}</h6>
 
@@ -34,8 +34,9 @@
                         </div>
 
 
-                        <div class="border-top border-black">
-                            <div class="d-flex flex-row mt-1">
+                        <div class="border-top border-black  ">
+                            <div class="d-flex flex-row mt-1 overflow-y-auto border-bottom border-black"
+                                style="height: 110px;">
                                 <h6>
                                     Profissões:
                                 </h6>
@@ -46,7 +47,7 @@
                                 </h6>
 
                             </div>
-                            <div class="d-flex" style="max-height: 110px;">
+                            <div class="d-flex overflow-y-auto " style="max-height: 110px;">
 
                                 <ul>
                                     <li v-for="(val2, index3)    in valores.prestadorSkills" :key="val2[index3]">
@@ -60,10 +61,8 @@
 
                             </div>
                         </div>
-                        <div class="mt-2 mb-2 border-top border-bottom border-black">
-                            <p class="card-text">Programador a 10 anos Lorem ipsum dolor sit, amet consectetur adipisicing
-                                elit. Dignissimos amet ad enim nam vitae minima fugiat, totam praesentium eos mollitia,
-                                expedita debitis vel quibusdam nulla deleniti? Fuga rerum quia distinctio?</p>
+                        <div class="mt-2 mb-2 border-top border-bottom border-black overflow-y-auto" style="height: 150px;">
+                            <p class="card-text">{{ valores.prestadorGrettings.Apresentacao }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href=""
