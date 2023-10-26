@@ -172,19 +172,21 @@
                                             <div class=" d-flex align-items-end align-itens-end border-top border-black ">
                                                 <div class="col mt-3">
                                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                        data-bs-target="#VerPropostas"
+                                                        :data-bs-target="'#VerPropostas' + servico.servicoInfo.idtb_servico"
                                                         style="font-size: small; border:none;">Ver Propostas </button>
                                                 </div>
                                                 <div class="col mt-3 text-end">
                                                     <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                        data-bs-target="#PropostasAceita"
+                                                        :data-bs-target="'#PropostasAceita' + servico.servicoInfo.idtb_servico"
                                                         style="font-size: small; border:none;">Proposta Aceita</button>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <CardModalVerPropostas />
-                                        <CardModalPropostaAceita />
+                                        <CardModalVerPropostas :infoServico="servico"
+                                            :idModal="servico.servicoInfo.idtb_servico" />
+                                        <CardModalPropostaAceita :infoServico="servico"
+                                            :idModal="servico.servicoInfo.idtb_servico" />
                                         <CardModalPropostasEnvidas />
 
                                     </div>

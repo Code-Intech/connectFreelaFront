@@ -256,22 +256,49 @@ import CardAvaliar from "@/components/CardAvaliar";
 // import store from "@/store";
 // import { mapActions, mapGetters } from 'vuex'
 // import loading from "@/components/Loading.vue"
-
+import store from "@/store";
 
 
 export default {
     name: "CardModalPropostaAceita",
     props: {
-
+        idModal: {
+            type: String,
+            require: true,
+        },
+        infoServico: {
+            type: Array,
+            require: true
+        }
     },
     data() {
         return {
-
+            valorServico: [],
         }
     },
     components: {
         CardAvaliar,
-    }
+    },
+    component: {
+        store() {
+            return store
+        },
+    },
+    created() {
+        this.getinfos();
+    },
+    methods: {
+        getinfos() {
+
+            if (store.getters.StateServico != null || store.getters.StateServico != undefined) {
+
+                this.valorServico = store.getters.StateServico
+            }
+
+
+
+        }
+    },
 
 
 }

@@ -1,6 +1,6 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="VerPropostas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" :id="'VerPropostas' + idModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -14,7 +14,7 @@
 
 
                         <div class="">
-                            <div class="card mt-5" style="max-width: 120vh;">
+                            <div class="card mt-5" style="width: 90vh;">
                                 <Card>
                                     <template #title>
                                         <AvatarComponent />
@@ -24,7 +24,7 @@
 
                                             <div>
 
-                                                <text class="fst-italic">Nome de perfil</text>
+                                                <text class="fst-italic">{{ valorServico.contratante.Nome_Completo }}</text>
                                                 <p class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
                                                     Profissão:
                                                     Programador
@@ -33,10 +33,12 @@
                                             <div class="">
 
                                                 <h6 class="" style="font-size: 15px;">
-                                                    <font-awesome-icon class="me-1" icon="money-bill" />R$: 9000,00
+                                                    <font-awesome-icon class="me-1" icon="money-bill" />R$: {{
+                                                        valorServico.servicoInfo.Estimativa_Valor }}
                                                 </h6>
                                                 <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
-                                                    Remoto
+                                                    Remoto {{
+                                                        valorServico.servicoInfo.Remoto_Presencial }}
                                                 </h6>
                                             </div>
                                         </div>
@@ -59,7 +61,16 @@
                                                     Data de Inicio:
                                                 </h6>
                                                 <h6>
-                                                    25/11/2023
+                                                    {{ valorServico.servicoInfo.Data_Inicio }}
+                                                </h6>
+                                            </div>
+                                            <div>
+
+                                                <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
+                                                    Data de Termino:
+                                                </h6>
+                                                <h6>
+                                                    {{ valorServico.servicoInfo.Estimativa_de_termino }}
                                                 </h6>
                                             </div>
                                         </div>
@@ -75,11 +86,31 @@
 
                                         <div class="d-flex justify-content-between">
                                             <p class="text-info">
-                                                Localidade:
+                                                Cidade:
                                             </p>
 
                                             <p class="text-info">
-                                                São Paulo
+                                                {{ valorServico.localidade.Cidade }}
+                                            </p>
+
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="text-info">
+                                                Estado:
+                                            </p>
+
+                                            <p class="text-info">
+                                                {{ valorServico.localidade.Estado }}
+                                            </p>
+
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <p class="text-info">
+                                                Bairro:
+                                            </p>
+
+                                            <p class="text-info">
+                                                {{ valorServico.localidade.Bairro }}
                                             </p>
 
                                         </div>
@@ -95,7 +126,7 @@
 
 
                                             <p>
-                                                23
+                                                {{ valorServico.servicoInfo.Estimativa_Idade }}
                                             </p>
 
                                         </div>
@@ -125,15 +156,8 @@
 
 
 
-                                        <p class="card-text border-top border-bottom border-black">Some quick example text
-                                            to build on the
-                                            card
-                                            title
-                                            and make up the bulk of the card's
-                                            content. and make up the bulk of the card's
-                                            content. and make up the bulk of the card's
-                                            content. and make up the bulk of the card's
-                                            content.
+                                        <p class="card-text border-top border-bottom border-black">{{
+                                            valorServico.servicoInfo.Desc }}
                                         </p>
 
 
@@ -149,27 +173,31 @@
                                             <div class="">
 
                                                 <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        php
+                                                    <li v-for="(skill, index) in valorServico.servicoSkills"
+                                                        :key="skill[index]">
+                                                        {{ skill.Habilidade }}
                                                     </li>
-                                                    <li>
-                                                        Java
+
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="border-bottom border-black ">
+                                            <h4>
+
+                                                Profissão:
+                                            </h4>
+
+
+                                            <div class="">
+
+                                                <ul class="d-flex gap-4 flex-wrap">
+                                                    <li v-for="(skill, index) in valorServico.servicoProfessions"
+                                                        :key="skill[index]">
+                                                        {{ skill.Profissao }}
                                                     </li>
-                                                    <li>
-                                                        JavaScript
-                                                    </li>
-                                                    <li>
-                                                        WorldPress
-                                                    </li>
-                                                    <li>
-                                                        Linux
-                                                    </li>
-                                                    <li>
-                                                        HTML5
-                                                    </li>
-                                                    <li>
-                                                        CSS3
-                                                    </li>
+
                                                 </ul>
                                             </div>
 
@@ -386,16 +414,39 @@
 // import store from "@/store";
 // import { mapActions, mapGetters } from 'vuex'
 // import loading from "@/components/Loading.vue"
-
+import store from "@/store";
 
 
 export default {
     name: "CardModalVerPropostas",
     props: {
-
+        idModal: {
+            type: String,
+            require: true,
+        },
+        infoServico: {
+            type: Array,
+            require: true
+        }
     },
     data() {
         return {
+            valorServico: [],
+        }
+    },
+    component: {
+        store() {
+            return store
+        },
+    },
+    created() {
+        this.getinfos();
+    },
+    methods: {
+        getinfos() {
+
+            this.valorServico = this.infoServico
+
 
         }
     },
