@@ -216,8 +216,8 @@ const mutations = {
     // console.log(sucess, "state");
     state.errors = errors;
   },
-  LogOutAvatar(state) {
-    state.fotoavatar = null;
+  LogOutAlbum(state) {
+    state.portifolios = null;
   },
 };
 export default {

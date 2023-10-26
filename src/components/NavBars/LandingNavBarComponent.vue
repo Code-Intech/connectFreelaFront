@@ -117,7 +117,7 @@ export default {
     validateOnBack: Boolean,
     ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador"]),
     ...mapGetters(["GetToken"]),
-    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador"]),
+    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador", "LogOutAlbum"]),
     async getinfo() {
       try {
         await this.d(this.GetToken());
@@ -135,6 +135,8 @@ export default {
         this.LogOutAvatar();
         this.LogOutUpUser();
         this.LogOutPrestador();
+        this.LogOutAlbum();
+
       }, 2000);
     },
 

@@ -202,6 +202,7 @@ export default {
         await this.Register(User);
         this.$router.push("/");
         this.clearAddressData();
+        await this.getInfoUser(this.GetToken());
       } catch (error) {
         console.log(error)
         await this.showError(error, 10000)
