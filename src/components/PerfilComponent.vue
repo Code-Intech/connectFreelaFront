@@ -3,7 +3,7 @@
         style="height: 88vh; background-color: var(--purple-tertiary);">
         <div class="d-flex justify-content-center ">
             <!-- <img class="mt-4 rounded img-fluid" src="../assets/img/mamaco.jpeg" alt="" style="width: 15rem; height: 15rem;"> -->
-            <Avatar :source="store.getters.StateAvatar" class="mt-4 img-fluid" width="15rem" height="15rem"
+            <Avatar :source="store.getters.StateAvatar" class="mt-4 img-fluid p-3" height="auto" width="500px"
                 :rounded="false" />
         </div>
 
