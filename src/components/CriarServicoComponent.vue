@@ -5,13 +5,14 @@
         <div class="border rounded p-3 mt-4" style="max-width: 120vh; width: 70%;">
 
 
-            <div class="d-flex  flex-wrap mb-3">
+            <div class="   mb-3">
 
-                <div>
-                    <input type="text" name="" id="" placeholder="Titulo" v-model="Servico.Titulo">
+                <div style="width: 100vh;">
+                    <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
+                        v-model="Servico.Titulo">
                 </div>
 
-                <div class="p-2 flex-grow-1">
+                <div class="p-2 ms-2 flex-grow-1">
                     <div class="card flex justify-content-center">
                         <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
                             optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" display="chip"

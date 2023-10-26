@@ -9,7 +9,8 @@
                 <div class="position-relative justify-content-center">
                     <!-- <img class="img-fluid border border-2 border-black" src="../assets/img/imagem-user.png" alt="">
                     <a href=""><font-awesome-icon class=" position-absolute bottom-0 end-0 bg-white" icon="pen" style="min-height: 1rem;min-width: 1rem; color: black;" /></a> -->
-                    <Avatar :source="store.getters.StateAvatar" height="15rem" width="12rem" :rounded="false" />
+                    <Avatar class="img-fluid" :source="store.getters.StateAvatar" height="auto" width="auto"
+                        :rounded="false" style="max-width: auto;" />
                 </div>
                 <div class="position-absolute opacity-75">
                     <img class="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
@@ -81,7 +82,7 @@
                     class="btn btn-outline-primary text-white  border-white">Dashboard</button>
                 <button @click="$router.push({ path: '/ViewPropostaContratante' })"
                     class="btn btn-outline-primary text-white  border-white">Ver Propostas</button>
-                    <button @click="$router.push({ path: '/MeuServico' })"
+                <button @click="$router.push({ path: '/MeuServico' })"
                     class="btn btn-outline-primary text-white  border-white">Meus Serviços</button>
                 <button @click=" getskill()" class="btn btn-outline-primary text-white  border-white">Informações do
                     Prestador</button>
