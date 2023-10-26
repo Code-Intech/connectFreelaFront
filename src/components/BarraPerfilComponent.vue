@@ -80,10 +80,10 @@
                 <button @click=" getalbum()" class="btn btn-outline-primary text-white  border-white">Portfólio</button>
                 <button @click="$router.push({ path: '/' })"
                     class="btn btn-outline-primary text-white  border-white">Dashboard</button>
-                <button @click="$router.push({ path: '/ViewPropostaContratante' })"
-                    class="btn btn-outline-primary text-white  border-white">Ver Propostas</button>
-                <button @click="$router.push({ path: '/MeuServico' })"
-                    class="btn btn-outline-primary text-white  border-white">Meus Serviços</button>
+                <button @click="getServicoPropostas()" class="btn btn-outline-primary text-white  border-white">Ver
+                    Propostas</button>
+                <button @click="getServicoMeuServico()" class="btn btn-outline-primary text-white  border-white">Meus
+                    Serviços</button>
                 <button @click=" getskill()" class="btn btn-outline-primary text-white  border-white">Informações do
                     Prestador</button>
 
@@ -122,7 +122,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador", "getInfoUser", "GetAlbum"]),
+        ...mapActions(["getUser", "upInfoUser", "getSkills", "GetFoto", "getProfessions", "getcategory", "getInfoPrestador", "getInfoUser", "GetAlbum", "getInfoServico"]),
         ...mapGetters(["GetToken"]),
 
         async getFoto() {
@@ -177,6 +177,24 @@ export default {
             } catch (error) {
 
                 this.$router.push({ path: '/PerfilPortfolio' })
+            }
+        },
+        async getServicoMeuServico() {
+            try {
+                await this.getInfoServico(this.GetToken());
+                this.$router.push({ path: '/MeuServico' })
+            } catch (error) {
+
+                this.$router.push({ path: '/MeuServico' })
+            }
+        },
+        async getServicoPropostas() {
+            try {
+                await this.getInfoServico(this.GetToken());
+                this.$router.push({ path: '/ViewPropostaContratante' })
+            } catch (error) {
+
+                this.$router.push({ path: '/ViewPropostaContratante' })
             }
         },
 

@@ -33,7 +33,7 @@ const state = {
         Habilidade: null,
         idtb_habilidades: null,
       },
-    ]
+    ],
   },
   errors: null,
 };
@@ -87,13 +87,13 @@ const actions = {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(request, "GetServico");
-    commit("setservico", { infoprestador: await request.data.servico });
+    // console.log(request, "GetServico");
+    commit("setservico", { infoservicome: await request.data.servico });
   },
 
   async getServico({ commit }) {
     const request = await axios.get("http://localhost:8000/servico", {});
-    commit("setCardsServico", {infoservicocard: await request.data.servico});
+    commit("setCardsServico", { infoservicocard: await request.data.servico });
   },
 };
 
@@ -105,16 +105,16 @@ const mutations = {
     // console.log(state.edituser,"get")
   },
 
-  setservico(state, { infoservico }) {
-    // console.log(infoprestador, "SETPrestador");
+  setservico(state, { infoservicome }) {
+    // console.log(infoservicome, "SETPrestador");
     // console.log(state,"state")
-    state.servico = infoservico;
-    console.log(state.prestador, "SETServico");
+    state.servico = infoservicome;
+    // console.log(state.prestador, "SETServico");
   },
 
   setCardsServico(state, { infoservicocard }) {
     state.servico = infoservicocard;
-    console.log(state.servico, "setCardsServico");
+    // console.log(state.servico, "setCardsServico");
   },
 
   //   LogOutPrestador(state) {

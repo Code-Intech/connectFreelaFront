@@ -161,6 +161,12 @@
 
 
                                     </div>
+                                    <div class="border-top border-black">
+
+                                        <button type="button" class="btn btn-primary mt-3 " data-bs-toggle="modal"
+                                            data-bs-target="#Avaliar">Avaliar
+                                            Contratante</button>
+                                    </div>
                                 </template>
                             </Card>
                         </div>
@@ -168,8 +174,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Avaliar">Avaliar
-                        Contratante</button>
+
                 </div>
             </div>
         </div>
