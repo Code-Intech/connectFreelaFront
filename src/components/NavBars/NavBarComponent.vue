@@ -91,20 +91,17 @@ export default {
 
       await this.getAllPrestadores()
 
-      setTimeout(() => {
-        // Função a ser executada após 2 segundos
-        this.$router.push({ path: '/Prestador' })
-      }, 2000);
+      this.$router.push({ path: '/Prestador' })
+
 
     },
 
     async getsallservicos() {
       await this.getServico()
 
-      setTimeout(() => {
-        // Função a ser executada após 2 segundos
-        this.$router.push({ path: '/Servicos' })
-      }, 2000);
+
+      this.$router.push({ path: '/Servicos' })
+
 
     }
 

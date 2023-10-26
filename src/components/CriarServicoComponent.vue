@@ -7,16 +7,17 @@
 
             <div class="   mb-3">
 
-                <div style="width: 100vh;">
+                <div style="width: auto;">
                     <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
                         v-model="Servico.Titulo">
                 </div>
 
-                <div class="p-2 ms-2 flex-grow-1">
+                <div class="p-2  flex-grow-1">
                     <div class="card flex justify-content-center">
                         <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
                             optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" display="chip"
-                            placeholder="Profissão" class="w-full md:w-20rem" @chance="onChange($event)">
+                            placeholder="Profissão" class="w-full md:w-20rem" @chance="onChange($event)"
+                            :maxSelectedLabels="3">
                             <template #optiongroup="slotProps">
                                 <div class="flex align-items-center">
                                     <div>{{ slotProps.option.label }}</div>
@@ -63,11 +64,10 @@
                     placeholder="CEP: 00000-000" required v-model="cep" style="max-width: 300px;"
                     @input="this.Servico.CEP1 = this.cep">
                 <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
-                {{ store.getters.city }}
-                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Endereço:"
-                    style="max-width: 400px;" :value="store.getters.city.endereco">
                 <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Número:"
                     style="max-width: 300px;" v-model="Servico.Numero">
+                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Endereço:"
+                    style="max-width: 400px;" :value="store.getters.city.endereco">
                 <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Bairro:"
                     style="max-width: 300px;" :value="store.getters.city.bairro">
                 <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Estado:"

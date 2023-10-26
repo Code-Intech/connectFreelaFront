@@ -171,8 +171,13 @@ export default {
         },
 
         async getalbum() {
-            await this.GetAlbum(this.GetToken());
-            this.$router.push({ path: '/PerfilPortfolio' })
+            try {
+                await this.GetAlbum(this.GetToken());
+                this.$router.push({ path: '/PerfilPortfolio' })
+            } catch (error) {
+
+                this.$router.push({ path: '/PerfilPortfolio' })
+            }
         },
 
         async getNome() {

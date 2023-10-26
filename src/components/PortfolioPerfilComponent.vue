@@ -25,7 +25,7 @@
 
 
             <div class="" style="min-height: 200px;">
-                <div class=" m-4 d-flex flex-wrap p-1" id="">
+                <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
                     <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
                         <!-- {{ album }} -->
                         <div class="card" style="width: 20rem; ">
@@ -282,9 +282,6 @@
             </div>
         </div> -->
 
-        <button @click="teste()">
-            teste
-        </button>
 
     </div>
 </template>
@@ -334,7 +331,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["CreateAlbum", "dellAlbum", "showError"]),
+        ...mapActions(["CreateAlbum", "dellAlbum", "showError", "GetAlbum"]),
         ...mapGetters(["GetToken"]),
 
 
@@ -389,6 +386,8 @@ export default {
                 this.isLoading = false;
                 this.ifalbum = true;
                 console.log(this.isLoading, "loading")
+                await this.GetAlbum(this.GetToken())
+                this.salvealbum()
 
             } catch (error) {
                 this.isLoading = false;
