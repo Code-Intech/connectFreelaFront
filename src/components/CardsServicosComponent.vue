@@ -267,8 +267,7 @@
                                                 </Galleria>
                                                 <div class="d-grid gap-2">
                                                     <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
-                                                    <button class=" rounded btnfotos"
-                                                        @click="displayBasic = true">Fotos</button>
+                                                    <button class=" rounded btnfotos">Fotos</button>
                                                 </div>
                                             </div>
                                             <p class="card-text border-top border-bottom border-black">Some quick example
@@ -385,25 +384,6 @@ export default {
             originalDate: null,
             tttt: null,
 
-            responsiveOptions: [
-                {
-                    breakpoint: '1500px',
-                    numVisible: 5
-                },
-                {
-                    breakpoint: '1024px',
-                    numVisible: 3
-                },
-                {
-                    breakpoint: '768px',
-                    numVisible: 2
-                },
-                {
-                    breakpoint: '560px',
-                    numVisible: 1
-                }
-            ],
-            displayBasic: false
         };
     },
 
@@ -461,5 +441,6 @@ export default {
 .texts {
     padding-top: 1rem;
     padding-left: 1rem;
-}</style>
+}
+</style>
 

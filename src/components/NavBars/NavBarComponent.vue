@@ -97,8 +97,8 @@ export default {
     },
 
     async getsallservicos() {
-      await this.getServico()
 
+      await this.getServico()
 
       this.$router.push({ path: '/Servicos' })
 

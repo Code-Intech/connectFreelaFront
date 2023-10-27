@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import PaginationComponent from "@/components/PaginationComponent.vue";
 import HomeComponent from "@/components/HomeComponent.vue";
 import LoginComponent from "@/components/LoginComponent.vue";
-import TesteComponent from "@/components/FormValidation/TesteComponent.vue";
 import store from "@/store";
 import PerfilEditarView from "@/components/PerfilEditarView.vue";
 import PerfilBeneficiosView from "@/components/PerfilBeneficiosView.vue";
@@ -39,11 +38,7 @@ const routes = [
     name: "LoginComponent",
     component: LoginComponent,
   },
-  {
-    path: "/teste",
-    name: "TesteComponent",
-    component: TesteComponent,
-  },
+
   {
     path: "/perfil",
     name: "PerfilEditarView",
