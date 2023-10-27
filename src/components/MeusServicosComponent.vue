@@ -11,7 +11,7 @@
                                         v-for="(servico, index) in valorServico" :key="servico[index]">
                                         <div class="card-header border-black d-flex justify-content-between">
                                             <div>
-                                                <h5 class="text-center">{{ servico.servicoInfo.Titulo_Servico}}</h5>
+                                                <h5 class="text-center">{{ servico.servicoInfo.Titulo_Servico }}</h5>
 
                                             </div>
                                             <div>
@@ -179,6 +179,8 @@
                                                 </div>
                                             </div>
 
+                                            <CardModalEditarServico />
+
                                         </div>
 
                                     </div>
@@ -196,6 +198,7 @@
 <script>
 
 import store from "@/store";
+import CardModalEditarServico from "@/components/CardModalEditarServico";
 
 export default {
     name: "MeusServicosComponent",
@@ -206,7 +209,7 @@ export default {
         }
     },
     components: {
-
+        CardModalEditarServico,
     },
     created() {
         this.getinfos();
