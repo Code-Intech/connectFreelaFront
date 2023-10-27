@@ -103,12 +103,15 @@
                     </button>
                 </div>
                 <div v-else class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary" @click="Salvar(), createServico()" :disabled="ifBotao">Criar
+                    <button class="btn btn-primary" @click="Salvar()" :disabled="ifBotao">Criar
                         Serviço</button>
                 </div>
             </div>
         </div>
     </div>
+    <button @click="ttttttt">
+        ttttt
+    </button>
 </template>
 
 <script>
@@ -210,9 +213,20 @@ export default {
         Salvar() {
 
 
-            this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => ({ id: Habi.idtb_habilidades }));
-            this.Servico.Profissao = this.selectedProfissao.map((Prof) => ({ id: Prof.value }));
-            this.Servico.EstimativaKM = this.distancia;
+            if (this.selectedHabilidade != null && this.selectedHabilidade != null) {
+
+                this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => ({ id: Habi.idtb_habilidades }));
+                this.Servico.Profissao = this.selectedProfissao.map((Prof) => ({ id: Prof.value }));
+                this.Servico.EstimativaKM = this.distancia;
+                this.createServico();
+
+            } else {
+                this.errorMessage = ["Campos Habilidade ou Profissão em Branco!! "]
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
+            }
 
 
         },
@@ -237,16 +251,7 @@ export default {
 
             this.Servico.IMG = event.target.files
         },
-        tttt() {
-            console.log(this.Servico.IMG)
-        },
         async createServico() {
-
-
-
-
-
-
             this.isLoading = true;
             this.Servico.Cidade = store.getters.city.cidade,
                 this.Servico.Estado = store.getters.city.estado,
