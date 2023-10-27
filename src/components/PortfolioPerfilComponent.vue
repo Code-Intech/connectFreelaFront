@@ -27,7 +27,6 @@
             <div class="" style="min-height: 200px;">
                 <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
                     <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
-                        {{ album }}
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
