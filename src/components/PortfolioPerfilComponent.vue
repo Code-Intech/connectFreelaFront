@@ -194,10 +194,10 @@
 <script>
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
-import loading from "@/components/Loading.vue"
 import ModalVerAlbum from "@/components/ModalVerAlbum.vue"
 import ModalEditarAlbum from "@/components/ModalEditarAlbum.vue"
 import CardErroMessage from "@/components/CardErroMessage.vue"
+import loading from "@/components/Loading.vue"
 
 
 export default {

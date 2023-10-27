@@ -3,6 +3,10 @@
     <div class="d-flex justify-content-center">
         <div class="border rounded p-3 mt-4" style="max-width: 120vh; width: 70%;">
             <div class="   mb-3">
+                <loading v-if="isLoading" :message="loadingMessage" />
+
+                <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
+
                 <div style="width: auto;">
                     <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
                         v-model="Servico.Titulo">
@@ -99,7 +103,8 @@
                     </button>
                 </div>
                 <div v-else class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary" @click="Salvar(), createServico()">Criar Serviço</button>
+                    <button class="btn btn-primary" @click="Salvar(), createServico()" :disabled="ifBotao">Criar
+                        Serviço</button>
                 </div>
             </div>
         </div>
@@ -109,8 +114,14 @@
 <script>
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
+import CardErroMessage from "@/components/CardErroMessage.vue"
+import loading from "@/components/Loading.vue"
 export default {
     name: "CriarServicoComponent",
+    components: {
+        CardErroMessage,
+        loading,
+    },
     data() {
         return {
             selectedProfissao: null,
@@ -137,7 +148,18 @@ export default {
                 Texto: "",
                 Titulo: "",
                 IdServico: null,
-            }
+            },
+            isLoading: false, // Defina isso como verdadeiro quando estiver carregando
+            loadingMessage: "Carregando dados...",
+            albumMessage: "Cadastrado com sucesso...",
+            ifNumero: false,
+            ifSkill: false,
+            ifProfision: false,
+
+            albums: [],
+            errorMessage: null,
+            erroIf: false,
+            AvisoErro: '',
         };
     },
     computed: {
@@ -186,14 +208,20 @@ export default {
             }
         },
         Salvar() {
+
+
             this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => ({ id: Habi.idtb_habilidades }));
             this.Servico.Profissao = this.selectedProfissao.map((Prof) => ({ id: Prof.value }));
             this.Servico.EstimativaKM = this.distancia;
+
+
         },
         onChange: function (event) {
             // console.log(event.target.value, "change")
+
             const skill = event.target.value;
             this.Servico.Habilidade = skill.map((Habi) => Habi.idtb_habilidades);
+
         },
         GetIMG(event) {
 
@@ -205,9 +233,21 @@ export default {
             }
 
 
+
+
             this.Servico.IMG = event.target.files
         },
+        tttt() {
+            console.log(this.Servico.IMG)
+        },
         async createServico() {
+
+
+
+
+
+
+            this.isLoading = true;
             this.Servico.Cidade = store.getters.city.cidade,
                 this.Servico.Estado = store.getters.city.estado,
                 this.Servico.Bairro = store.getters.city.bairro,
@@ -238,18 +278,39 @@ export default {
             try {
 
                 await this.CreateServico(infoPayLoad)
+                if (this.Servico.IMG.length > 0) {
 
-                await this.getInfoServico(this.GetToken())
-                const id = store.getters.StateServico
-                this.Servico.IdServico = id[id.length - 1].servicoInfo.idtb_servico
+                    await this.getInfoServico(this.GetToken())
+                    const id = store.getters.StateServico
+                    this.Servico.IdServico = id[id.length - 1].servicoInfo.idtb_servico
 
-                await this.createServicoImg()
+                    await this.createServicoImg()
+                }
+
+                this.isLoading = false;
             } catch (error) {
-                console.log(error);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
 
             }
+
+
+
+
+
+
+
+
+
+
         },
         async createServicoImg() {
+            this.isLoading = true;
             const servicoImg = new FormData();
 
 
@@ -264,8 +325,15 @@ export default {
             }
             try {
                 await this.CreateServicoIMG(infoPayLoadIMG)
+                this.isLoading = false;
             } catch (error) {
-                console.log(error);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
             }
         },
         findById(id) {

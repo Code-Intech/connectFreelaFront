@@ -77,8 +77,16 @@ const actions = {
         },
       }
     );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     // console.log(request);
     commit("createprestador", { infocreate: await request.data.message });
+    return request;
   },
   async CreateServicoIMG({ commit }, { token, img, id }) {
     const request = await axios.post(
@@ -91,7 +99,15 @@ const actions = {
       }
     );
     console.log(request);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("createServicoIMG", { infocreate: await request.data.message });
+    return request;
   },
 
   async getInfoServico({ commit }, token) {
@@ -101,7 +117,15 @@ const actions = {
       },
     });
     // console.log(request, "GetServico");
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("setservico", { infoservicome: await request.data.servico });
+    return request;
   },
 
   async getServico({ commit }) {
