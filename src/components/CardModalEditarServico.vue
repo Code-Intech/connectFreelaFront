@@ -41,7 +41,7 @@
                                             placeholder="Habilidades necessarias" :maxSelectedLabels="3"
                                             class="w-full md:w-20rem" />
                                     </div>
-                                </div>
+                                </div>{{ store.getters.GetSkills }}
                                 <div class="p-2 " style="width: 300px;">
                                     <select class="form-select" aria-label="Default select example"
                                         v-model="Servico.Modalidade">
@@ -121,6 +121,9 @@
                                         Serviço</button>
                                 </div>
                             </div>
+                            <button @click="ttttt()">
+                                tttttt
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -149,7 +152,7 @@ export default {
             type: String,
             required: true,
         },
-        ifServico: {
+        infoServico: {
             type: Array,
             required: true,
         }
@@ -181,6 +184,7 @@ export default {
                 Titulo: "",
                 IdServico: null,
             },
+            InfoServicoModal: [],
             isLoading: false, // Defina isso como verdadeiro quando estiver carregando
             loadingMessage: "Carregando dados...",
             albumMessage: "Cadastrado com sucesso...",
@@ -201,6 +205,25 @@ export default {
 
     },
     created() {
+        this.InfoServicoModal = this.infoServico
+
+
+        this.Servico.Titulo = this.InfoServicoModal.servicoInfo.Titulo_Servico
+        this.Servico.Texto = this.InfoServicoModal.servicoInfo.Desc
+        this.Servico.Modalidade = this.InfoServicoModal.servicoInfo.Remoto_Presencial
+        this.Servico.Estado = this.InfoServicoModal.localidade.Estado
+        this.Servico.Cidade = this.InfoServicoModal.localidade.Cidade
+        this.Servico.Bairro = this.InfoServicoModal.localidade.Bairro
+        this.Servico.EstimativaKM = this.InfoServicoModal.servicoInfo.Estimativa_de_distancia
+        this.Servico.ValorServico = this.InfoServicoModal.servicoInfo.Estimativa_Valor
+        this.Servico.EstimativaIdade = this.InfoServicoModal.servicoInfo.Estimativa_Idade
+        this.Servico.DataTermino = this.InfoServicoModal.servicoInfo.Estimativa_de_termino
+        this.Servico.DataInicio = this.InfoServicoModal.servicoInfo.Data_Inicio
+
+
+
+
+
         const professions = store.getters.GetProfessions;
         const categorys = store.getters.Getcategorys;
 
@@ -258,6 +281,10 @@ export default {
             }
 
 
+        },
+        ttttt() {
+            console.log(this.selectedHabilidade)
+            console.log(this.selectedProfissao)
         },
         onChange: function (event) {
             // console.log(event.target.value, "change")
@@ -373,6 +400,20 @@ export default {
         findById(id) {
             const idIMG = id
             return this.items.find(item => item.idIMG === idIMG);
+        },
+        formatData(data) {
+            // Converter a string para um objeto Date
+            const dataObj = new Date(data);
+
+            // Extrair o dia, mês e ano da data
+            const dia = dataObj.getDate(); // Retorna o dia do mês (1-31)
+            const mes = dataObj.getMonth() + 1; // O mês é baseado em zero (0-11), então somamos 1
+            const ano = dataObj.getFullYear();
+
+            // Formatar a data no formato desejado (dia/mês/ano)
+            const dataFormatada = `${ano}-${mes}-${dia}`;
+
+            return dataFormatada;
         },
     }
 };

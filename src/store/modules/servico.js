@@ -7,6 +7,7 @@ const state = {
     },
     servicoInfo: {
       idtb_servico: null,
+      Titulo_Servico: null,
       Data_Inicio: null,
       Estimativa_de_distancia: null,
       Estimativa_Valor: null,

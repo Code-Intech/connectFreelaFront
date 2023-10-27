@@ -173,6 +173,8 @@ export default {
         async getalbum() {
             try {
                 await this.GetAlbum(this.GetToken());
+
+
                 this.$router.push({ path: '/PerfilPortfolio' })
             } catch (error) {
 
@@ -182,6 +184,9 @@ export default {
         async getServicoMeuServico() {
             try {
                 await this.getInfoServico(this.GetToken());
+                await this.getcategory(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getSkills(this.GetToken());
                 this.$router.push({ path: '/MeuServico' })
             } catch (error) {
 

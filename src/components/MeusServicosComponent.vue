@@ -183,7 +183,7 @@
 
 
 
-                                        <CardModalEditarServico :idModal="servico[index]" :ifServico="servico">
+                                        <CardModalEditarServico :idModal="servico[index]" :infoServico="servico">
                                         </CardModalEditarServico>
 
 
@@ -238,6 +238,7 @@ export default {
         EditarServico() {
             this.ifEditarServico = true
         }
+
 
     }
 }
