@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const state = {
+  ServicoEditar: [],
   servico: {
     contratante: {
       Nome_Completo: null,
@@ -40,6 +41,7 @@ const state = {
 };
 const getters = {
   StateServico: (state) => state.servico,
+  StateEditarServico: (state) => state.ServicoEditar,
 };
 const actions = {
   async CreateServico({ commit }, InfoServico) {

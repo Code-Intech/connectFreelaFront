@@ -34,6 +34,7 @@
                                         </MultiSelect>
                                     </div>
                                 </div>
+
                                 <div class="p-2 flex-grow-1">
                                     <div class="card flex justify-content-center">
                                         <MultiSelect v-model="selectedHabilidade" :options="store.getters.GetSkills"
@@ -41,7 +42,7 @@
                                             placeholder="Habilidades necessarias" :maxSelectedLabels="3"
                                             class="w-full md:w-20rem" />
                                     </div>
-                                </div>{{ store.getters.GetSkills }}
+                                </div>
                                 <div class="p-2 " style="width: 300px;">
                                     <select class="form-select" aria-label="Default select example"
                                         v-model="Servico.Modalidade">
@@ -52,6 +53,56 @@
                                     </select>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div>
+                                <profissao-categoria-selector :professions="professions" :categories="categories"
+                                    v-model="selectedProfissoes"></profissao-categoria-selector>
+                                <!-- <button @click="submit">Enviar</button> -->
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="mt-5">
+
+
+                                <SkillsSelector :skills="skills" v-model="selectedSkills" />
+
+
+                                <ul>
+                                    <li v-for="skill in selectedSkills" :key="skill.idtb_habilidades">{{ skill.Habilidade }}
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
                             <div class="d-flex flex-wrap">
                                 <input class="form-control has-validation m-2 p-2" type="text" name="cep" id="cep"
                                     placeholder="CEP: 00000-000" required v-model="cep" style="max-width: 300px;"
@@ -141,11 +192,17 @@ import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 import CardErroMessage from "@/components/CardErroMessage.vue"
 import loading from "@/components/Loading.vue"
+import ProfissaoCategoriaSelector from "@/components/ProfissaoCategoriaSelector.vue";
+import SkillsSelector from "@/components/SkillsSelector"; // Certifique-se de que o caminho esteja correto
+
+
 export default {
     name: "CardModalEditarServico",
     components: {
         CardErroMessage,
         loading,
+        ProfissaoCategoriaSelector,
+        SkillsSelector,
     },
     props: {
         idModal: {
@@ -159,10 +216,16 @@ export default {
     },
     data() {
         return {
+            professions: [], // Preencha com suas profissões
+            categories: [], // Preencha com suas habilidades
+            selectedProfissoes: [],
+            skills: [], // Sua lista de habilidades
+            selectedSkills: [], // Habilidades selecionadas
             selectedProfissao: null,
             selectedHabilidade: null,
             distancia: 30,
             profissaoCategoriaArray: [],
+
             cep: "",
             Servico: {
                 Profissao: {},
@@ -205,6 +268,10 @@ export default {
 
     },
     created() {
+
+
+
+
         this.InfoServicoModal = this.infoServico
 
 
@@ -224,6 +291,11 @@ export default {
 
 
 
+        this.professions = store.getters.GetProfessions;
+        this.categories = store.getters.Getcategorys;
+        this.skills = store.getters.GetSkills;
+        console.log(this.professions)
+        console.log(this.categories)
         const professions = store.getters.GetProfessions;
         const categorys = store.getters.Getcategorys;
 
@@ -249,6 +321,10 @@ export default {
         },
     },
     methods: {
+        submit() {
+            // Faça algo com this.selectedProfissoes, como enviar para o backend
+            console.log(this.selectedProfissoes);
+        },
         validateOnBack: Boolean,
         ...mapActions(["GetAddress", "clearAddressData", "CreateServico", "CreateServicoIMG", "getInfoServico"]),
         ...mapGetters(["GetToken"]),
@@ -283,8 +359,8 @@ export default {
 
         },
         ttttt() {
-            console.log(this.selectedHabilidade)
-            console.log(this.selectedProfissao)
+            console.log(store.getters.StateEditarServico)
+            // console.log(this.selectedProfissao)
         },
         onChange: function (event) {
             // console.log(event.target.value, "change")
