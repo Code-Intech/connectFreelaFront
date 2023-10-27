@@ -21,26 +21,27 @@
                                         v-model="Servico.Titulo">
                                 </div>
                                 <div class="p-2  flex-grow-1">
-                                    <div class="card flex justify-content-center">
-                                        <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
-                                            optionLabel="label" optionGroupLabel="label" optionGroupChildren="items"
-                                            display="chip" placeholder="Profissão" class="w-full md:w-20rem"
-                                            @chance="onChange($event)" :maxSelectedLabels="3">
-                                            <template #optiongroup="slotProps">
-                                                <div class="flex align-items-center">
-                                                    <div>{{ slotProps.option.label }}</div>
-                                                </div>
-                                            </template>
-                                        </MultiSelect>
+                                    <div>
+                                        <profissao-categoria-selector :professions="professions" :categories="categories"
+                                            v-model="selectedProfissoes"
+                                            :professionsBack="this.Servico.Profissao"></profissao-categoria-selector>
+                                        <!-- <button @click="submit">Enviar</button> -->
                                     </div>
                                 </div>
 
                                 <div class="p-2 flex-grow-1">
-                                    <div class="card flex justify-content-center">
-                                        <MultiSelect v-model="selectedHabilidade" :options="store.getters.GetSkills"
-                                            display="chip" filter optionLabel="Habilidade"
-                                            placeholder="Habilidades necessarias" :maxSelectedLabels="3"
-                                            class="w-full md:w-20rem" />
+                                    <div class="mt-2">
+
+
+                                        <SkillsSelector :skills="skills" v-model="selectedSkills"
+                                            :selectedSkillIds="Servico.Habilidade" />
+
+                                        <!-- 
+                                        <ul>
+                                            <li v-for="skill in selectedSkills" :key="skill.idtb_habilidades">{{
+                                                skill.Habilidade }}
+                                            </li>
+                                        </ul> -->
                                     </div>
                                 </div>
                                 <div class="p-2 " style="width: 300px;">
@@ -68,11 +69,6 @@
 
 
 
-                            <div>
-                                <profissao-categoria-selector :professions="professions" :categories="categories"
-                                    v-model="selectedProfissoes"></profissao-categoria-selector>
-                                <!-- <button @click="submit">Enviar</button> -->
-                            </div>
 
 
 
@@ -81,17 +77,8 @@
 
 
 
-                            <div class="mt-5">
 
 
-                                <SkillsSelector :skills="skills" v-model="selectedSkills" />
-
-
-                                <ul>
-                                    <li v-for="skill in selectedSkills" :key="skill.idtb_habilidades">{{ skill.Habilidade }}
-                                    </li>
-                                </ul>
-                            </div>
 
 
 
@@ -286,6 +273,8 @@ export default {
         this.Servico.EstimativaIdade = this.InfoServicoModal.servicoInfo.Estimativa_Idade
         this.Servico.DataTermino = this.InfoServicoModal.servicoInfo.Estimativa_de_termino
         this.Servico.DataInicio = this.InfoServicoModal.servicoInfo.Data_Inicio
+        this.Servico.Habilidade = this.InfoServicoModal.servicoSkills
+        this.Servico.Profissao = this.InfoServicoModal.servicoProfessions
 
 
 
@@ -359,7 +348,7 @@ export default {
 
         },
         ttttt() {
-            console.log(store.getters.StateEditarServico)
+            console.log(this.Servico.Habilidade)
             // console.log(this.selectedProfissao)
         },
         onChange: function (event) {

@@ -22,7 +22,7 @@
             </div>
 
         </div>
-
+        <!-- {{ selectedSkillIds }} -->
         <!-- Mostrar habilidades selecionadas -->
         <!-- <div>
             <div v-for="(skill, index) in selectedSkills" :key="index">
@@ -30,12 +30,19 @@
                 <button @click="removeSkill(index)">Remover</button>
             </div>
         </div> -->
-        <ul class="form-select mt-4 border border-black" aria-label="Small select example" v-if="ifskill">
+        <!-- <ul class="form-select mt-4 border border-black" aria-label="Small select example" v-if="ifskill">
 
             <div class="p-2 m-1" v-for="(skill, index) in selectedSkills" :key="index">Habilidade: {{ skill.Habilidade }}
                 <button @click="removeSkill(index)" class="btn btn-outline-danger ms-3">Remover</button>
             </div>
 
+        </ul> -->
+
+
+        <ul class="form-select mt-4 border border-black" aria-label="Small select example" v-if="ifskill">
+            <div class="p-2 m-1" v-for="(skill, index) in selectedSkills" :key="index">Habilidade: {{ skill.Habilidade }}
+                <button @click="removeSkill(index)" class="btn btn-outline-danger ms-3">Remover</button>
+            </div>
         </ul>
     </div>
 </template>
@@ -44,6 +51,7 @@
 export default {
     props: {
         skills: Array, // Lista de habilidades (idtb_habilidades, Habilidade, FlgStatus, created_at, updated_at)
+        selectedSkillIds: Array, // IDs das habilidades selecionadas pelo usuário (vindos do backend)
     },
     data() {
         return {
@@ -63,15 +71,47 @@ export default {
                 }));
         },
     },
+    watch: {
+        selectedSkillIds: {
+            immediate: true,
+            handler(newVal) {
+                console.log('Valor de newVal:', newVal);
+                if (Array.isArray(newVal)) {
+                    this.selectedSkills = newVal.map((selectedId) => {
+                        const skill = this.skills.find((s) => s.idtb_habilidades === selectedId);
+                        console.log(this.selectedSkills)
+                        console.log(skill)
+                        if (skill) {
+                            return {
+                                Habilidade: skill.Habilidade,
+                                idtb_habilidades: skill.idtb_habilidades,
+                            };
+                        }
+                        return null;
+                    }).filter((skill) => skill !== null);
+
+                    this.ifskill = this.selectedSkills.length > 0;
+                }
+            }
+        }
+    },
+    created() {
+        this.skillsBackend()
+    },
     methods: {
+        skillsBackend() {
+            if (this.selectedSkillIds != null || this.selectedSkillIds != undefined || this.selectedSkillIds.length > 0) {
+                this.selectedSkills = this.selectedSkillIds
+                this.ifskill = true
+            }
+            // console.log(this.selectedSkills)
+        },
         removeSkill(skillId) {
             const index = this.selectedSkills.findIndex((skill) => skill.idtb_habilidades === skillId);
             this.selectedSkills.splice(index, 1);
-            if (this.selectedSkills == undefined || this.selectedSkills == null || this.selectedSkills == 0 || this.selectedSkills.length == 0) {
-                this.ifskill = false
+            if (this.selectedSkills.length === 0) {
+                this.ifskill = false;
             }
-
-
         },
         addSkill(skillIds) {
             if (Array.isArray(skillIds)) {

@@ -165,7 +165,7 @@
                                                             <button type="button" class="btn btn-primary"
                                                                 style="font-size: small; border:none;"
                                                                 data-bs-toggle="modal"
-                                                                :data-bs-target="'#exampleModal' + servico[index]">Editar
+                                                                :data-bs-target="'#exampleModal' + servico.servicoInfo.idtb_servico">Editar
                                                                 Serviço</button>
                                                         </div>
                                                         <div class="col mt-3 text-end">
@@ -183,7 +183,8 @@
 
 
 
-                                        <CardModalEditarServico :idModal="servico[index]" :infoServico="servico">
+                                        <CardModalEditarServico :idModal="servico.servicoInfo.idtb_servico"
+                                            :infoServico="servico">
                                         </CardModalEditarServico>
 
 
