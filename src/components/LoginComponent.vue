@@ -30,7 +30,6 @@
             <input class="form-control has-validation" type="text" name="cep" id="cep" placeholder="CEP: 00000-000"
               required v-model="cep">
             <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
-            {{ store.getters.city }}
             <input class="form-control" type="text" name="" id="" placeholder="Cidade:" required readonly
               :value="store.getters.city.cidade">
             <input class="form-control" type="text" name="" id="" placeholder="Estado:" required readonly
@@ -45,8 +44,9 @@
           </tab-content>
           <tab-content title="Acesso" icon="fa fa-sign-in">
 
-            <p v-if="store.getters.isMessageError" class="text-danger" id="error">Erro no cadastro, verifique e preencha
-              todos os campos e tente cadastrar</p>
+            <!-- <p v-if="store.getters.isMessageError" class="text-danger" id="error">Erro no cadastro, verifique e preencha
+              todos os campos e tente cadastrar</p> -->
+            <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage" class="text-danger"></CardErroMessage>
 
             <div class="form-floating">
 
@@ -65,6 +65,25 @@
               <input class="form-control" type="password" name="" id="floatingPasswordConfirmation["
                 placeholder="Confirmação de senha:" v-model="userData.confirmationPassword">
               <label for="floatingPasswordConfirmation">Password</label>
+            </div>
+            <div class="text-start">
+              <ul>
+                <li>
+                  Deve conter:
+                </li>
+                <li>
+                  Letras maiúsculas;
+                </li>
+                <li>
+                  Letras minúsculas;
+                </li>
+                <li>
+                  Caracter especial<br>(que não seja: - ou +);
+                </li>
+                <li>
+                  8 dígitos.
+                </li>
+              </ul>
             </div>
           </tab-content>
         </form-wizard>
@@ -103,6 +122,7 @@
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 import { FormWizard, TabContent } from "vue3-form-wizard";
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 export default {
   name: "LoginComponent",
@@ -114,9 +134,12 @@ export default {
   components: {
     FormWizard,
     TabContent,
+    CardErroMessage,
   },
   data() {
     return {
+      errorMessage: null,
+      erroIf: false,
       form: {
         email: "",
         senha: "",
@@ -161,7 +184,7 @@ export default {
       container.classList.add('right-panel-active');
     },
     validateOnBack: Boolean,
-    ...mapActions(["LogIn", "Register", "showError", "GetAddress", "getGenders", "clearAddressData", "getAvatar", "getInfoUser"]),
+    ...mapActions(["LogIn", "Register", "showError", "GetAddress", "getGenders", "showError", "clearAddressData", "getAvatar", "getInfoUser"]),
     ...mapGetters(["isMessageError", "StateGenders", "GetToken"]),
 
     async genders() {
@@ -204,8 +227,15 @@ export default {
         this.clearAddressData();
         await this.getInfoUser(this.GetToken());
       } catch (error) {
-        console.log(error)
-        await this.showError(error, 10000)
+        // console.log(error)
+        // await this.showError(error, 10000)
+        this.isLoading = false;
+        const message = error.request.response
+        this.errorMessage = JSON.parse(message)
+        this.erroIf = true
+        setTimeout(() => {
+          this.erroIf = false
+        }, 4000);
       }
     },
     async login() {
@@ -233,9 +263,6 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
 
-.vue-form-wizard .wizard-btn {
-  min-width: 90px !important;
-}
 
 s * {
   box-sizing: border-box;
@@ -265,6 +292,7 @@ p {
   letter-spacing: .5px;
   margin: 20px 0 30px;
 }
+
 
 span {
   font-size: 12px;
@@ -298,21 +326,6 @@ a {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.social-container {
-  margin: 20px 0;
-}
-
-.social-container a {
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
 }
 
 .form-container input {
@@ -448,3 +461,4 @@ button.ghost {
   transform: translateY(20%);
 }
 </style>
+

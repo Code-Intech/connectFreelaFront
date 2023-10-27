@@ -1,20 +1,33 @@
 <template>
     <div class="col-10 ">
 
+
         <div class="border border-2 rounded m-5">
 
 
+
+
             <div class="" style="border-bottom: 2px solid black;">
+
+
 
                 <button class="btn btn-primary m-2" type="button" data-bs-toggle="modal" data-bs-target="#criarportfolio">
                     Criar Portfolio
                 </button>
 
+
+
+
             </div>
+
+
+
+
 
             <div class="" style="min-height: 200px;">
                 <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
                     <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
+                        {{ album }}
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
@@ -72,12 +85,11 @@
                         <ModalVerAlbum :modal-id="album.portifolio.idtb_portifolio" :albomModal="album" />
                         <ModalEditarAlbum :modal-id="album.portifolio.idtb_portifolio" :albomModal="album" />
 
-
                     </div>
                 </div>
+
             </div>
         </div>
-
 
         <!-- Modal Criar Album-->
         <div class="modal fade" id="criarportfolio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -142,13 +154,18 @@
                                             <label for="floatingTextarea2">Comments</label>
                                         </div>
 
+
+
+
                                     </div>
                                     <div class="card-body">
                                         <div>
 
+
                                             <h6>
                                                 Carregue Suas Imagens
                                             </h6>
+
 
                                             <div class="input-group">
                                                 <input type="file" class="form-control btn btn-outline-primary"
@@ -338,6 +355,26 @@ export default {
             this.ifalbum = false;
         },
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        teste() {
+            console.log(this.album.Fotos)
+        }
     },
 
 }
