@@ -23,7 +23,6 @@
                                 <div class="p-2  flex-grow-1">
                                     <div>
                                         <profissao-categoria-selector :professions="professions" :categories="categories"
-                                            v-model="selectedProfissoes"
                                             :professionsBack="this.Servico.Profissao"></profissao-categoria-selector>
                                         <!-- <button @click="submit">Enviar</button> -->
                                     </div>
@@ -33,8 +32,7 @@
                                     <div class="mt-2">
 
 
-                                        <SkillsSelector :skills="skills" v-model="selectedSkills"
-                                            :selectedSkillIds="Servico.Habilidade" />
+                                        <SkillsSelector :skills="skills" :selectedSkillIds="Servico.Habilidade" />
 
                                         <!-- 
                                         <ul>
@@ -348,7 +346,7 @@ export default {
 
         },
         ttttt() {
-            console.log(this.Servico.Habilidade)
+            console.log(store.getters.StateEditarServicoSkill)
             // console.log(this.selectedProfissao)
         },
         onChange: function (event) {

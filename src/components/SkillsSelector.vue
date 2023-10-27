@@ -22,22 +22,6 @@
             </div>
 
         </div>
-        <!-- {{ selectedSkillIds }} -->
-        <!-- Mostrar habilidades selecionadas -->
-        <!-- <div>
-            <div v-for="(skill, index) in selectedSkills" :key="index">
-                {{ skill.Habilidade }}
-                <button @click="removeSkill(index)">Remover</button>
-            </div>
-        </div> -->
-        <!-- <ul class="form-select mt-4 border border-black" aria-label="Small select example" v-if="ifskill">
-
-            <div class="p-2 m-1" v-for="(skill, index) in selectedSkills" :key="index">Habilidade: {{ skill.Habilidade }}
-                <button @click="removeSkill(index)" class="btn btn-outline-danger ms-3">Remover</button>
-            </div>
-
-        </ul> -->
-
 
         <ul class="form-select mt-4 border border-black" aria-label="Small select example" v-if="ifskill">
             <div class="p-2 m-1" v-for="(skill, index) in selectedSkills" :key="index">Habilidade: {{ skill.Habilidade }}
@@ -48,6 +32,8 @@
 </template>
   
 <script>
+import store from "@/store";
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
     props: {
         skills: Array, // Lista de habilidades (idtb_habilidades, Habilidade, FlgStatus, created_at, updated_at)
@@ -61,6 +47,9 @@ export default {
         };
     },
     computed: {
+        store() {
+            return store
+        },
         filteredOptions() {
             const filterText = this.search.toLowerCase();
             return this.skills
@@ -99,16 +88,23 @@ export default {
         this.skillsBackend()
     },
     methods: {
+        validateOnBack: Boolean,
+        ...mapActions([""]),
+        ...mapGetters(["GetToken"]),
+        ...mapMutations(["setServicoEditSkill"]),
         skillsBackend() {
+            // this.setServicoEditSkill(null)
             if (this.selectedSkillIds != null || this.selectedSkillIds != undefined || this.selectedSkillIds.length > 0) {
                 this.selectedSkills = this.selectedSkillIds
                 this.ifskill = true
+                this.setServicoEditSkill(this.selectedSkills)
             }
             // console.log(this.selectedSkills)
         },
         removeSkill(skillId) {
             const index = this.selectedSkills.findIndex((skill) => skill.idtb_habilidades === skillId);
             this.selectedSkills.splice(index, 1);
+            this.setServicoEditSkill(this.selectedSkills)
             if (this.selectedSkills.length === 0) {
                 this.ifskill = false;
             }
@@ -125,6 +121,7 @@ export default {
                                 idtb_habilidades: skillToAdd.idtb_habilidades,
                             });
                             this.ifskill = true
+                            this.setServicoEditSkill(this.selectedSkills)
                         }
                     }
                 }

@@ -165,7 +165,8 @@
                                                             <button type="button" class="btn btn-primary"
                                                                 style="font-size: small; border:none;"
                                                                 data-bs-toggle="modal"
-                                                                :data-bs-target="'#exampleModal' + servico.servicoInfo.idtb_servico">Editar
+                                                                :data-bs-target="'#exampleModal' + servico.servicoInfo.idtb_servico"
+                                                                @click="reset()">Editar
                                                                 Serviço</button>
                                                         </div>
                                                         <div class="col mt-3 text-end">
@@ -206,6 +207,7 @@
 
 import store from "@/store";
 import CardModalEditarServico from "@/components/CardModalEditarServico.vue";
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
     name: "MeusServicosComponent",
@@ -223,6 +225,13 @@ export default {
         this.getinfos();
     },
     methods: {
+        validateOnBack: Boolean,
+        ...mapActions([""]),
+        ...mapGetters(["GetToken"]),
+        ...mapMutations(["setServicoEditSkill"]),
+        reset() {
+            this.setServicoEditSkill(null)
+        },
         getinfos() {
 
             console.log(store.getters.StateServico, "StateServico")

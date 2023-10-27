@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const state = {
-  ServicoEditar: [],
+  ServicoEditarSkill: null,
+  ServicoEditarProfession: [],
   servico: {
     contratante: {
       Nome_Completo: null,
@@ -41,7 +42,8 @@ const state = {
 };
 const getters = {
   StateServico: (state) => state.servico,
-  StateEditarServico: (state) => state.ServicoEditar,
+  StateEditarServicoSkill: (state) => state.ServicoEditarSkill,
+  StateEditarServicoProfession: (state) => state.ServicoEditarProfession,
 };
 const actions = {
   async CreateServico({ commit }, InfoServico) {
@@ -160,6 +162,10 @@ const mutations = {
 
   setCardsServico(state, { infoservicocard }) {
     state.servico = infoservicocard;
+    // console.log(state.servico, "setCardsServico");
+  },
+  setServicoEditSkill(state, skills) {
+    state.ServicoEditarSkill = skills;
     // console.log(state.servico, "setCardsServico");
   },
 
