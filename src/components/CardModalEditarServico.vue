@@ -2,7 +2,7 @@
 <template>
     <div class="modal fade" :id="'exampleModal' + idModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
-                        <div class="border rounded p-3 mt-4" style="max-width: 120vh; width: 70%;">
+                        <div class="border rounded p-3 mt-4" style="max-width: 120vh;">
                             <div class="   mb-3">
                                 <loading v-if="isLoading" :message="loadingMessage" />
 
@@ -123,9 +123,6 @@
                             </div>
                         </div>
                     </div>
-                    <button @click="ttttttt">
-                        ttttt
-                    </button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -134,118 +131,6 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <div class="border rounded p-3 mt-4" style="max-width: 120vh; width: 70%;">
-            <div class="   mb-3">
-                <loading v-if="isLoading" :message="loadingMessage" />
-
-                <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
-
-                <div style="width: auto;">
-                    <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
-                        v-model="Servico.Titulo">
-                </div>
-                <div class="p-2  flex-grow-1">
-                    <div class="card flex justify-content-center">
-                        <MultiSelect v-model="selectedProfissao" :options="profissaoCategoriaArray" filter
-                            optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" display="chip"
-                            placeholder="Profissão" class="w-full md:w-20rem" @chance="onChange($event)"
-                            :maxSelectedLabels="3">
-                            <template #optiongroup="slotProps">
-                                <div class="flex align-items-center">
-                                    <div>{{ slotProps.option.label }}</div>
-                                </div>
-                            </template>
-                        </MultiSelect>
-                    </div>
-                </div>
-                <div class="p-2 flex-grow-1">
-                    <div class="card flex justify-content-center">
-                        <MultiSelect v-model="selectedHabilidade" :options="store.getters.GetSkills" display="chip" filter
-                            optionLabel="Habilidade" placeholder="Habilidades necessarias" :maxSelectedLabels="3"
-                            class="w-full md:w-20rem" />
-                    </div>
-                </div>
-                <div class="p-2 " style="width: 300px;">
-                    <select class="form-select" aria-label="Default select example" v-model="Servico.Modalidade">
-                        <option selected>Presencial/Remoto</option>
-                        <option value="1">Remoto</option>
-                        <option value="2">Hibrido</option>
-                        <option value="3">Presencial</option>
-                    </select>
-                </div>
-            </div>
-            <div class="d-flex flex-wrap">
-                <input class="form-control has-validation m-2 p-2" type="text" name="cep" id="cep"
-                    placeholder="CEP: 00000-000" required v-model="cep" style="max-width: 300px;"
-                    @input="this.Servico.CEP1 = this.cep">
-                <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
-                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Número:"
-                    style="max-width: 300px;" v-model="Servico.Numero">
-                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Endereço:"
-                    style="max-width: 400px;" :value="store.getters.city.endereco">
-                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Bairro:"
-                    style="max-width: 300px;" :value="store.getters.city.bairro">
-                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Estado:"
-                    style="max-width: 300px;" :value="store.getters.city.estado">
-                <input class="form-control m-2 p-2" type="text" name="" id="" placeholder="Cidade:"
-                    style="max-width: 300px;" :value="store.getters.city.cidade">
-            </div>
-            <div class=" flex justify-content-center mb-3" style="max-width: 500px;">
-                <label for="">Estimativa de distancia em KM</label>
-                <div class="w-14rem">
-                    <InputText v-model.number="distancia" class="w-full" style="width: 100%;" />
-                    <Slider v-model="distancia" class="w-full" />
-                </div>
-            </div>
-            <div class="">
-                <label class="d-block" for="">Digite o Valor do Serviço</label>
-                <InputNumber class="" v-model="Servico.ValorServico" inputId="stacked-buttons" showButtons mode="currency"
-                    currency="BRL" />
-            </div>
-            <div class="mb-3" style="max-width: 300px;">
-                <label class="d-block" for="">Estimativa de idade</label>
-                <input v-model="Servico.EstimativaIdade" class="form-control d-block" type="number" name="" id="">
-            </div>
-            <div class="d-flex justify-content-between mb-3">
-                <div class="card flex justify-content-center" style="min-width: 300px;">
-                    <label for="">Data de Inicio</label>
-                    <!-- <Calendar v-model="Servico.DataInicio" showIcon dateFormat="dd/mm/yy" /> -->
-                    <input class="form-control" type="date" name="" id="" v-model="Servico.DataInicio">
-                </div>
-                <div class="card flex justify-content-center" style="min-width: 300px;">
-                    <label for="">Data de Termino</label>
-                    <!-- <Calendar v-model="Servico.DataTermino" showIcon dateFormat="dd/mm/yy" /> -->
-                    <input class="form-control" type="date" name="" id="" v-model="Servico.DataTermino">
-                </div>
-            </div>
-            <div class="mb-3">
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02" @change="GetIMG" multiple max="5">
-                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                </div>
-            </div>
-            <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px" v-model="Servico.Texto"></textarea>
-                <label for="floatingTextarea2">Comments</label>
-            </div>
-            <div>
-                <div v-if="store.getters.GetToken == null" class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary" @click="$router.push({ path: '/login' })">
-                        Criar Serviço
-                    </button>
-                </div>
-                <div v-else class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary" @click="Salvar()" :disabled="ifBotao">Criar
-                        Serviço</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button @click="ttttttt">
-        ttttt
-    </button>
 </template>
 
 <script>
@@ -255,6 +140,10 @@ import CardErroMessage from "@/components/CardErroMessage.vue"
 import loading from "@/components/Loading.vue"
 export default {
     name: "CardModalEditarServico",
+    components: {
+        CardErroMessage,
+        loading,
+    },
     props: {
         idModal: {
             type: String,
@@ -264,10 +153,6 @@ export default {
             type: Array,
             required: true,
         }
-    },
-    components: {
-        CardErroMessage,
-        loading,
     },
     data() {
         return {
