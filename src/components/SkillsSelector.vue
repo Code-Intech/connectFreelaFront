@@ -101,8 +101,8 @@ export default {
             }
             // console.log(this.selectedSkills)
         },
-        removeSkill(skillId) {
-            const index = this.selectedSkills.findIndex((skill) => skill.idtb_habilidades === skillId);
+        removeSkill(index) {
+            // const index = this.selectedSkills.findIndex((skill) => skill.idtb_habilidades === skillId);
             this.selectedSkills.splice(index, 1);
             this.setServicoEditSkill(this.selectedSkills)
             if (this.selectedSkills.length === 0) {

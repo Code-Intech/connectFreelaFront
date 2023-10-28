@@ -99,8 +99,8 @@ export default {
             }
             return 'Desconhecida';
         },
-        removeProfession(professionId) {
-            const index = this.selectedProfissoes.findIndex((profession) => profession.idtb_profissoes === professionId);
+        removeProfession(index) {
+            // const index = this.selectedProfissoes.findIndex((profession) => profession.idtb_profissoes === professionId);
             this.selectedProfissoes.splice(index, 1);
             if (this.selectedProfissoes.length === 0) {
                 this.ifprofissao = false;
