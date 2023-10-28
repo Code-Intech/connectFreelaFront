@@ -251,32 +251,31 @@
                                             </div>
                                             <div class="d-flex justify-content-between">
                                             </div>
-                                            
-                                                class="m-2">
-                                                <div class="card flex justify-content-center mb-3 mt-3">
-                                                    <Galleria v-model:visible="displayBasic" :value="images"
-                                                        :responsiveOptions="responsiveOptions" :numVisible="9"
-                                                        containerStyle="max-width: 50%" :circular="true" :fullScreen="true"
-                                                        :showItemNavigators="true">
-                                                        <template #item="slotProps">
-                                                            <img :src="slotProps.item.itemImageSrc"
-                                                                :alt="slotProps.item.alt"
-                                                                style="width: 100%; display: block" />
-                                                        </template>
-                                                        <template #thumbnail="slotProps">
-                                                            <img :src="slotProps.item.thumbnailImageSrc"
-                                                                :alt="slotProps.item.alt" style="display: block" />
-                                                        </template>
-                                                    </Galleria>
+                                            <div class="card flex justify-content-center mb-3 mt-3">
+                                                <!-- <Galleria v-model:visible="displayBasic" :value="images"
+                                                    :responsiveOptions="responsiveOptions" :numVisible="9"
+                                                    containerStyle="max-width: 50%" :circular="true" :fullScreen="true"
+                                                    :showItemNavigators="true">
+                                                    <template #item="slotProps">
+                                                        <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt"
+                                                            style="width: 100%; display: block" />
+                                                    </template>
+                                                    <template #thumbnail="slotProps">
+                                                        <img :src="slotProps.item.thumbnailImageSrc"
+                                                            :alt="slotProps.item.alt" style="display: block" />
+                                                    </template>
+                                                </Galleria> -->
 
-                                                    <div class="d-grid gap-2">
-                                                        <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
-                                                        <button class=" rounded btnfotos" data-bs-toggle="modal"
-                                            data-bs-target="#modalServicoFoto" data-bs-whatever="@getbootstrap">Fotos</button>
+                                                <div class="d-grid gap-2">
+                                                    <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
+                                                    <button type="button" class="btn btnfotos" data-bs-toggle="modal"
+                                                        :data-bs-target="'#FotoServico'" style="font-size: small; border:none;"
+                                                        >Fotos</button>
 
-                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <ModalFotoServico/>
                                         <p class="card-text border-top border-bottom border-black">Some quick example
                                             text to build on the
                                             card
@@ -356,67 +355,6 @@
                                                 Proposta</button>
                                         </div>
                                     </div>
-
-                                    <div class="modal-dialog modal-fullscreen-xxl-down fade" id="modalServicoFoto" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
-        <div class="modal-dialog  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" :id="'verModalServicoImg' + modalId"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- {{ albomModal }} -->
-                    <div class="carousel slide">
-                        <div class="carousel-inner" style="max-height: 40rem;">
-                            <div class="carousel-item active">
-                                <img src="../assets/img2/img1.jpg" class="d-block w-100" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img2.jpg" class="d-block w-100" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img3.jpg" class="d-block w-100" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img4.jpg" class="d-block w-100" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img5.jpg" class="d-block w-100" alt="">
-                            </div>
-
-                        </div>
-                        <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselEx' + modalId"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselEx' + modalId"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-
-
-                    <div class="border-top border-2 border-black mt-3">
-                        <p>
-                        </p>
-                    </div>
-                    <!-- <div class="border-top border-2 border-black mt-3">
-
-                        <input type="date" name="" id="" v-model="albomModal.portifolio.created_at">
-                    </div> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-                                    <!-- <div class="modal-footer">
-                    
-                </div> -->
                                 </div>
                             </div>
                         </div>
@@ -432,13 +370,15 @@
 
 <script>
 import AvatarComponent from './AvatarComponent.vue';
+import ModalFotoServico from './ModalFotoServico.vue';
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: "CardsServiçosComponent",
     components: {
-        AvatarComponent
+        AvatarComponent,
+        ModalFotoServico,
     },
     data() {
         return {
@@ -488,6 +428,8 @@ export default {
 
             return dataFormatada;
         },
+           
+        
 
     },
 

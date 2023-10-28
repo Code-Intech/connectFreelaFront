@@ -1,10 +1,10 @@
 <template>
     <!-- Modal Ver Album -->
-    <div class="modal-dialog modal-fullscreen-xxl-down fade" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
-        <div class="modal-dialog  modal-lg">
+    <div class="modal fade" :id="'FotoServico'" tabindex="-1" aria-labelledby="veralbum" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" :id="'verModalServicoImg' + modalId"></h1>
+                    <h1 class="modal-title fs-5" :id="'FotoServico'">Fotos do Serviço</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -28,12 +28,12 @@
                             </div>
 
                         </div>
-                        <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselEx' + modalId"
+                        <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselEx'"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselEx' + modalId"
+                        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselEx'"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
@@ -70,7 +70,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
     name: "ModalFotoServico",
     props: {
-        modalId: {
+        modalFotoId: {
             type: String,
             require: true
         },
