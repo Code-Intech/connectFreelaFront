@@ -7,8 +7,8 @@
                         <div class="m-3">
                             <div class="" v-if="ifServico">
                                 <div class="d-flex flex-wrap">
-                                    <div class="" v-for="(servico, index) in valorServico" :key="servico[index]">
-                                        <div class="card m-auto mt-4" style="width: 25rem;">
+                                    <div class="m-auto ms-2" v-for="(servico, index) in valorServico" :key="servico[index]">
+                                        <div class="card mt-4" style="width: 25rem;">
                                             <div class="card-header border-black d-flex justify-content-between">
                                                 <div>
                                                     <h5 class="text-center">{{ servico.servicoInfo.Titulo_Servico }}</h5>
@@ -57,7 +57,7 @@
                                                                     Data de Início:
                                                                 </h6>
                                                                 <h6 class="fst-italic" style="font-size: smaller;">
-                                                                    11/11/1111
+                                                                    {{ formatData(servico.servicoInfo.Data_Inicio) }}
                                                                 </h6>
                                                             </div>
 
@@ -67,7 +67,8 @@
                                                                     Estimativa de Término:
                                                                 </h6>
                                                                 <h6 class="fst-italic" style="font-size: smaller;">
-                                                                    22/22/22
+                                                                    {{ formatData(servico.servicoInfo.Estimativa_de_termino)
+                                                                    }}
                                                                 </h6>
                                                             </div>
                                                         </div>
@@ -223,6 +224,7 @@ export default {
     },
     created() {
         this.getinfos();
+        this.getServicoMeuServico();
     },
     methods: {
         validateOnBack: Boolean,
@@ -247,8 +249,33 @@ export default {
         },
         EditarServico() {
             this.ifEditarServico = true
-        }
+        },
+        formatData(data) {
+            // Converter a string para um objeto Date
+            const dataObj = new Date(data);
 
+            // Extrair o dia, mês e ano da data
+            const dia = dataObj.getDate(); // Retorna o dia do mês (1-31)
+            const mes = dataObj.getMonth() + 1; // O mês é baseado em zero (0-11), então somamos 1
+            const ano = dataObj.getFullYear();
+
+            // Formatar a data no formato desejado (dia/mês/ano)
+            const dataFormatada = `${ano}-${mes}-${dia}`;
+
+            return dataFormatada;
+        },
+        async getServicoMeuServico() {
+            try {
+                await this.getInfoServico(this.GetToken());
+                await this.getcategory(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getSkills(this.GetToken());
+                this.$router.push({ path: '/MeuServico' })
+            } catch (error) {
+
+                this.$router.push({ path: '/MeuServico' })
+            }
+        },
 
     }
 }

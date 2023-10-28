@@ -5,16 +5,17 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Seu Serviço</h1>
+                    <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body overflow-y-auto" style="max-height: 80vh;">
                     <div class="d-flex justify-content-center">
                         <div class="border rounded p-3 mt-4" style="max-width: 120vh;">
                             <div class="   mb-3">
                                 <loading v-if="isLoading" :message="loadingMessage" />
 
-                                <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
+
 
                                 <div style="width: auto;">
                                     <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
@@ -54,42 +55,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="d-flex flex-wrap">
                                 <input class="form-control has-validation m-2 p-2" type="text" name="cep" id="cep"
                                     placeholder="CEP: 00000-000" required v-model="cep" style="max-width: 300px;"
@@ -155,19 +120,18 @@
                                     </button>
                                 </div>
                                 <div v-else class="d-flex flex-row-reverse">
-                                    <button class="btn btn-primary" @click="EditarServico()" :disabled="ifBotao">Salvar
-                                        Serviço</button>
+                                    <!-- <button class="btn btn-primary" @click="EditarServico()" :disabled="ifBotao">Salvar
+                                        Serviço</button> -->
                                 </div>
                             </div>
-                            <button @click="ttttt()">
-                                tttttt
-                            </button>
+
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                    <button class="btn btn-primary" @click="EditarServico()" :disabled="ifBotao">Salvar
+                        Serviço</button>
                 </div>
             </div>
         </div>
@@ -280,9 +244,8 @@ export default {
         },
     },
     methods: {
-
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions"]),
+        ...mapActions(["GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions", "getcategory", "getProfessions", "getSkills"]),
         ...mapGetters(["GetToken"]),
 
         async handleCep() {
@@ -333,7 +296,14 @@ export default {
 
 
             } else {
-                this.Servico.Habilidade2 = this.Servico.Habilidade
+                const skill = this.Servico.Habilidade
+                console.log(skill)
+                this.Servico.Habilidade2 = []
+                for (let index = 0; index < skill.length; index++) {
+
+                    this.Servico.Habilidade2.push({ id: skill[index].idtb_habilidades })
+                    console.log(this.Servico.Habilidade2)
+                }
             }
             if (store.getters.StateEditarServicoProfession != null) {
                 const profession = store.getters.StateEditarServicoProfession
@@ -341,48 +311,22 @@ export default {
                 this.Servico.Profissao2 = []
                 for (let index = 0; index < profession.length; index++) {
                     this.Servico.Profissao2.push({ id: profession[index].idtb_profissoes })
-                    console.log(this.Servico.Profissao2)
+                    // console.log(this.Servico.Profissao2)
 
                 }
 
 
             } else {
-                this.Servico.Profissao2 = this.Servico.Profissao
+                const profession = this.Servico.Profissao
+                console.log(profession)
+                this.Servico.Profissao2 = []
+                for (let index = 0; index < profession.length; index++) {
+                    this.Servico.Profissao2.push({ id: profession[index].idtb_profissoes })
+                    // console.log(this.Servico.Profissao2)
+
+                }
+
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -437,16 +381,20 @@ export default {
                 await this.UpServico(infoPayLoad)
                 await this.UpServicoProfresions(infoPayLoadProfessions)
                 await this.UpServicoSkills(infoPayLoadSkills)
+                await this.getInfoServico(this.GetToken());
+                await this.getcategory(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getSkills(this.GetToken());
 
                 this.isLoading = false;
             } catch (error) {
-                // this.isLoading = false;
-                // const message = error.request.response
-                // this.errorMessage = JSON.parse(message)
-                // this.erroIf = true
-                // setTimeout(() => {
-                //     this.erroIf = false
-                // }, 4000);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
                 console.log(error)
             }
 
@@ -455,139 +403,6 @@ export default {
 
         },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        async createServico() {
-            this.isLoading = true;
-            this.Servico.Cidade = store.getters.city.cidade,
-                this.Servico.Estado = store.getters.city.estado,
-                this.Servico.Bairro = store.getters.city.bairro,
-                this.Servico.Endereco = store.getters.city.endereco
-
-            const InfoServico = new FormData();
-            InfoServico.append("profissoes", JSON.stringify(this.Servico.Profissao));
-            InfoServico.append("habilidades", JSON.stringify(this.Servico.Habilidade));
-            InfoServico.append("Remoto_Presencial", this.Servico.Modalidade);
-            InfoServico.append("cep", this.Servico.CEP1);
-            InfoServico.append("numero", this.Servico.Numero);
-            InfoServico.append("cidade", this.Servico.Cidade);
-            InfoServico.append("estado", this.Servico.Estado);
-            InfoServico.append("bairro", this.Servico.Bairro);
-            InfoServico.append("rua", this.Servico.Endereco);
-            InfoServico.append("Estimativa_de_distancia", this.Servico.EstimativaKM);
-            InfoServico.append("Estimativa_Valor", this.Servico.ValorServico);
-            InfoServico.append("Estimativa_Idade", this.Servico.EstimativaIdade);
-            InfoServico.append("Data_Inicio", this.Servico.DataInicio);
-            InfoServico.append("Estimativa_de_Termino", this.Servico.DataTermino);
-            InfoServico.append("Desc", this.Servico.Texto);
-            InfoServico.append("Titulo_Servico", this.Servico.Titulo);
-
-            const infoPayLoad = {
-                token: this.GetToken(),
-                info: InfoServico
-            }
-            try {
-
-                await this.CreateServico(infoPayLoad)
-                if (this.Servico.IMG.length > 0) {
-
-                    await this.getInfoServico(this.GetToken())
-                    const id = store.getters.StateServico
-                    this.Servico.IdServico = id[id.length - 1].servicoInfo.idtb_servico
-
-                    await this.createServicoImg()
-                }
-
-                this.isLoading = false;
-            } catch (error) {
-                this.isLoading = false;
-                const message = error.request.response
-                this.errorMessage = JSON.parse(message)
-                this.erroIf = true
-                setTimeout(() => {
-                    this.erroIf = false
-                }, 4000);
-
-            }
-
-
-
-
-
-
-
-
-
-
-        },
-        async createServicoImg() {
-            this.isLoading = true;
-            const servicoImg = new FormData();
-
-
-            for (let i = 0; i < this.Servico.IMG.length; i++) {
-                servicoImg.append('image[]', this.Servico.IMG[i]);
-                console.log(this.Servico.IMG[i])
-            }
-            const infoPayLoadIMG = {
-                token: this.GetToken(),
-                img: servicoImg,
-                id: this.Servico.IdServico
-            }
-            try {
-                await this.CreateServicoIMG(infoPayLoadIMG)
-                this.isLoading = false;
-            } catch (error) {
-                this.isLoading = false;
-                const message = error.request.response
-                this.errorMessage = JSON.parse(message)
-                this.erroIf = true
-                setTimeout(() => {
-                    this.erroIf = false
-                }, 4000);
-            }
-        },
-        findById(id) {
-            const idIMG = id
-            return this.items.find(item => item.idIMG === idIMG);
-        },
         formatData(data) {
             // Converter a string para um objeto Date
             const dataObj = new Date(data);
