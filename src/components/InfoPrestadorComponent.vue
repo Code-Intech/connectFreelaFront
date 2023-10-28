@@ -3,7 +3,7 @@
 
 
         <h2 class="mt-3">Área do Prestador</h2>
-
+        <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
         <div>
             <div class="row">
                 <div class="col-3">
@@ -191,13 +191,13 @@
 
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
-
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 
 export default {
     name: "InfoPrestadorComponent",
     components: {
-
+        CardErroMessage
     },
     data() {
         return {
@@ -231,7 +231,8 @@ export default {
                 Sobre: "",
 
 
-            }
+            },
+            errorMessage: null,
         };
     },
     computed: {
@@ -297,11 +298,11 @@ export default {
         this.getprofrissoesbackend();
         this.removeProfession(0);
         this.removeSkill(0);
+        this.GetSkills();
     },
     methods: {
-
         validateOnBack: Boolean,
-        ...mapActions(["CreatePrestador", "UpPrestador"]),
+        ...mapActions(["CreatePrestador", "UpPrestador", "getInfoPrestador", "getSkills", "getProfessions", "getcategory"]),
         ...mapGetters(["GetToken", "GetSkills", "GetSkills", "GetProfessions", "Getcategorys", "StatePrestador"]),
 
         mapCategoryName(categoryId) {
@@ -363,6 +364,12 @@ export default {
             this.infoPrestador.Profissao = this.selectedProfessionIds;
         },
 
+        async GetSkills() {
+            await this.getInfoPrestador(this.GetToken());
+            await this.getSkills(this.GetToken());
+            await this.getProfessions(this.GetToken());
+            await this.getcategory(this.GetToken());
+        },
 
         getsobre(event) {
             this.infoPrestador.Sobre = event.target.value;
@@ -392,6 +399,7 @@ export default {
                 this.infoPrestador.Valor_Hora = store.getters.StatePrestador.prestadorInfo.Valor_Da_Hora
                 this.infoPrestador.CNPJ = store.getters.StatePrestador.prestadorInfo.CNPJ
                 this.infoPrestador.Nome_Empresa = store.getters.StatePrestador.prestadorInfo.Nome_Empresa
+                this.infoPrestador.Sobre = store.getters.StatePrestador.apresentacao
                 // this.infoPrestador.Sobre = store.getters.StatePrestador.prestadorInfo.prestadorGrettings.Apresentacao
 
 
@@ -544,6 +552,12 @@ export default {
                 // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.CreatePrestador(infoPayLoad)
             } catch (error) {
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
                 console.log(error);
             }
 
@@ -619,7 +633,12 @@ export default {
                 // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.UpPrestador(infoPayLoad)
             } catch (error) {
-                console.log(error);
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
             }
 
         },

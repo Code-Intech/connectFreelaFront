@@ -62,8 +62,16 @@ const actions = {
         },
       }
     );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     // console.log(request);
     commit("createprestador", { infocreate: await request.error.message });
+    return request;
   },
 
   async UpPrestador({ commit }, infoPresta) {
@@ -92,7 +100,15 @@ const actions = {
       }
     );
     // console.log(request);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("uoprestador", { infocreate: await request.error.message });
+    return request;
   },
   async getInfoPrestador({ commit }, token) {
     const request = await axios.get("http://localhost:8000/api/prestador/me", {
@@ -101,15 +117,31 @@ const actions = {
       },
     });
     console.log(request, "GetPrestador");
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("seteditprestador", { infoprestador: await request.data.prestador });
+    return request;
   },
 
   async getAllPrestadores({ commit }) {
     const request = await axios.get("http://localhost:8000/prestador", {});
     // console.log(request, "GetAllPrestador");
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
     commit("setCardsPrestador", {
       infoprestadorcard: await request.data.prestador,
     });
+    return request;
   },
 };
 
