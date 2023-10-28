@@ -2,7 +2,7 @@ import axios from "axios";
 
 const state = {
   ServicoEditarSkill: null,
-  ServicoEditarProfession: [],
+  ServicoEditarProfession: null,
   servico: {
     contratante: {
       Nome_Completo: null,
@@ -71,7 +71,7 @@ const actions = {
       Titulo_Servico: InfoServico.info.get("Titulo_Servico"),
     };
 
-    console.log(InfoServico.info.habilidades, "habilidad servico");
+    // console.log(InfoServico.info.habilidades, "habilidad servico");
 
     const request = await axios.post(
       "http://localhost:8000/api/servico/create",
@@ -114,6 +114,95 @@ const actions = {
     commit("createServicoIMG", { infocreate: await request.data.message });
     return request;
   },
+  async UpServico({ commit }, { token, info, id }) {
+    const InfoPres = {
+      Remoto_Presencial: info.get("Remoto_Presencial"),
+      cep: info.get("cep"),
+      numero: info.get("numero"),
+      cidade: info.get("cidade"),
+      estado: info.get("estado"),
+      bairro: info.get("bairro"),
+      rua: info.get("rua"),
+      Estimativa_de_distancia: info.get("Estimativa_de_distancia"),
+      Estimativa_Valor: info.get("Estimativa_Valor"),
+      Estimativa_Idade: info.get("Estimativa_Idade"),
+      Data_Inicio: info.get("Data_Inicio"),
+      Estimativa_de_Termino: info.get("Estimativa_de_Termino"),
+      Desc: info.get("Desc"),
+      Titulo_Servico: info.get("Titulo_Servico"),
+    };
+    const request = await axios.patch(
+      `http://localhost:8000/api/servico/update/${id}`,
+      InfoPres,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("UpServico", { infocreate: await request.data.message });
+    return request;
+  },
+  async UpServicoSkills({ commit }, { token, info, id }) {
+    const habilidades = info.get("habilidades");
+
+    const InfoPres = {
+      habilidades: JSON.parse(habilidades), // Converta a string em array
+    };
+    const request = await axios.patch(
+      `http://localhost:8000/api/servico/update/habilidades/${id}`,
+      InfoPres,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("UpServicoSkills", { infocreate: await request.data.message });
+    return request;
+  },
+  async UpServicoProfresions({ commit }, { token, info, id }) {
+    const profissoes = info.get("profissoes");
+
+    const InfoPres = {
+      profissoes: JSON.parse(profissoes), // Converta a string em array
+    };
+    const request = await axios.patch(
+      `http://localhost:8000/api/servico/update/profissoes/${id}`,
+      InfoPres,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("UpServicoProfessions", { infocreate: await request.data.message });
+    return request;
+  },
 
   async getInfoServico({ commit }, token) {
     const request = await axios.get("http://localhost:8000/api/servico/me", {
@@ -152,6 +241,24 @@ const mutations = {
     state.errors = infocreate;
     // console.log(state.edituser,"get")
   },
+  UpServico(state, { infocreate }) {
+    console.log(infocreate);
+    // console.log(state,"state")
+    state.errors = infocreate;
+    // console.log(state.edituser,"get")
+  },
+  UpServicoSkills(state, { infocreate }) {
+    console.log(infocreate);
+    // console.log(state,"state")
+    state.errors = infocreate;
+    // console.log(state.edituser,"get")
+  },
+  UpServicoProfessions(state, { infocreate }) {
+    console.log(infocreate);
+    // console.log(state,"state")
+    state.errors = infocreate;
+    // console.log(state.edituser,"get")
+  },
 
   setservico(state, { infoservicome }) {
     // console.log(infoservicome, "SETPrestador");
@@ -166,6 +273,10 @@ const mutations = {
   },
   setServicoEditSkill(state, skills) {
     state.ServicoEditarSkill = skills;
+    // console.log(state.servico, "setCardsServico");
+  },
+  setServicoEditProfession(state, Profession) {
+    state.ServicoEditarProfession = Profession;
     // console.log(state.servico, "setCardsServico");
   },
 

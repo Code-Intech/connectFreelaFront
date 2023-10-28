@@ -22,7 +22,8 @@
                                 </div>
                                 <div class="p-2  flex-grow-1">
                                     <div>
-                                        <profissao-categoria-selector :professions="professions" :categories="categories"
+                                        <profissao-categoria-selector :professions="store.getters.GetProfessions"
+                                            :categories="store.getters.Getcategorys"
                                             :professionsBack="this.Servico.Profissao"></profissao-categoria-selector>
                                         <!-- <button @click="submit">Enviar</button> -->
                                     </div>
@@ -32,7 +33,8 @@
                                     <div class="mt-2">
 
 
-                                        <SkillsSelector :skills="skills" :selectedSkillIds="Servico.Habilidade" />
+                                        <SkillsSelector :skills="store.getters.GetSkills"
+                                            :selectedSkillIds="Servico.Habilidade" />
 
                                         <!-- 
                                         <ul>
@@ -153,7 +155,7 @@
                                     </button>
                                 </div>
                                 <div v-else class="d-flex flex-row-reverse">
-                                    <button class="btn btn-primary" @click="Salvar()" :disabled="ifBotao">Criar
+                                    <button class="btn btn-primary" @click="EditarServico()" :disabled="ifBotao">Salvar
                                         Serviço</button>
                                 </div>
                             </div>
@@ -214,7 +216,9 @@ export default {
             cep: "",
             Servico: {
                 Profissao: {},
+                Profissao2: {},
                 Habilidade: {},
+                Habilidade2: {},
                 Modalidade: "",
                 CEP1: "",
                 Numero: "",
@@ -253,13 +257,7 @@ export default {
 
     },
     created() {
-
-
-
-
         this.InfoServicoModal = this.infoServico
-
-
         this.Servico.Titulo = this.InfoServicoModal.servicoInfo.Titulo_Servico
         this.Servico.Texto = this.InfoServicoModal.servicoInfo.Desc
         this.Servico.Modalidade = this.InfoServicoModal.servicoInfo.Remoto_Presencial
@@ -274,32 +272,6 @@ export default {
         this.Servico.Habilidade = this.InfoServicoModal.servicoSkills
         this.Servico.Profissao = this.InfoServicoModal.servicoProfessions
 
-
-
-
-
-        this.professions = store.getters.GetProfessions;
-        this.categories = store.getters.Getcategorys;
-        this.skills = store.getters.GetSkills;
-        console.log(this.professions)
-        console.log(this.categories)
-        const professions = store.getters.GetProfessions;
-        const categorys = store.getters.Getcategorys;
-
-        this.profissaoCategoriaArray = Array.from(new Set(professions.map(profissao => profissao.tb_categoria_idtb_categoria)))
-            .map(categoriaID => {
-                const categoria = categorys.find(cat => cat.idtb_categoria === categoriaID);
-                return {
-                    label: categoria.Categoria,
-                    code: categoria.idtb_categoria, // Use a propriedade correta para o código da categoria
-                    items: professions
-                        .filter(profissao => profissao.tb_categoria_idtb_categoria === categoriaID)
-                        .map(profissao => ({
-                            label: profissao.Profissao,
-                            value: profissao.idtb_profissoes, // Use a propriedade correta para o código da categoria
-                        })),
-                };
-            });
     },
     watch: {
         cep() {
@@ -308,12 +280,9 @@ export default {
         },
     },
     methods: {
-        submit() {
-            // Faça algo com this.selectedProfissoes, como enviar para o backend
-            console.log(this.selectedProfissoes);
-        },
+
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress", "clearAddressData", "CreateServico", "CreateServicoIMG", "getInfoServico"]),
+        ...mapActions(["GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions"]),
         ...mapGetters(["GetToken"]),
 
         async handleCep() {
@@ -325,37 +294,12 @@ export default {
                 await this.showError(error)
             }
         },
-        Salvar() {
 
-
-            if (this.selectedHabilidade != null && this.selectedHabilidade != null) {
-
-                this.Servico.Habilidade = this.selectedHabilidade.map((Habi) => ({ id: Habi.idtb_habilidades }));
-                this.Servico.Profissao = this.selectedProfissao.map((Prof) => ({ id: Prof.value }));
-                this.Servico.EstimativaKM = this.distancia;
-                this.createServico();
-
-            } else {
-                this.errorMessage = ["Campos Habilidade ou Profissão em Branco!! "]
-                this.erroIf = true
-                setTimeout(() => {
-                    this.erroIf = false
-                }, 4000);
-            }
-
-
-        },
         ttttt() {
-            console.log(store.getters.StateEditarServicoSkill)
+            console.log(this.Servico.Habilidade2)
             // console.log(this.selectedProfissao)
         },
-        onChange: function (event) {
-            // console.log(event.target.value, "change")
 
-            const skill = event.target.value;
-            this.Servico.Habilidade = skill.map((Habi) => Habi.idtb_habilidades);
-
-        },
         GetIMG(event) {
 
             const maxFileCount = 5; // Define o número máximo de arquivos permitidos
@@ -370,6 +314,186 @@ export default {
 
             this.Servico.IMG = event.target.files
         },
+
+        async EditarServico() {
+
+
+
+
+            if (store.getters.StateEditarServicoSkill != null) {
+
+                const skill = store.getters.StateEditarServicoSkill
+                console.log(skill)
+                this.Servico.Habilidade2 = []
+                for (let index = 0; index < skill.length; index++) {
+
+                    this.Servico.Habilidade2.push({ id: skill[index].idtb_habilidades })
+                    console.log(this.Servico.Habilidade2)
+                }
+
+
+            } else {
+                this.Servico.Habilidade2 = this.Servico.Habilidade
+            }
+            if (store.getters.StateEditarServicoProfession != null) {
+                const profession = store.getters.StateEditarServicoProfession
+                console.log(profession)
+                this.Servico.Profissao2 = []
+                for (let index = 0; index < profession.length; index++) {
+                    this.Servico.Profissao2.push({ id: profession[index].idtb_profissoes })
+                    console.log(this.Servico.Profissao2)
+
+                }
+
+
+            } else {
+                this.Servico.Profissao2 = this.Servico.Profissao
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            this.isLoading = true;
+            this.Servico.Cidade = store.getters.city.cidade,
+                this.Servico.Estado = store.getters.city.estado,
+                this.Servico.Bairro = store.getters.city.bairro,
+                this.Servico.Endereco = store.getters.city.endereco
+
+            const skills = new FormData();
+            skills.append("habilidades", JSON.stringify(this.Servico.Habilidade2));
+
+            const Professions = new FormData();
+            Professions.append("profissoes", JSON.stringify(this.Servico.Profissao2));
+
+
+
+            const InfoServico = new FormData();
+            InfoServico.append("Remoto_Presencial", this.Servico.Modalidade);
+            InfoServico.append("cep", this.Servico.CEP1);
+            InfoServico.append("numero", this.Servico.Numero);
+            InfoServico.append("cidade", this.Servico.Cidade);
+            InfoServico.append("estado", this.Servico.Estado);
+            InfoServico.append("bairro", this.Servico.Bairro);
+            InfoServico.append("rua", this.Servico.Endereco);
+            InfoServico.append("Estimativa_de_distancia", this.Servico.EstimativaKM);
+            InfoServico.append("Estimativa_Valor", this.Servico.ValorServico);
+            InfoServico.append("Estimativa_Idade", this.Servico.EstimativaIdade);
+            InfoServico.append("Data_Inicio", this.Servico.DataInicio);
+            InfoServico.append("Estimativa_de_Termino", this.Servico.DataTermino);
+            InfoServico.append("Desc", this.Servico.Texto);
+            InfoServico.append("Titulo_Servico", this.Servico.Titulo);
+
+            const infoPayLoadSkills = {
+                token: this.GetToken(),
+                info: skills,
+                id: this.idModal
+            }
+            const infoPayLoadProfessions = {
+                token: this.GetToken(),
+                info: Professions,
+                id: this.idModal
+            }
+            const infoPayLoad = {
+                token: this.GetToken(),
+                info: InfoServico,
+                id: this.idModal
+            }
+            try {
+
+                await this.UpServico(infoPayLoad)
+                await this.UpServicoProfresions(infoPayLoadProfessions)
+                await this.UpServicoSkills(infoPayLoadSkills)
+
+                this.isLoading = false;
+            } catch (error) {
+                // this.isLoading = false;
+                // const message = error.request.response
+                // this.errorMessage = JSON.parse(message)
+                // this.erroIf = true
+                // setTimeout(() => {
+                //     this.erroIf = false
+                // }, 4000);
+                console.log(error)
+            }
+
+
+
+
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         async createServico() {
             this.isLoading = true;
             this.Servico.Cidade = store.getters.city.cidade,

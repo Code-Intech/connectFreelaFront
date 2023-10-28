@@ -34,7 +34,7 @@
 
 <script>
 import store from "@/store";
-
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
     props: {
         professions: Array, // Lista de profissões (idtb_profissoes, Profissao, tb_categoria_idtb_categoria)
@@ -71,6 +71,7 @@ export default {
         },
     },
     created() {
+        this.setServicoEditProfession(null)
         // Suponha que você tenha a lista de profissões já selecionadas pelo usuário
         const profissoesSelecionadas = this.professionsBack.map((id) => id.idtb_profissoes)// IDs das profissões selecionadas
         console.log(profissoesSelecionadas)
@@ -81,11 +82,16 @@ export default {
                     label: `${professionToAdd.Profissao} (Categoria: ${this.getCategoryName(professionToAdd.tb_categoria_idtb_categoria)})`,
                     idtb_profissoes: professionToAdd.idtb_profissoes,
                 });
+                // this.setServicoEditProfession(this.selectedProfissoes)
             }
         }
         this.ifprofissao = this.selectedProfissoes.length > 0;
     },
     methods: {
+        validateOnBack: Boolean,
+        ...mapActions([""]),
+        ...mapGetters(["GetToken"]),
+        ...mapMutations(["setServicoEditProfession"]),
         getCategoryName(categoryId) {
             if (this.categories) {
                 const category = this.categories.find((cat) => cat.idtb_categoria === categoryId);
@@ -99,6 +105,7 @@ export default {
             if (this.selectedProfissoes.length === 0) {
                 this.ifprofissao = false;
             }
+            this.setServicoEditProfession(this.selectedProfissoes)
         },
         addProfession(professionIds) {
             if (Array.isArray(professionIds)) {
@@ -110,11 +117,13 @@ export default {
                                 label: `${professionToAdd.Profissao} (Categoria: ${this.getCategoryName(professionToAdd.tb_categoria_idtb_categoria)})`,
                                 idtb_profissoes: professionToAdd.idtb_profissoes,
                             });
-                            store.getters.StateEditarServico.push(this.selectedProfissoes)
+                            // store.getters.StateEditarServico.push(this.selectedProfissoes)
                             this.ifprofissao = true;
+                            this.setServicoEditProfession(this.selectedProfissoes)
                         }
                     }
                 }
+
             }
         },
     },

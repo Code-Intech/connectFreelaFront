@@ -97,7 +97,7 @@ export default {
             if (this.selectedSkillIds != null || this.selectedSkillIds != undefined || this.selectedSkillIds.length > 0) {
                 this.selectedSkills = this.selectedSkillIds
                 this.ifskill = true
-                this.setServicoEditSkill(this.selectedSkills)
+                this.setServicoEditSkill()
             }
             // console.log(this.selectedSkills)
         },
