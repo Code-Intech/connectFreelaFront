@@ -233,6 +233,7 @@ export default {
 
             },
             errorMessage: null,
+            erroIf: null
         };
     },
     computed: {

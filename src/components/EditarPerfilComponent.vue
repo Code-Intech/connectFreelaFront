@@ -4,7 +4,7 @@
             <div>
                 <h2>Informações Pessoais</h2>
             </div>
-
+            <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
             <div class="">
                 <label class="form-label" for="">Nome do Perfil</label>
                 <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Nome_completo"
@@ -149,12 +149,12 @@
 
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
-
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 export default {
     name: "EditarPerfilComponent",
     components: {
-
+        CardErroMessage
     },
     data() {
         return {
@@ -181,7 +181,9 @@ export default {
                 Numero: store.getters.StateEditUser.Numero,
                 Email: store.getters.StateEditUser.Email,
                 Senha: "",
-            }
+            },
+            errorMessage: null,
+            erroIf: null,
         };
     },
     created() {
@@ -259,7 +261,12 @@ export default {
                 console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.upInfoUser(infoPayLoad)
             } catch (error) {
-                console.log(error);
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
             }
         },
 
