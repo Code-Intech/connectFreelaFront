@@ -109,9 +109,6 @@
             </div>
         </div>
     </div>
-    <button @click="ttttttt">
-        ttttt
-    </button>
 </template>
 
 <script>

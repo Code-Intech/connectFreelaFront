@@ -19,7 +19,7 @@
 
                                 <div style="width: auto;">
                                     <input class="form-control m-2 " type="text" name="" id="" placeholder="Titulo"
-                                        v-model="Servico.Titulo">
+                                        v-model="Servico.Titulo" required>
                                 </div>
                                 <div class="p-2  flex-grow-1">
                                     <div>

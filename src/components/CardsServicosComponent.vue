@@ -134,9 +134,9 @@
 
                             <div class="border-bottom border-black justify-content-start p-2"
                                 style="overflow-y:scroll;height: 100px;">
-                                <h6 class="">
+                                <h4 class="">
                                     Profissão:
-                                </h6>
+                                </h4>
                                 <h6 class="">
                                     <div v-for="(val, index2) in valores.servicoProfessions" :key="val[index2]">
                                         {{ val.Profissao }};<br>
@@ -150,7 +150,7 @@
                                 </h4>
                                 <div class="" style="overflow-y:scroll;height: 150px;">
 
-                                    <ul class="d-flex gap-4 flex-wrap">
+                                    <ul class="">
                                         <li v-for="(val2, index3)    in valores.servicoSkills" :key="val2[index3]">
                                             {{ val2.Habilidade }}
                                         </li>
@@ -269,13 +269,13 @@
                                                 <div class="d-grid gap-2">
                                                     <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
                                                     <button type="button" class="btn btnfotos" data-bs-toggle="modal"
-                                                        :data-bs-target="'#FotoServico'" style="font-size: small; border:none;"
-                                                        >Fotos</button>
+                                                        :data-bs-target="'#FotoServico'"
+                                                        style="font-size: small; border:none;">Fotos</button>
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <ModalFotoServico/>
+                                        <ModalFotoServico />
                                         <p class="card-text border-top border-bottom border-black">Some quick example
                                             text to build on the
                                             card
@@ -428,8 +428,8 @@ export default {
 
             return dataFormatada;
         },
-           
-        
+
+
 
     },
 
