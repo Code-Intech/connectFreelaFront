@@ -12,7 +12,7 @@
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Sobre</button> -->
             <button @click="$router.push({ path: '/userperfil' })" class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Sobre</button>
-            <button @click="$router.push({ path: '/UserPortifolio' })" class="d-block btn text-white"
+            <button @click=" getalbum()" class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Portifólio</button>
         </div>
 
@@ -29,8 +29,19 @@ export default {
     name: "PerfilComponent",
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getAvatar"]),
-        ...mapGetters([""]),
+        ...mapActions(["getAvatar", "GetAlbum"]),
+        ...mapGetters(["GetToken"]),
+        async getalbum() {
+            try {
+                await this.GetAlbum(this.GetToken());
+
+
+                this.$router.push({ path: '/UserPortifolio' })
+            } catch (error) {
+
+                this.$router.push({ path: '/UserPortifolio' })
+            }
+        },
     },
     components: {
         Avatar
@@ -42,6 +53,7 @@ export default {
             return store
         }
     }
+
 
 }
 
