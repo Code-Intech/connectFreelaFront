@@ -265,17 +265,15 @@
                                                             :alt="slotProps.item.alt" style="display: block" />
                                                     </template>
                                                 </Galleria> -->
-
                                                 <div class="d-grid gap-2">
                                                     <!-- <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" /> -->
                                                     <button type="button" class="btn btnfotos" data-bs-toggle="modal"
-                                                        :data-bs-target="'#FotoServico'"
+                                                        :data-bs-target="'#FotoServico' + valores[index]"
                                                         style="font-size: small; border:none;">Fotos</button>
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <ModalFotoServico />
                                         <p class="card-text border-top border-bottom border-black">Some quick example
                                             text to build on the
                                             card
@@ -362,6 +360,7 @@
                     </div>
 
                 </div>
+                <ModalFotoServico :modalFotoId="valores[index]"/>
             </div>
 
         </div>
