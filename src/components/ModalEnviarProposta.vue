@@ -157,14 +157,15 @@
                 </h4>
                 <div class="form-floating mt-3">
                     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                        style="height: 100px;font-size:small;"></textarea>
+                        style="height: 100px;font-size:small;" v-model="dados.Texto"></textarea>
                     <label for="floatingTextarea2">Comments</label>
                 </div>
                 <div class="d-flex mt-3">
-                    <div class="p-inputgroup flex-1">
-                        <span class="p-inputgroup-addon" style="font-size:small;">$</span>
-                        <InputNumber class="" placeholder="Valor" style="font-size:small;" />
-                        <span class="p-inputgroup-addon" style="font-size:small;">.00</span>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            v-model="dados.Valor">
+                        <span class="input-group-text">.00</span>
                     </div>
                     <button class="btn btn-primary ms-3 " type="submit"
                         style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
@@ -194,14 +195,15 @@ export default {
             type: String,
             required: true,
         },
-        infoServico: {
-            type: Array,
-            required: true,
-        }
+
     },
     data() {
         return {
-
+            dados: {
+                Texto: null,
+                Valor: null,
+                Data: null,
+            }
         };
     },
     computed: {
@@ -211,7 +213,9 @@ export default {
 
     },
     created() {
-
+        const hoje = new Date();
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        this.dados.Data = hoje.toLocaleDateString("pt-BR", options);
 
     },
     watch: {
@@ -222,7 +226,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions", "getcategory", "getProfessions", "getSkills"]),
+        ...mapActions([""]),
         ...mapGetters(["GetToken"]),
 
 
