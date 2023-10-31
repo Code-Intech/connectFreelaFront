@@ -164,7 +164,7 @@
                                 <div class=" d-flex justify-content-between border-top border-black ">
                                     <div class="buttuns mt-3 align-self-end">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            :data-bs-target="'#exampleModal' + valores[index]"
+                                            :data-bs-target="'#exampleModal' + valores.servicoInfo.idtb_servico"
                                             style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
                                             Proposta</button>
                                     </div>
@@ -183,7 +183,7 @@
                     </div>
 
                 </div>
-                <ModalEnviarProposta :idModal="valores[index]" />
+                <ModalEnviarProposta :idModal="valores.servicoInfo.idtb_servico" />
                 <!-- <ModalFotoServico :modalFotoId="valores[index]" /> -->
             </div>
 

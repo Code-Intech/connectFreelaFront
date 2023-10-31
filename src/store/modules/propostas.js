@@ -4,21 +4,22 @@ const state = {
   CreatePropostas: null,
 };
 const getters = {
-  StatePrestador: (state) => state.prestador,
+  StateCreateProposta: (state) => state.CreatePropostas,
 };
 const actions = {
-  async CreatePrestador({ commit }, infoProposta, id, token) {
-    const InfoPres = JSON.stringify({
+  async CreateProposta({ commit }, { infoProposta, id, token }) {
+    console.log(infoProposta);
+    const Info = JSON.stringify({
       Valor_Proposta: infoProposta.get("Valor"),
       Comentario: infoProposta.get("Texto"),
       Data_Proposta: infoProposta.get("Data"),
     });
 
-    // console.log(InfoPres, "tokenprestador");
+    console.log(Info, "tokenprestador");
 
     const request = await axios.post(
       `http://localhost:8000/api/servico/proposta/${id}`,
-      InfoPres,
+      Info,
       {
         headers: {
           Authorization: `Bearer ${token}`,

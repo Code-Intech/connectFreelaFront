@@ -168,7 +168,8 @@
                         <span class="input-group-text">.00</span>
                     </div>
                     <button class="btn btn-primary ms-3 " type="submit"
-                        style="background-color: rgb(11, 217, 11); font-size: small; border:none;">Enviar
+                        style="background-color: rgb(11, 217, 11); font-size: small; border:none;"
+                        @click="createProposta()">Enviar
                         Proposta</button>
                 </div>
             </div>
@@ -202,7 +203,7 @@ export default {
             dados: {
                 Texto: null,
                 Valor: null,
-                Data: null,
+                Data: "2023-10-10",
             }
         };
     },
@@ -213,9 +214,15 @@ export default {
 
     },
     created() {
+        // const hoje = new Date();
+        // const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        // this.dados.Data = hoje.toLocaleDateString("pt-BR", options);
+
         const hoje = new Date();
-        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-        this.dados.Data = hoje.toLocaleDateString("pt-BR", options);
+        const ano = hoje.getFullYear();
+        const mes = (hoje.getMonth() + 1).toString().padStart(2, '0');
+        const dia = hoje.getDate().toString().padStart(2, '0');
+        this.dados.Data = `${ano}-${mes}-${dia}`;
 
     },
     watch: {
@@ -226,8 +233,40 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions([""]),
+        ...mapActions(["CreateProposta"]),
         ...mapGetters(["GetToken"]),
+
+
+        async createProposta() {
+
+
+            const Proposta = new FormData()
+
+            Proposta.append("Texto", this.dados.Texto);
+            Proposta.append("Valor", this.dados.Valor);
+            Proposta.append("Data", this.dados.Data);
+
+
+            const PayLoad = {
+                id: this.idModal,
+                token: this.GetToken(),
+                infoProposta: Proposta
+            }
+
+
+
+            try {
+                await this.CreateProposta(PayLoad);
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
+        },
+
+
+
 
 
 
