@@ -2,9 +2,11 @@ import axios from "axios";
 
 const state = {
   CreatePropostas: null,
+  Propostas: null,
 };
 const getters = {
   StateCreateProposta: (state) => state.CreatePropostas,
+  StateGetProposta: (state) => state.Propostas,
 };
 const actions = {
   async CreateProposta({ commit }, { infoProposta, id, token }) {
@@ -33,8 +35,26 @@ const actions = {
       request.status === 500
     )
       throw new Error(request.statusText);
-    // console.log(request);
     commit("createProposta", { info: await request.data });
+    return request;
+  },
+  async GetProposta({ commit }, { id, token }) {
+    const request = await axios.get(
+      `http://localhost:8000/api/servico/proposta/get/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("getProposta", { info: await request.data.proposta });
     return request;
   },
 };
@@ -42,9 +62,11 @@ const actions = {
 const mutations = {
   createProposta(state, { info }) {
     console.log(info);
-    // console.log(state,"state")
     state.CreatePropostas = info;
-    // console.log(state.edituser,"get")
+  },
+  getProposta(state, { info }) {
+    console.log(info);
+    state.Propostas = info;
   },
 
   LogOutPrestador(state) {

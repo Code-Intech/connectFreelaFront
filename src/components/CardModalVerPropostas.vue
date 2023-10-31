@@ -411,8 +411,7 @@
 </template>
 
 <script>
-// import store from "@/store";
-// import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 // import loading from "@/components/Loading.vue"
 import store from "@/store";
 
@@ -441,13 +440,33 @@ export default {
     },
     created() {
         this.getinfos();
+        this.getPropostas();
     },
     methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["GetProposta"]),
+        ...mapGetters(["GetToken"]),
+
         getinfos() {
 
             this.valorServico = this.infoServico
 
 
+        },
+        async getPropostas() {
+
+
+            const Payload = {
+                id: this.idModal,
+                token: this.GetToken()
+            }
+
+
+            try {
+                await this.GetProposta(Payload)
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
 
