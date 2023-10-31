@@ -34,7 +34,7 @@ const actions = {
     )
       throw new Error(request.statusText);
     // console.log(request);
-    commit("createProposta", { info: await request.error.message });
+    commit("createProposta", { info: await request.data });
     return request;
   },
 };

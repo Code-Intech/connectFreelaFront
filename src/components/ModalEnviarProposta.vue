@@ -5,7 +5,6 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header border-black">
-                    <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
                     <AvatarComponent />
                     <div class="d-flex justify-content-between" style="width: 90%;">
                         <div>
@@ -26,6 +25,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
+                    <div v-if="Cadastrado" class="alert alert-success" role="alert">
+                        Proposta Enviada!!
+                    </div>
+                    <loading v-if="isLoading" :message="loadingMessage" />
                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid black;">
                         <div>
                             <h6 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">Data de
@@ -183,13 +187,14 @@
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
 import ModalFotoServico from "@/components/ModalFotoServico.vue"
-// import CardErroMessage from "@/components/CardErroMessage.vue"
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 
 export default {
     name: "ModalEnviarProposta",
     components: {
         ModalFotoServico,
+        CardErroMessage,
     },
     props: {
         idModal: {
@@ -204,7 +209,10 @@ export default {
                 Texto: null,
                 Valor: null,
                 Data: "2023-10-10",
-            }
+            },
+            erroIf: false,
+            isLoading: false,
+            Cadastrado: false,
         };
     },
     computed: {
@@ -238,7 +246,7 @@ export default {
 
 
         async createProposta() {
-
+            this.isLoading = true
 
             const Proposta = new FormData()
 
@@ -257,8 +265,27 @@ export default {
 
             try {
                 await this.CreateProposta(PayLoad);
+
+                this.isLoading = false;
+                this.Cadastrado = true;
+                setTimeout(() => {
+
+                    this.Cadastrado = false;
+                }, 4000);
+
+
             } catch (error) {
-                console.log(error)
+                this.isLoading = false;
+                if (error.request && error.request.response) {
+                    const message = error.request.response;
+                    this.errorMessage = JSON.parse(message);
+                    this.erroIf = true;
+                    setTimeout(() => {
+                        this.erroIf = false;
+                    }, 4000);
+                } else {
+                    console.error("Erro inesperado:", error);
+                }
             }
 
 
