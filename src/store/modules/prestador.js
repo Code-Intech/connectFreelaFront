@@ -26,7 +26,7 @@ const state = {
     ],
     apresentacao: null,
   },
-
+  PrestadorID: null,
   error: null,
   error2: {
     error: null,
@@ -35,6 +35,7 @@ const state = {
 };
 const getters = {
   StatePrestador: (state) => state.prestador,
+  StatePrestadorID: (state) => state.PrestadorID,
 };
 const actions = {
   async CreatePrestador({ commit }, infoPresta) {
@@ -127,6 +128,20 @@ const actions = {
     commit("seteditprestador", { infoprestador: await request.data.prestador });
     return request;
   },
+  async getInfoPrestadorID({ commit }, id) {
+    const request = await axios.get(`http://localhost:8000/prestador/${id}`);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("seteditprestadorme", {
+      infoprestadorMe: await request.data.prestador,
+    });
+    return request;
+  },
 
   async getAllPrestadores({ commit }) {
     const request = await axios.get("http://localhost:8000/prestador", {});
@@ -166,6 +181,10 @@ const mutations = {
   },
   setCardsPrestador(state, { infoprestadorcard }) {
     state.prestador = infoprestadorcard;
+    // console.log(state.prestador, "SetCardsPrestador");
+  },
+  seteditprestadorme(state, { infoprestadorMe }) {
+    state.PrestadorID = infoprestadorMe;
     // console.log(state.prestador, "SetCardsPrestador");
   },
 

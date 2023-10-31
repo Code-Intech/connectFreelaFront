@@ -246,15 +246,16 @@
 
                     <div class="d-inline-flex justify-content-center ">
 
-                        <div class="card mt-5 " style="max-width: 100vh; width: 90%;">
+                        <div class="card mt-5 " style="max-width: 100vh; width: 90%;" v-for="proposta in Propostas"
+                            :key="proposta.idtb_proposta">
                             <Card>
+
                                 <template #title>
 
 
                                     <div class="d-flex">
 
                                         <AvatarComponent />
-
 
                                         <div class=" ms-3 " style="width: 90%;">
 
@@ -280,7 +281,7 @@
                                                     Valor:
                                                 </h2>
                                                 <h3 class=" ms-2 mt-1 text-success">
-                                                    $15.500,00
+                                                    ${{ proposta.Valor_Proposta }}
                                                 </h3>
 
                                             </div>
@@ -293,7 +294,7 @@
                                                     Publicação:
                                                 </h4>
                                                 <h4>
-                                                    26/09/2023
+                                                    {{ proposta.Data_Proposta }}
                                                 </h4>
                                             </div>
                                         </div>
@@ -382,12 +383,7 @@
 
 
                                         <p class="p-2 mt-4 ">
-                                            Texto da Proposta enviada
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo cum quod veniam,
-                                            temporibus animi,
-                                            est officiis iure error consequuntur recusandae facere perspiciatis, a dolor!
-                                            Dignissimos
-                                            reiciendis rerum labore aspernatur cum.
+                                            {{ proposta.Comentario }}
 
 
                                         </p>
@@ -400,7 +396,8 @@
                             </Card>
                         </div>
                     </div>
-                </div>
+                    {{ Propostas }}
+                </div><button @click="tttt()">ttttttt</button>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
                     <!-- <button type="button" class="btn btn-primary">Understood</button> -->
@@ -431,6 +428,7 @@ export default {
     data() {
         return {
             valorServico: [],
+            Propostas: null
         }
     },
     component: {
@@ -464,9 +462,16 @@ export default {
 
             try {
                 await this.GetProposta(Payload)
+                this.Propostas = store.getters.StateGetProposta
             } catch (error) {
                 console.log(error)
             }
+        },
+
+
+
+        tttt() {
+            console.log(this.Propostas)
         }
     },
 
