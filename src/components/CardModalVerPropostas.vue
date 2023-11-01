@@ -366,8 +366,7 @@
                                         </p>
                                         <div class="d-flex flex-row-reverse">
                                             <button class="btn btn-outline-success" type="submit"
-                                                @click="aceitarProposta(proposta.idtb_proposta)"
-                                                :disabled="ifAceitar">Aceitar
+                                                @click="aceitarProposta(proposta.idtb_proposta)" v-if="!ifAceitar">Aceitar
                                                 Proposta</button>
                                         </div>
                                     </div>

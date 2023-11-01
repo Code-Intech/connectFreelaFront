@@ -61,6 +61,7 @@ const actions = {
     console.log(token);
     const request = await axios.patch(
       `http://localhost:8000/api/servico/proposta/aceitar/${id}`,
+      {},
       {
         headers: {
           Authorization: `Bearer ${token}`,
