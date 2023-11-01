@@ -3,6 +3,7 @@ import axios from "axios";
 const state = {
   CreatePropostas: null,
   Propostas: null,
+  PropostaAceita: null,
 };
 const getters = {
   StateCreateProposta: (state) => state.CreatePropostas,
@@ -56,6 +57,26 @@ const actions = {
     commit("getProposta", { info: await request.data.proposta });
     return request;
   },
+  async AceitarProposta({ commit }, { id, token }) {
+    console.log(token);
+    const request = await axios.patch(
+      `http://localhost:8000/api/servico/proposta/aceitar/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("aceitarProposta", { info: await request.data });
+    return request;
+  },
 };
 
 const mutations = {
@@ -66,10 +87,13 @@ const mutations = {
   getProposta(state, { info }) {
     state.Propostas = info;
   },
-
-  LogOutPrestador(state) {
-    state.prestador = null;
+  aceitarProposta(state, { info }) {
+    state.PropostaAceita = info;
   },
+
+  //   LogOutPrestador(state) {
+  //     state.prestador = null;
+  //   },
 };
 export default {
   state,

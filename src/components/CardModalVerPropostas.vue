@@ -238,7 +238,6 @@
 
 
 
-
                         </div>
 
                     </div>
@@ -256,7 +255,7 @@
                                     <div class="d-flex">
 
                                         <AvatarComponent />
-
+                                        {{ proposta.Proposta_Aceita }}
                                         <div class=" ms-3 " style="width: 90%;">
 
                                             <div>
@@ -365,9 +364,11 @@
 
 
                                         </p>
-
                                         <div class="d-flex flex-row-reverse">
-                                            <button class="btn btn-outline-success" type="submit">Aceitar Proposta</button>
+                                            <button class="btn btn-outline-success" type="submit"
+                                                @click="aceitarProposta(proposta.idtb_proposta)"
+                                                :disabled="ifAceitar">Aceitar
+                                                Proposta</button>
                                         </div>
                                     </div>
                                 </template>
@@ -407,6 +408,7 @@ export default {
             valorServico: [],
             Propostas: null,
             Prestadores: [],
+            ifAceitar: false,
         }
     },
     component: {
@@ -420,10 +422,13 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetProposta", "getInfoPrestadorID"]),
+        ...mapActions(["GetProposta", "getInfoPrestadorID", "AceitarProposta"]),
         ...mapGetters(["GetToken"]),
 
         getinfos() {
+
+
+
 
             this.valorServico = this.infoServico
 
@@ -450,21 +455,30 @@ export default {
                     valor.push(store.getters.StatePrestadorID)
                     this.Prestadores[index] = valor
                 }
+                for (let index = 0; index < this.Propostas.length; index++) {
 
+
+                    if (this.Propostas[index].Proposta_Aceita == 1) {
+                        console.log(this.Propostas[index].Proposta_Aceita)
+                        this.ifAceitar = true
+                    }
+                }
             } catch (error) {
                 console.log(error)
             }
         },
-        async GetPrestador(id) {
+        async aceitarProposta(id) {
 
-
+            const PayLoad = {
+                id: id,
+                token: this.GetToken()
+            }
 
 
             try {
-                await this.getInfoPrestadorID(id)
-                const valor = store.getters.StatePrestadorID
-                this.Prestadores.push(valor)
-                return valor
+                await this.AceitarProposta(PayLoad)
+                await this.getPropostas()
+
             } catch (error) {
                 console.log(error)
             }
