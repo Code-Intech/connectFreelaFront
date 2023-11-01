@@ -10,7 +10,6 @@ const getters = {
 };
 const actions = {
   async CreateProposta({ commit }, { infoProposta, id, token }) {
-    console.log(infoProposta);
     const Info = JSON.stringify({
       Valor_Proposta: infoProposta.get("Valor"),
       Comentario: infoProposta.get("Texto"),
@@ -65,7 +64,6 @@ const mutations = {
     state.CreatePropostas = info;
   },
   getProposta(state, { info }) {
-    console.log(info);
     state.Propostas = info;
   },
 

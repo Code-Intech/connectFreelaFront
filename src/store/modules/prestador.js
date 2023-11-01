@@ -177,7 +177,6 @@ const mutations = {
     // console.log(infoprestador, "SETPrestador");
     // console.log(state,"state")
     state.prestador = infoprestador;
-    console.log(state.prestador, "SETPrestador");
   },
   setCardsPrestador(state, { infoprestadorcard }) {
     state.prestador = infoprestadorcard;

@@ -244,9 +244,9 @@
                     </div>
 
 
-                    <div class="d-inline-flex justify-content-center ">
+                    <div class=" d-flex  flex-wrap justify-content-center ">
 
-                        <div class="card mt-5 " style="max-width: 100vh; width: 90%;" v-for="proposta in Propostas"
+                        <div class="card mt-5 " style="max-width: 100vh; width: 90%;" v-for="(proposta, index) in Propostas"
                             :key="proposta.idtb_proposta">
                             <Card>
 
@@ -262,10 +262,7 @@
                                             <div>
 
                                                 <text class="fst-italic">Nome de perfil</text>
-                                                <p class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
-                                                    Profissão:
-                                                    Programador
-                                                </p>
+
                                             </div>
 
                                         </div>
@@ -301,8 +298,8 @@
 
 
 
-
-
+                                        <!-- {{ this.getInfoPrestadorID(proposta.tb_prestador_idtb_prestador) }}
+                                        {{ Prestadores }} -->
 
 
                                         <div class="border-bottom border-black ">
@@ -314,16 +311,12 @@
 
                                             <div class="">
 
-                                                <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        DEV
+                                                <ul class="d-flex gap-4 flex-wrap" v-for="Prestado in Prestadores[index]"
+                                                    :key="Prestado">
+                                                    <li v-for="skill in Prestado.prestadorProfessions" :key="skill">
+                                                        {{ skill.Profissao }}
                                                     </li>
-                                                    <li>
-                                                        Dev Front-end
-                                                    </li>
-                                                    <li>
-                                                        Dev Back-end
-                                                    </li>
+
 
                                                 </ul>
                                             </div>
@@ -351,28 +344,13 @@
 
                                             <div class="">
 
-                                                <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        php
+                                                <ul class="d-flex gap-4 flex-wrap" v-for="Prestado in Prestadores[index]"
+                                                    :key="Prestado">
+                                                    <li v-for="skill in Prestado.prestadorSkills" :key="skill">
+                                                        {{ skill.Habilidade }}
                                                     </li>
-                                                    <li>
-                                                        Java
-                                                    </li>
-                                                    <li>
-                                                        JavaScript
-                                                    </li>
-                                                    <li>
-                                                        WorldPress
-                                                    </li>
-                                                    <li>
-                                                        Linux
-                                                    </li>
-                                                    <li>
-                                                        HTML5
-                                                    </li>
-                                                    <li>
-                                                        CSS3
-                                                    </li>
+
+
                                                 </ul>
                                             </div>
 
@@ -396,7 +374,6 @@
                             </Card>
                         </div>
                     </div>
-                    {{ Propostas }}
                 </div><button @click="tttt()">ttttttt</button>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
@@ -428,7 +405,8 @@ export default {
     data() {
         return {
             valorServico: [],
-            Propostas: null
+            Propostas: null,
+            Prestadores: [],
         }
     },
     component: {
@@ -442,7 +420,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetProposta"]),
+        ...mapActions(["GetProposta", "getInfoPrestadorID"]),
         ...mapGetters(["GetToken"]),
 
         getinfos() {
@@ -462,7 +440,31 @@ export default {
 
             try {
                 await this.GetProposta(Payload)
+
                 this.Propostas = store.getters.StateGetProposta
+                this.Prestadores = []
+                for (let index = 0; index < this.Propostas.length; index++) {
+                    const id = this.Propostas[index].tb_prestador_idtb_prestador
+                    await this.getInfoPrestadorID(id)
+                    const valor = []
+                    valor.push(store.getters.StatePrestadorID)
+                    this.Prestadores[index] = valor
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async GetPrestador(id) {
+
+
+
+
+            try {
+                await this.getInfoPrestadorID(id)
+                const valor = store.getters.StatePrestadorID
+                this.Prestadores.push(valor)
+                return valor
             } catch (error) {
                 console.log(error)
             }
