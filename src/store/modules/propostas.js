@@ -4,10 +4,12 @@ const state = {
   CreatePropostas: null,
   Propostas: null,
   PropostaAceita: null,
+  InfoPropostaAceita: null,
 };
 const getters = {
   StateCreateProposta: (state) => state.CreatePropostas,
   StateGetProposta: (state) => state.Propostas,
+  StateInfoPropostaAceita: (state) => state.InfoPropostaAceita,
 };
 const actions = {
   async CreateProposta({ commit }, { infoProposta, id, token }) {
@@ -90,6 +92,14 @@ const mutations = {
   },
   aceitarProposta(state, { info }) {
     state.PropostaAceita = info;
+  },
+  infosPropostaAceita(state, valor) {
+    // console.log(valor, "stateInfosaceita");
+    state.InfoPropostaAceita.push(valor);
+  },
+  LimparinfosPropostaAceita(state, valor) {
+    // console.log(valor, "stateInfosaceita");
+    state.InfoPropostaAceita = valor;
   },
 
   //   LogOutPrestador(state) {

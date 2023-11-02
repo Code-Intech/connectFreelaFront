@@ -1,7 +1,7 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" :id="'PropostasAceita' + idModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" :id="'PropostasAceita' + idModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -137,7 +137,7 @@
 
 
 
-
+                                        {{ valor }}
 
 
 
@@ -274,6 +274,7 @@ export default {
     data() {
         return {
             valorServico: [],
+            valor: null,
         }
     },
     components: {
@@ -286,9 +287,36 @@ export default {
     },
     created() {
         this.getinfos();
+
     },
     methods: {
         getinfos() {
+
+            // const valorProposta = []
+
+            const valorProposta = store.getters.StateInfoPropostaAceita
+
+            // this.valor = valorProposta.map((valores) => valores.id === this.idModal)
+
+            const id = this.idModal
+
+            function encontrarObjetoComId3() {
+                for (const subArray of valorProposta) {
+                    for (const objeto of subArray) {
+                        if (objeto.id === id) {
+                            return objeto;
+                        }
+                    }
+                }
+                return null;
+            }
+
+            // Chamar a função para encontrar o objeto com "id" igual a 3
+            this.valor = encontrarObjetoComId3();
+
+
+
+
 
             if (store.getters.StateServico != null || store.getters.StateServico != undefined) {
 

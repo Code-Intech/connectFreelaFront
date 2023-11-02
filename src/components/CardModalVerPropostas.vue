@@ -385,7 +385,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 // import loading from "@/components/Loading.vue"
 import store from "@/store";
 
@@ -423,6 +423,7 @@ export default {
         validateOnBack: Boolean,
         ...mapActions(["GetProposta", "getInfoPrestadorID", "AceitarProposta"]),
         ...mapGetters(["GetToken"]),
+        ...mapMutations(["infosPropostaAceita", "LimparinfosPropostaAceita"]),
 
         getinfos() {
 
@@ -444,7 +445,7 @@ export default {
 
             try {
                 await this.GetProposta(Payload)
-
+                this.LimparinfosPropostaAceita([])
                 this.Propostas = store.getters.StateGetProposta
                 this.Prestadores = []
                 for (let index = 0; index < this.Propostas.length; index++) {
@@ -458,7 +459,12 @@ export default {
 
 
                     if (this.Propostas[index].Proposta_Aceita == 1) {
-                        console.log(this.Propostas[index].Proposta_Aceita)
+                        // console.log(this.Propostas[index].Proposta_Aceita)
+                        const valor = []
+                        valor.push({ id: this.idModal, proposta: this.Propostas[index], prestador: this.Prestadores[index][0] })
+                        this.infosPropostaAceita(valor)
+                        // console.log(valor)
+                        // console.log(store.getters.StateInfoPropostaAceita)
                         this.ifAceitar = true
                     }
                 }
