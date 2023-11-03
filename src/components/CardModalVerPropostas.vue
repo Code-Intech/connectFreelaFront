@@ -253,9 +253,8 @@
 
 
                                     <div class="d-flex">
+                                        <avatar :source="avatar[index]" height="50px" width="50px" />
 
-                                        <AvatarComponent />
-                                        {{ proposta.Proposta_Aceita }}
                                         <div class=" ms-3 " style="width: 90%;">
 
                                             <div>
@@ -314,6 +313,7 @@
                                                     :key="Prestado">
                                                     <li v-for="skill in Prestado.prestadorProfessions" :key="skill">
                                                         {{ skill.Profissao }}
+
                                                     </li>
 
 
@@ -388,10 +388,13 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 // import loading from "@/components/Loading.vue"
 import store from "@/store";
-
+import avatar from "@/components/AvatarComponent.vue"
 
 export default {
     name: "CardModalVerPropostas",
+    components: {
+        avatar
+    },
     props: {
         idModal: {
             type: String,
@@ -406,6 +409,7 @@ export default {
         return {
             valorServico: [],
             Propostas: null,
+            avatar: [],
             Prestadores: [],
             ifAceitar: false,
         }
@@ -421,7 +425,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetProposta", "getInfoPrestadorID", "AceitarProposta"]),
+        ...mapActions(["GetProposta", "getInfoPrestadorID", "AceitarProposta", "getAvatarNoToken"]),
         ...mapGetters(["GetToken"]),
         ...mapMutations(["infosPropostaAceita", "LimparinfosPropostaAceita"]),
 
@@ -451,6 +455,8 @@ export default {
                 for (let index = 0; index < this.Propostas.length; index++) {
                     const id = this.Propostas[index].tb_prestador_idtb_prestador
                     await this.getInfoPrestadorID(id)
+                    await this.getAvatarNoToken(this.Propostas[index].tb_prestador_tb_user_idtb_user)
+                    this.avatar.push(store.getters.StateAvatarId)
                     const valor = []
                     valor.push(store.getters.StatePrestadorID)
                     this.Prestadores[index] = valor
@@ -461,9 +467,14 @@ export default {
                     if (this.Propostas[index].Proposta_Aceita == 1) {
                         // console.log(this.Propostas[index].Proposta_Aceita)
                         const valor = []
-                        valor.push({ id: this.idModal, proposta: this.Propostas[index], prestador: this.Prestadores[index][0] })
+
+
+
+                        valor.push({
+                            id: this.idModal, proposta: this.Propostas[index], prestador: this.Prestadores[index][0]
+
+                        })
                         this.infosPropostaAceita(valor)
-                        // console.log(valor)
                         // console.log(store.getters.StateInfoPropostaAceita)
                         this.ifAceitar = true
                     }

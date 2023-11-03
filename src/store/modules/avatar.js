@@ -2,15 +2,15 @@ import axios from "axios";
 
 const state = {
   fotoavatar: null,
+  fotoavatarId: null,
 };
 const getters = {
   StateAvatar: (state) => state.fotoavatar,
+  StateAvatarId: (state) => state.fotoavatarId,
 };
 const actions = {
   async getAvatar({ commit }, token) {
-    console.log(token);
-
-    const request = await axios.get("http://localhost:8000/api/user/avatar", {
+    const request = await axios.get("http://localhost:8000/user/avatar/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,6 +19,11 @@ const actions = {
     console.log(request);
 
     commit("setAvatar", { avatar: request.data.success.avatar_url });
+  },
+  async getAvatarNoToken({ commit }, id) {
+    const request = await axios.get(`http://localhost:8000/user/avatar/${id}`);
+
+    commit("setAvatarNoToken", { avatar: request.data.success.avatar_url });
   },
 
   async GetFoto({ commit }, avatar) {
@@ -44,8 +49,11 @@ const actions = {
 };
 const mutations = {
   setAvatar(state, { avatar }) {
-    console.log(avatar);
     state.fotoavatar = avatar;
+  },
+  setAvatarNoToken(state, { avatar }) {
+    console.log(avatar);
+    state.fotoavatarId = avatar;
   },
   LogOutAvatar(state) {
     state.fotoavatar = null;
