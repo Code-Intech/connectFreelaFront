@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <div clss="container">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" @click="VerPerfilUser(valores.servicoInfo.idtb_servico)">
                                         <AvatarComponent />
                                     </div>
                                     <div class="col ">
@@ -254,6 +254,9 @@ export default {
             return dataFormatada;
         },
 
+        VerPerfilUser(id) {
+            this.$router.push({ name: `UserPerfilSobreView`, params: { id: id } });
+        }
 
 
     },

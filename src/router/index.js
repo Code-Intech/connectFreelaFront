@@ -21,6 +21,8 @@ import ViewPropostas from "@/components/ViewPropostas.vue";
 import ViewInfoPrestador from "@/components/ViewInfoPrestador.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import MeusServicosView from "@/components/MeusServicosView.vue";
+import UserPerfilSobreView from "@/components/TelaUser/UserPerfilSobreView.vue";
+import UserPortfolioView from "@/components/TelaUser/UserPortfolioView.vue";
 
 const routes = [
   {
@@ -131,6 +133,16 @@ const routes = [
     path: "/MeuServico",
     name: "MeusServicosView",
     component: MeusServicosView,
+  },
+  {
+    path: "/PerfilUserPortfolio/:id",
+    name: "UserPortfolioView",
+    component: UserPortfolioView,
+  },
+  {
+    path: "/PerfilUserSobre/:id",
+    name: "UserPerfilSobreView",
+    component: UserPerfilSobreView,
   },
 ];
 
