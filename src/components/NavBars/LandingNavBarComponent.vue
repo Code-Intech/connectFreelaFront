@@ -113,9 +113,12 @@ export default {
   mounted() {
     // this.getNome();
   },
+  created() {
+    this.IFtoken();
+  },
   methods: {
     validateOnBack: Boolean,
-    ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador"]),
+    ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador", "ifToken"]),
     ...mapGetters(["GetToken"]),
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador", "LogOutAlbum"]),
     async getinfo() {
@@ -139,7 +142,18 @@ export default {
 
       }, 2000);
     },
+    async IFtoken() {
+      try {
+        await this.ifToken(this.GetToken())
+        this.$router.push("/");
+      } catch (error) {
+        const message = error.request.response
 
+        console.log(message)
+        this.$router.push("/login");
+        this.LogOutM()
+      }
+    },
 
     // getNome() {
 
