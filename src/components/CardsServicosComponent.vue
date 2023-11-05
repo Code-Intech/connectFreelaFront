@@ -23,7 +23,7 @@
                             <div clss="container">
                                 <div class="row">
                                     <div class="col-md-3" @click="VerPerfilUser(valores.servicoInfo.idtb_servico)">
-                                        <AvatarComponent />
+                                        <AvatarComponent :source="avatar[index]" />
                                     </div>
                                     <div class="col ">
                                         <text class="fst-italic  ">{{ valores.contratante.Nome_Completo }}</text>
@@ -34,7 +34,16 @@
                                                 valores.servicoInfo.Estimativa_Valor }}
                                         </h6>
                                         <h6 class="fst-italic" style="font-size: smaller;">
-                                            {{ valores.servicoInfo.Remoto_Presencial }}
+                                            <div v-if="valores.servicoInfo.Remoto_Presencial == 1">
+                                                Remoto
+                                            </div>
+                                            <div v-if="valores.servicoInfo.Remoto_Presencial == 2">
+                                                Hibrido
+                                            </div>
+                                            <div v-if="valores.servicoInfo.Remoto_Presencial == 3">
+                                                Presencial
+                                            </div>
+
                                         </h6>
                                     </div>
                                 </div>
@@ -211,13 +220,15 @@ export default {
             valor: [],
             originalDate: null,
             tttt: null,
-
+            avatar: [],
         };
     },
 
     created() {
         this.getAllServicos();
         this.formatData();
+
+        this.getsallservicos();
     },
     computed: {
         store() {
@@ -227,16 +238,17 @@ export default {
         formattedDate() {
             return this.formatDate(this.originalDate);
         }
+
     },
 
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getServico", "getInfoServico", "CreateServico", "formatDate"]),
+        ...mapActions(["getServico", "getInfoServico", "CreateServico", "formatDate", "getAvatarNoToken"]),
         ...mapGetters([]),
 
         getAllServicos() {
             this.valor = store.getters.StateServico
-
+            // console.log(this.valor)
         },
 
         formatData(data) {
@@ -256,7 +268,32 @@ export default {
 
         VerPerfilUser(id) {
             this.$router.push({ name: `UserPerfilSobreView`, params: { id: id } });
-        }
+        },
+
+        async getsallservicos() {
+
+            this.avatar = []
+
+            try {
+                await this.getServico()
+                for (let index = 0; index < this.valor.length; index++) {
+                    // console.log(this.valor[index])
+                    try {
+                        await this.getAvatarNoToken(this.valor[index].servicoInfo.tb_contratante_tb_user_idtb_user)
+
+                        this.avatar.push(store.getters.StateAvatarId)
+                    } catch (error) {
+                        console.log(error)
+
+                        this.avatar.push(null)
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+        },
+
 
 
     },

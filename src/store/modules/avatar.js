@@ -52,7 +52,7 @@ const mutations = {
     state.fotoavatar = avatar;
   },
   setAvatarNoToken(state, { avatar }) {
-    console.log(avatar);
+    // console.log(avatar);
     state.fotoavatarId = avatar;
   },
   LogOutAvatar(state) {

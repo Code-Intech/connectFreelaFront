@@ -8,7 +8,7 @@
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Propostas Recebidas:</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-y: auto;height: 80vh;">
 
                     <div class="d-flex justify-content-center">
 
@@ -374,7 +374,7 @@
                             </Card>
                         </div>
                     </div>
-                </div><button @click="tttt()">ttttttt</button>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
                     <!-- <button type="button" class="btn btn-primary">Understood</button> -->
@@ -501,10 +501,6 @@ export default {
         },
 
 
-
-        tttt() {
-            console.log(this.Propostas)
-        }
     },
 
 

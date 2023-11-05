@@ -3,7 +3,7 @@
     <div class="col-10 ">
         <div class="border border-2 rounded m-3">
             <div>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PropostasEnvidas">
+                <button class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#PropostasEnvidas">
                     Propostas Enviadas
                 </button>
             </div>

@@ -5,6 +5,7 @@ const state = {
     prestadorInfo: {
       Nome_Empresa: null,
       CNPJ: null,
+      tb_user_idtb_user: null,
       idtb_prestador: null,
       Valor_Da_Hora: null,
       Valor_diaria: null,

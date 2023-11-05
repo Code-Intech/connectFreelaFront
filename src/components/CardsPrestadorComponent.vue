@@ -1,11 +1,12 @@
 <template>
     <div class="">
         <div class="d-flex flex-wrap">
-            <div class=" mb-4  m-auto " v-for="(valores, index) in valor" :key="valores[index]">
+            <div class="   m-auto mt-4" v-for="(valores, index) in valor" :key="valores[index]">
                 <div class="card" style="width: 440px;">
                     <div class="card-body">
                         <div class="d-flex flex-row mb-3 ">
-                            <Avatar class="" source="" @click="VerPerfilUser(valores.prestadorInfo.idtb_prestador)" />
+                            <Avatar class="" :source="avatar[index]"
+                                @click="VerPerfilUser(valores.prestadorInfo.idtb_prestador)" />
                             <h6 class="card-title d-flex align-content-center flex-wrap ms-3">
                                 {{ valores.prestadorInfo.Nome_Empresa }}</h6>
 
@@ -120,24 +121,27 @@ export default {
                 prestadorGrettings: { Apresentacao: store.getters.StatePrestador.prestadorGrettings },
 
             },
+            avatar: []
         };
     },
     created() {
         this.getAllPrestador();
+        this.GetAvatar();
+
     },
     computed: {
         store() {
             return store
         },
 
-        prestadores() {
-            return this.$store.getters.getAllPrestadores;
-        }
+        // prestadores() {
+        //     return this.$store.getters.StatePrestador;
+        // }
     },
 
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["getAllPrestadores", "getInfoPrestador"]),
+        ...mapActions(["getAllPrestadores", "getInfoPrestador", "getAvatarNoToken"]),
         ...mapGetters([]),
 
         // mapPrestadores(prestadorId) {
@@ -153,6 +157,33 @@ export default {
 
         VerPerfilUser(id) {
             this.$router.push({ name: `UserPerfilSobreView`, params: { id: id } });
+        },
+
+        async GetAvatar() {
+            this.avatar = []
+
+            try {
+                this.avatar = []
+                await this.getAllPrestadores()
+                const valor = store.getters.StatePrestador
+                // console.log(valor[0].prestadorInfo.tb_user_idtb_user)
+                for (let index = 0; index < valor.length; index++) {
+                    // console.log(valor[index])
+                    try {
+                        // console.log(valor[index].prestadorInfo.tb_user_idtb_user)
+                        await this.getAvatarNoToken(valor[index].prestadorInfo.tb_user_idtb_user)
+
+                        this.avatar.push(store.getters.StateAvatarId)
+                    } catch (error) {
+                        console.log(error)
+
+                        this.avatar.push(null)
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
         }
 
 

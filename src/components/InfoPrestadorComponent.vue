@@ -124,13 +124,8 @@
                 <h4 class="m-3">Suas Habilidades</h4>
 
                 <div>
-                    <ul>
-                        <li><font-awesome-icon icon="check" class="me-2" />PHP</li>
-                        <li><font-awesome-icon icon="check" class="me-2" />PHP</li>
-                        <li><font-awesome-icon icon="check" class="me-2" />PHP</li>
-                        <li><font-awesome-icon icon="check" class="me-2" />PHP</li>
-                        <li><font-awesome-icon icon="check" class="me-2" />PHP</li>
-                        <li><font-awesome-icon icon="check" class="me-2" />PHP</li>
+                    <ul v-for="skill in selectedSkills " :key="skill[index]">
+                        <li><font-awesome-icon icon="check" class="me-2" />{{ skill.Habilidade }}</li>
                     </ul>
                 </div>
             </div>

@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     validateOnBack: Boolean,
-    ...mapActions(["getcategory", "getProfessions", "getSkills", "getAllPrestadores", "getServico"]),
+    ...mapActions(["getcategory", "getProfessions", "getSkills", "getAllPrestadores", "getServico", "getAvatarNoToken"]),
     ...mapGetters(["GetToken"]),
 
 
@@ -89,11 +89,14 @@ export default {
 
     async getprestador() {
 
+
       await this.getAllPrestadores()
 
+
+
+
+
       this.$router.push({ path: '/Prestador' })
-
-
     },
 
     async getsallservicos() {
