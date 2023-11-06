@@ -212,7 +212,7 @@ export default {
                 Nome_Empresa: "",
                 Profissao: [],
                 Habilidade: [],
-                Sobre: {},
+                Sobre: null,
 
 
             },
@@ -372,6 +372,8 @@ export default {
         },
 
 
+
+
         getprofrissoesbackend() {
 
 
@@ -381,7 +383,7 @@ export default {
 
             // console.log(store.getters.StatePrestador.length, "tamanho")
             if (store.getters.StatePrestador != undefined || store.getters.StatePrestador != null) {
-                console.log("dwadawdwadawdwadawdwadawdwadaw")
+                // console.log(this.skillbackend, "dwadawdwadawdwadawdwadawdwadaw")
 
                 this.skillbackend = store.getters.StatePrestador.prestadorSkills
 
@@ -484,7 +486,7 @@ export default {
 
 
 
-            console.log(store.getters.StatePrestador, "skills");
+            // console.log(store.getters.StatePrestador, "skills");
             // console.log(store.getters.StatePrestador.prestadorInfo.Valor_diaria, "Sobre");
             // console.log(store.getters.StatePrestador.prestadorProfessions, "skills");
             // console.log(this.selectedSkills, "skills");
@@ -497,28 +499,6 @@ export default {
 
 
         async createPrestador() {
-
-
-
-
-
-            // console.log(this.infoPrestador)
-            // const InfoPresta = new FormData();
-            // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
-            // InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
-            // InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
-            // InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
-            // InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
-            // InfoPresta.append("profissoes", this.infoPrestador
-            //     .Profissao);
-            // InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
-
-
-
-
-
-
-
             const InfoPresta = new FormData();
             InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
             InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
@@ -547,7 +527,10 @@ export default {
             try {
                 // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.CreatePrestador(infoPayLoad)
+                this.GetSkills()
+                this.getprofrissoesbackend()
             } catch (error) {
+                console.log(error)
                 const message = error.request.response
                 this.errorMessage = JSON.parse(message)
                 this.erroIf = true
@@ -564,40 +547,7 @@ export default {
 
         async upPrestador() {
 
-
-
-            // this.infoPrestador.Valor_Diarial = store.getters.StatePrestador[0].Valor_diaria
-            // this.infoPrestador.Valor_Hora = store.getters.StatePrestador[0].Valor_Da_Hora
-            // this.infoPrestador.CNPJ = store.getters.StatePrestador[0].CNPJ
-            // this.infoPrestador.Nome_Empresa = store.getters.StatePrestador[0].Nome_Empresa
-            // this.infoPrestador.Sobre = store.getters.StatePrestador[0].Nome_Empresa
-
-
-
-
-
-
-
-
-
-
-
-
-            // console.log(this.infoPrestador)
-            // const InfoPresta = new FormData();
-            // InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
-            // InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
-            // InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
-            // InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
-            // InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
-            // InfoPresta.append("profissoes", this.infoPrestador
-            //     .Profissao);
-            // InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
-
-
-
-
-
+            // console.log(this.getinfoback.Habilidade, "UPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
 
 
             const InfoPresta = new FormData();
@@ -606,17 +556,17 @@ export default {
             InfoPresta.append("cnpj", this.infoPrestador.CNPJ);
             InfoPresta.append("nome_empresa", this.infoPrestador.Nome_Empresa);
 
-            // Garanta que habilidades e profissões sejam tratadas como arrays
-            const habilidades = Array.isArray(this.infoPrestador.Habilidade)
-                ? this.infoPrestador.Habilidade
-                : [this.infoPrestador.Habilidade];
+            // // Garanta que habilidades e profissões sejam tratadas como arrays
+            // const habilidades = Array.isArray(this.infoPrestador.Habilidade)
+            //     ? this.infoPrestador.Habilidade
+            //     : [this.infoPrestador.Habilidade];
 
-            const profissoes = Array.isArray(this.infoPrestador.Profissao)
-                ? this.infoPrestador.Profissao
-                : [this.infoPrestador.Profissao];
+            // const profissoes = Array.isArray(this.infoPrestador.Profissao)
+            //     ? this.infoPrestador.Profissao
+            //     : [this.infoPrestador.Profissao];
 
-            InfoPresta.append("habilidades", JSON.stringify(habilidades));
-            InfoPresta.append("profissoes", JSON.stringify(profissoes));
+            InfoPresta.append("habilidades", JSON.stringify(this.infoPrestador.Habilidade));
+            InfoPresta.append("profissoes", JSON.stringify(this.infoPrestador.Profissao));
 
             InfoPresta.append("apresentacao", this.infoPrestador.Sobre);
 
@@ -628,6 +578,11 @@ export default {
             try {
                 // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.UpPrestador(infoPayLoad)
+
+                setTimeout(() => {
+                    this.GetSkills()
+                    this.getprofrissoesbackend()
+                }, 2000);
             } catch (error) {
                 const message = error.request.response
                 this.errorMessage = JSON.parse(message)

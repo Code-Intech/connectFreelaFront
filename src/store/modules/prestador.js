@@ -71,8 +71,12 @@ const actions = {
       request.status === 500
     )
       throw new Error(request.statusText);
-    // console.log(request);
-    commit("createprestador", { infocreate: await request.error.message });
+    console.log(request, "REquest William");
+    if (request.status > 400) {
+      commit("createprestador", { infocreate: await request.error.message });
+    } else {
+      commit("createprestador", { infocreate: await request.data.success });
+    }
     return request;
   },
 
@@ -109,7 +113,11 @@ const actions = {
       request.status === 500
     )
       throw new Error(request.statusText);
-    commit("uoprestador", { infocreate: await request.error.message });
+    if (request.status > 400) {
+      commit("uoprestador", { infocreate: await request.error.message });
+    } else {
+      commit("uoprestador", { infocreate: await request.data.success });
+    }
     return request;
   },
   async getInfoPrestador({ commit }, token) {

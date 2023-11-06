@@ -366,7 +366,8 @@
                                         </p>
                                         <div class="d-flex flex-row-reverse">
                                             <button class="btn btn-outline-success" type="submit"
-                                                @click="aceitarProposta(proposta.idtb_proposta)" v-if="!ifAceitar">Aceitar
+                                                @click="aceitarProposta(proposta.idtb_proposta)"
+                                                :disabled="ifAceitar">Aceitar
                                                 Proposta</button>
                                         </div>
                                     </div>
@@ -450,8 +451,10 @@ export default {
             try {
                 await this.GetProposta(Payload)
                 this.LimparinfosPropostaAceita([])
+                this.Propostas = []
                 this.Propostas = store.getters.StateGetProposta
                 this.Prestadores = []
+                console.log(this.Propostas.length, "TRueeeeeeeeeeeeeee")
                 for (let index = 0; index < this.Propostas.length; index++) {
                     const id = this.Propostas[index].tb_prestador_idtb_prestador
                     await this.getInfoPrestadorID(id)
@@ -463,11 +466,15 @@ export default {
                 }
                 for (let index = 0; index < this.Propostas.length; index++) {
 
+                    console.log(this.Propostas.length, "TRueeeeeeeeeeeeeee")
+                    console.log(index)
 
                     if (this.Propostas[index].Proposta_Aceita == 1) {
                         // console.log(this.Propostas[index].Proposta_Aceita)
+                        // console.log("TRueeeeeeeeeeeeeee")
                         const valor = []
 
+                        this.ifAceitar = true
 
 
                         valor.push({
@@ -476,7 +483,6 @@ export default {
                         })
                         this.infosPropostaAceita(valor)
                         // console.log(store.getters.StateInfoPropostaAceita)
-                        this.ifAceitar = true
                     }
                 }
             } catch (error) {

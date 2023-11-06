@@ -65,10 +65,10 @@
                             <p class="card-text">{{ valores.prestadorGrettings.Apresentacao }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <a href=""
-                                class="text-decoration-none text-black btn btn-outline-secondary">Comentários<font-awesome-icon
+                            <div href="" class="text-decoration-none text-black btn btn-outline-secondary"
+                                @click="VerPerfilUser(valores.prestadorInfo.idtb_prestador)">Comentários<font-awesome-icon
                                     class="ms-2" icon="comments" />
-                            </a>
+                            </div>
 
 
 
