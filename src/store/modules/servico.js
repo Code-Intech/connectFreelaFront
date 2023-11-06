@@ -6,6 +6,7 @@ const state = {
   servico: {
     contratante: {
       Nome_Completo: null,
+      idtb_prestador: null,
     },
     servicoInfo: {
       idtb_servico: null,

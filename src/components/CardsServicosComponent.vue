@@ -26,7 +26,7 @@
                                         <AvatarComponent :source="avatar[index]" />
                                     </div>
                                     <div class="col ">
-                                        <text class="fst-italic  ">{{ valores.contratante.Nome_Completo }}</text>
+                                        <text class="fst-italic  ">{{ valores.contratant }}</text>
                                     </div>
                                     <div class="col justify-content-start ms-5">
                                         <h6 class="fst-italic" style="font-size: smaller;">
