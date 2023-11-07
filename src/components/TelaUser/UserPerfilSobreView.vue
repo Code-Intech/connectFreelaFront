@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-2 p-0">
 
-                <PerfilComponent :id="$route.params.id" />
+                <PerfilComponent :id="$route.params.id" :idPrestador="$route.params.idPrestador" />
             </div>
 
             <div class="col-10">
 
-                <UserPerfilComponent :id="$route.params.id" />
+                <UserPerfilComponent :id="$route.params.id" :idPrestador="$route.params.idPrestador"/>
             </div>
         </div>
 

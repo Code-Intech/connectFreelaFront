@@ -135,12 +135,12 @@ const routes = [
     component: MeusServicosView,
   },
   {
-    path: "/PerfilUserPortfolio/:id",
+    path: "/PerfilUserPortfolio/:id/:idPrestador",
     name: "UserPortfolioView",
     component: UserPortfolioView,
   },
   {
-    path: "/PerfilUserSobre/:id",
+    path: "/PerfilUserSobre/:id/:idPrestador",
     name: "UserPerfilSobreView",
     component: UserPerfilSobreView,
   },

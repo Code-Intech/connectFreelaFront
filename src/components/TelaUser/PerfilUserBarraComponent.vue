@@ -5,15 +5,15 @@
             <!-- <img class="mt-4 rounded img-fluid" src="../assets/img/mamaco.jpeg" alt="" style="width: 15rem; height: 15rem;"> -->
             <Avatar :source="avatar" class="mt-4 img-fluid p-3" height="auto" width="500px" :rounded="false" />
         </div>
-        {{ $route.params.id }}
+        
 
         <div class="ms-5 me-5 mt-3 d-grid gap-2">
             <!-- <button @click="$router.push({ path: '/' })" class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Sobre</button> -->
-            <button @click=" $router.push({ name: `UserPerfilSobreView`, params: { id: id } });"
+            <button @click=" $router.push({ name: `UserPerfilSobreView`, params: { id: id, idPrestador: idPrestador } });"
                 class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Sobre</button>
-            <button @click=" getalbum(id)" class="d-block btn text-white"
+            <button @click=" getalbum(id, idPrestador)" class="d-block btn text-white"
                 style="border: 2px solid; border-color: var(--purple-quaternary);">Portifólio</button>
         </div>
 
@@ -36,6 +36,10 @@ export default {
     props: {
         id: {
             type: String
+        },
+
+        idPrestador: {
+            type: String
         }
     },
     components: {
@@ -57,13 +61,13 @@ export default {
         validateOnBack: Boolean,
         ...mapActions(["getAvatar", "GetAlbum", "getAvatarNoToken"]),
         ...mapGetters(["GetToken"]),
-        async getalbum(idUser) {
+        async getalbum(idUser, idPresta) {
             try {
                 await this.GetAlbum(this.GetToken());
 
-                this.$router.push({ name: `UserPortfolioView`, params: { id: idUser } });
+                this.$router.push({ name: `UserPortfolioView`, params: { id: idUser, idPrestador: idPresta } });
             } catch (error) {
-                this.$router.push({ name: `UserPortfolioView`, params: { id: idUser } });
+                this.$router.push({ name: `UserPortfolioView`, params: { id: idUser, idPrestador: idPresta } });
 
             }
         },

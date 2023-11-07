@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-row mb-3 ">
                             <Avatar class="" :source="avatar[index]"
-                                @click="VerPerfilUser(valores.prestadorInfo.idtb_prestador)" />
+                                @click="VerPerfilUser(valores.prestadorInfo.tb_user_idtb_user, valores.prestadorInfo.idtb_prestador)" />
                             <h6 class="card-title d-flex align-content-center flex-wrap ms-3">
                                 {{ valores.prestadorInfo.Nome_Empresa }}</h6>
 
@@ -155,8 +155,8 @@ export default {
             this.valor = store.getters.StatePrestador
         },
 
-        VerPerfilUser(id) {
-            this.$router.push({ name: `UserPerfilSobreView`, params: { id: id } });
+        VerPerfilUser(id, idPrestador) {
+            this.$router.push({ name: `UserPerfilSobreView`, params: { id: id , idPrestador: idPrestador} });
         },
 
         async GetAvatar() {

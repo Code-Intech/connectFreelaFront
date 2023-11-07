@@ -4,6 +4,7 @@
             <h2 class="m-3">
                 William Victor Soares Silva Marques Fragas
             </h2>
+            <button @click="test()">teste</button>
         </div>
 
 
@@ -181,14 +182,24 @@
 <script>
 import Avatar from "@/components/AvatarComponent.vue";
 import Star from "@/components/StarComponent.vue"
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: "PerfilUserComponent",
-    methods: {
 
+    data(){
+        return{
+        prestador: null,
+
+        }
     },
     props: {
         id: {
+            type: String
+        },
+
+        idPrestador: {
             type: String
         }
     },
@@ -198,6 +209,35 @@ export default {
 
 
     },
+
+    created(){
+
+        this.getSobreUser()
+
+    },
+    methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["getInfoPrestadorID"]),
+        ...mapGetters(["GetToken"]),
+
+        async getSobreUser(){
+            try {
+                await this.getInfoPrestadorID(this.$route.params.idPrestador)
+                console.log("teste")
+                this.prestador=store.getters.StatePrestadorID
+            } catch (error) {
+                this.prestador=null
+            }
+        },
+
+        test(){
+            console.log(store.getters.StatePrestadorID.prestadorInfo.Nome_Empresa)
+        }
+
+
+
+
+    }
 
 }
 

@@ -80,6 +80,10 @@ export default {
     props: {
         id: {
             type: String
+        },
+
+        idPrestador: {
+            type: String
         }
     },
     data() {
