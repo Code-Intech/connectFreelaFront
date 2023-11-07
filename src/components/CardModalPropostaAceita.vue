@@ -98,10 +98,8 @@
                                             <div>
 
                                                 <text class="fst-italic">Nome de perfil</text>
-                                                <p class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
-                                                    Profissão:
-                                                    Programador
-                                                </p>
+
+
                                             </div>
 
                                         </div>
@@ -137,7 +135,6 @@
 
 
 
-                                        {{ valor }}
 
 
 
@@ -151,22 +148,17 @@
                                             <div class="">
 
                                                 <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        DEV
+                                                    <li v-for="valores, index in valor.prestador.prestadorProfessions"
+                                                        :key="valores[index]">
+                                                        {{ valores.Profissao }}
                                                     </li>
-                                                    <li>
-                                                        Dev Front-end
-                                                    </li>
-                                                    <li>
-                                                        Dev Back-end
-                                                    </li>
+
 
                                                 </ul>
                                             </div>
 
 
                                         </div>
-
 
 
 
@@ -188,27 +180,11 @@
                                             <div class="">
 
                                                 <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        php
+                                                    <li v-for="valores, index in valor.prestador.prestadorSkills"
+                                                        :key="valores[index]">
+                                                        {{ valores.Habilidade }}
                                                     </li>
-                                                    <li>
-                                                        Java
-                                                    </li>
-                                                    <li>
-                                                        JavaScript
-                                                    </li>
-                                                    <li>
-                                                        WorldPress
-                                                    </li>
-                                                    <li>
-                                                        Linux
-                                                    </li>
-                                                    <li>
-                                                        HTML5
-                                                    </li>
-                                                    <li>
-                                                        CSS3
-                                                    </li>
+
                                                 </ul>
                                             </div>
 
@@ -219,19 +195,12 @@
 
 
                                         <p class="p-2 mt-4 ">
-                                            Texto da Proposta enviada
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo cum quod veniam,
-                                            temporibus animi,
-                                            est officiis iure error consequuntur recusandae facere perspiciatis, a dolor!
-                                            Dignissimos
-                                            reiciendis rerum labore aspernatur cum.
+                                            {{ valor.prestador.prestadorGrettings.Apresentacao }}
 
 
                                         </p>
 
-                                        <div class="d-flex flex-row-reverse">
-                                            <button class="btn btn-outline-success" type="submit">Aceitar Proposta</button>
-                                        </div>
+
                                     </div>
                                 </template>
                             </Card>
@@ -295,7 +264,6 @@ export default {
             // const valorProposta = []
 
             const valorProposta = store.getters.StateInfoPropostaAceita
-
             // this.valor = valorProposta.map((valores) => valores.id === this.idModal)
 
             const id = this.idModal

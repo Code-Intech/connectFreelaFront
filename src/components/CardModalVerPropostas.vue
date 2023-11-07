@@ -423,6 +423,7 @@ export default {
     created() {
         this.getinfos();
         this.getPropostas();
+
     },
     methods: {
         validateOnBack: Boolean,
@@ -453,23 +454,38 @@ export default {
                 this.LimparinfosPropostaAceita([])
                 this.Propostas = []
                 this.Propostas = store.getters.StateGetProposta
+                console.log(this.Propostas, "jjjjjjjjjjjjjjjjjjj")
                 this.Prestadores = []
-                console.log(this.Propostas.length, "TRueeeeeeeeeeeeeee")
+                // console.log(this.Propostas.length, "TRueeeeeeeeeeeeeee")
                 for (let index = 0; index < this.Propostas.length; index++) {
+
                     const id = this.Propostas[index].tb_prestador_idtb_prestador
+
                     await this.getInfoPrestadorID(id)
-                    await this.getAvatarNoToken(this.Propostas[index].tb_prestador_tb_user_idtb_user)
-                    this.avatar.push(store.getters.StateAvatarId)
+
+                    try {
+                        await this.getAvatarNoToken(this.Propostas[index].tb_prestador_tb_user_idtb_user)
+
+                        this.avatar.push(store.getters.StateAvatarId)
+                    } catch (error) {
+                        console.log(error)
+                        this.avatar.push(null)
+
+                    }
+
+
                     const valor = []
+
                     valor.push(store.getters.StatePrestadorID)
+
                     this.Prestadores[index] = valor
+
+
+
                 }
                 for (let index = 0; index < this.Propostas.length; index++) {
-
-                    console.log(this.Propostas.length, "TRueeeeeeeeeeeeeee")
-                    console.log(index)
-
                     if (this.Propostas[index].Proposta_Aceita == 1) {
+                        // console.log("chamando", index)
                         // console.log(this.Propostas[index].Proposta_Aceita)
                         // console.log("TRueeeeeeeeeeeeeee")
                         const valor = []
@@ -484,7 +500,10 @@ export default {
                         this.infosPropostaAceita(valor)
                         // console.log(store.getters.StateInfoPropostaAceita)
                     }
+
                 }
+
+
             } catch (error) {
                 console.log(error)
             }
@@ -500,6 +519,7 @@ export default {
             try {
                 await this.AceitarProposta(PayLoad)
                 await this.getPropostas()
+                this.ifAceitar = true
 
             } catch (error) {
                 console.log(error)
