@@ -145,7 +145,7 @@ export default {
     async IFtoken() {
       try {
         await this.ifToken(this.GetToken())
-        this.$router.push("/");
+        // this.$router.push("/");
       } catch (error) {
         const message = error.request.response
 
