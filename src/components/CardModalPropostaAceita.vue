@@ -9,212 +9,147 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="col-sm-3 mb-3 mb-sm-0 m-3 " style="width: auto;">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-row mb-3 ">
-                                    <Avatar class="" source="" />
-                                    <h6 class="card-title d-flex align-content-center flex-wrap ms-3">
-                                    </h6>
-
-                                    <Star class="ms-2" stars="4.5" />
-                                </div>
-
-                                <div class="d-flex justify-content-between border-top border-black">
-
-                                    <p class="">
-                                        Valor da Hora de Serviço
-                                    </p>
-                                    <p class="">
-
-                                    </p>
-                                </div>
-
-                                <div class="d-flex justify-content-between border-bottom border-black">
-
-                                    <p class="">
-                                        Valor da diaria
-                                    </p>
-                                    <p class="">
-
-                                    </p>
-                                </div>
 
 
-                                <div class="border-top border-black  ">
-                                    <div class="d-flex flex-row mt-1 overflow-y-auto border-bottom border-black"
-                                        style="height: 110px;">
-                                        <h6>
-                                            Profissões:
-                                        </h6>
-                                        <h6 class="text-info ms-2">
-                                            <div>
-                                                <br>
-                                            </div>
-                                        </h6>
+                    <div class=" ">
 
-                                    </div>
-                                    <div class="d-flex overflow-y-auto " style="max-height: 110px;">
-
-                                        <ul>
-                                            <li>
-                                                <p class="m-0 text-success">
-
-                                                </p>
-                                            </li>
-                                        </ul>
-
-
-
-                                    </div>
-                                </div>
-                                <div class="mt-2 mb-2 border-top border-bottom border-black overflow-y-auto"
-                                    style="height: 150px;">
-                                    <p class="card-text"></p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <button @click="tttt">
-                        ttttt
-                    </button>
-
-                    <!-- {{ idModal }} -->
-                    {{ prestador }}
-                    <div v-for="valores in valor " :key="(valores)">
-                        {{ valores.Data_Proposta }}
-                    </div>
-                    <br><br><br>
-
-
-
-                    <div class="d-inline-flex justify-content-center ">
-
-                        <div class="card mt-5 " style="max-width: 100vh; width: 90% ;" v-for="valores in valor "
+                        <div class=" mt-5 " style="max-width: 100vh; width: 100% ;" v-for="valores in valor "
                             :key="(valores)">
-                            <Card>
-                                <template #title>
 
 
+
+
+                            <div class="d-flex">
+
+                                <avatar :source="avatar" />
+
+
+                                <div class=" ms-3 " style="width: 90%;">
+
+                                    <div v-for="(nome, index) in infoprestador" :key="nome[index]">
+
+                                        <h5 class="fst-italic">{{ nome.Nome_completo }}</h5>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex">
+
+                                        <h2 class="text-success ">
+                                            Valor:
+                                        </h2>
+                                        <h3 class=" ms-2 mt-1 text-success">
+                                            ${{ valores.Valor_Proposta }}
+                                        </h3>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <h4 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
+                                            Data de
+                                            Publicação:
+                                        </h4>
+                                        <h4>
+                                            26/09/2023
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
 
                                     <div class="d-flex">
 
-                                        <AvatarComponent />
-
-
-                                        <div class=" ms-3 " style="width: 90%;">
-
-                                            <div>
-
-                                                <text class="fst-italic">Nome de perfil</text>
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </template>
-                                <template #content>
-                                    <div>
-
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex">
-
-                                                <h2 class="text-success ">
-                                                    Valor:
-                                                </h2>
-                                                <h3 class=" ms-2 mt-1 text-success">
-                                                    ${{ valores.Valor_Proposta }}
-                                                </h3>
-
-                                            </div>
-
-
-                                            <div>
-
-                                                <h4 class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
-                                                    Data de
-                                                    Publicação:
-                                                </h4>
-                                                <h4>
-                                                    26/09/2023
-                                                </h4>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        <div class="border-bottom border-black ">
-                                            <h4>
-
-                                                Profissão
-                                            </h4>
-
-
-                                            <div class="">
-
-                                                <ul class="d-flex gap-4 flex-wrap">
-                                                    <!-- <li v-for="valores, index in valor.prestador.prestadorProfessions"
-                                                        :key="valores[index]">
-                                                        {{ valores.Profissao }}
-                                                    </li> -->
-
-
-                                                </ul>
-                                            </div>
-
-
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        <div class="border-bottom border-black mt-3">
-                                            <h4>
-
-                                                Habilidade
-                                            </h4>
-
-
-                                            <div class="">
-
-                                                <ul class="d-flex gap-4 flex-wrap">
-                                                    <!-- <li v-for="valores, index in valor.prestador.prestadorSkills"
-                                                        :key="valores[index]">
-                                                        {{ valores.Habilidade }}
-                                                    </li> -->
-
-                                                </ul>
-                                            </div>
-
-
-                                        </div>
-
-
-
-
-                                        <p class="p-2 mt-4 ">
-                                            {{ valores.Comentario }}
-
-
-                                        </p>
-
+                                        <h3 class=" ">
+                                            Nome da Empresa:
+                                        </h3>
+                                        <h4 class=" ms-2 mt-1 " v-for="(nomeEmpresa, index) in infoprestador"
+                                            :key="nomeEmpresa[index]">
+                                            {{ nomeEmpresa.Nome_Empresa }}
+                                        </h4>
 
                                     </div>
-                                </template>
+                                    <div class="d-flex">
 
-                            </Card>
+                                        <h3 class=" ">
+                                            CNPJ:
+                                        </h3>
+                                        <h4 class=" ms-2 mt-1 " v-for="(cnpj, index) in infoprestador" :key="cnpj[index]">
+                                            {{ cnpj.CNPJ }}
+                                        </h4>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="border-bottom border-black ">
+                                    <h4>
+
+                                        Profissão
+                                    </h4>
+
+
+                                    <div class="">
+
+                                        <ul class="d-flex gap-4 flex-wrap">
+                                            <li v-for="valores, index in prestador.prestadorProfessions"
+                                                :key="valores[index]">
+                                                {{ valores.Profissao }} - Experiencia: {{ valores.Experiencia }}
+                                                (anos)
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="border-bottom border-black mt-3">
+                                    <h4>
+
+                                        Habilidade
+                                    </h4>
+
+
+                                    <div class="">
+
+                                        <ul class="d-flex gap-4 flex-wrap">
+                                            <li v-for="valores, index in prestador.prestadorSkills" :key="valores[index]">
+                                                {{ valores.Habilidade }}
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                                <p class="p-2 mt-4 ">
+                                    {{ valores.Comentario }}
+
+
+                                </p>
+
+
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -233,12 +168,9 @@
 
 <script>
 import CardAvaliar from "@/components/CardAvaliar";
-// import store from "@/store";
-// import { mapActions, mapGetters } from 'vuex'
-// import loading from "@/components/Loading.vue"
 import store from "@/store";
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-
+import avatar from "@/components/AvatarComponent.vue"
 export default {
     name: "CardModalPropostaAceita",
     props: {
@@ -256,10 +188,13 @@ export default {
             valorServico: [],
             valor: [],
             prestador: [],
+            infoprestador: [],
+            avatar: null,
         }
     },
     components: {
         CardAvaliar,
+        avatar,
     },
     component: {
         store() {
@@ -272,7 +207,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetPropostaAceita", "getInfoPrestadorID", "", ""]),
+        ...mapActions(["GetPropostaAceita", "getInfoPrestadorID", "getAvatarNoToken", ""]),
         ...mapGetters(["GetToken"]),
         ...mapMutations(["", ""]),
         getinfos() {
@@ -308,12 +243,18 @@ export default {
 
 
 
-
                 await this.getInfoPrestadorID(this.valor.proposta.tb_prestador_idtb_prestador)
 
                 this.prestador = store.getters.StatePrestadorID
 
-
+                this.infoprestador.push(this.prestador.prestadorInfo)
+                try {
+                    await this.getAvatarNoToken(this.valor.proposta.tb_prestador_tb_user_idtb_user)
+                    this.avatar = store.getters.StateAvatarId
+                } catch (error) {
+                    console.log(error)
+                    this.avatar = null
+                }
 
             } catch (error) {
                 console.log(error)
