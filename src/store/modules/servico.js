@@ -39,6 +39,7 @@ const state = {
       },
     ],
   },
+  DeleteServico: null,
   errors: [],
 };
 const getters = {
@@ -228,6 +229,20 @@ const actions = {
     console.log(request);
     commit("setCardsServico", { infoservicocard: await request.data.servico });
   },
+  async deleteServico({ commit }, { id, token }) {
+    console.log(token);
+    const request = await axios.delete(
+      `http://localhost:8000/api/servico/delete/${id}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    commit("dellServico", { deleteservico: await request.data });
+  },
 };
 
 const mutations = {
@@ -279,6 +294,10 @@ const mutations = {
   },
   setServicoEditProfession(state, Profession) {
     state.ServicoEditarProfession = Profession;
+    // console.log(state.servico, "setCardsServico");
+  },
+  dellServico(state, deleteservico) {
+    state.DeleteServico = deleteservico;
     // console.log(state.servico, "setCardsServico");
   },
 

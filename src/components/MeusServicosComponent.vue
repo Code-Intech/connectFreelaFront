@@ -172,7 +172,8 @@
                                                         </div>
                                                         <div class="col mt-3 text-end">
                                                             <button type="button" class="btn btn-danger"
-                                                                style="font-size: small; border:none;">Deletar</button>
+                                                                style="font-size: small; border:none;"
+                                                                @click="dellServico(servico.servicoInfo.idtb_servico)">Deletar</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -228,7 +229,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions([""]),
+        ...mapActions(["deleteServico", "getInfoServico", "getcategory", "getProfessions", "getSkills"]),
         ...mapGetters(["GetToken"]),
         ...mapMutations(["setServicoEditSkill"]),
         reset() {
@@ -266,6 +267,28 @@ export default {
         },
         async getServicoMeuServico() {
             try {
+                await this.getInfoServico(this.GetToken());
+                await this.getcategory(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getSkills(this.GetToken());
+                this.$router.push({ path: '/MeuServico' })
+            } catch (error) {
+
+                this.$router.push({ path: '/MeuServico' })
+            }
+        },
+        async dellServico(id) {
+
+            const payload = {
+                id: id,
+                token: this.GetToken()
+            }
+
+            console.log(payload.token)
+
+            try {
+
+                await this.deleteServico(payload);
                 await this.getInfoServico(this.GetToken());
                 await this.getcategory(this.GetToken());
                 await this.getProfessions(this.GetToken());
