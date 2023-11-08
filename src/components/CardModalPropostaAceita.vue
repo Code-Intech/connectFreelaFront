@@ -76,16 +76,26 @@
                             </div>
                         </div>
                     </div>
+                    <button @click="tttt">
+                        ttttt
+                    </button>
 
-
+                    <!-- {{ idModal }} -->
+                    {{ prestador }}
+                    <div v-for="valores in valor " :key="(valores)">
+                        {{ valores.Data_Proposta }}
+                    </div>
+                    <br><br><br>
 
 
 
                     <div class="d-inline-flex justify-content-center ">
 
-                        <div class="card mt-5 " style="max-width: 100vh; width: 90%;">
+                        <div class="card mt-5 " style="max-width: 100vh; width: 90% ;" v-for="valores in valor "
+                            :key="(valores)">
                             <Card>
                                 <template #title>
+
 
 
                                     <div class="d-flex">
@@ -115,7 +125,7 @@
                                                     Valor:
                                                 </h2>
                                                 <h3 class=" ms-2 mt-1 text-success">
-                                                    $15.500,00
+                                                    ${{ valores.Valor_Proposta }}
                                                 </h3>
 
                                             </div>
@@ -148,10 +158,10 @@
                                             <div class="">
 
                                                 <ul class="d-flex gap-4 flex-wrap">
-                                                    <li v-for="valores, index in valor.prestador.prestadorProfessions"
+                                                    <!-- <li v-for="valores, index in valor.prestador.prestadorProfessions"
                                                         :key="valores[index]">
                                                         {{ valores.Profissao }}
-                                                    </li>
+                                                    </li> -->
 
 
                                                 </ul>
@@ -180,10 +190,10 @@
                                             <div class="">
 
                                                 <ul class="d-flex gap-4 flex-wrap">
-                                                    <li v-for="valores, index in valor.prestador.prestadorSkills"
+                                                    <!-- <li v-for="valores, index in valor.prestador.prestadorSkills"
                                                         :key="valores[index]">
                                                         {{ valores.Habilidade }}
-                                                    </li>
+                                                    </li> -->
 
                                                 </ul>
                                             </div>
@@ -195,7 +205,7 @@
 
 
                                         <p class="p-2 mt-4 ">
-                                            {{ valor.prestador.prestadorGrettings.Apresentacao }}
+                                            {{ valores.Comentario }}
 
 
                                         </p>
@@ -203,6 +213,7 @@
 
                                     </div>
                                 </template>
+
                             </Card>
                         </div>
                     </div>
@@ -226,7 +237,7 @@ import CardAvaliar from "@/components/CardAvaliar";
 // import { mapActions, mapGetters } from 'vuex'
 // import loading from "@/components/Loading.vue"
 import store from "@/store";
-
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
     name: "CardModalPropostaAceita",
@@ -243,7 +254,8 @@ export default {
     data() {
         return {
             valorServico: [],
-            valor: null,
+            valor: [],
+            prestador: [],
         }
     },
     components: {
@@ -256,31 +268,17 @@ export default {
     },
     created() {
         this.getinfos();
-
+        this.getPropostaAceita()
     },
     methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["GetPropostaAceita", "getInfoPrestadorID", "", ""]),
+        ...mapGetters(["GetToken"]),
+        ...mapMutations(["", ""]),
         getinfos() {
 
             // const valorProposta = []
 
-            const valorProposta = store.getters.StateInfoPropostaAceita
-            // this.valor = valorProposta.map((valores) => valores.id === this.idModal)
-
-            const id = this.idModal
-
-            function encontrarObjetoComId3() {
-                for (const subArray of valorProposta) {
-                    for (const objeto of subArray) {
-                        if (objeto.id === id) {
-                            return objeto;
-                        }
-                    }
-                }
-                return null;
-            }
-
-            // Chamar a função para encontrar o objeto com "id" igual a 3
-            this.valor = encontrarObjetoComId3();
 
 
 
@@ -293,7 +291,43 @@ export default {
 
 
 
+        },
+
+        async getPropostaAceita() {
+
+            const payload = {
+                id: this.idModal,
+                token: this.GetToken()
+            }
+
+
+            try {
+                await this.GetPropostaAceita(payload)
+
+                this.valor = store.getters.StateInfoPropostaAceita
+
+
+
+
+                await this.getInfoPrestadorID(this.valor.proposta.tb_prestador_idtb_prestador)
+
+                this.prestador = store.getters.StatePrestadorID
+
+
+
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        },
+
+
+        tttt() {
+            console.log(this.valor, "!!!!!!!!!!!!!!!!!!!!!!!!")
+
         }
+
     },
 
 

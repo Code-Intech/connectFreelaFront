@@ -225,6 +225,7 @@ const actions = {
 
   async getServico({ commit }) {
     const request = await axios.get("http://localhost:8000/servico", {});
+    console.log(request);
     commit("setCardsServico", { infoservicocard: await request.data.servico });
   },
 };

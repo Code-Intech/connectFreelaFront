@@ -429,7 +429,7 @@ export default {
         validateOnBack: Boolean,
         ...mapActions(["GetProposta", "getInfoPrestadorID", "AceitarProposta", "getAvatarNoToken"]),
         ...mapGetters(["GetToken"]),
-        ...mapMutations(["infosPropostaAceita", "LimparinfosPropostaAceita"]),
+        ...mapMutations(["", ""]),
 
         getinfos() {
 
@@ -451,12 +451,9 @@ export default {
 
             try {
                 await this.GetProposta(Payload)
-                this.LimparinfosPropostaAceita([])
                 this.Propostas = []
                 this.Propostas = store.getters.StateGetProposta
-                console.log(this.Propostas, "jjjjjjjjjjjjjjjjjjj")
                 this.Prestadores = []
-                // console.log(this.Propostas.length, "TRueeeeeeeeeeeeeee")
                 for (let index = 0; index < this.Propostas.length; index++) {
 
                     const id = this.Propostas[index].tb_prestador_idtb_prestador
@@ -481,27 +478,14 @@ export default {
                     this.Prestadores[index] = valor
 
 
-
-                }
-                for (let index = 0; index < this.Propostas.length; index++) {
                     if (this.Propostas[index].Proposta_Aceita == 1) {
-                        // console.log("chamando", index)
-                        // console.log(this.Propostas[index].Proposta_Aceita)
-                        // console.log("TRueeeeeeeeeeeeeee")
-                        const valor = []
-
                         this.ifAceitar = true
 
 
-                        valor.push({
-                            id: this.idModal, proposta: this.Propostas[index], prestador: this.Prestadores[index][0]
-
-                        })
-                        this.infosPropostaAceita(valor)
-                        // console.log(store.getters.StateInfoPropostaAceita)
                     }
 
                 }
+
 
 
             } catch (error) {

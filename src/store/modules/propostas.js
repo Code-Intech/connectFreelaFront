@@ -80,6 +80,27 @@ const actions = {
     commit("aceitarProposta", { info: await request.data });
     return request;
   },
+  async GetPropostaAceita({ commit }, { id, token }) {
+    console.log(token);
+    const request = await axios.get(
+      `http://localhost:8000/api/servico/proposta/byId/${id}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("getPropostaAceita", { info: await request.data });
+    return request;
+  },
 };
 
 const mutations = {
@@ -93,13 +114,8 @@ const mutations = {
   aceitarProposta(state, { info }) {
     state.PropostaAceita = info;
   },
-  infosPropostaAceita(state, valor) {
-    // console.log(valor, "stateInfosaceita");
-    state.InfoPropostaAceita.push(valor);
-  },
-  LimparinfosPropostaAceita(state, valor) {
-    // console.log(valor, "stateInfosaceita");
-    state.InfoPropostaAceita = valor;
+  getPropostaAceita(state, { info }) {
+    state.InfoPropostaAceita = info;
   },
 
   //   LogOutPrestador(state) {
