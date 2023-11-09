@@ -1,40 +1,45 @@
 <template>
-    <div class="mt-3 ms-3 d-block border rounded" style="height: 88vh; ">
-        <div>
-            <h2 class="m-3">
-                William Victor Soares Silva Marques Fragas
-            </h2>
+    <div class="mt-3 ms-3 d-block border rounded">
+        <div class="m-3 d-flex" v-for="(valores) in prestadorInfo" :key="(valores)">
+            <div class="me-5">
+                <h2>
+
+                    {{ valores.Nome_completo }}
+                </h2>
+                <h5>
+                    {{ valores.Nome_Empresa }} - (CNPJ: {{ valores.CNPJ }})
+                </h5>
+            </div>
+
+            <div class="ms-5">
+                <h5>
+                    Hora: R$ {{ valores.Valor_Da_Hora }}
+                </h5>
+                <h5>
+                    Diária: R$ {{ valores.Valor_diaria }}
+                </h5>
+            </div>
         </div>
 
 
         <div class="border rounded m-2 overflow-y-auto" style="height: 25vh; ">
-            <h4 class="m-3 h4">
-                Sobre
-            </h4>
+            <div class="border-bottom">
+                <h4 class="m-3 h4 ">
+                    Sobre
+                </h4>
+            </div>
 
 
-            <div class="m-3">
+
+            <div class="m-3" v-for="(valores) in sobre" :key="(valores)">
                 <p class="">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro asperiores voluptatem laboriosam,
-                    voluptas nisi consectetur aut quia perferendis accusamus debitis. Minus officia omnis voluptatum, culpa
-                    accusamus aut voluptatibus ipsum labore?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, voluptatem? Aut reprehenderit
-                    aspernatur dignissimos nostrum delectus deleniti corrupti unde nihil dolores incidunt. Eum culpa labore,
-                    aspernatur dicta autem facere. Vel?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet suscipit quas explicabo ab! Deserunt,
-                    culpa libero eveniet ipsam quae quas molestiae provident modi, excepturi ipsum neque laudantium nemo
-                    suscipit quisquam?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta illum voluptates officiis, sapiente
-                    maxime asperiores nesciunt dolorum, voluptas laborum consequuntur nulla quas amet! Deleniti architecto,
-                    itaque beatae soluta officiis quasi.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quo voluptatem? Adipisci, minima
-                    vero iusto atque enim, quibusdam, quisquam illo iure hic velit impedit alias eligendi molestias officia
-                    accusamus quod!
+                    {{ valores.Apresentacao }}
                 </p>
 
             </div>
 
 
+
         </div>
 
 
@@ -42,7 +47,7 @@
 
 
 
-        <div class="border rounded m-2 ">
+        <div class="border rounded m-2 overflow-y-auto">
 
 
             <div class="border-bottom">
@@ -53,40 +58,33 @@
 
             <div class="m-3 d-flex">
 
-                <ul class="me-5">
-                    <li>
-                        PHP
-                    </li>
-                    <li>
-                        Jquery
-                    </li>
-                    <li>
-                        JavaScript
-                    </li>
-                    <li>
-                        SQL
-                    </li>
-                    <li>
-                        WordPress
-                    </li>
+                <ul class="me-5" v-for="(valor) in prestado.prestadorSkills" :key="(valor)" style="height: 25vh; ">
+                    <li>{{ valor.Habilidade }}</li>
                 </ul>
-                
-                <ul class="me-5">
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="border rounded m-2 overflow-y-auto ">
+
+
+            <div class="border-bottom">
+                <h4 class="m-3 h4 ">
+                    Profissões
+                </h4>
+            </div>
+
+            <div class="m-3 d-flex">
+
+                <ul class="me-5" v-for="(valor) in prestado.prestadorProfessions" :key="(valor)" style="height: 25vh; ">
                     <li>
-                        PHP
+                        {{ valor.Profissao }} - Experiência: {{ valor.Experiencia }} anos
                     </li>
-                    <li>
-                        Jquery
-                    </li>
-                    <li>
-                        JavaScript
-                    </li>
-                    <li>
-                        SQL
-                    </li>
-                    <li>
-                        WordPress
-                    </li>
+
                 </ul>
 
 
@@ -100,7 +98,7 @@
 
 
 
-        <div class="border rounded m-2" >
+        <div class="border rounded m-2">
 
             <div class="border-bottom ">
                 <h4 class="m-3">
@@ -110,14 +108,14 @@
 
 
             <div class="border border-black rounded m-2" style="background-color: rgba(199, 194, 194, 0.671);">
-                
+
                 <div class="m-2 d-flex">
-                    <Star class="flex-grow-1"/>
-                    
+                    <Star class="flex-grow-1" />
+
                     <h6 class="m-1">
                         Valor do Serviço
                     </h6>
-                    
+
                     <h6 class="m-1">
                         $900,00
                     </h6>
@@ -143,7 +141,7 @@
 
 
                 <div class="d-flex m-2">
-                    <Avatar/>
+                    <Avatar />
                     <h6 class="d-flex align-content-center flex-wrap ms-3">
                         Larissa Santos
                     </h6>
@@ -180,12 +178,19 @@
     
 <script>
 import Avatar from "@/components/AvatarComponent.vue";
-import Star from "@/components/StarComponent.vue"
+import Star from "@/components/StarComponent.vue";
+import store from "@/store";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: "UserPerfilComponent",
-    methods: {
-
+    data() {
+        return {
+            prestado: [],
+            prestadorInfo: [],
+            sobre: [],
+            skills: [],
+        }
     },
     components: {
         Avatar,
@@ -193,6 +198,40 @@ export default {
 
 
     },
+    computed: {
+        store() {
+            return store
+        },
+    },
+
+    created() {
+        this.getSobreUser()
+
+    },
+
+    methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["getInfoPrestador"]),
+        ...mapGetters(["GetToken"]),
+
+        async getSobreUser() {
+            const infoPayLoad = {
+                token: this.GetToken(),
+            }
+            try {
+                console.log(infoPayLoad, "loading");
+                await this.getInfoPrestador(infoPayLoad)
+                this.prestado = store.getters.StatePrestador
+                console.log(this.prestado)
+                this.prestadorInfo.push(this.prestado.prestadorInfo)
+                this.sobre.push(this.prestado.prestadorGrettings)
+                this.skills.push(this.prestado.prestadorSkills)
+            } catch (error) {
+                this.prestador = null
+            }
+        },
+
+    }
 
 }
 
