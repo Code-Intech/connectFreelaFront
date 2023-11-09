@@ -40,10 +40,13 @@ const state = {
     ],
   },
   DeleteServico: null,
+  fotosServico: null,
+  mensagemSucceso: null,
   errors: [],
 };
 const getters = {
   StateServico: (state) => state.servico,
+  StateFotosServico: (state) => state.fotosServico,
   StateEditarServicoSkill: (state) => state.ServicoEditarSkill,
   StateEditarServicoProfession: (state) => state.ServicoEditarProfession,
 };
@@ -243,6 +246,47 @@ const actions = {
     console.log(request);
     commit("dellServico", { deleteservico: await request.data });
   },
+  async getFotosServico({ commit }, { id, token }) {
+    console.log(token);
+    const request = await axios.get(
+      `http://localhost:8000/api/servico/images/${id}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    commit("getfotosServico", { fotos: await request.data });
+  },
+  async upFotosServico({ commit }, { id, token, img }) {
+    console.log(token);
+    const request = await axios.post(
+      `http://localhost:8000/api/servico/update/images/${id}`,
+      img,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    commit("upfotosServico", { mensagem: await request.data });
+  },
+  async dellFotosServico({ commit }, { id, token }) {
+    console.log(token);
+    const request = await axios.delete(
+      `http://localhost:8000/api/servico/delete/images/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request);
+    commit("upfotosServico", { mensagem: await request.data });
+  },
 };
 
 const mutations = {
@@ -298,6 +342,14 @@ const mutations = {
   },
   dellServico(state, deleteservico) {
     state.DeleteServico = deleteservico;
+    // console.log(state.servico, "setCardsServico");
+  },
+  getfotosServico(state, fotos) {
+    state.fotosServico = fotos;
+    // console.log(state.servico, "setCardsServico");
+  },
+  upfotosServico(state, mensagem) {
+    state.mensagemSucceso = mensagem;
     // console.log(state.servico, "setCardsServico");
   },
 

@@ -101,13 +101,7 @@
                                     <input class="form-control" type="date" name="" id="" v-model="Servico.DataTermino">
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="inputGroupFile02" @change="GetIMG" multiple
-                                        max="5">
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                </div>
-                            </div>
+
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                                     style="height: 100px" v-model="Servico.Texto"></textarea>
@@ -125,13 +119,77 @@
                                 </div>
                             </div>
 
+                            <button class="btn btn-primary" @click="EditarServico()" :disabled="ifBotao">Salvar
+                                Serviço</button>
+
+
+                            <div>
+
+                            </div>
+
+
+
+                            <div class="border-top border-black border-1 mt-3">
+
+                                <div>
+                                    <div v-if="iffoto" class="d-flex flex-wrap">
+
+                                        <div class="card m-auto mt-3" style="width: 18rem;" v-for="foto in fotos.fotos"
+                                            :key="(foto)">
+                                            <img :src="foto.image_url" class="card-img-top" alt="">
+                                            <div class="card-body d-grid gap-2">
+                                                <button class="btn btn-danger"
+                                                    @click="dellFoto(foto.imageId)">Deletar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="input-group mb-3 mt-3">
+                                    <input type="file" class="form-control" id="inputGroupFile02" multiple @change="GetIMG">
+                                    <label class="input-group-text" @click="UpFotosServico()">Enviar</label>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-                    <button class="btn btn-primary" @click="EditarServico()" :disabled="ifBotao">Salvar
-                        Serviço</button>
+
                 </div>
             </div>
         </div>
@@ -207,7 +265,8 @@ export default {
             ifNumero: false,
             ifSkill: false,
             ifProfision: false,
-
+            fotos: [],
+            iffoto: false,
             albums: [],
             errorMessage: null,
             erroIf: false,
@@ -221,20 +280,12 @@ export default {
 
     },
     created() {
-        this.InfoServicoModal = this.infoServico
-        this.Servico.Titulo = this.InfoServicoModal.servicoInfo.Titulo_Servico
-        this.Servico.Texto = this.InfoServicoModal.servicoInfo.Desc
-        this.Servico.Modalidade = this.InfoServicoModal.servicoInfo.Remoto_Presencial
-        this.Servico.Estado = this.InfoServicoModal.localidade.Estado
-        this.Servico.Cidade = this.InfoServicoModal.localidade.Cidade
-        this.Servico.Bairro = this.InfoServicoModal.localidade.Bairro
-        this.Servico.EstimativaKM = this.InfoServicoModal.servicoInfo.Estimativa_de_distancia
-        this.Servico.ValorServico = this.InfoServicoModal.servicoInfo.Estimativa_Valor
-        this.Servico.EstimativaIdade = this.InfoServicoModal.servicoInfo.Estimativa_Idade
-        this.Servico.DataTermino = this.InfoServicoModal.servicoInfo.Estimativa_de_termino
-        this.Servico.DataInicio = this.InfoServicoModal.servicoInfo.Data_Inicio
-        this.Servico.Habilidade = this.InfoServicoModal.servicoSkills
-        this.Servico.Profissao = this.InfoServicoModal.servicoProfessions
+
+        this.InfoServico()
+
+
+
+
 
     },
     watch: {
@@ -245,8 +296,26 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions", "getcategory", "getProfessions", "getSkills"]),
+        ...mapActions(["dellFotosServico", "upFotosServico", "getFotosServico", "GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions", "getcategory", "getProfessions", "getSkills"]),
         ...mapGetters(["GetToken"]),
+
+        InfoServico() {
+            this.GetFotos()
+            this.InfoServicoModal = this.infoServico
+            this.Servico.Titulo = this.InfoServicoModal.servicoInfo.Titulo_Servico
+            this.Servico.Texto = this.InfoServicoModal.servicoInfo.Desc
+            this.Servico.Modalidade = this.InfoServicoModal.servicoInfo.Remoto_Presencial
+            this.Servico.Estado = this.InfoServicoModal.localidade.Estado
+            this.Servico.Cidade = this.InfoServicoModal.localidade.Cidade
+            this.Servico.Bairro = this.InfoServicoModal.localidade.Bairro
+            this.Servico.EstimativaKM = this.InfoServicoModal.servicoInfo.Estimativa_de_distancia
+            this.Servico.ValorServico = this.InfoServicoModal.servicoInfo.Estimativa_Valor
+            this.Servico.EstimativaIdade = this.InfoServicoModal.servicoInfo.Estimativa_Idade
+            this.Servico.DataTermino = this.InfoServicoModal.servicoInfo.Estimativa_de_termino
+            this.Servico.DataInicio = this.InfoServicoModal.servicoInfo.Data_Inicio
+            this.Servico.Habilidade = this.InfoServicoModal.servicoSkills
+            this.Servico.Profissao = this.InfoServicoModal.servicoProfessions
+        },
 
         async handleCep() {
             try {
@@ -255,6 +324,26 @@ export default {
             } catch (error) {
                 console.log(error)
                 await this.showError(error)
+            }
+        },
+        async GetFotos() {
+
+
+            const payload = {
+                id: this.idModal,
+                token: this.GetToken()
+            }
+
+
+            try {
+                await this.getFotosServico(payload)
+                this.fotos = store.getters.StateFotosServico
+                this.iffoto = true
+            } catch (error) {
+                console.log(error)
+                this.iffoto = false
+                this.fotos = null
+
             }
         },
 
@@ -385,7 +474,7 @@ export default {
                 await this.getcategory(this.GetToken());
                 await this.getProfessions(this.GetToken());
                 await this.getSkills(this.GetToken());
-
+                this.InfoServico()
                 this.isLoading = false;
             } catch (error) {
                 this.isLoading = false;
@@ -402,6 +491,71 @@ export default {
 
 
         },
+
+        async UpFotosServico() {
+
+            const servicoImg = new FormData();
+
+
+            for (let i = 0; i < this.Servico.IMG.length; i++) {
+                servicoImg.append('image[]', this.Servico.IMG[i]);
+                console.log(this.Servico.IMG[i])
+            }
+
+
+
+            const payload = {
+                id: this.idModal,
+                token: this.GetToken(),
+                img: servicoImg
+
+            }
+
+
+
+            try {
+                await this.upFotosServico(payload)
+                await this.getInfoServico(this.GetToken());
+                await this.getcategory(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getSkills(this.GetToken());
+                this.InfoServico()
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
+
+        },
+
+        async dellFoto(id) {
+
+
+            const payload = {
+                id: id,
+                token: this.GetToken(),
+
+            }
+
+
+            try {
+                await this.dellFotosServico(payload)
+                await this.getInfoServico(this.GetToken());
+                await this.getcategory(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getSkills(this.GetToken());
+                this.InfoServico()
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        },
+
+
+
+
 
         formatData(data) {
             // Converter a string para um objeto Date

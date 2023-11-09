@@ -293,6 +293,7 @@ export default {
                 await this.getcategory(this.GetToken());
                 await this.getProfessions(this.GetToken());
                 await this.getSkills(this.GetToken());
+                this.getinfos();
                 this.$router.push({ path: '/MeuServico' })
             } catch (error) {
 
