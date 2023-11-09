@@ -8,7 +8,7 @@
                             <Avatar class="" :source="avatar[index]"
                                 @click="VerPerfilUser(valores.prestadorInfo.tb_user_idtb_user, valores.prestadorInfo.idtb_prestador)" />
                             <h6 class="card-title d-flex align-content-center flex-wrap ms-3">
-                                {{ valores.prestadorInfo.Nome_Empresa }}</h6>
+                                {{ valores.prestadorInfo.Nome_completo }}</h6>
 
                             <Star class="ms-2" stars="4.5" />
                         </div>
@@ -66,8 +66,8 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <div href="" class="text-decoration-none text-black btn btn-outline-secondary"
-                                @click="VerPerfilUser(valores.prestadorInfo.idtb_prestador)">Comentários<font-awesome-icon
-                                    class="ms-2" icon="comments" />
+                                @click="VerPerfilUser(valores.prestadorInfo.tb_user_idtb_user, valores.prestadorInfo.idtb_prestador)">
+                                Comentários<font-awesome-icon class="ms-2" icon="comments" />
                             </div>
 
 
@@ -156,7 +156,7 @@ export default {
         },
 
         VerPerfilUser(id, idPrestador) {
-            this.$router.push({ name: `UserPerfilSobreView`, params: { id: id , idPrestador: idPrestador} });
+            this.$router.push({ name: `UserPerfilSobreView`, params: { id: id, idPrestador: idPrestador } });
         },
 
         async GetAvatar() {
