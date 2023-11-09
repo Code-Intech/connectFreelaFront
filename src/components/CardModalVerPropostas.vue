@@ -387,8 +387,8 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-// import loading from "@/components/Loading.vue"
 import store from "@/store";
+// import loading from "@/components/Loading.vue"
 import avatar from "@/components/AvatarComponent.vue"
 
 export default {

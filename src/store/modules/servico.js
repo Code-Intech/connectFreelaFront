@@ -41,6 +41,7 @@ const state = {
   },
   DeleteServico: null,
   fotosServico: null,
+  ServicosByID: null,
   mensagemSucceso: null,
   errors: [],
 };
@@ -49,6 +50,7 @@ const getters = {
   StateFotosServico: (state) => state.fotosServico,
   StateEditarServicoSkill: (state) => state.ServicoEditarSkill,
   StateEditarServicoProfession: (state) => state.ServicoEditarProfession,
+  StateServicoByID: (state) => state.ServicosByID,
 };
 const actions = {
   async CreateServico({ commit }, InfoServico) {
@@ -287,6 +289,11 @@ const actions = {
     console.log(request);
     commit("upfotosServico", { mensagem: await request.data });
   },
+  async getServicoID({ commit }, id) {
+    const request = await axios.get(`http://localhost:8000/servico/${id}`);
+    console.log(request);
+    commit("getServicoByID", { infos: await request.data.servico });
+  },
 };
 
 const mutations = {
@@ -350,6 +357,10 @@ const mutations = {
   },
   upfotosServico(state, mensagem) {
     state.mensagemSucceso = mensagem;
+    // console.log(state.servico, "setCardsServico");
+  },
+  getServicoByID(state, infos) {
+    state.ServicosByID = infos;
     // console.log(state.servico, "setCardsServico");
   },
 

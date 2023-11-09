@@ -5,11 +5,13 @@ const state = {
   Propostas: null,
   PropostaAceita: null,
   InfoPropostaAceita: null,
+  PropostaEnviadas: null,
 };
 const getters = {
   StateCreateProposta: (state) => state.CreatePropostas,
   StateGetProposta: (state) => state.Propostas,
   StateInfoPropostaAceita: (state) => state.InfoPropostaAceita,
+  StateInfoPropostaEnviadas: (state) => state.PropostaEnviadas,
 };
 const actions = {
   async CreateProposta({ commit }, { infoProposta, id, token }) {
@@ -101,6 +103,27 @@ const actions = {
     commit("getPropostaAceita", { info: await request.data });
     return request;
   },
+  async GetPropostaEnviadas({ commit }, token) {
+    console.log(token);
+    const request = await axios.get(
+      `http://localhost:8000/api/servico/proposta/me`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+    commit("getPropostaEnviadas", { info: await request.data });
+    return request;
+  },
 };
 
 const mutations = {
@@ -116,6 +139,9 @@ const mutations = {
   },
   getPropostaAceita(state, { info }) {
     state.InfoPropostaAceita = info;
+  },
+  getPropostaEnviadas(state, { info }) {
+    state.PropostaEnviadas = info;
   },
 
   //   LogOutPrestador(state) {

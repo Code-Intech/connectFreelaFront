@@ -11,27 +11,24 @@
                 <div class="modal-body">
 
 
-                    <div class="d-inline-flex justify-content-center ">
+                    <div class="d-inline-flex justify-content-center flex-wrap">
 
-                        <div class="card mt-5 " style="max-width: 100vh; width: 90%;">
+                        <div class="card mt-5 d-flex flex-wrap" style="max-width: 100vh; width: 90%;"
+                            v-for="(infos, index) in propostas.proposta" :key="(infos)">
                             <Card>
                                 <template #title>
 
 
-                                    <div class="d-flex">
-
-                                        <AvatarComponent />
+                                    <div class="d-flex ">
+                                        <AvatarComponent :source="avatar[index]" />
 
 
                                         <div class=" ms-3 " style="width: 90%;">
 
                                             <div>
 
-                                                <text class="fst-italic">Nome de perfil</text>
-                                                <p class="fst-italic" style="font-size: smaller; color:rgb(103, 102, 102)">
-                                                    Profissão:
-                                                    Programador
-                                                </p>
+                                                <text class="fst-italic">{{ contratante[index] }}</text>
+
                                             </div>
 
                                         </div>
@@ -47,7 +44,7 @@
                                                     Valor:
                                                 </h2>
                                                 <h3 class=" ms-2 mt-1 text-success">
-                                                    $15.500,00
+                                                    ${{ infos.Valor_Proposta }}
                                                 </h3>
 
                                             </div>
@@ -60,7 +57,7 @@
                                                     Publicação:
                                                 </h4>
                                                 <h4>
-                                                    26/09/2023
+                                                    {{ infos.Data_Proposta }}
                                                 </h4>
                                             </div>
                                         </div>
@@ -71,90 +68,12 @@
 
 
 
-                                        <div class="border-bottom border-black ">
-                                            <h4>
-
-                                                Profissão
-                                            </h4>
-
-
-                                            <div class="">
-
-                                                <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        DEV
-                                                    </li>
-                                                    <li>
-                                                        Dev Front-end
-                                                    </li>
-                                                    <li>
-                                                        Dev Back-end
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-
-
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                                        <div class="border-bottom border-black mt-3">
-                                            <h4>
-
-                                                Habilidade
-                                            </h4>
-
-
-                                            <div class="">
-
-                                                <ul class="d-flex gap-4 flex-wrap">
-                                                    <li>
-                                                        php
-                                                    </li>
-                                                    <li>
-                                                        Java
-                                                    </li>
-                                                    <li>
-                                                        JavaScript
-                                                    </li>
-                                                    <li>
-                                                        WorldPress
-                                                    </li>
-                                                    <li>
-                                                        Linux
-                                                    </li>
-                                                    <li>
-                                                        HTML5
-                                                    </li>
-                                                    <li>
-                                                        CSS3
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-
-                                        </div>
 
 
 
 
                                         <p class="p-2 mt-4 ">
-                                            Texto da Proposta enviada
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo cum quod veniam,
-                                            temporibus animi,
-                                            est officiis iure error consequuntur recusandae facere perspiciatis, a dolor!
-                                            Dignissimos
-                                            reiciendis rerum labore aspernatur cum.
+                                            {{ infos.Comentario }}
 
 
                                         </p>
@@ -186,10 +105,10 @@
 
 <script>
 import CardAvaliar from "@/components/CardAvaliar";
-// import store from "@/store";
-// import { mapActions, mapGetters } from 'vuex'
 // import loading from "@/components/Loading.vue"
-
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import store from "@/store";
+import AvatarComponent from "@/components/AvatarComponent.vue"
 
 
 export default {
@@ -199,12 +118,83 @@ export default {
     },
     data() {
         return {
-
+            propostas: [],
+            Servico: [],
+            contratante: [],
+            avatar: [],
         }
     },
     components: {
         CardAvaliar,
-    }
+        AvatarComponent,
+    },
+    component: {
+        store() {
+            return store
+        },
+    },
+    created() {
+        this.getPropostas()
+    },
+    methods: {
+        validateOnBack: Boolean,
+        ...mapActions(["GetPropostaEnviadas", "getServicoID", "getAvatarNoToken", ""]),
+        ...mapGetters(["GetToken"]),
+        ...mapMutations(["", ""]),
+
+
+
+
+
+        async getPropostas() {
+            try {
+                await this.GetPropostaEnviadas(this.GetToken())
+                this.propostas = store.getters.StateInfoPropostaEnviadas
+
+                this.Servico = []
+                for (let index = 0; index < this.propostas.proposta.length; index++) {
+
+                    await this.getServicoID(this.propostas.proposta[index].tb_servico_idtb_servico)
+                    console.log(store.getters.StateServicoByID.infos
+                    )
+                    this.Servico.push(store.getters.StateServicoByID.infos
+                    )
+                    this.contratante.push(this.Servico[index].contratante.Nome_Completo)
+
+                    try {
+                        await this.getAvatarNoToken(this.Servico[index].servicoInfo.tb_contratante_tb_user_idtb_user)
+                        const avata = store.getters.StateAvatarId
+                        this.avatar.push(avata)
+                    } catch (error) {
+                        console.log(error)
+                        const avata = null
+                        this.avatar.push(avata)
+                    }
+
+                }
+
+
+                console.log(this.contratante)
+
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+
+        async getavatar(id) {
+
+            try {
+                await this.getAvatarNoToken(id)
+
+                return store.getters.StateAvatarId
+            } catch (error) {
+                console.log(error)
+                return null
+            }
+        },
+
+    },
 
 
 }
