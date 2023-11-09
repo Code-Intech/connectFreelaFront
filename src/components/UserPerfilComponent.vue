@@ -33,7 +33,8 @@
 
             <div class="m-3" v-for="(valores) in sobre" :key="(valores)">
                 <p class="">
-                    {{ valores.Apresentacao }}
+                    <!-- {{ valores.Apresentacao }} -->
+                    {{ valores }}
                 </p>
 
             </div>
@@ -224,7 +225,7 @@ export default {
                 this.prestado = store.getters.StatePrestador
                 console.log(this.prestado)
                 this.prestadorInfo.push(this.prestado.prestadorInfo)
-                this.sobre.push(this.prestado.prestadorGrettings)
+                this.sobre.push(this.prestado.apresentacao)
                 this.skills.push(this.prestado.prestadorSkills)
             } catch (error) {
                 this.prestador = null

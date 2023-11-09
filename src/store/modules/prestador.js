@@ -120,12 +120,18 @@ const actions = {
     }
     return request;
   },
-  async getInfoPrestador({ commit }, token) {
-    const request = await axios.get("http://localhost:8000/api/prestador/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  async getInfoPrestador({ commit }, { token }) {
+    console.log(token);
+    const tt = token;
+    const request = await axios.get(
+      "http://localhost:8000/api/prestador/me",
+
+      {
+        headers: {
+          Authorization: `Bearer ${tt}`,
+        },
+      }
+    );
     console.log(request, "GetPrestador");
     if (
       request.status === 400 ||
