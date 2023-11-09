@@ -1,12 +1,14 @@
 <template>
     <div class="col-10 ">
+        <div class="albumNull mb-4 mt-2" v-if="text">
+            <h2>Este usuário não possuí portifólio</h2>
+        </div>
 
-
-        <div class="border border-2 rounded m-5">
-
+        <div class="border border-2 rounded m-5" v-if="text == false">
 
             <div class="" style="min-height: 200px;">
                 <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
+
                     <div v-for="(album) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
@@ -95,6 +97,7 @@ export default {
                 Fotos: [],
 
             },
+            text: false,
             isLoading: false, // Defina isso como verdadeiro quando estiver carregando
             loadingMessage: "Carregando dados...",
             albumMessage: "Cadastrado com sucesso...",
@@ -115,14 +118,23 @@ export default {
     methods: {
         validateOnBack: Boolean,
         ...mapActions(["CreateAlbum", "dellAlbum", "showError", "GetAlbum"]),
-        ...mapGetters(["GetToken"]),
+        ...mapGetters([""]),
 
 
 
-        salvealbum() {
-            if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
-                this.albums = store.getters.StatealbumMe;
+        async salvealbum() {
+            try {
+                await this.GetAlbum(this.$route.params.id)
+                if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
+                    this.albums = store.getters.StatealbumMe;
+
+                }
+                this.text = false
+            } catch (error) {
+                this.albums = null
+                this.text = true
             }
+
         },
 
 
@@ -131,4 +143,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.albumNull{
+    color: rgb(112, 112, 112);
+}
+</style>

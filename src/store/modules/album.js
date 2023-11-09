@@ -60,13 +60,8 @@ const actions = {
     commit("setRrroAlbum", { errors: request.data.errors });
     return request;
   },
-  async GetAlbum({ commit }, token) {
-    console.log(token);
-    const request = await axios.get("http://localhost:8000/api/portifolio", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  async GetAlbum({ commit }, id){
+    const request = await axios.get(`http://localhost:8000/portifolio/${id}`);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -78,6 +73,7 @@ const actions = {
     commit("setAlbum", { album: request.data.portifolios });
     return request;
   },
+
   async Delfoto({ commit }, { token, id }) {
     console.log(token);
     const request = await axios.delete(
