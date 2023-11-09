@@ -122,9 +122,12 @@ export default {
     ...mapGetters(["GetToken"]),
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador", "LogOutAlbum"]),
     async getinfo() {
+      const payload = {
+        token: this.GetToken()
+      }
       try {
         await this.d(this.GetToken());
-        await this.getInfoPrestador(this.GetToken());
+        await this.getInfoPrestador(payload);
       } catch (error) {
         // console.log(this.GetToken());
       }

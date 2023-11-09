@@ -357,10 +357,20 @@ export default {
         },
 
         async GetSkills() {
-            await this.getInfoPrestador(this.GetToken());
-            await this.getSkills(this.GetToken());
-            await this.getProfessions(this.GetToken());
-            await this.getcategory(this.GetToken());
+
+            const payload = {
+                token: this.GetToken()
+            }
+
+            try {
+                
+                await this.getInfoPrestador(payload);
+                await this.getSkills(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getcategory(this.GetToken());
+            } catch (error) {
+                console.log(error)
+            }
         },
 
         getsobre(event) {

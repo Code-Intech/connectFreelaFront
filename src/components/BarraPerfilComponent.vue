@@ -157,16 +157,27 @@ export default {
         },
         async getskill() {
 
-            await this.getInfoPrestador(this.GetToken());
-            await this.getSkills(this.GetToken());
-            await this.getProfessions(this.GetToken());
-            await this.getcategory(this.GetToken());
+            console.log(this.GetToken())
+
+            const payload = {
+                token: this.GetToken()
+            }
+            try {
+
+                await this.getInfoPrestador(payload);
+                await this.getSkills(this.GetToken());
+                await this.getProfessions(this.GetToken());
+                await this.getcategory(this.GetToken());
+                setTimeout(() => {
+                    // Função a ser executada após 2 segundos
+                    this.$router.push({ path: '/ViewInfoPrestador' })
+                }, 1000);
+            } catch (error) {
+                console.log(error)
+            }
 
 
-            setTimeout(() => {
-                // Função a ser executada após 2 segundos
-                this.$router.push({ path: '/ViewInfoPrestador' })
-            }, 1000);
+
 
         },
 
