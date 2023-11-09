@@ -9,32 +9,22 @@
                 </div>
                 <div class="row modal-body">
                     <!-- {{ albomModal }} -->
-                    <div id="carouselExample" class="carousel slide" >
-                        <div class="carousel-inner" style="max-height: 40rem; max-width: 60rem;">
-                            <div class="carousel-item active">
-                                <img src="https://fisiocarepet.com.br/wp-content/uploads/2022/02/cachorro.png" class="d-block" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://s2.glbimg.com/nvjFq8VRjyrpdQqaOeywz-5DFwY=/e.glbimg.com/og/ed/f/original/2021/08/27/captura_de_tela_2021-08-27_as_11.01.15.png" class="d-block" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img3.jpg" class="d-block" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img4.jpg" class="d-block" alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/img2/img5.jpg" class="d-block" alt="">
+                    <div :id="'carouselExample' + modalFotoId" class="carousel slide" v-if="iffoto">
+                        <div class="carousel-inner" style="height: 60vh;">
+                            <div class="carousel-item" :class="[index < 1 ? 'active' : '']"
+                                v-for="(fotos, index) in foto.fotos" :key="fotos[index]">
+                                <img :src="fotos.image_url" class="d-block w-100" alt="">
                             </div>
 
+
                         </div>
-                        <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExample'"
-                            data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button"
+                            :data-bs-target="'#carouselExample' + modalFotoId" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselExample'"
-                            data-bs-slide="next">
+                        <button class="carousel-control-next" type="button"
+                            :data-bs-target="'#carouselExample' + modalFotoId" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -74,7 +64,8 @@ export default {
     },
     data() {
         return {
-
+            foto: [],
+            iffoto: false
         }
     },
     components: {
@@ -85,11 +76,40 @@ export default {
             return store
         },
     },
-
+    created() {
+        this.getfoto()
+    },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["CreateAlbum"]),
+        ...mapActions(["getFotosServico"]),
         ...mapGetters(["GetToken"]),
+
+
+        async getfoto() {
+
+
+
+            const payload = {
+                id: this.modalFotoId,
+                token: this.GetToken()
+            }
+
+
+
+            try {
+                await this.getFotosServico(payload)
+                this.foto = store.getters.StateFotosServico
+                this.iffoto = true
+            } catch (error) {
+                console.log()
+                this.iffoto = false
+            }
+
+
+        },
+
+
+
     }
 
 }
