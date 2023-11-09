@@ -15,7 +15,7 @@
                                     Publicação:
                                 </h6>
                                 <h6 class="fst-italic" style="font-size: smaller;">
-                                    12/10/2003
+                                    {{ formatData(valores.servicoInfo.created_at) }}
                                 </h6>
                             </div>
                         </div>
