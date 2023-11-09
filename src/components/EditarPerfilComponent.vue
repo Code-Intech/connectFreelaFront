@@ -54,7 +54,7 @@
                 <div class="col">
                     <label class="form-label" for="">CEP:</label>
                     <input v-model="cep" class="form-control" type="text" name="" id=""
-                        @input="infoUser.CEP = $event.target.value"
+                        @input="infoUser.CEP1 = $event.target.value"
                         style="max-width: 800px; border-color: var(--purple-primary)" />
                     <small v-if="store.getters.isMessageError" class="text-danger" id="error">CEP não encontrado</small>
 
@@ -93,7 +93,7 @@
 
                 <div class="col-3">
                     <label class="form-label" for="">Número:</label>
-                    <input class="form-control" type="text" name="" id="" :value="store.getters.StateEditUser.Numero"
+                    <input class="form-control" type="text" name="" id="" :value="infoUser.Numero"
                         @input="infoUser.Numero = $event.target.value" style="border-color: var(--purple-primary)" />
                 </div>
             </div>
@@ -171,7 +171,7 @@ export default {
                 Nome_completo: store.getters.StateEditUser.Nome_completo,
                 CPF: store.getters.StateEditUser.CPF,
                 Data_Nacimento: store.getters.StateEditUser.Data_Nacimento,
-                Genero: store.getters.StateEditUser.Genero,
+                Genero: store.getters.StateEditUser.idgenero,
                 Telefone: store.getters.StateEditUser.Telefone,
                 CEP1: store.getters.city.cep,
                 Estado: store.getters.city.estado,
@@ -187,6 +187,7 @@ export default {
         };
     },
     created() {
+        this.getEnd()
         const generoNovo = this.store.getters.StateGenders.find((Genero) => Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
         return generoNovo ? generoNovo.Genero : "Genero não encontrado"
     },
@@ -216,7 +217,14 @@ export default {
         ...mapActions(["getUser ", "getGenders", "GetAddress", "clearAddressData", "upInfoUser"]),
         ...mapGetters(["GetToken"]),
 
+        getEnd() {
 
+            const end = store.getters.StateEditUser.address
+
+            console.log(end.CEP)
+            this.cep = end.CEP
+            this.infoUser.Numero = end.Numero
+        },
         async genders() {
             try {
                 return await this.getGenders();
