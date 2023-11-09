@@ -22,7 +22,8 @@
                         <div class="card-body">
                             <div clss="container">
                                 <div class="row">
-                                    <div class="col-md-3" @click="VerPerfilUser(valores.servicoInfo.idtb_servico)">
+                                    <div class="col-md-3"
+                                        @click="VerPerfilUser(valores.servicoInfo.idtb_servico, valores.contratante.idtb_prestador)">
                                         <AvatarComponent :source="avatar[index]" />
                                     </div>
                                     <div class="col ">
@@ -268,8 +269,17 @@ export default {
             return dataFormatada;
         },
 
-        VerPerfilUser(id) {
-            this.$router.push({ name: `UserPerfilSobreView`, params: { id: id } });
+        VerPerfilUser(id, idPrestador) {
+
+            if (idPrestador == null) {
+                this.$router.push({ name: `UserPerfilSobreView`, params: { id: id, idPrestador: 0 } });
+
+            } else {
+
+                this.$router.push({ name: `UserPerfilSobreView`, params: { id: id, idPrestador: idPrestador } });
+            }
+
+
         },
 
         async getsallservicos() {
