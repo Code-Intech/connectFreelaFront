@@ -172,12 +172,17 @@ export default {
 
         async getalbum() {
             try {
-                await this.GetAlbum(this.GetToken());
+
+                const payload = {
+                    token: this.GetToken()
+                }
+
+                await this.GetAlbum(payload);
 
 
                 this.$router.push({ path: '/PerfilPortfolio' })
             } catch (error) {
-
+                console.log(error)
                 this.$router.push({ path: '/PerfilPortfolio' })
             }
         },

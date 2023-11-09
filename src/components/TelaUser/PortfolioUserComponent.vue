@@ -117,14 +117,14 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["CreateAlbum", "dellAlbum", "showError", "GetAlbum"]),
+        ...mapActions(["CreateAlbum", "dellAlbum", "showError", "GetAlbumToken"]),
         ...mapGetters([""]),
 
 
 
         async salvealbum() {
             try {
-                await this.GetAlbum(this.$route.params.id)
+                await this.GetAlbumToken(this.$route.params.id)
                 if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
                     this.albums = store.getters.StatealbumMe;
 
@@ -144,7 +144,7 @@ export default {
 </script>
 
 <style scoped>
-.albumNull{
+.albumNull {
     color: rgb(112, 112, 112);
 }
 </style>

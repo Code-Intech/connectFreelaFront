@@ -290,7 +290,10 @@ export default {
                 this.isLoading = false;
                 this.ifalbum = true;
                 console.log(this.isLoading, "loading")
-                await this.GetAlbum(this.GetToken())
+                const payload = {
+                    token: this.GetToken()
+                }
+                await this.GetAlbum(payload)
                 this.salvealbum()
 
             } catch (error) {
@@ -322,7 +325,10 @@ export default {
             try {
 
                 await this.dellAlbum(avatarPayload)
-                await this.GetAlbum(this.GetToken())
+                const payload = {
+                    token: this.GetToken()
+                }
+                await this.GetAlbum(payload)
                 this.albums = store.getters.StatealbumMe;
 
             } catch (error) {

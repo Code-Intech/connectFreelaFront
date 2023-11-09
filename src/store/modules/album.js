@@ -60,8 +60,30 @@ const actions = {
     commit("setRrroAlbum", { errors: request.data.errors });
     return request;
   },
-  async GetAlbum({ commit }, id){
+  async GetAlbumToken({ commit }, id) {
     const request = await axios.get(`http://localhost:8000/portifolio/${id}`);
+    if (
+      request.status === 400 ||
+      request.status === 401 ||
+      request.status === 404 ||
+      request.status === 500
+    )
+      throw new Error(request.statusText);
+
+    commit("setAlbum", { album: request.data.portifolios });
+    return request;
+  },
+  async GetAlbum({ commit }, token) {
+    const request = await axios.get(
+      `http://localhost:8000/api/portifolio`,
+
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (
       request.status === 400 ||
       request.status === 401 ||
