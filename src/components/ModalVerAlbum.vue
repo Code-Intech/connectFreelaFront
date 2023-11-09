@@ -155,7 +155,6 @@ export default {
                 // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
                 this.ifalbum = true;
-                console.log(this.isLoading, "loading")
 
             } catch (error) {
                 console.log(error);
@@ -197,7 +196,6 @@ export default {
 
 
         teste() {
-            console.log(this.album.Fotos)
         }
     },
 

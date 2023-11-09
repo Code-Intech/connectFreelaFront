@@ -289,7 +289,6 @@ export default {
                 // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
                 this.ifalbum = true;
-                console.log(this.isLoading, "loading")
                 const payload = {
                     token: this.GetToken()
                 }
@@ -315,7 +314,6 @@ export default {
         },
         async DellAlbum(id) {
 
-            console.log(id, "idalbum")
 
             const avatarPayload = {
                 token: this.GetToken(),
@@ -378,7 +376,6 @@ export default {
 
 
         teste() {
-            console.log(this.album.Fotos)
         }
     },
 

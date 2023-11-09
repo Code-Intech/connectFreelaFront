@@ -220,14 +220,13 @@ export default {
                 token: this.GetToken(),
             }
             try {
-                console.log(infoPayLoad, "loading");
                 await this.getInfoPrestador(infoPayLoad)
                 this.prestado = store.getters.StatePrestador
-                console.log(this.prestado)
                 this.prestadorInfo.push(this.prestado.prestadorInfo)
                 this.sobre.push(this.prestado.apresentacao)
                 this.skills.push(this.prestado.prestadorSkills)
             } catch (error) {
+                console.log(error)
                 this.prestador = null
             }
         },

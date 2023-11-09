@@ -64,12 +64,9 @@ export default {
         selectedSkillIds: {
             immediate: true,
             handler(newVal) {
-                console.log('Valor de newVal:', newVal);
                 if (Array.isArray(newVal)) {
                     this.selectedSkills = newVal.map((selectedId) => {
                         const skill = this.skills.find((s) => s.idtb_habilidades === selectedId);
-                        console.log(this.selectedSkills)
-                        console.log(skill)
                         if (skill) {
                             return {
                                 Habilidade: skill.Habilidade,
@@ -99,7 +96,6 @@ export default {
                 this.ifskill = true
                 this.setServicoEditSkill()
             }
-            // console.log(this.selectedSkills)
         },
         removeSkill(index) {
             // const index = this.selectedSkills.findIndex((skill) => skill.idtb_habilidades === skillId);

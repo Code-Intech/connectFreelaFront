@@ -42,7 +42,6 @@ const actions = {
       senha: User.get("senha"),
     });
     const request = await axios.post("http://localhost:8000/auth/login", user);
-    console.log(request);
     if (request.status === 401) throw new Error(request.statusText);
 
     commit("setUser", { email: User.get("email"), token: request.data.token });

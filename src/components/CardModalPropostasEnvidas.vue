@@ -155,8 +155,7 @@ export default {
                 for (let index = 0; index < this.propostas.proposta.length; index++) {
 
                     await this.getServicoID(this.propostas.proposta[index].tb_servico_idtb_servico)
-                    console.log(store.getters.StateServicoByID.infos
-                    )
+
                     this.Servico.push(store.getters.StateServicoByID.infos
                     )
                     this.contratante.push(this.Servico[index].contratante.Nome_Completo)
@@ -174,7 +173,6 @@ export default {
                 }
 
 
-                console.log(this.contratante)
 
             } catch (error) {
                 console.log(error)

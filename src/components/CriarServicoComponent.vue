@@ -204,7 +204,6 @@ export default {
         async handleCep() {
             try {
                 await this.GetAddress(this.cep)
-                console.log(store.getters.city)
             } catch (error) {
                 console.log(error)
                 await this.showError(error)
@@ -231,7 +230,6 @@ export default {
 
         },
         onChange: function (event) {
-            // console.log(event.target.value, "change")
 
             const skill = event.target.value;
             this.Servico.Habilidade = skill.map((Habi) => Habi.idtb_habilidades);
@@ -328,7 +326,6 @@ export default {
 
             for (let i = 0; i < this.Servico.IMG.length; i++) {
                 servicoImg.append('image[]', this.Servico.IMG[i]);
-                console.log(this.Servico.IMG[i])
             }
             const infoPayLoadIMG = {
                 token: this.GetToken(),

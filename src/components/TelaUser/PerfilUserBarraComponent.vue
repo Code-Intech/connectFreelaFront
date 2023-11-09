@@ -5,7 +5,7 @@
             <!-- <img class="mt-4 rounded img-fluid" src="../assets/img/mamaco.jpeg" alt="" style="width: 15rem; height: 15rem;"> -->
             <Avatar :source="avatar" class="mt-4 img-fluid p-3" height="auto" width="500px" :rounded="false" />
         </div>
-        
+
 
         <div class="ms-5 me-5 mt-3 d-grid gap-2">
             <!-- <button @click="$router.push({ path: '/' })" class="d-block btn text-white"
@@ -53,7 +53,7 @@ export default {
         }
     },
 
-    created(){
+    created() {
         this.getAvatarUser();
     },
 
@@ -76,10 +76,9 @@ export default {
         async getAvatarUser() {
             try {
                 await this.getAvatarNoToken(this.$route.params.id)
-                console.log("teste")
-                this.avatar=store.getters.StateAvatarId
+                this.avatar = store.getters.StateAvatarId
             } catch (error) {
-                this.avatar=null
+                this.avatar = null
             }
         },
 

@@ -53,8 +53,6 @@ const actions = {
       apresentacao: infoPresta.info.get("apresentacao"),
     };
 
-    // console.log(InfoPres, "tokenprestador");
-
     const request = await axios.post(
       "http://localhost:8000/api/prestador/create",
       InfoPres,
@@ -71,7 +69,6 @@ const actions = {
       request.status === 500
     )
       throw new Error(request.statusText);
-    console.log(request, "REquest William");
     if (request.status > 400) {
       commit("createprestador", { infocreate: await request.error.message });
     } else {
@@ -94,8 +91,6 @@ const actions = {
       apresentacao: infoPresta.info.get("apresentacao"),
     };
 
-    // console.log(InfoPres, "tokenprestador");
-
     const request = await axios.patch(
       "http://localhost:8000/api/prestador/update",
       InfoPres,
@@ -105,7 +100,6 @@ const actions = {
         },
       }
     );
-    // console.log(request);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -121,7 +115,6 @@ const actions = {
     return request;
   },
   async getInfoPrestador({ commit }, { token }) {
-    console.log(token);
     const tt = token;
     const request = await axios.get(
       "http://localhost:8000/api/prestador/me",
@@ -132,7 +125,6 @@ const actions = {
         },
       }
     );
-    console.log(request, "GetPrestador");
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -160,7 +152,6 @@ const actions = {
 
   async getAllPrestadores({ commit }) {
     const request = await axios.get("http://localhost:8000/prestador", {});
-    // console.log(request, "GetAllPrestador");
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -177,29 +168,19 @@ const actions = {
 
 const mutations = {
   createprestador(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.error = infocreate;
-    // console.log(state.edituser,"get")
   },
   uoprestador(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.error = infocreate;
-    // console.log(state.edituser,"get")
   },
   seteditprestador(state, { infoprestador }) {
-    // console.log(infoprestador, "SETPrestador");
-    // console.log(state,"state")
     state.prestador = infoprestador;
   },
   setCardsPrestador(state, { infoprestadorcard }) {
     state.prestador = infoprestadorcard;
-    // console.log(state.prestador, "SetCardsPrestador");
   },
   seteditprestadorme(state, { infoprestadorMe }) {
     state.PrestadorID = infoprestadorMe;
-    // console.log(state.prestador, "SetCardsPrestador");
   },
 
   LogOutPrestador(state) {

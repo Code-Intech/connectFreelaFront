@@ -16,8 +16,6 @@ const actions = {
       },
     });
 
-    console.log(request);
-
     commit("setAvatar", { avatar: request.data.success.avatar_url });
   },
   async getAvatarNoToken({ commit }, id) {
@@ -27,9 +25,6 @@ const actions = {
   },
 
   async GetFoto({ commit }, avatar) {
-    console.log(avatar.token);
-    console.log(avatar.avatar);
-
     const request = await axios.post(
       "http://localhost:8000/api/user/upload/avatar",
       {
@@ -42,7 +37,6 @@ const actions = {
         },
       }
     );
-    console.log(request.data.success.avatar_url);
 
     commit("setAvatar", { avatar: request.data.success.avatar_url });
   },
@@ -52,7 +46,6 @@ const mutations = {
     state.fotoavatar = avatar;
   },
   setAvatarNoToken(state, { avatar }) {
-    // console.log(avatar);
     state.fotoavatarId = avatar;
   },
   LogOutAvatar(state) {

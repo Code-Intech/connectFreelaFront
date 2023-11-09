@@ -226,7 +226,6 @@ export default {
         async getSobreUser() {
             try {
                 await this.getInfoPrestadorID(this.$route.params.idPrestador)
-                console.log("teste")
                 this.prestado = store.getters.StatePrestadorID
                 this.prestadorInfo.push(this.prestado.prestadorInfo)
                 this.sobre.push(this.prestado.prestadorGrettings)

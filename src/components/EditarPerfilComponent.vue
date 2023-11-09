@@ -221,7 +221,6 @@ export default {
 
             const end = store.getters.StateEditUser.address
 
-            console.log(end.CEP)
             this.cep = end.CEP
             this.infoUser.Numero = end.Numero
         },
@@ -244,7 +243,6 @@ export default {
 
         async upUser() {
 
-            console.log(this.infoUser)
             const InfoUse = new FormData();
             InfoUse.append("Nome_completo", this.infoUser.Nome_completo);
             InfoUse.append("CPF", this.infoUser.CPF);
@@ -266,7 +264,6 @@ export default {
                 info: InfoUse
             }
             try {
-                console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.upInfoUser(infoPayLoad)
             } catch (error) {
                 const message = error.request.response

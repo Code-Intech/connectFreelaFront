@@ -278,7 +278,6 @@ export default {
                 // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
                 this.ifalbum = true;
-                console.log(this.isLoading, "loading")
                 await this.getfotos(getPayload)
                 this.FotoCapa = this.dadosModal.portifolio.Capa
 
@@ -300,7 +299,6 @@ export default {
         },
         async AddFoto() {
 
-            console.log(this.editaralbum.foto)
             this.isLoading = true;
             const foto = new FormData();
 
@@ -324,10 +322,8 @@ export default {
                 // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
                 this.ifalbum = true;
-                console.log(this.isLoading, "loading")
                 await this.getfotos(getPayload)
                 this.dadosModal = store.getters.StatealbumMe;
-                console.log(store.getters.StatealbumMe, "dadossss")
                 if (this.dadosModal.photos.length >= 5) {
                     this.inputBloqueado = true;
                     this.botaoBloqueado = true;
@@ -362,7 +358,6 @@ export default {
                 await this.Delfoto(avatarPayload)
                 // alert(`Album Cadastrado com sucesso`);
                 this.ifalbum = true;
-                console.log(this.isLoading, "loading")
 
             } catch (error) {
                 this.isLoading = false;
@@ -449,7 +444,6 @@ export default {
 
 
         teste() {
-            console.log(this.album.Fotos)
         }
     },
 

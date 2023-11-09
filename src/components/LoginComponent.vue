@@ -203,9 +203,6 @@ export default {
       }
     },
     async register() {
-      console.log(this.userData)
-      console.log(this.addressData)
-      console.log(store.getters.city)
       const User = new FormData();
       User.append("nomeCompleto", this.userData.nomeCompleto);
       User.append("cpf", this.userData.cpf);
@@ -227,7 +224,6 @@ export default {
         this.clearAddressData();
         await this.getInfoUser(this.GetToken());
       } catch (error) {
-        // console.log(error)
         // await this.showError(error, 10000)
         this.isLoading = false;
         const message = error.request.response

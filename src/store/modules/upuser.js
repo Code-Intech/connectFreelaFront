@@ -45,7 +45,6 @@ const actions = {
       email: infoUser.info.get("Email"),
       senha: infoUser.info.get("Senha"),
     });
-    console.log(InfoUse, "tokenuser");
     const request = await axios.patch(
       "http://localhost:8000/api/user/update",
       InfoUse,
@@ -56,7 +55,6 @@ const actions = {
         },
       }
     );
-    //console.log(request);
     commit("upedituser", { edit: await request.erro });
   },
 
@@ -66,21 +64,15 @@ const actions = {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(request);
     commit("setedituser", { user: await request.data.user });
   },
 };
 const mutations = {
   upedituser(state, { edit }) {
-    console.log(edit);
-    // console.log(state,"state")
     state.error = edit;
   },
   setedituser(state, { user }) {
-    console.log(user);
-    // console.log(state,"state")
     state.edituser = user;
-    console.log(state.edituser, "get");
   },
 
   LogOutUpUser(state) {

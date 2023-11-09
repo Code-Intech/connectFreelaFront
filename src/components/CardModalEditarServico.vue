@@ -324,6 +324,7 @@ export default {
             } catch (error) {
                 console.log(error)
                 await this.showError(error)
+
             }
         },
         async GetFotos() {
@@ -343,6 +344,13 @@ export default {
                 console.log(error)
                 this.iffoto = false
                 this.fotos = null
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
+                console.log(error)
 
             }
         },
@@ -493,7 +501,7 @@ export default {
         },
 
         async UpFotosServico() {
-
+            this.isLoading = true;
             const servicoImg = new FormData();
 
 
@@ -519,8 +527,16 @@ export default {
                 await this.getcategory(this.GetToken());
                 await this.getProfessions(this.GetToken());
                 await this.getSkills(this.GetToken());
+                this.isLoading = false;
                 this.InfoServico()
             } catch (error) {
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
                 console.log(error)
             }
 
@@ -547,6 +563,12 @@ export default {
                 await this.getSkills(this.GetToken());
                 this.InfoServico()
             } catch (error) {
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
                 console.log(error)
             }
 

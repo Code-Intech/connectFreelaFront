@@ -237,12 +237,10 @@ export default {
         },
         getinfos() {
 
-            console.log(store.getters.StateServico, "StateServico")
             if (store.getters.StateServico != null || store.getters.StateServico != undefined) {
 
                 this.valorServico = store.getters.StateServico
                 this.ifServico = true
-                console.log(this.ifServico, "ifServico true")
             }
 
 
@@ -284,7 +282,6 @@ export default {
                 token: this.GetToken()
             }
 
-            console.log(payload.token)
 
             try {
 

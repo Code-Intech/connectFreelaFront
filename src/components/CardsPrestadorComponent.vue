@@ -146,7 +146,6 @@ export default {
 
         // mapPrestadores(prestadorId) {
         //     const prestador = this.prestadores.find((cat) => cat.idtb_prestador === prestadorId);
-        //     // console.log(category, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 
         //     return prestador ? prestador.Prestador : 'Prestador Desconhecido';
         // },
@@ -166,11 +165,8 @@ export default {
                 this.avatar = []
                 await this.getAllPrestadores()
                 const valor = store.getters.StatePrestador
-                // console.log(valor[0].prestadorInfo.tb_user_idtb_user)
                 for (let index = 0; index < valor.length; index++) {
-                    // console.log(valor[index])
                     try {
-                        // console.log(valor[index].prestadorInfo.tb_user_idtb_user)
                         await this.getAvatarNoToken(valor[index].prestadorInfo.tb_user_idtb_user)
 
                         this.avatar.push(store.getters.StateAvatarId)

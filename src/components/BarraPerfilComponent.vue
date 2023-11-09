@@ -208,6 +208,8 @@ export default {
             }
         },
 
+
+
         async getNome() {
             await this.getInfoUser(this.GetToken());
             if (store.getters.StateEditUser.idtb_user > 0) {

@@ -96,7 +96,6 @@ const actions = {
       request.status === 500
     )
       throw new Error(request.statusText);
-    // console.log(request);
     commit("createprestador", { infocreate: await request.data.message });
     return request;
   },
@@ -110,7 +109,6 @@ const actions = {
         },
       }
     );
-    console.log(request);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -147,7 +145,6 @@ const actions = {
         },
       }
     );
-    console.log(request);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -173,7 +170,6 @@ const actions = {
         },
       }
     );
-    console.log(request);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -199,7 +195,6 @@ const actions = {
         },
       }
     );
-    console.log(request);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -217,7 +212,6 @@ const actions = {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(request, "GetServico");
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -231,11 +225,9 @@ const actions = {
 
   async getServico({ commit }) {
     const request = await axios.get("http://localhost:8000/servico", {});
-    console.log(request);
     commit("setCardsServico", { infoservicocard: await request.data.servico });
   },
   async deleteServico({ commit }, { id, token }) {
-    console.log(token);
     const request = await axios.delete(
       `http://localhost:8000/api/servico/delete/${id}`,
 
@@ -245,11 +237,9 @@ const actions = {
         },
       }
     );
-    console.log(request);
     commit("dellServico", { deleteservico: await request.data });
   },
   async getFotosServico({ commit }, { id, token }) {
-    console.log(token);
     const request = await axios.get(
       `http://localhost:8000/api/servico/images/${id}`,
 
@@ -259,11 +249,9 @@ const actions = {
         },
       }
     );
-    console.log(request);
     commit("getfotosServico", { fotos: await request.data });
   },
   async upFotosServico({ commit }, { id, token, img }) {
-    console.log(token);
     const request = await axios.post(
       `http://localhost:8000/api/servico/update/images/${id}`,
       img,
@@ -273,7 +261,6 @@ const actions = {
         },
       }
     );
-    console.log(request);
     commit("upfotosServico", { mensagem: await request.data });
   },
   async dellFotosServico({ commit }, { id, token }) {
@@ -286,82 +273,55 @@ const actions = {
         },
       }
     );
-    console.log(request);
     commit("upfotosServico", { mensagem: await request.data });
   },
   async getServicoID({ commit }, id) {
     const request = await axios.get(`http://localhost:8000/servico/${id}`);
-    console.log(request);
     commit("getServicoByID", { infos: await request.data.servico });
   },
 };
 
 const mutations = {
   createprestador(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.errors = infocreate;
-    // console.log(state.edituser,"get")
   },
   createServicoIMG(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.errors = infocreate;
-    // console.log(state.edituser,"get")
   },
   UpServico(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.errors = infocreate;
-    // console.log(state.edituser,"get")
   },
   UpServicoSkills(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.errors = infocreate;
-    // console.log(state.edituser,"get")
   },
   UpServicoProfessions(state, { infocreate }) {
-    console.log(infocreate);
-    // console.log(state,"state")
     state.errors = infocreate;
-    // console.log(state.edituser,"get")
   },
 
   setservico(state, { infoservicome }) {
-    // console.log(infoservicome, "SETPrestador");
-    // console.log(state,"state")
     state.servico = infoservicome;
-    // console.log(state.prestador, "SETServico");
   },
 
   setCardsServico(state, { infoservicocard }) {
     state.servico = infoservicocard;
-    // console.log(state.servico, "setCardsServico");
   },
   setServicoEditSkill(state, skills) {
     state.ServicoEditarSkill = skills;
-    // console.log(state.servico, "setCardsServico");
   },
   setServicoEditProfession(state, Profession) {
     state.ServicoEditarProfession = Profession;
-    // console.log(state.servico, "setCardsServico");
   },
   dellServico(state, deleteservico) {
     state.DeleteServico = deleteservico;
-    // console.log(state.servico, "setCardsServico");
   },
   getfotosServico(state, fotos) {
     state.fotosServico = fotos;
-    // console.log(state.servico, "setCardsServico");
   },
   upfotosServico(state, mensagem) {
     state.mensagemSucceso = mensagem;
-    // console.log(state.servico, "setCardsServico");
   },
   getServicoByID(state, infos) {
     state.ServicosByID = infos;
-    // console.log(state.servico, "setCardsServico");
   },
 
   //   LogOutPrestador(state) {

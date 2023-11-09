@@ -265,7 +265,6 @@ export default {
 
 
         tttt() {
-            console.log(this.valor, "!!!!!!!!!!!!!!!!!!!!!!!!")
 
         }
 

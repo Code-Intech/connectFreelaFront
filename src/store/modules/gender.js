@@ -8,13 +8,12 @@ const getters = {
 };
 const actions = {
   async getGenders({ commit }) {
-    const request = await axios.get('http://localhost:8000/gender')
-    commit('setGenders', {  genders: await request.data.genres })
+    const request = await axios.get("http://localhost:8000/gender");
+    commit("setGenders", { genders: await request.data.genres });
   },
 };
 const mutations = {
   setGenders(state, { genders }) {
-    console.log(genders)
     state.genders = genders;
   },
 };

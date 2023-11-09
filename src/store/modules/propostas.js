@@ -21,8 +21,6 @@ const actions = {
       Data_Proposta: infoProposta.get("Data"),
     });
 
-    console.log(Info, "tokenprestador");
-
     const request = await axios.post(
       `http://localhost:8000/api/servico/proposta/${id}`,
       Info,
@@ -62,7 +60,6 @@ const actions = {
     return request;
   },
   async AceitarProposta({ commit }, { id, token }) {
-    console.log(token);
     const request = await axios.patch(
       `http://localhost:8000/api/servico/proposta/aceitar/${id}`,
       {},
@@ -83,7 +80,6 @@ const actions = {
     return request;
   },
   async GetPropostaAceita({ commit }, { id, token }) {
-    console.log(token);
     const request = await axios.get(
       `http://localhost:8000/api/servico/proposta/byId/${id}`,
 
@@ -104,7 +100,6 @@ const actions = {
     return request;
   },
   async GetPropostaEnviadas({ commit }, token) {
-    console.log(token);
     const request = await axios.get(
       `http://localhost:8000/api/servico/proposta/me`,
 
@@ -128,7 +123,6 @@ const actions = {
 
 const mutations = {
   createProposta(state, { info }) {
-    console.log(info);
     state.CreatePropostas = info;
   },
   getProposta(state, { info }) {

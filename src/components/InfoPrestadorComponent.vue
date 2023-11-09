@@ -259,7 +259,6 @@ export default {
 
         },
         categories() {
-            // console.log(this.$store.getters.Getcategorys, "catttttttttttttttttttttttttttttttt");
 
 
             return this.$store.getters.Getcategorys;
@@ -303,7 +302,6 @@ export default {
 
         mapCategoryName(categoryId) {
             const category = this.categories.find((cat) => cat.idtb_categoria === categoryId);
-            // console.log(category, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 
             return category ? category.Categoria : 'Categoria Desconhecida';
         },
@@ -323,7 +321,6 @@ export default {
                 });
             });
 
-            // console.log(this.infoPrestador.Habilidade, "skill")
         },
         removeSkill(index) {
             this.selectedSkills.splice(index, 1);
@@ -346,7 +343,6 @@ export default {
             // const profissao1 = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
             // this.infoPrestador.Profissao = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
             // this.infoPrestador.Profissao.id = this.selectedProfessions.map((profession) => profession.idtb_profissoes);
-            // console.log(this.infoPrestador.Profissao, "tessssssssssssss")
         },
 
 
@@ -381,9 +377,7 @@ export default {
             // this.selectedProfessions = []
 
 
-            // console.log(store.getters.StatePrestador.length, "tamanho")
             if (store.getters.StatePrestador != undefined || store.getters.StatePrestador != null) {
-                // console.log(this.skillbackend, "dwadawdwadawdwadawdwadawdwadaw")
 
                 this.skillbackend = store.getters.StatePrestador.prestadorSkills
 
@@ -443,15 +437,12 @@ export default {
 
                 // this.infoPrestador.Habilidade = novoArray2.idtb_habilidades
 
-                // console.log(novoArray, "novoarray")
 
                 // this.infoPrestador.Profissao = novoArray;
                 this.selectedProfessions = novoArray;
 
                 for (let index = 0; index < novoArray.length; index++) {
                     // const element = novoArray[index];
-                    // console.log(novoArray[index].id, "array index: " + index)
-                    // console.log(typeof novoArray[index])
 
                     // const id = novoArray[index].id;
                     // const experiencia = novoArray[index].experiencia;
@@ -477,21 +468,9 @@ export default {
         teste() {
 
 
-            // const novoArray = this.profissaobackend2.map(objeto => {
-            //     // Use a função parseInt para converter a string em um número
-            //     return { id: parseInt(objeto.id), Profissao: objeto.Profissao, categoria_id: parseInt(objeto.categoria_id), Categoria: objeto.Categoria, experiencia: parseInt(objeto.experiencia) };
-            // });
-
-            // this.selectedProfessions = novoArray;
 
 
 
-            // console.log(store.getters.StatePrestador, "skills");
-            // console.log(store.getters.StatePrestador.prestadorInfo.Valor_diaria, "Sobre");
-            // console.log(store.getters.StatePrestador.prestadorProfessions, "skills");
-            // console.log(this.selectedSkills, "skills");
-            // console.log(this.infoPrestador.Habilidade, "infoPrestadorskills");
-            // console.log(store.getters.IfPrestador.error, "infoPrestadorprofissao");
 
         },
 
@@ -525,7 +504,6 @@ export default {
                 info: InfoPresta
             }
             try {
-                // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.CreatePrestador(infoPayLoad)
                 this.GetSkills()
                 this.getprofrissoesbackend()
@@ -537,7 +515,6 @@ export default {
                 setTimeout(() => {
                     this.erroIf = false
                 }, 4000);
-                console.log(error);
             }
 
         },
@@ -547,7 +524,6 @@ export default {
 
         async upPrestador() {
 
-            // console.log(this.getinfoback.Habilidade, "UPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
 
 
             const InfoPresta = new FormData();
@@ -576,7 +552,6 @@ export default {
                 info: InfoPresta
             }
             try {
-                // console.log(infoPayLoad, 'payloaddddddddddddddddddddddddddddd');
                 await this.UpPrestador(infoPayLoad)
 
                 setTimeout(() => {

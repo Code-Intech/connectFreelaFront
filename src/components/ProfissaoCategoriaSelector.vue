@@ -74,7 +74,6 @@ export default {
         this.setServicoEditProfession(null)
         // Suponha que você tenha a lista de profissões já selecionadas pelo usuário
         const profissoesSelecionadas = this.professionsBack.map((id) => id.idtb_profissoes)// IDs das profissões selecionadas
-        console.log(profissoesSelecionadas)
         for (const id of profissoesSelecionadas) {
             const professionToAdd = this.professions.find((profissao) => profissao.idtb_profissoes === id);
             if (professionToAdd) {

@@ -251,7 +251,6 @@ export default {
 
         getAllServicos() {
             this.valor = store.getters.StateServico
-            // console.log(this.valor)
         },
 
         formatData(data) {
@@ -289,7 +288,6 @@ export default {
             try {
                 await this.getServico()
                 for (let index = 0; index < this.valor.length; index++) {
-                    // console.log(this.valor[index])
                     try {
                         await this.getAvatarNoToken(this.valor[index].servicoInfo.tb_contratante_tb_user_idtb_user)
 

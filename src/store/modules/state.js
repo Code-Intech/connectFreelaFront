@@ -9,9 +9,6 @@ const getters = {
 };
 const actions = {
   async CreateAlbum({ commit }, { token, album }) {
-    console.log(album.token);
-    console.log(album.album);
-
     const request = await axios.post(
       "http://localhost:8000/api/portifolio/create",
       {
@@ -33,7 +30,6 @@ const actions = {
 };
 const mutations = {
   setRrroAlbum(state, { errors }) {
-    console.log(errors);
     state.errors = errors;
   },
   LogOutAvatar(state) {

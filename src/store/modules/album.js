@@ -35,9 +35,6 @@ const getters = {
 };
 const actions = {
   async CreateAlbum({ commit }, { token, album }) {
-    console.log(token, "tokennnnnnnnnn");
-    console.log(album);
-
     const request = await axios.post(
       "http://localhost:8000/api/portifolio/create",
       album,
@@ -97,7 +94,6 @@ const actions = {
   },
 
   async Delfoto({ commit }, { token, id }) {
-    console.log(token);
     const request = await axios.delete(
       `http://localhost:8000/api/album/remove/${id}`,
       {
@@ -118,10 +114,6 @@ const actions = {
     return request;
   },
   async addfoto({ commit }, { token, id, photo }) {
-    console.log(token);
-    console.log(id);
-    console.log(photo);
-    // const photo1 = photo.get("photo");
     const request = await axios.post(
       `http://localhost:8000/api/portifolio/add/${id}`,
       photo,
@@ -144,13 +136,11 @@ const actions = {
   },
 
   async getfotos({ commit }, { token, id }) {
-    console.log(token);
     const request = await axios.get(`http://localhost:8000/api/album/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(request, "request");
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -162,7 +152,6 @@ const actions = {
     return request;
   },
   async upalbum({ commit }, { token, id, album }) {
-    console.log(token);
     const request = await axios.post(
       `http://localhost:8000/api/portifolio/update/${id}`,
       album,
@@ -172,7 +161,6 @@ const actions = {
         },
       }
     );
-    console.log(request, "request");
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -184,7 +172,6 @@ const actions = {
     return request;
   },
   async dellAlbum({ commit }, { token, id }) {
-    console.log(token);
     const request = await axios.delete(
       `http://localhost:8000/api/portifolio/album/${id}`,
       {
@@ -193,7 +180,6 @@ const actions = {
         },
       }
     );
-    console.log(request, "request");
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -207,31 +193,24 @@ const actions = {
 };
 const mutations = {
   setRrroAlbum(state, { errors }) {
-    // console.log(errors);
     state.errors = errors;
   },
   setAlbum(state, { album }) {
-    // console.log(album);
     state.portifolios = album;
   },
   dellFoto(state, { dell }) {
-    // console.log(dell);
     state.dellfoto = dell;
   },
   addFoto(state, { addfoto }) {
-    // console.log(addfoto, "state");
     state.portifolios = addfoto;
   },
   upFoto(state, { sucess }) {
-    // console.log(sucess, "state");
     state.upfoto = sucess;
   },
   dellAlbum(state, { sucess }) {
-    // console.log(sucess, "state");
     state.dellalbum = sucess;
   },
   setErro(state, { errors }) {
-    // console.log(sucess, "state");
     state.errors = errors;
   },
   LogOutAlbum(state) {
