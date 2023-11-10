@@ -19,11 +19,11 @@
             </div>
 
             <div class="w-100 d-flex align-items-end justify-content-end">
-                <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#assinar"
                     data-bs-whatever="@getbootstrap">Assinar</button>
             </div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="assinar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="" style="background-color: black; height: 37px;">
-a
+                                    a
                                 </div>
 
                                 <div class="ms-3 mt-2">
@@ -66,7 +66,7 @@ a
 
 
                                     <div class="ms-3">
-    
+
                                         <h6 class="text-white">
                                             Valid
                                         </h6>
@@ -74,7 +74,7 @@ a
                                             XX/XX
                                         </h5>
                                     </div>
-    
+
                                     <div class="ms-5">
                                         <h6 class="text-white">
                                             CVV
@@ -129,25 +129,6 @@ a
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </template>
 
 <script>
@@ -190,28 +171,4 @@ export default {
 .btn:hover {
     background-color: #9749FE;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>
