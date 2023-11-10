@@ -120,7 +120,7 @@ export default {
     validateOnBack: Boolean,
     ...mapActions(["getInfoUser", "getAvatar", "getInfoPrestador", "ifToken"]),
     ...mapGetters(["GetToken"]),
-    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador", "LogOutAlbum"]),
+    ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador", "LogOutAlbum", "Logcategoria", "LogOutgenders", "LogOutprofessions", "LogOutPropostas", "LogOutServico"]),
     async getinfo() {
       const payload = {
         token: this.GetToken()
@@ -142,6 +142,11 @@ export default {
         this.LogOutUpUser();
         this.LogOutPrestador();
         this.LogOutAlbum();
+        this.Logcategoria();
+        this.LogOutgenders();
+        this.LogOutprofessions();
+        this.LogOutPropostas();
+        this.LogOutServico();
 
       }, 2000);
     },

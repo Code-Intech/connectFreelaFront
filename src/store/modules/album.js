@@ -212,6 +212,13 @@ const mutations = {
   },
   LogOutAlbum(state) {
     state.portifolios = null;
+    state.fotoavatar = null;
+    state.errors = null;
+    state.dellfoto = null;
+    state.addfoto = null;
+    state.upfoto = null;
+    state.dellalbum = null;
+    state.portifolios = null;
   },
 };
 export default {

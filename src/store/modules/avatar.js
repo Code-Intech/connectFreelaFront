@@ -50,6 +50,7 @@ const mutations = {
   },
   LogOutAvatar(state) {
     state.fotoavatar = null;
+    state.fotoavatarId = null;
   },
 };
 export default {

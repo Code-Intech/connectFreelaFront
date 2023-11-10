@@ -21,6 +21,9 @@ const mutations = {
   setCategorys(state, { category }) {
     state.categorys = category;
   },
+  Logcategoria(state) {
+    state.categorys = null;
+  },
 };
 export default {
   state,

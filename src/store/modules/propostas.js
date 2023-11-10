@@ -138,9 +138,13 @@ const mutations = {
     state.PropostaEnviadas = info;
   },
 
-  //   LogOutPrestador(state) {
-  //     state.prestador = null;
-  //   },
+  LogOutPropostas(state) {
+    state.CreatePropostas = null;
+    state.Propostas = null;
+    state.PropostaAceita = null;
+    state.InfoPropostaAceita = null;
+    state.PropostaEnviadas = null;
+  },
 };
 export default {
   state,

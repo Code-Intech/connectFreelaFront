@@ -324,9 +324,15 @@ const mutations = {
     state.ServicosByID = infos;
   },
 
-  //   LogOutPrestador(state) {
-  //     state.prestador = null;
-  //   },
+  LogOutServico(state) {
+    state.ServicoEditarSkill = null;
+    state.ServicoEditarProfession = null;
+    state.servico = null;
+    state.DeleteServico = null;
+    state.fotosServico = null;
+    state.ServicosByID = null;
+    state.mensagemSucceso = null;
+  },
 };
 export default {
   state,

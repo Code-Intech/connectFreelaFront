@@ -16,6 +16,9 @@ const mutations = {
   setGenders(state, { genders }) {
     state.genders = genders;
   },
+  LogOutgenders(state) {
+    state.genders = null;
+  },
 };
 export default {
   state,

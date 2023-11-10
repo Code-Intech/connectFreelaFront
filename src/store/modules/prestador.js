@@ -185,6 +185,7 @@ const mutations = {
 
   LogOutPrestador(state) {
     state.prestador = null;
+    state.PrestadorID = null;
   },
 };
 export default {

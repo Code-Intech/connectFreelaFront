@@ -21,6 +21,9 @@ const mutations = {
   setProfessions(state, { profession }) {
     state.professions = profession;
   },
+  LogOutprofessions(state) {
+    state.professions = null;
+  },
 };
 export default {
   state,
