@@ -81,9 +81,9 @@ export default {
 
 
     async getCriarServico() {
-      await this.getcategory(this.GetToken());
-      await this.getProfessions(this.GetToken());
-      await this.getSkills(this.GetToken());
+      await this.getcategory(await this.GetToken());
+      await this.getProfessions(await this.GetToken());
+      await this.getSkills(await this.GetToken());
 
     },
 

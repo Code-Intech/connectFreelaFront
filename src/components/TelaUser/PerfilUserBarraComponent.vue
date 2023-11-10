@@ -63,7 +63,7 @@ export default {
         ...mapGetters(["GetToken"]),
         async getalbum(idUser, idPresta) {
             try {
-                await this.GetAlbum(this.GetToken());
+                await this.GetAlbum(await this.GetToken());
 
                 this.$router.push({ name: `UserPortfolioView`, params: { id: idUser, idPrestador: idPresta } });
             } catch (error) {

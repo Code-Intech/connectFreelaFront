@@ -222,7 +222,7 @@ export default {
         await this.Register(User);
         this.$router.push("/");
         this.clearAddressData();
-        await this.getInfoUser(this.GetToken());
+        await this.getInfoUser(await this.GetToken());
       } catch (error) {
         // await this.showError(error, 10000)
         this.isLoading = false;
@@ -241,10 +241,10 @@ export default {
       try {
         await this.LogIn(User);
 
-        await this.getInfoUser(this.GetToken());
+        await this.getInfoUser(await this.GetToken());
 
         this.$router.push("/");
-        await this.getAvatar(this.GetToken());
+        await this.getAvatar(await this.GetToken());
 
       } catch (error) {
         console.log(error)

@@ -123,10 +123,10 @@ export default {
     ...mapMutations(["LogOut", "LogOutAvatar", "LogOutUpUser", "LogOutPrestador", "LogOutAlbum", "Logcategoria", "LogOutgenders", "LogOutprofessions", "LogOutPropostas", "LogOutServico"]),
     async getinfo() {
       const payload = {
-        token: this.GetToken()
+        token: await this.GetToken()
       }
       try {
-        await this.d(this.GetToken());
+        await this.d(await this.GetToken());
         await this.getInfoPrestador(payload);
       } catch (error) {
         // console.log(this.GetToken());
@@ -152,7 +152,7 @@ export default {
     },
     async IFtoken() {
       try {
-        await this.ifToken(this.GetToken())
+        await this.ifToken(await this.GetToken())
         // this.$router.push("/");
       } catch (error) {
         const message = error.request.response

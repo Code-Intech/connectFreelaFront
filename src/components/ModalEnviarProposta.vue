@@ -257,7 +257,7 @@ export default {
 
             const PayLoad = {
                 id: this.idModal,
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 infoProposta: Proposta
             }
 

@@ -276,7 +276,7 @@ export default {
             InfoServico.append("Titulo_Servico", this.Servico.Titulo);
 
             const infoPayLoad = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 info: InfoServico
             }
             try {
@@ -284,7 +284,7 @@ export default {
                 await this.CreateServico(infoPayLoad)
                 if (this.Servico.IMG.length > 0) {
 
-                    await this.getInfoServico(this.GetToken())
+                    await this.getInfoServico(await this.GetToken())
                     const id = store.getters.StateServico
                     this.Servico.IdServico = id[id.length - 1].servicoInfo.idtb_servico
 

@@ -260,7 +260,7 @@ export default {
 
 
             const infoPayLoad = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 info: InfoUse
             }
             try {

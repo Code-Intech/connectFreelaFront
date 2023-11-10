@@ -299,8 +299,8 @@ export default {
         ...mapActions(["dellFotosServico", "upFotosServico", "getFotosServico", "GetAddress", "clearAddressData", "UpServico", "UpServicoSkills", "getInfoServico", "UpServicoProfresions", "getcategory", "getProfessions", "getSkills"]),
         ...mapGetters(["GetToken"]),
 
-        InfoServico() {
-            this.GetFotos()
+        async InfoServico() {
+            await this.GetFotos()
             this.InfoServicoModal = this.infoServico
             this.Servico.Titulo = this.InfoServicoModal.servicoInfo.Titulo_Servico
             this.Servico.Texto = this.InfoServicoModal.servicoInfo.Desc
@@ -332,7 +332,7 @@ export default {
 
             const payload = {
                 id: this.idModal,
-                token: this.GetToken()
+                token:await  this.GetToken()
             }
 
 
@@ -459,17 +459,17 @@ export default {
             InfoServico.append("Titulo_Servico", this.Servico.Titulo);
 
             const infoPayLoadSkills = {
-                token: this.GetToken(),
+                token:await  this.GetToken(),
                 info: skills,
                 id: this.idModal
             }
             const infoPayLoadProfessions = {
-                token: this.GetToken(),
+                token:await  this.GetToken(),
                 info: Professions,
                 id: this.idModal
             }
             const infoPayLoad = {
-                token: this.GetToken(),
+                token:await  this.GetToken(),
                 info: InfoServico,
                 id: this.idModal
             }
@@ -478,11 +478,11 @@ export default {
                 await this.UpServico(infoPayLoad)
                 await this.UpServicoProfresions(infoPayLoadProfessions)
                 await this.UpServicoSkills(infoPayLoadSkills)
-                await this.getInfoServico(this.GetToken());
-                await this.getcategory(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getSkills(this.GetToken());
-                this.InfoServico()
+                await this.getInfoServico(await this.GetToken());
+                await this.getcategory(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getSkills(await this.GetToken());
+                await this.InfoServico()
                 this.isLoading = false;
             } catch (error) {
                 this.isLoading = false;
@@ -514,7 +514,7 @@ export default {
 
             const payload = {
                 id: this.idModal,
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 img: servicoImg
 
             }
@@ -523,12 +523,12 @@ export default {
 
             try {
                 await this.upFotosServico(payload)
-                await this.getInfoServico(this.GetToken());
-                await this.getcategory(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getSkills(this.GetToken());
+                await this.getInfoServico(await this.GetToken());
+                await this.getcategory(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getSkills(await this.GetToken());
                 this.isLoading = false;
-                this.InfoServico()
+                await this.InfoServico()
             } catch (error) {
                 this.isLoading = false;
                 const message = error.request.response
@@ -550,18 +550,18 @@ export default {
 
             const payload = {
                 id: id,
-                token: this.GetToken(),
+                token: await this.GetToken(),
 
             }
 
 
             try {
                 await this.dellFotosServico(payload)
-                await this.getInfoServico(this.GetToken());
-                await this.getcategory(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getSkills(this.GetToken());
-                this.InfoServico()
+                await this.getInfoServico(await this.GetToken());
+                await this.getcategory(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getSkills(await this.GetToken());
+                await this.InfoServico()
             } catch (error) {
                 const message = error.request.response
                 this.errorMessage = JSON.parse(message)

@@ -353,15 +353,15 @@ export default {
         async GetSkills() {
 
             const payload = {
-                token: this.GetToken()
+                token: await this.GetToken()
             }
 
             try {
 
                 await this.getInfoPrestador(payload);
-                await this.getSkills(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getcategory(this.GetToken());
+                await this.getSkills(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getcategory(await this.GetToken());
             } catch (error) {
                 console.log(error)
             }
@@ -497,12 +497,12 @@ export default {
 
 
             const infoPayLoad = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 info: InfoPresta
             }
             try {
                 await this.CreatePrestador(infoPayLoad)
-                this.GetSkills()
+                await this.GetSkills()
                 this.getprofrissoesbackend()
             } catch (error) {
                 console.log(error)
@@ -545,16 +545,15 @@ export default {
 
 
             const infoPayLoad = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 info: InfoPresta
             }
             try {
                 await this.UpPrestador(infoPayLoad)
 
-                setTimeout(() => {
-                    this.GetSkills()
-                    this.getprofrissoesbackend()
-                }, 2000);
+
+                await this.GetSkills()
+                this.getprofrissoesbackend()
             } catch (error) {
                 const message = error.request.response
                 this.errorMessage = JSON.parse(message)

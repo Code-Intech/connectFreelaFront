@@ -225,7 +225,7 @@ export default {
 
         async getSobreUser() {
             const infoPayLoad = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
             }
             try {
                 await this.getInfoPrestador(infoPayLoad)

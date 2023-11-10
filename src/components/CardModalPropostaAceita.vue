@@ -232,7 +232,7 @@ export default {
 
             const payload = {
                 id: this.idModal,
-                token: this.GetToken()
+                token: await this.GetToken()
             }
 
 

@@ -262,12 +262,12 @@ export default {
             // album.append("portifolioPhotos[]", this.album.Fotos);
 
             const avatarPayload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 album: album,
                 id: this.dadosModal.portifolio.idtb_portifolio
             };
             const getPayload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 id: this.dadosModal.portifolio.idtb_portifolio
             };
 
@@ -308,12 +308,12 @@ export default {
             foto.append("photo", this.editaralbum.foto[0]);
 
             const Payload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 photo: foto,
                 id: this.editaralbum.id
             };
             const getPayload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 id: this.editaralbum.id
             };
             try {
@@ -349,7 +349,7 @@ export default {
 
 
             const avatarPayload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 id: this.editaralbum.id
             };
 
@@ -429,7 +429,7 @@ export default {
                 this.inputBloqueado = true;
                 this.botaoBloqueado = true;
             }
-            await this.GetAlbum(this.GetToken())
+            await this.GetAlbum(await this.GetToken())
 
         },
 

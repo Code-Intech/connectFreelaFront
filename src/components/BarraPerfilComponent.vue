@@ -132,7 +132,7 @@ export default {
             foto.append("avatar", this.selectedFile);
 
             const avatarPayload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 avatar: foto
             };
 
@@ -150,24 +150,24 @@ export default {
 
         async getinfo() {
             try {
-                await this.getInfoUser(this.GetToken());
+                await this.getInfoUser(await this.GetToken());
             } catch (error) {
                 this.$router.push("/");
             }
         },
         async getskill() {
 
-            console.log(this.GetToken())
+
 
             const payload = {
-                token: this.GetToken()
+                token: await this.GetToken()
             }
             try {
 
                 await this.getInfoPrestador(payload);
-                await this.getSkills(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getcategory(this.GetToken());
+                await this.getSkills(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getcategory(await this.GetToken());
                 setTimeout(() => {
                     // Função a ser executada após 2 segundos
                     this.$router.push({ path: '/ViewInfoPrestador' })
@@ -185,7 +185,7 @@ export default {
             try {
 
                 const payload = {
-                    token: this.GetToken()
+                    token: await this.GetToken()
                 }
 
                 await this.GetAlbum(payload);
@@ -199,10 +199,10 @@ export default {
         },
         async getServicoMeuServico() {
             try {
-                await this.getInfoServico(this.GetToken());
-                await this.getcategory(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getSkills(this.GetToken());
+                await this.getInfoServico(await this.GetToken());
+                await this.getcategory(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getSkills(await this.GetToken());
                 this.$router.push({ path: '/MeuServico' })
             } catch (error) {
 
@@ -211,7 +211,7 @@ export default {
         },
         async getServicoPropostas() {
             try {
-                await this.getInfoServico(this.GetToken());
+                await this.getInfoServico(await this.GetToken());
                 this.$router.push({ path: '/ViewPropostaContratante' })
             } catch (error) {
 
@@ -222,7 +222,7 @@ export default {
 
 
         async getNome() {
-            await this.getInfoUser(this.GetToken());
+            await this.getInfoUser(await this.GetToken());
             if (store.getters.StateEditUser.idtb_user > 0) {
                 this.nome = store.getters.StateEditUser.Nome_completo
             }

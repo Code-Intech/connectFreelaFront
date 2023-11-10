@@ -158,7 +158,7 @@ export default {
 
         async getPropostas() {
             try {
-                await this.GetPropostaEnviadas(this.GetToken())
+                await this.GetPropostaEnviadas(await this.GetToken())
                 this.propostas = store.getters.StateInfoPropostaEnviadas
 
                 this.Servico = []

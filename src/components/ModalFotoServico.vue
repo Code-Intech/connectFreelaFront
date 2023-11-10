@@ -91,7 +91,7 @@ export default {
 
             const payload = {
                 id: this.modalFotoId,
-                token: this.GetToken()
+                token: await this.GetToken()
             }
 
 

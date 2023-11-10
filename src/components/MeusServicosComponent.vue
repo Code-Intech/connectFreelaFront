@@ -282,10 +282,10 @@ export default {
         },
         async getServicoMeuServico() {
             try {
-                await this.getInfoServico(this.GetToken());
-                await this.getcategory(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getSkills(this.GetToken());
+                await this.getInfoServico(await this.GetToken());
+                await this.getcategory(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getSkills(await this.GetToken());
                 this.$router.push({ path: '/MeuServico' })
                 this.ifServico = true
             } catch (error) {
@@ -298,17 +298,17 @@ export default {
 
             const payload = {
                 id: id,
-                token: this.GetToken()
+                token:await this.GetToken()
             }
 
 
             try {
 
                 await this.deleteServico(payload);
-                await this.getInfoServico(this.GetToken());
-                await this.getcategory(this.GetToken());
-                await this.getProfessions(this.GetToken());
-                await this.getSkills(this.GetToken());
+                await this.getInfoServico(await this.GetToken());
+                await this.getcategory(await this.GetToken());
+                await this.getProfessions(await this.GetToken());
+                await this.getSkills(await this.GetToken());
                 this.getinfos();
                 this.$router.push({ path: '/MeuServico' })
             } catch (error) {

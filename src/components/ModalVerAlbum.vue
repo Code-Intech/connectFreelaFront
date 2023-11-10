@@ -145,7 +145,7 @@ export default {
             // album.append("portifolioPhotos[]", this.album.Fotos);
 
             const avatarPayload = {
-                token: this.GetToken(),
+                token: await this.GetToken(),
                 album: album
             };
 
