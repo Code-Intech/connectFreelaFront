@@ -10,7 +10,7 @@
                 <div class="row modal-body">
                     <!-- {{ albomModal }} -->
                     <div :id="'carouselExample' + modalFotoId" class="carousel slide" v-if="iffoto">
-                        <div class="carousel-inner" style="height: 60vh;">
+                        <div class="carousel-inner" style="">
                             <div class="carousel-item" :class="[index < 1 ? 'active' : '']"
                                 v-for="(fotos, index) in foto.fotos" :key="fotos[index]">
                                 <img :src="fotos.image_url" class="d-block w-100" alt="">

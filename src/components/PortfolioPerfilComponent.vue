@@ -93,7 +93,8 @@
         <!-- Modal Criar Album-->
         <div class="modal fade" id="criarportfolio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
             data-bs-backdrop="static">
-            <div class="modal-dialog modal-xl  modal-dialog-scrollable">
+            <div class="modal-dialog   modal-dialog-scrollable"
+                :class="{ 'modal-lg': windowWidth >= 1024, '': windowWidth < 1024 }">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Portfólio</h1>
@@ -223,6 +224,7 @@ export default {
             errorMessage: null,
             erroIf: false,
             ifgetalbum: false,
+            windowWidth: window.innerWidth
         }
     },
     computed: {
@@ -233,6 +235,9 @@ export default {
     created() {
         this.salvealbum();
         this.getalbum();
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleResize);
     },
     methods: {
         validateOnBack: Boolean,
@@ -390,7 +395,8 @@ export default {
 
 
 
-        teste() {
+        handleResize() {
+            this.windowWidth = window.innerWidth;
         }
     },
 

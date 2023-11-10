@@ -2,7 +2,8 @@
     <!-- Modal -->
     <div class="modal fade" id="PropostasEnvidas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-dialog-scrollable"
+            :class="{ 'modal-lg': windowWidth >= 1024, '': windowWidth < 1024 }">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Proposta Aceita</h1>
@@ -127,6 +128,7 @@ export default {
             contratante: [],
             avatar: [],
             idProposta: false,
+            windowWidth: window.innerWidth,
         }
     },
     components: {
@@ -140,6 +142,9 @@ export default {
     },
     created() {
         this.getPropostas()
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleResize);
     },
     methods: {
         validateOnBack: Boolean,
@@ -199,6 +204,12 @@ export default {
                 return null
             }
         },
+
+
+
+        handleResize() {
+            this.windowWidth = window.innerWidth;
+        }
 
     },
 
