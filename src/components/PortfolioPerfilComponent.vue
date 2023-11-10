@@ -108,10 +108,7 @@
                                     <div class="border-bottom border-black border-2  " style="min-height: 15rem; ;">
                                         <loading v-if="isLoading" :message="loadingMessage" />
 
-                                        <div v-if="ifalbum">
-                                            {{ albumMessage }}
-                                        </div>
-                                        <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
+
 
                                         <div class="m-1  d-flex justify-content-center">
                                             <h5 class="h5 ">Seu Portfólio</h5>
@@ -178,6 +175,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <div v-if="ifalbum">
+                            {{ albumMessage }}
+                        </div>
+                        <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             @click="sair()">Sair</button>
                         <button type="button" class="btn btn-primary" @click="CriarAlbum()">Salvar</button>
@@ -295,7 +296,17 @@ export default {
             } catch (error) {
                 this.isLoading = false;
                 const message = error.request.response
+
                 this.errorMessage = JSON.parse(message)
+
+                if (this.errorMessage.error.message == "Prestador não existe") {
+                    this.errorMessage = ["Cadastre-Se Como Prestador Antes!! "]
+                    this.erroIf = true
+                    setTimeout(() => {
+                        this.erroIf = false
+                    }, 4000);
+                }
+
                 this.erroIf = true
                 setTimeout(() => {
                     this.erroIf = false
