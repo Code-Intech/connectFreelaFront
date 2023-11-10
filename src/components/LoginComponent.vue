@@ -78,7 +78,7 @@
                   Letras minúsculas;
                 </li>
                 <li>
-                  Caracter especial<br>(que não seja: - ou +);
+                  Deve incluir um caractere especial <br /> (exceto "-", "+").
                 </li>
                 <li>
                   8 dígitos.
