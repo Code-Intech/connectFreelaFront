@@ -93,7 +93,7 @@
         <!-- Modal Criar Album-->
         <div class="modal fade" id="criarportfolio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
             data-bs-backdrop="static">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-xl  modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Portfólio</h1>
