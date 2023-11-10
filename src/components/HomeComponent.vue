@@ -4,65 +4,94 @@
     <div class="row mt-5 mb-5 d-flex container-world">
 
       <div class="col d-flex align-content-center justify-content-center flex-column p-5">
-        <p class="detail-text">
-          Você é um freelancer que tem dificuldades para encontrar um serviço?
-          Ou para encontrar o profissional certo para o seu serviço?
+        <p class="fst-italic detail-text">
+          Você é freelancer e está com dificuldade para encontrar um serviço? <br><br>
+          Você precisa de um serviço e não sabe onde encontrar profissionais de confiança?
         </p>
         <p class="detail-text">
-          O ConnectFreela é o lugar certo para te ajudar nesta busca. O site que conecta você, com freelancer de sua
-          escolha.
+          O ConnectFreela é o lugar certo para te ajudar nesta busca. O site conecta o contratante ao prestador de serviço, encurtando o caminho e garantindo segurança.
         </p>
         <div class="d-flex seja-prestador-container">
-          <button class="btn-responsive seja-prestador-btn btn px-5">Seja prestador</button>
+          <button @click="$router.push({ path: '/login' })" class="btn-responsive seja-prestador-btn btn px-5">Participe
+            da nossa Comunidade</button>
         </div>
       </div>
 
       <div class="col align-self-center text-center">
-        <img class="img-fluid img-world" src="../assets/img/img1.png" alt=""/>
+        <img class="img-fluid img-world" src="../assets/img/Profissoes.png" alt="" />
       </div>
     </div>
 
-    <div class="row mt-5 mb-5 container-world">
+    <div class="row mt-5 mb-5 d-flex container-world">
 
       <div class="col align-self-center text-center">
-        <img class="img-fluid" src="../assets/img/Ajuste.png" alt=""/>
+        <img class="img-fluid" src="../assets/img/Inovacao.png" alt="" />
       </div>
       <div class="col d-flex align-content-center justify-content-center flex-column p-5">
         <p class="detail-text">
-          Somos um site novo, que planeja otimizar seu tempo e melhorar sua experiencia na procura de profissionais e
-          serviços. Então venha fazer parte de nossa comunidade, e relance seu negócio.
+          Nosso compromisso é estabeler conexões seguras e viabilizar o processo tanto para contratação quanto para fornecimento de serviços, otimizando o tempo de ambas as partes e promovendo excelentes resultados.
         </p>
         <p class="detail-text">
-          O ConnectFreela é o lugar certo para te ajudar nesta busca. O site que conecta você, com freelancer de sua
-          escolha.
         </p>
       </div>
     </div>
 
-    <div class="row mt-5 mb-5 d-flex align-content-center justify-content-center">
-      <h4 class="text-center mb-5">Conheça alguns dos nossos serviços</h4>
 
-      <div class="row d-flex align-content-center justify-content-center gap-1">
-        <img class="img-fluid img-jobs" src="../assets/img/12.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/31.png" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/16.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/7.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/19.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/1.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/2.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/30.png" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/17.svg" alt=""/>
-        <img class="img-fluid img-jobs" src="../assets/img/5.svg" alt=""/>
+  <div class="row mt-5 mb-5 d-flex container-world">
+
+    <div class="col d-flex align-content-center justify-content-center flex-column p-5">
+      <p class="fst-italic detail-text">
+      Nosso site comporta diversos nichos, seja online ou presencial. Se você busca uma relação de qualidade e de confiança entre prestador e cliente, o seu lugar é aqui. 
+      </p>
+      <div class="d-flex seja-prestador-container">
+    <button @click="$router.push({ path: '/login' })" class="btn-responsive seja-prestador-btn btn px-5">Participe
+      da nossa Comunidade</button>
+  </div>
+    </div>
+
+    <div class="col align-self-center text-center">
+      <img class="img-fluid img-world" src="../assets/img/Carreiras.gif" alt="" />
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5 d-flex align-content-center justify-content-center">
+    <h4 class="text-center mb-5">Conheça alguns dos nossos serviços</h4>
+
+    <div class="row d-flex align-content-center justify-content-center gap-1">
+      <img class="img-fluid img-jobs" src="../assets/img/31.png" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/16.svg" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/7.svg" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/19.svg" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/1.svg" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/2.svg" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/30.png" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/17.svg" alt="" />
+      <img class="img-fluid img-jobs" src="../assets/img/5.svg" alt="" />
+    </div>
+  </div>
+
+  <div class="row text-center mt-5 mb-5">
+    <h6>Trazemos para você modernidade e inovação ao seu negócio, de maneira mais simples.</h6>
+  </div>
+
+  <div class="row mt-5 mb-5 d-flex container-world">
+
+    <div class="col d-flex align-content-center justify-content-center flex-column p-5">
+      <p class="fst-italic detail-text">
+        Trazemos para você modernidade e inovação ao seu negócio, de maneira mais simples.
+      </p>
+      <div class="d-flex seja-prestador-container">
+        <button @click="$router.push({ path: '/login' })" class="btn-responsive seja-prestador-btn btn px-5">Participe
+          da nossa Comunidade</button>
       </div>
     </div>
 
-    <div class="row text-center mt-5 mb-5">
-      <h6>Trazemos para você modernidade e inovação ao seu negócio, de maneira mais simples.</h6>
+    <div class="col align-self-center text-center">
+      <img class="img-fluid img-world" src="../assets/img/img1.png" alt="" />
     </div>
-
   </div>
-  <FooterComponent/>
-
+  </div>
+  <FooterComponent />
 </template>
 
 <script>
