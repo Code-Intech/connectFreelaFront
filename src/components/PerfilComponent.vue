@@ -33,7 +33,7 @@ export default {
         ...mapGetters(["GetToken"]),
         async getalbum() {
             try {
-                await this.GetAlbum(this.GetToken());
+                await this.GetAlbum(await this.GetToken());
 
 
                 this.$router.push({ path: '/UserPortifolio' })

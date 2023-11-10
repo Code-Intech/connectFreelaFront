@@ -1,5 +1,12 @@
 <template>
-    <div class="mt-3 ms-3 d-block border rounded">
+    <div class="mt-3 ms-3 " v-if="ifPrestador">
+        <h3>
+            "Você ainda não se tornou um prestador de serviços."
+        </h3>
+    </div>
+    <div class="mt-3 ms-3 d-block border rounded" v-if="!ifPrestador">
+
+
         <div class="m-3 d-flex" v-for="(valores) in prestadorInfo" :key="(valores)">
             <div class="me-5">
                 <h2>
@@ -191,6 +198,7 @@ export default {
             prestadorInfo: [],
             sobre: [],
             skills: [],
+            ifPrestador: false,
         }
     },
     components: {
@@ -225,9 +233,11 @@ export default {
                 this.prestadorInfo.push(this.prestado.prestadorInfo)
                 this.sobre.push(this.prestado.apresentacao)
                 this.skills.push(this.prestado.prestadorSkills)
+                this.ifPrestador = false
             } catch (error) {
                 console.log(error)
                 this.prestador = null
+                this.ifPrestador = true
             }
         },
 

@@ -24,7 +24,7 @@
 
 
 
-            <div class="" style="min-height: 200px;">
+            <div class="" style="min-height: 200px;" v-if="ifgetalbum">
                 <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
                     <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
                         <div class="card" style="width: 20rem; ">
@@ -102,10 +102,9 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class=" ">
                             <div class=" ">
-                                <div class="card border-5  rounded-3"
-                                    style="max-width: 60rem; border-color: var(--purple-primary);width: 100vh">
+                                <div class="" style="width: 100%;">
                                     <div class="border-bottom border-black border-2  " style="min-height: 15rem; ;">
                                         <loading v-if="isLoading" :message="loadingMessage" />
 
@@ -114,9 +113,8 @@
                                         </div>
                                         <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
 
-                                        <div class="m-1 rounded-3 d-flex justify-content-center"
-                                            style="background-color: var(--purple-primary);">
-                                            <h5 class="h5 text-white">Seu Portfólio</h5>
+                                        <div class="m-1  d-flex justify-content-center">
+                                            <h5 class="h5 ">Seu Portfólio</h5>
                                         </div>
 
 
@@ -157,7 +155,7 @@
 
 
                                     </div>
-                                    <div class="card-body">
+                                    <div class="">
                                         <div>
 
 
@@ -223,6 +221,7 @@ export default {
             albums: [],
             errorMessage: null,
             erroIf: false,
+            ifgetalbum: false,
         }
     },
     computed: {
@@ -232,6 +231,7 @@ export default {
     },
     created() {
         this.salvealbum();
+        this.getalbum();
     },
     methods: {
         validateOnBack: Boolean,
@@ -289,10 +289,7 @@ export default {
                 // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
                 this.ifalbum = true;
-                const payload = {
-                    token: this.GetToken()
-                }
-                await this.GetAlbum(payload)
+                await this.getalbum()
                 this.salvealbum()
 
             } catch (error) {
@@ -323,10 +320,7 @@ export default {
             try {
 
                 await this.dellAlbum(avatarPayload)
-                const payload = {
-                    token: this.GetToken()
-                }
-                await this.GetAlbum(payload)
+                await this.getalbum()
                 this.albums = store.getters.StatealbumMe;
 
             } catch (error) {
@@ -340,6 +334,16 @@ export default {
         },
 
 
+        async getalbum() {
+            try {
+
+                await this.GetAlbum(await this.GetToken())
+                this.ifgetalbum = true
+            } catch (error) {
+                console.log(error)
+                this.ifgetalbum = false
+            }
+        },
 
         deletarFoto(index) {
             // Remova a foto do array com base no índice

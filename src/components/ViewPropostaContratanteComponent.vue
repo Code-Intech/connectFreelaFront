@@ -6,6 +6,7 @@
                 <button class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#PropostasEnvidas">
                     Propostas Enviadas
                 </button>
+                <CardModalPropostasEnvidas />
             </div>
             <div class="m-2">
                 <div class="">
@@ -194,7 +195,7 @@
                                             :idModal="servico.servicoInfo.idtb_servico" />
                                         <CardModalPropostaAceita :infoServico="servico"
                                             :idModal="servico.servicoInfo.idtb_servico" />
-                                        <CardModalPropostasEnvidas />
+
 
                                     </div>
 

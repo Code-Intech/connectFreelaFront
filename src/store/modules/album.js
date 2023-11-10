@@ -35,6 +35,7 @@ const getters = {
 };
 const actions = {
   async CreateAlbum({ commit }, { token, album }) {
+    console.log(token);
     const request = await axios.post(
       "http://localhost:8000/api/portifolio/create",
       album,
@@ -71,16 +72,12 @@ const actions = {
     return request;
   },
   async GetAlbum({ commit }, token) {
-    const request = await axios.get(
-      `http://localhost:8000/api/portifolio`,
-
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    console.log(token);
+    const request = await axios.get(`http://localhost:8000/api/portifolio`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (
       request.status === 400 ||
       request.status === 401 ||

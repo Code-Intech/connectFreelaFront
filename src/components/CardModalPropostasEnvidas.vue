@@ -10,7 +10,11 @@
                 </div>
                 <div class="modal-body">
 
-
+                    <div v-if="idProposta">
+                        <h3>
+                            "Ainda não foi enviada nenhuma proposta até o momento."
+                        </h3>
+                    </div>
                     <div class="d-inline-flex justify-content-center flex-wrap">
 
                         <div class="card mt-5 d-flex flex-wrap" style="max-width: 100vh; width: 90%;"
@@ -122,6 +126,7 @@ export default {
             Servico: [],
             contratante: [],
             avatar: [],
+            idProposta: false,
         }
     },
     components: {
@@ -164,18 +169,21 @@ export default {
                         await this.getAvatarNoToken(this.Servico[index].servicoInfo.tb_contratante_tb_user_idtb_user)
                         const avata = store.getters.StateAvatarId
                         this.avatar.push(avata)
+
                     } catch (error) {
                         console.log(error)
                         const avata = null
                         this.avatar.push(avata)
+
                     }
 
                 }
 
 
-
+                this.idProposta = false
             } catch (error) {
                 console.log(error)
+                this.idProposta = true
             }
         },
 

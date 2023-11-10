@@ -171,12 +171,6 @@
         </div>
 
 
-
-
-        <button @click="teste()">
-            teste
-        </button>
-
     </div>
 </template>
 
@@ -363,7 +357,7 @@ export default {
             }
 
             try {
-                
+
                 await this.getInfoPrestador(payload);
                 await this.getSkills(this.GetToken());
                 await this.getProfessions(this.GetToken());
@@ -475,14 +469,7 @@ export default {
 
 
 
-        teste() {
 
-
-
-
-
-
-        },
 
 
 
