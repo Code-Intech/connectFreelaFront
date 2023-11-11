@@ -142,9 +142,6 @@ export default {
         this.LogOutUpUser();
         this.LogOutPrestador();
         this.LogOutAlbum();
-        this.Logcategoria();
-        this.LogOutgenders();
-        this.LogOutprofessions();
         this.LogOutPropostas();
         this.LogOutServico();
 

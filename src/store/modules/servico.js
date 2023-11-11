@@ -267,7 +267,7 @@ const actions = {
   async dellFotosServico({ commit }, { id, token }) {
     console.log(token);
     const request = await axios.delete(
-      `http://localhost:8000/api/servico/delete/images/${id}`,
+      `http://localhost:8000/api/servico/delete/image/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
