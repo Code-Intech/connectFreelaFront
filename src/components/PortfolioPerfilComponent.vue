@@ -182,7 +182,8 @@
                         <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             @click="sair()">Sair</button>
-                        <button type="button" class="btn btn-primary" @click="CriarAlbum()">Salvar</button>
+                        <button type="button" class="btn btn-primary" @click="CriarAlbum()"
+                            :disabled="ifBotaoCriar">Salvar</button>
                     </div>
                 </div>
             </div>
@@ -223,6 +224,7 @@ export default {
             albums: [],
             errorMessage: null,
             erroIf: false,
+            ifBotaoCriar: false,
             ifgetalbum: false,
             windowWidth: window.innerWidth
         }
@@ -272,6 +274,15 @@ export default {
 
 
         async CriarAlbum() {
+            this.ifBotaoCriar = true
+            setTimeout(() => {
+                this.ifBotaoCriar = false
+            }, 5000);
+
+
+
+
+
             this.isLoading = true;
             const album = new FormData();
 

@@ -73,18 +73,26 @@ export default {
     created() {
         this.setServicoEditProfession(null)
         // Suponha que você tenha a lista de profissões já selecionadas pelo usuário
-        const profissoesSelecionadas = this.professionsBack.map((id) => id.idtb_profissoes)// IDs das profissões selecionadas
-        for (const id of profissoesSelecionadas) {
-            const professionToAdd = this.professions.find((profissao) => profissao.idtb_profissoes === id);
-            if (professionToAdd) {
-                this.selectedProfissoes.push({
-                    label: `${professionToAdd.Profissao} (Categoria: ${this.getCategoryName(professionToAdd.tb_categoria_idtb_categoria)})`,
-                    idtb_profissoes: professionToAdd.idtb_profissoes,
-                });
-                // this.setServicoEditProfession(this.selectedProfissoes)
+        if (Array.isArray(this.professionsBack)) {
+            // Agora você pode chamar map com segurança
+
+            const profissoesSelecionadas = this.professionsBack.map((id) => id.idtb_profissoes)// IDs das profissões selecionadas
+            for (const id of profissoesSelecionadas) {
+                const professionToAdd = this.professions.find((profissao) => profissao.idtb_profissoes === id);
+                if (professionToAdd) {
+                    this.selectedProfissoes.push({
+                        label: `${professionToAdd.Profissao} (Categoria: ${this.getCategoryName(professionToAdd.tb_categoria_idtb_categoria)})`,
+                        idtb_profissoes: professionToAdd.idtb_profissoes,
+                    });
+                    // this.setServicoEditProfession(this.selectedProfissoes)
+                }
             }
+            this.ifprofissao = this.selectedProfissoes.length > 0;
+        } else {
+            console.error("this.professionsBack não é uma matriz", this.professionsBack);
         }
-        this.ifprofissao = this.selectedProfissoes.length > 0;
+
+
     },
     methods: {
         validateOnBack: Boolean,

@@ -72,16 +72,16 @@
                   Deve conter:
                 </li>
                 <li>
-                  Letras maiúsculas;
+                  Letras maiúsculas:
                 </li>
                 <li>
-                  Letras minúsculas;
+                  Letras minúsculas:
                 </li>
                 <li>
-                  Deve incluir um caractere especial <br /> (exceto "-", "+").
+                  Deve incluir um caractere especial: <br /> (exceto "-", "+"):
                 </li>
                 <li>
-                  8 dígitos.
+                  8 dígitos:
                 </li>
               </ul>
             </div>

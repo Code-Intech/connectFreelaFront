@@ -181,10 +181,10 @@
                                             Proposta</button>
                                     </div>
                                     <div class=" buttuns mt-3">
-                                        <button @click="$router.push({ path: '/ViewPropostas' })" type="button"
+                                        <!-- <button @click="$router.push({ path: '/ViewPropostas' })" type="button"
                                             class="btn btn-primary"
                                             style="background-color: rgb(247, 162, 5); font-size: small; border:none;">Ver
-                                            Propostas</button>
+                                            Propostas</button> -->
                                     </div>
                                 </div>
                             </div>

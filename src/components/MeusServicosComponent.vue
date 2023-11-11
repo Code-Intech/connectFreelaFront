@@ -244,6 +244,17 @@ export default {
         this.getinfos();
         this.getServicoMeuServico();
     },
+    computed: {
+        stateServico() {
+            return this.$store.getters.StateServico;
+        }
+    },
+    watch: {
+        stateServico() {
+            // A função será chamada sempre que o getter 'StateServico' for alterado
+            this.getinfos()
+        }
+    },
     methods: {
         validateOnBack: Boolean,
         ...mapActions(["deleteServico", "getInfoServico", "getcategory", "getProfessions", "getSkills"]),
@@ -298,7 +309,7 @@ export default {
 
             const payload = {
                 id: id,
-                token:await this.GetToken()
+                token: await this.GetToken()
             }
 
 

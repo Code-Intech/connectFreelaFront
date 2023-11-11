@@ -207,6 +207,7 @@ const actions = {
   },
 
   async getInfoServico({ commit }, token) {
+    console.log(token);
     const request = await axios.get("http://localhost:8000/api/servico/me", {
       headers: {
         Authorization: `Bearer ${token}`,

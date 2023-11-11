@@ -200,12 +200,24 @@ export default {
         async getServicoMeuServico() {
             try {
                 await this.getInfoServico(await this.GetToken());
-                await this.getcategory(await this.GetToken());
-                await this.getProfessions(await this.GetToken());
-                await this.getSkills(await this.GetToken());
+                try {
+                    await this.getcategory(await this.GetToken());
+                } catch (error) {
+                    console.log(error)
+                }
+                try {
+                    await this.getProfessions(await this.GetToken());
+                } catch (error) {
+                    console.log(error)
+                }
+                try {
+                    await this.getSkills(await this.GetToken());
+                } catch (error) {
+                    console.log(error)
+                }
                 this.$router.push({ path: '/MeuServico' })
             } catch (error) {
-
+                console.log(error)
                 this.$router.push({ path: '/MeuServico' })
             }
         },

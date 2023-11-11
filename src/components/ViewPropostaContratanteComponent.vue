@@ -23,7 +23,8 @@
                                     :key="servico[index]">
                                     <div class="card-header border-black d-flex justify-content-between">
                                         <div>
-                                            <h5 class="text-center">{{ servico.contratante.Nome_Completo }}</h5>
+                                            <h5 class="text-center">{{
+                                                servico.contratante.Nome_Completo }}</h5>
 
                                         </div>
                                         <div>
@@ -245,11 +246,11 @@ export default {
     },
     created() {
         this.getinfos();
-
+        this.getServico()
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetPropostaAceita", "", ""]),
+        ...mapActions(["GetPropostaAceita", "getInfoServico", ""]),
         ...mapGetters(["GetToken"]),
         getinfos() {
 
@@ -260,6 +261,18 @@ export default {
             }
 
 
+
+        },
+        async getServico() {
+
+
+            try {
+                await this.getInfoServico(await this.GetToken())
+                this.getinfos()
+                console.log("GetServico: OK")
+            } catch (error) {
+                console.log(error, "error:GetServico")
+            }
 
         },
 

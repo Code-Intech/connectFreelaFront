@@ -113,29 +113,33 @@
             <div class="col">
                 <label class="form-label" for="">Senha:</label>
                 <input class="form-control" type="text" name="" id="" v-model="infoUser.Senha"
-                    style="max-width: 800px; border-color: var(--purple-primary)" />
-
+                    style="max-width: 800px; border-color: var(--purple-primary)" @input="validatePassword" />
+                <label class="form-label" for="">Senha:</label>
+                <input class="form-control" type="text" name="" id="" v-model="confirmPassword"
+                    style="max-width: 800px; border-color: var(--purple-primary)" @input="validatePassword" />
+                <p v-if="!passwordsMatch">As senhas não coincidem.</p>
                 <ul>
                     <li>
                         Deve conter:
                     </li>
                     <li>
-                        Letras maiúsculas;
+                        Letras maiúsculas:
                     </li>
                     <li>
-                        Letras minúsculas;
+                        Letras minúsculas:
                     </li>
                     <li>
-                        Caracter especial;
+                        Deve incluir um caractere especial: <br /> (exceto "-", "+"):
                     </li>
                     <li>
-                        8 dígitos.
+                        8 dígitos:
                     </li>
                 </ul>
             </div>
             <div class="d-flex justify-content-end">
 
-                <button class="btn btn-primary mt-3" type="submit" @click="upUser()">Salvar</button>
+                <button class="btn btn-primary mt-3" type="submit" @click="upUser()"
+                    :disabled="!passwordsMatch">Salvar</button>
             </div>
         </div>
 
@@ -184,6 +188,7 @@ export default {
             },
             errorMessage: null,
             erroIf: null,
+            confirmPassword: null,
         };
     },
     created() {
@@ -200,6 +205,9 @@ export default {
             const generoNovo = this.store.getters.StateGenders.find((Genero) => Genero.idtb_genero === this.store.getters.StateEditUser.Genero);
             return generoNovo ? generoNovo.Genero : "Genero não encontrado"
         },
+        passwordsMatch() {
+            return this.infoUser.Senha === this.confirmPassword;
+        }
 
     },
     watch: {

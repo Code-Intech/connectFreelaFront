@@ -106,7 +106,7 @@
                     </button>
                 </div>
                 <div v-else class="d-flex flex-row-reverse">
-                    <button class="btn btn-primary" @click="Salvar()" :disabled="ifBotao">Criar
+                    <button class="btn btn-primary" @click="Salvar(), scrollToElement()" :disabled="ifBotao">Criar
                         Serviço</button>
                 </div>
             </div>
@@ -279,6 +279,7 @@ export default {
                 token: await this.GetToken(),
                 info: InfoServico
             }
+
             try {
 
                 await this.CreateServico(infoPayLoad)
@@ -349,6 +350,14 @@ export default {
             const idIMG = id
             return this.items.find(item => item.idIMG === idIMG);
         },
+
+        scrollToElement() {
+            // Scroll até o elemento referenciado
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Adiciona um efeito suave de rolagem (opcional)
+            });
+        }
     }
 };
 </script>

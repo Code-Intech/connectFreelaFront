@@ -445,7 +445,7 @@ export default {
 
             const Payload = {
                 id: this.idModal,
-                token:await this.GetToken()
+                token: await this.GetToken()
             }
 
 
@@ -496,7 +496,7 @@ export default {
 
             const PayLoad = {
                 id: id,
-                token:await this.GetToken()
+                token: await this.GetToken()
             }
 
 
