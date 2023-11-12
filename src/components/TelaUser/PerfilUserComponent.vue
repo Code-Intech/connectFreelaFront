@@ -18,6 +18,14 @@
                     Diária: R$ {{ valores.Valor_diaria }}
                 </h5>
             </div>
+            <div class="ms-5">
+                <h5>
+                    Email: {{ valores.Email }}
+                </h5>
+                <h5>
+                    Telefone: {{ valores.Telefone }}
+                </h5>
+            </div>
         </div>
 
 

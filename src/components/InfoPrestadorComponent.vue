@@ -1,6 +1,12 @@
 <template>
     <div class="col-10 h-100 d-inline-block">
 
+        <div class="alert alert-success" role="alert" v-if="ifcreatepreador">
+            Prestador Criado com sucesso!.
+        </div>
+        <div class="alert alert-success" role="alert" v-if="ifattpreador">
+            Prestador Alterado com sucesso!.
+        </div>
 
         <h2 class="mt-3">Área do Prestador</h2>
         <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
@@ -222,10 +228,13 @@ export default {
 
             },
             errorMessage: null,
-            erroIf: null
+            erroIf: null,
+            ifattpreador: false,
+            ifcreatepreador: false,
         };
     },
     computed: {
+
         store() {
 
             return store
@@ -475,6 +484,7 @@ export default {
 
 
         async createPrestador() {
+            this.scrollToElement()
             const InfoPresta = new FormData();
             InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
             InfoPresta.append("valor_hora", this.infoPrestador.Valor_Hora);
@@ -504,10 +514,16 @@ export default {
                 await this.CreatePrestador(infoPayLoad)
                 await this.GetSkills()
                 this.getprofrissoesbackend()
+                this.ifcreatepreador = true
+                setTimeout(() => {
+                    this.ifcreatepreador = false
+                }, 4000);
             } catch (error) {
                 console.log(error)
                 const message = error.request.response
-                this.errorMessage = JSON.parse(message)
+                const message2 = JSON.parse(message)
+                console.log(message2.error)
+                this.errorMessage = message2
                 this.erroIf = true
                 setTimeout(() => {
                     this.erroIf = false
@@ -521,7 +537,7 @@ export default {
 
         async upPrestador() {
 
-
+            this.scrollToElement()
 
             const InfoPresta = new FormData();
             InfoPresta.append("valor_diaria", this.infoPrestador.Valor_Diarial);
@@ -554,6 +570,10 @@ export default {
 
                 await this.GetSkills()
                 this.getprofrissoesbackend()
+                this.ifattpreador = true
+                setTimeout(() => {
+                    this.ifattpreador = false
+                }, 4000);
             } catch (error) {
                 const message = error.request.response
                 this.errorMessage = JSON.parse(message)
@@ -565,6 +585,13 @@ export default {
 
         },
 
+        scrollToElement() {
+            // Scroll até o elemento referenciado
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Adiciona um efeito suave de rolagem (opcional)
+            });
+        },
     },
 };
 </script>

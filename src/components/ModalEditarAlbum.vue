@@ -5,6 +5,9 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
+                    <div class="alert alert-success" role="alert" v-if="ifATT">
+                        Atualizado com sucesso!.
+                    </div>
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Portfólio</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -208,6 +211,7 @@ export default {
             ifalbum: false,
             albums: [],
             inputBloqueado: false,
+            ifATT: false,
             botaoBloqueado: true,
             editaralbum: {
                 foto: null,
@@ -279,8 +283,21 @@ export default {
                 this.isLoading = false;
                 this.ifalbum = true;
                 await this.getfotos(getPayload)
+                try {
+
+                    await this.GetAlbum(await this.GetToken())
+                } catch (error) {
+                    console.log(error)
+                }
+                this.dados()
                 this.FotoCapa = this.dadosModal.portifolio.Capa
 
+                this.ifATT = true
+                setTimeout(() => {
+
+                    this.ifATT = false
+                }, 4000);
+                this.$router.go({ path: '/PerfilPortfolio' })
             } catch (error) {
                 this.isLoading = false;
                 const message = error.request.response
@@ -297,6 +314,7 @@ export default {
 
 
         },
+
         async AddFoto() {
 
             this.isLoading = true;
@@ -328,6 +346,11 @@ export default {
                     this.inputBloqueado = true;
                     this.botaoBloqueado = true;
                 }
+                this.ifATT = true
+                setTimeout(() => {
+
+                    this.ifATT = false
+                }, 4000);
 
             } catch (error) {
                 this.isLoading = false;
@@ -359,6 +382,11 @@ export default {
                 // alert(`Album Cadastrado com sucesso`);
                 this.ifalbum = true;
 
+                this.ifATT = true
+                setTimeout(() => {
+
+                    this.ifATT = false
+                }, 4000);
             } catch (error) {
                 this.isLoading = false;
                 const message = error.request.response

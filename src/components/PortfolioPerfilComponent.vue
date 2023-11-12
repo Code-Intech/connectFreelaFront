@@ -25,13 +25,15 @@
 
 
             <div class="" style="min-height: 200px;" v-if="ifgetalbum">
-                <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null">
-                    <div v-for="(album, index) in albums" :key="album.portifolio.idtb_portifolio" class="m-2">
+                <div class=" m-4 d-flex flex-wrap p-1" id="" v-if="album != null || album != undefined">
+                    <div v-for="(album, index) in albums" :key="album[index]" class="m-2">
                         <div class="card" style="width: 20rem; ">
                             <img src="" class="card-img-top" alt="">
                             <div class="card-body">
-                                <h5 class="card-title">{{ album.portifolio.Titulo }}</h5>
-                                <div :id="'carouselExample' + album.portifolio.idtb_portifolio" class="carousel slide">
+
+                                <h5 class="card-title">{{ album.portifolio.Titulo !== undefined ? album.portifolio.Titulo :
+                                    '' }}</h5>
+                                <div :id="'carouselExample' + album[index]" class="carousel slide">
 
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -50,14 +52,12 @@
 
                                     </div>
                                     <button class="carousel-control-prev" type="button"
-                                        :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio"
-                                        data-bs-slide="prev">
+                                        :data-bs-target="'#carouselExample' + album[index]" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next" type="button"
-                                        :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio"
-                                        data-bs-slide="next">
+                                        :data-bs-target="'#carouselExample' + album[index]" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
@@ -233,6 +233,10 @@ export default {
         store() {
             return store
         },
+
+    },
+    watch: {
+
     },
     created() {
         this.salvealbum();
@@ -379,8 +383,15 @@ export default {
         },
 
         salvealbum() {
+            this.ifgetalbum = false
             if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
                 this.albums = store.getters.StatealbumMe;
+                this.ifgetalbum = true
+            }
+            if (this.albums != undefined || this.albums != null) {
+                this.ifgetalbum = true
+            } else {
+                this.ifgetalbum = false
             }
         },
 

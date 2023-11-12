@@ -1,7 +1,7 @@
 
 <template>
     <div class="modal fade" :id="'exampleModal' + idModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+        aria-hidden="true" ref="meuModal">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,6 +53,8 @@
                                         <option value="2">Hibrido</option>
                                         <option value="3">Presencial</option>
                                     </select>
+                                </div>
+                                <div>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap">
@@ -188,6 +190,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <div class="alert alert-success" role="alert" v-if="ifattServico">
+                        Servico Atualizado!.
+                    </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
 
                 </div>
@@ -265,6 +270,7 @@ export default {
             ifNumero: false,
             ifSkill: false,
             ifProfision: false,
+            ifattServico: false,
             fotos: [],
             iffoto: false,
             albums: [],
@@ -282,7 +288,7 @@ export default {
     created() {
 
         this.InfoServico()
-
+        this.GetFotos()
 
 
 
@@ -301,14 +307,17 @@ export default {
 
         InfoServico() {
 
-            console.log("InfoServico Chamando")
             this.InfoServicoModal = this.infoServico
             this.Servico.Titulo = this.InfoServicoModal.servicoInfo.Titulo_Servico
             this.Servico.Texto = this.InfoServicoModal.servicoInfo.Desc
             this.Servico.Modalidade = this.InfoServicoModal.servicoInfo.Remoto_Presencial
-            this.Servico.Estado = this.InfoServicoModal.localidade.Estado
-            this.Servico.Cidade = this.InfoServicoModal.localidade.Cidade
+            this.cep = this.InfoServicoModal.localidade.CEP
+            this.handleCep()
+            this.Servico.Endereco = this.InfoServicoModal.localidade.Rua
             this.Servico.Bairro = this.InfoServicoModal.localidade.Bairro
+            this.Servico.Cidade = this.InfoServicoModal.localidade.Cidade
+            this.Servico.Estado = this.InfoServicoModal.localidade.Estado
+            this.Servico.Numero = this.InfoServicoModal.localidade.Numero
             this.Servico.EstimativaKM = this.InfoServicoModal.servicoInfo.Estimativa_de_distancia
             this.Servico.ValorServico = this.InfoServicoModal.servicoInfo.Estimativa_Valor
             this.Servico.EstimativaIdade = this.InfoServicoModal.servicoInfo.Estimativa_Idade
@@ -316,20 +325,7 @@ export default {
             this.Servico.DataInicio = this.InfoServicoModal.servicoInfo.Data_Inicio
             this.Servico.Habilidade = this.InfoServicoModal.servicoSkills
             this.Servico.Profissao = this.InfoServicoModal.servicoProfessions
-            // this.InfoServicoModal = null
-            // this.Servico.Titulo = null
-            // this.Servico.Texto = null
-            // this.Servico.Modalidade = null
-            // this.Servico.Estado = null
-            // this.Servico.Cidade = null
-            // this.Servico.Bairro = null
-            // this.Servico.EstimativaKM = null
-            // this.Servico.ValorServico = null
-            // this.Servico.EstimativaIdade = null
-            // this.Servico.DataTermino = null
-            // this.Servico.DataInicio = null
-            // this.Servico.Habilidade = null
-            // this.Servico.Profissao = null
+
         },
 
         async handleCep() {
@@ -393,8 +389,8 @@ export default {
 
         async EditarServico() {
 
-
-
+            this.handleCep()
+            this.scrollParaInicio()
 
             if (store.getters.StateEditarServicoSkill != null) {
 
@@ -611,6 +607,10 @@ export default {
             const dataFormatada = `${ano}-${mes}-${dia}`;
 
             return dataFormatada;
+        },
+        scrollParaInicio() {
+            // Rolar para o início do modal
+            this.$refs.meuModal.querySelector('.modal-body').scrollTop = 0;
         },
     }
 };

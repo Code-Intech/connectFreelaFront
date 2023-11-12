@@ -257,9 +257,9 @@
 
                                         <div class=" ms-3 " style="width: 90%;">
 
-                                            <div>
+                                            <div v-for="nome in Prestadores[index] " :key="nome">
 
-                                                <text class="fst-italic">Nome de perfil</text>
+                                                <text class="fst-italic">{{ nome.prestadorInfo.Nome_completo }}</text>
 
                                             </div>
 

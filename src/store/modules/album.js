@@ -72,7 +72,6 @@ const actions = {
     return request;
   },
   async GetAlbum({ commit }, token) {
-    console.log(token);
     const request = await axios.get(`http://localhost:8000/api/portifolio`, {
       headers: {
         Authorization: `Bearer ${token}`,

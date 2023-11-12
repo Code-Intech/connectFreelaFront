@@ -86,6 +86,30 @@
 
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-between">
+
+                                    <div class="d-flex">
+
+                                        <h3 class=" ">
+                                            Email:
+                                        </h3>
+                                        <h4 class=" ms-2 mt-1 " v-for="(Email, index) in infoprestador" :key="Email[index]">
+                                            {{ Email.Email }}
+                                        </h4>
+
+                                    </div>
+                                    <div class="d-flex">
+
+                                        <h3 class=" ">
+                                            Telefone:
+                                        </h3>
+                                        <h4 class=" ms-2 mt-1 " v-for="(Telefone, index) in infoprestador"
+                                            :key="Telefone[index]">
+                                            {{ Telefone.Telefone }}
+                                        </h4>
+
+                                    </div>
+                                </div>
 
 
 
@@ -138,7 +162,6 @@
 
 
 
-
                                 <p class="p-2 mt-4 ">
                                     {{ valores.Comentario }}
 
@@ -156,7 +179,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Avaliar">Avaliar
-                        Prestadora</button>
+                        Prestador</button>
                 </div>
             </div>
         </div>

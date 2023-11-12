@@ -26,6 +26,14 @@
                     Diária: R$ {{ valores.Valor_diaria }}
                 </h5>
             </div>
+            <div class="ms-5">
+                <h5>
+                    Hora: R$ {{ valores }}
+                </h5>
+                <h5>
+                    Diária: R$ {{ valores.Valor_diaria }}
+                </h5>
+            </div>
         </div>
 
 

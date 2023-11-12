@@ -27,7 +27,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-
+                            <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
                             <h2>
                                 Foto de Perfil
                             </h2>
@@ -96,10 +96,12 @@
 import Avatar from "@/components/AvatarComponent.vue"
 import store from "@/store";
 import { mapActions, mapGetters } from 'vuex'
+import CardErroMessage from "@/components/CardErroMessage.vue"
 export default {
     name: "BarraPerfilComponent",
     components: {
         Avatar,
+        CardErroMessage,
     },
     data() {
         return {
@@ -108,6 +110,8 @@ export default {
                 FTAvatar: "",
             },
             selectedFile: null,
+            errorMessage: null,
+            erroIf: false,
 
         }
     },
@@ -139,7 +143,12 @@ export default {
             try {
                 await this.GetFoto(avatarPayload)
             } catch (error) {
-                console.log(error);
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf = true
+                setTimeout(() => {
+                    this.erroIf = false
+                }, 4000);
             }
         },
 

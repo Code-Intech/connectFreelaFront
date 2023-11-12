@@ -2,7 +2,7 @@
     <div class="col-10 ">
         <div class="mt-3 ms-3 " v-if="!ifServico">
             <h3>
-                "Você ainda não se tornou um prestador de serviços."
+                "Você não possui serviços"
             </h3>
         </div>
 
