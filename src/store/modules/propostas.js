@@ -22,7 +22,7 @@ const actions = {
     });
 
     const request = await axios.post(
-      `http://localhost:8000/api/servico/proposta/${id}`,
+      `http://18.228.9.62:3333/api/servico/proposta/${id}`,
       Info,
       {
         headers: {
@@ -42,7 +42,7 @@ const actions = {
   },
   async GetProposta({ commit }, { id, token }) {
     const request = await axios.get(
-      `http://localhost:8000/api/servico/proposta/get/${id}`,
+      `http://18.228.9.62:3333/api/servico/proposta/get/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ const actions = {
   },
   async AceitarProposta({ commit }, { id, token }) {
     const request = await axios.patch(
-      `http://localhost:8000/api/servico/proposta/aceitar/${id}`,
+      `http://18.228.9.62:3333/api/servico/proposta/aceitar/${id}`,
       {},
       {
         headers: {
@@ -81,7 +81,7 @@ const actions = {
   },
   async GetPropostaAceita({ commit }, { id, token }) {
     const request = await axios.get(
-      `http://localhost:8000/api/servico/proposta/byId/${id}`,
+      `http://18.228.9.62:3333/api/servico/proposta/byId/${id}`,
 
       {
         headers: {
@@ -101,7 +101,7 @@ const actions = {
   },
   async GetPropostaEnviadas({ commit }, token) {
     const request = await axios.get(
-      `http://localhost:8000/api/servico/proposta/me`,
+      `http://18.228.9.62:3333/api/servico/proposta/me`,
 
       {
         headers: {

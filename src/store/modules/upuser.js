@@ -46,7 +46,7 @@ const actions = {
       senha: infoUser.info.get("Senha"),
     });
     const request = await axios.patch(
-      "http://localhost:8000/api/user/update",
+      "http://18.228.9.62:3333/api/user/update",
       InfoUse,
       {
         headers: {
@@ -59,7 +59,7 @@ const actions = {
   },
 
   async getInfoUser({ commit }, token) {
-    const request = await axios.get("http://localhost:8000/api/user/me", {
+    const request = await axios.get("http://18.228.9.62:3333/api/user/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

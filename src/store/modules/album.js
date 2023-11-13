@@ -37,7 +37,7 @@ const actions = {
   async CreateAlbum({ commit }, { token, album }) {
     console.log(token);
     const request = await axios.post(
-      "http://localhost:8000/api/portifolio/create",
+      "http://18.228.9.62:3333/api/portifolio/create",
       album,
       {
         headers: {
@@ -59,7 +59,7 @@ const actions = {
     return request;
   },
   async GetAlbumToken({ commit }, id) {
-    const request = await axios.get(`http://localhost:8000/portifolio/${id}`);
+    const request = await axios.get(`http://18.228.9.62:3333/portifolio/${id}`);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -72,7 +72,7 @@ const actions = {
     return request;
   },
   async GetAlbum({ commit }, token) {
-    const request = await axios.get(`http://localhost:8000/api/portifolio`, {
+    const request = await axios.get(`http://18.228.9.62:3333/api/portifolio`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -91,7 +91,7 @@ const actions = {
 
   async Delfoto({ commit }, { token, id }) {
     const request = await axios.delete(
-      `http://localhost:8000/api/album/remove/${id}`,
+      `http://18.228.9.62:3333/api/album/remove/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -111,7 +111,7 @@ const actions = {
   },
   async addfoto({ commit }, { token, id, photo }) {
     const request = await axios.post(
-      `http://localhost:8000/api/portifolio/add/${id}`,
+      `http://18.228.9.62:3333/api/portifolio/add/${id}`,
       photo,
       {
         headers: {
@@ -132,7 +132,7 @@ const actions = {
   },
 
   async getfotos({ commit }, { token, id }) {
-    const request = await axios.get(`http://localhost:8000/api/album/${id}`, {
+    const request = await axios.get(`http://18.228.9.62:3333/api/album/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -149,7 +149,7 @@ const actions = {
   },
   async upalbum({ commit }, { token, id, album }) {
     const request = await axios.post(
-      `http://localhost:8000/api/portifolio/update/${id}`,
+      `http://18.228.9.62:3333/api/portifolio/update/${id}`,
       album,
       {
         headers: {
@@ -169,7 +169,7 @@ const actions = {
   },
   async dellAlbum({ commit }, { token, id }) {
     const request = await axios.delete(
-      `http://localhost:8000/api/portifolio/album/${id}`,
+      `http://18.228.9.62:3333/api/portifolio/album/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

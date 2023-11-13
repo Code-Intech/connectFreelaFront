@@ -8,7 +8,7 @@ const getters = {
 };
 const actions = {
   async getGenders({ commit }) {
-    const request = await axios.get("http://localhost:8000/gender");
+    const request = await axios.get("http://18.228.9.62:3333/gender");
     commit("setGenders", { genders: await request.data.genres });
   },
 };

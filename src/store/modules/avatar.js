@@ -10,7 +10,7 @@ const getters = {
 };
 const actions = {
   async getAvatar({ commit }, token) {
-    const request = await axios.get("http://localhost:8000/user/avatar/", {
+    const request = await axios.get("http://18.228.9.62:3333/user/avatar/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,14 +19,14 @@ const actions = {
     commit("setAvatar", { avatar: request.data.success.avatar_url });
   },
   async getAvatarNoToken({ commit }, id) {
-    const request = await axios.get(`http://localhost:8000/user/avatar/${id}`);
+    const request = await axios.get(`http://18.228.9.62:3333/user/avatar/${id}`);
 
     commit("setAvatarNoToken", { avatar: request.data.success.avatar_url });
   },
 
   async GetFoto({ commit }, avatar) {
     const request = await axios.post(
-      "http://localhost:8000/api/user/upload/avatar",
+      "http://18.228.9.62:3333/api/user/upload/avatar",
       {
         avatar: avatar.avatar.get("avatar"),
       },

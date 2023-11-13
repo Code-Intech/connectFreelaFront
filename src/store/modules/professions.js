@@ -8,7 +8,7 @@ const getters = {
 };
 const actions = {
   async getProfessions({ commit }, token) {
-    const request = await axios.get("http://localhost:8000/professions", {
+    const request = await axios.get("http://18.228.9.62:3333/professions", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
