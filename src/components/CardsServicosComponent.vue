@@ -1,6 +1,6 @@
 <template>
-    <div class="">
-        <div class="d-flex flex-wrap">
+    <div class="col-10">
+        <div class="d-flex flex-wrap" style="overflow-y: auto; height: auto;">
             <div class=" m-auto" v-for="(valores, index) in valor" :key="valores[index]">
                 <div class="mt-3 ms-2 ">
                     <div class="card" style="width: 25rem;">

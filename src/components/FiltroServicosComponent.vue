@@ -1,8 +1,8 @@
 <template >
-    <div class="">
+    <div class="col-2 p-0">
 
 
-        <div class=" bgc rounded-bottom" style="min-height: 88vh ;border: 1px solid; border-color: var(--purple-tertiary);">
+        <div class=" bgc rounded-bottom" style="height: 100%; border: 1px solid; border-color: var(--purple-tertiary);">
             <div class="d-flex justify-content-center text-white p-2 border-top font fs-3"
                 style="border-color:  var(--purple-primary);">
                 Categorias

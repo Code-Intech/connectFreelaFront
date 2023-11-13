@@ -66,8 +66,7 @@
 
 
 
-                    <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'comments-dollar']" />
-                      Memsagens</button>
+
                     <button @click="LogOutM()" class="btn btn-primary logoff" style="border: none;"><font-awesome-icon
                         :icon="['fas', 'power-off']" /></button>
                   </div>

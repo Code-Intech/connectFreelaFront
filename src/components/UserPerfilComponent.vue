@@ -28,10 +28,10 @@
             </div>
             <div class="ms-5">
                 <h5>
-                    Hora: R$ {{ valores }}
+                    Email: {{ valores.Email }}
                 </h5>
                 <h5>
-                    Diária: R$ {{ valores.Valor_diaria }}
+                    Telefone: {{ valores.Telefone }}
                 </h5>
             </div>
         </div>

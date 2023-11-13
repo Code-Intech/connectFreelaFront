@@ -1,6 +1,6 @@
 <template>
     <div class="col-2 border-4 border-top border-black p-0"
-        style="min-height: 900px; background-color: var(--purple-tertiary);">
+        style="min-height: 100%; background-color: var(--purple-tertiary);">
         <div class=" text-emphasis-secondary m-2      h-100 d-inline-block "
             style="background-color: var(--purple-quaternary); max-height: 880px; width: 95%;">
 
@@ -78,8 +78,7 @@
                 <button @click="$router.push({ path: '/PerfilAvaliacao' })"
                     class="btn btn-outline-primary text-white  border-white">Avaliações</button>
                 <button @click=" getalbum()" class="btn btn-outline-primary text-white  border-white">Portfólio</button>
-                <button @click="$router.push({ path: '/' })"
-                    class="btn btn-outline-primary text-white  border-white">Dashboard</button>
+
                 <button @click="getServicoPropostas()" class="btn btn-outline-primary text-white  border-white">Ver
                     Propostas</button>
                 <button @click="getServicoMeuServico()" class="btn btn-outline-primary text-white  border-white">Meus

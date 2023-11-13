@@ -2,15 +2,15 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-2 p-0">
 
-                <FiltroServicosComponent />
-            </div>
 
-            <div class="col-10">
+            <FiltroServicosComponent />
 
-                <CardsServicos />
-            </div>
+
+
+
+            <CardsServicos />
+
         </div>
 
 
@@ -39,7 +39,4 @@ export default {
 
 </script>
     
-<style scoped>
-
-
-</style>
+<style scoped></style>
