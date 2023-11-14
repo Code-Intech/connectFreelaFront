@@ -26,7 +26,7 @@ library.add(fas);
 import "bootstrap/dist/css/bootstrap.min.css";
 import "vue3-form-wizard/dist/style.css";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "http://ec2-54-233-80-166.sa-east-1.compute.amazonaws.com:8000";
 
 createApp(App)
   .use(router)
