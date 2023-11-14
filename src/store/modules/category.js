@@ -8,7 +8,7 @@ const getters = {
 };
 const actions = {
   async getcategory({ commit }, token) {
-    const request = await axios.get("http://18.228.9.62:3333/categories", {
+    const request = await axios.get("/categories", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -81,7 +81,7 @@ const actions = {
     // console.log(InfoServico.info.habilidades, "habilidad servico");
 
     const request = await axios.post(
-      "http://18.228.9.62:3333/api/servico/create",
+      "/api/servico/create",
       InfoPres,
       {
         headers: {
@@ -101,7 +101,7 @@ const actions = {
   },
   async CreateServicoIMG({ commit }, { token, img, id }) {
     const request = await axios.post(
-      `http://18.228.9.62:3333/api/servico/upload/img/${id}`,
+      `/api/servico/upload/img/${id}`,
       img,
       {
         headers: {
@@ -137,7 +137,7 @@ const actions = {
       Titulo_Servico: info.get("Titulo_Servico"),
     };
     const request = await axios.patch(
-      `http://18.228.9.62:3333/api/servico/update/${id}`,
+      `/api/servico/update/${id}`,
       InfoPres,
       {
         headers: {
@@ -162,7 +162,7 @@ const actions = {
       habilidades: JSON.parse(habilidades), // Converta a string em array
     };
     const request = await axios.patch(
-      `http://18.228.9.62:3333/api/servico/update/habilidades/${id}`,
+      `/api/servico/update/habilidades/${id}`,
       InfoPres,
       {
         headers: {
@@ -187,7 +187,7 @@ const actions = {
       profissoes: JSON.parse(profissoes), // Converta a string em array
     };
     const request = await axios.patch(
-      `http://18.228.9.62:3333/api/servico/update/profissoes/${id}`,
+      `/api/servico/update/profissoes/${id}`,
       InfoPres,
       {
         headers: {
@@ -208,7 +208,7 @@ const actions = {
 
   async getInfoServico({ commit }, token) {
     console.log(token);
-    const request = await axios.get("http://18.228.9.62:3333/api/servico/me", {
+    const request = await axios.get("/api/servico/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -225,12 +225,12 @@ const actions = {
   },
 
   async getServico({ commit }) {
-    const request = await axios.get("http://18.228.9.62:3333/servico", {});
+    const request = await axios.get("/servico", {});
     commit("setCardsServico", { infoservicocard: await request.data.servico });
   },
   async deleteServico({ commit }, { id, token }) {
     const request = await axios.delete(
-      `http://18.228.9.62:3333/api/servico/delete/${id}`,
+      `/api/servico/delete/${id}`,
 
       {
         headers: {
@@ -242,7 +242,7 @@ const actions = {
   },
   async getFotosServico({ commit }, { id, token }) {
     const request = await axios.get(
-      `http://18.228.9.62:3333/api/servico/images/${id}`,
+      `/api/servico/images/${id}`,
 
       {
         headers: {
@@ -254,7 +254,7 @@ const actions = {
   },
   async upFotosServico({ commit }, { id, token, img }) {
     const request = await axios.post(
-      `http://18.228.9.62:3333/api/servico/update/images/${id}`,
+      `/api/servico/update/images/${id}`,
       img,
       {
         headers: {
@@ -267,7 +267,7 @@ const actions = {
   async dellFotosServico({ commit }, { id, token }) {
     console.log(token);
     const request = await axios.delete(
-      `http://18.228.9.62:3333/api/servico/delete/image/${id}`,
+      `/api/servico/delete/image/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -277,7 +277,7 @@ const actions = {
     commit("upfotosServico", { mensagem: await request.data });
   },
   async getServicoID({ commit }, id) {
-    const request = await axios.get(`http://18.228.9.62:3333/servico/${id}`);
+    const request = await axios.get(`/servico/${id}`);
     commit("getServicoByID", { infos: await request.data.servico });
   },
 };

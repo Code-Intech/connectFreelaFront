@@ -28,7 +28,7 @@ const actions = {
       numero: User.get("numero"),
     });
 
-    await axios.post("http://18.228.9.62:3333/api/user/create", user);
+    await axios.post("/api/user/create", user);
 
     let UserForm = new FormData();
     UserForm.append("email", User.get("email"));
@@ -41,7 +41,7 @@ const actions = {
       email: User.get("email"),
       senha: User.get("senha"),
     });
-    const request = await axios.post("http://18.228.9.62:3333/auth/login", user);
+    const request = await axios.post("/auth/login", user);
     if (request.status === 401) throw new Error(request.statusText);
 
     commit("setUser", { email: User.get("email"), token: request.data.token });
@@ -50,7 +50,7 @@ const actions = {
   },
   async ifToken({ commit }, token) {
     const request = await axios.get(
-      `http://18.228.9.62:3333/api/profile`,
+      `/api/profile`,
 
       {
         headers: {

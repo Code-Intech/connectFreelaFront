@@ -8,7 +8,7 @@ const getters = {
 };
 const actions = {
   async getSkills({ commit }, token) {
-    const request = await axios.get("http://18.228.9.62:3333/skills", {
+    const request = await axios.get("/skills", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

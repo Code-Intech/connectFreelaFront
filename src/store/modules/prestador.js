@@ -54,7 +54,7 @@ const actions = {
     };
 
     const request = await axios.post(
-      "http://18.228.9.62:3333/api/prestador/create",
+      "/api/prestador/create",
       InfoPres,
       {
         headers: {
@@ -92,7 +92,7 @@ const actions = {
     };
 
     const request = await axios.patch(
-      "http://18.228.9.62:3333/api/prestador/update",
+      "/api/prestador/update",
       InfoPres,
       {
         headers: {
@@ -117,7 +117,7 @@ const actions = {
   async getInfoPrestador({ commit }, { token }) {
     const tt = token;
     const request = await axios.get(
-      "http://18.228.9.62:3333/api/prestador/me",
+      "/api/prestador/me",
 
       {
         headers: {
@@ -136,7 +136,7 @@ const actions = {
     return request;
   },
   async getInfoPrestadorID({ commit }, id) {
-    const request = await axios.get(`http://18.228.9.62:3333/prestador/${id}`);
+    const request = await axios.get(`/prestador/${id}`);
     if (
       request.status === 400 ||
       request.status === 401 ||
@@ -151,7 +151,7 @@ const actions = {
   },
 
   async getAllPrestadores({ commit }) {
-    const request = await axios.get("http://18.228.9.62:3333/prestador", {});
+    const request = await axios.get("/prestador", {});
     if (
       request.status === 400 ||
       request.status === 401 ||

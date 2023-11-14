@@ -17,6 +17,7 @@ import FileUpload from "primevue/fileupload";
 import Slider from "primevue/slider";
 import Paginator from "primevue/paginator";
 import Button from "primevue/button";
+import axios from 'axios';
 
 import "primevue/resources/themes/lara-light-blue/theme.css";
 
@@ -24,6 +25,8 @@ library.add(fas);
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "vue3-form-wizard/dist/style.css";
+
+axios.defaults.baseURL = "";
 
 createApp(App)
   .use(router)
