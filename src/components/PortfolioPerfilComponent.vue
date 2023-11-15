@@ -33,7 +33,7 @@
 
                                 <h5 class="card-title">{{ album.portifolio.Titulo !== undefined ? album.portifolio.Titulo :
                                     '' }}</h5>
-                                <div :id="'carouselExample' + album[index]" class="carousel slide">
+                                <div :id="'carouselExample' + album.portifolio.idtb_portifolio" class="carousel slide">
 
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -52,12 +52,12 @@
 
                                     </div>
                                     <button class="carousel-control-prev" type="button"
-                                        :data-bs-target="'#carouselExample' + album[index]" data-bs-slide="prev">
+                                        :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next" type="button"
-                                        :data-bs-target="'#carouselExample' + album[index]" data-bs-slide="next">
+                                        :data-bs-target="'#carouselExample' + album.portifolio.idtb_portifolio" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
